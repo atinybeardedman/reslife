@@ -33,6 +33,13 @@
     "reslife-app-e2e": {
       "tags": [],
       "implicitDependencies": ["reslife-app"]
+    },
+    "reslife-request": {
+      "tags": []
+    },
+    "reslife-request-e2e": {
+      "tags": [],
+      "implicitDependencies": ["reslife-request"]
     }
   }
 }
