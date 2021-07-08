@@ -23,7 +23,7 @@ jobs:
         run: npm run affected:test -- --base=remotes/origin/main --parallel --maxParallel=5
       - name: Run Affected E2E Tests
         shell: bash
-        run: npm run affected:e2e -- --base=remotes/origin/main --headless --parallel --maxParallel=5
+        run: npm run affected:e2e -- --base=remotes/origin/main
       - name: Lint 
         shell: bash
         run: npm run affected:lint -- --base=remotes/origin/main 
