@@ -24,7 +24,7 @@ jobs:
           restore-keys: npm-
 
       - name: Install dependencies
-      - run: git fetch origin main
+        run: git fetch origin main
         run: npm ci
 
       - name: Run Affected Tests
