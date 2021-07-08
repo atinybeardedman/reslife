@@ -23,8 +23,8 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
+      - run: git fetch origin main
       - name: Install dependencies
-        run: git fetch origin main
         run: npm ci
 
       - name: Run Affected Tests
