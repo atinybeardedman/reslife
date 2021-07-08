@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,8 +16,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install dependencies
       - run: git fetch origin main
-      - run: npm install
+        run: npm ci
+
       - name: Run Affected Tests
         shell: bash
         run: npm run affected:test -- --base=remotes/origin/main --parallel --maxParallel=5
