@@ -12,13 +12,17 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
+      - run: git fetch origin main
+
       - name: Cache dependencies
         uses: actions/cache@v2
-         env:
+        env:
           cache-name: cache-node-modules
         with:
           path: ~/.npm
@@ -28,16 +32,17 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - run: git fetch origin main
       - name: Install dependencies
         run: npm install
 
-      - name: Run Affected Tests
-        shell: bash
-        run: npm run affected:test -- --base=remotes/origin/main --parallel --maxParallel=5
-      - name: Run Affected E2E Tests
-        shell: bash
-        run: npm run affected:e2e -- --base=remotes/origin/main
       - name: Lint 
         shell: bash
         run: npm run affected:lint -- --base=remotes/origin/main 
+        
+      - name: Run Affected Tests
+        shell: bash
+        run: npm run affected:test -- --base=remotes/origin/main --parallel --maxParallel=5
+
+      - name: Run Affected E2E Tests
+        shell: bash
+        run: npm run affected:e2e -- --base=remotes/origin/main
