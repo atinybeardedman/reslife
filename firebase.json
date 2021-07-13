@@ -1,0 +1,34 @@
+{
+  "hosting": [
+    {
+    "target": "reslife-main-app",
+    "public": "dist/apps/reslife-app",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  {
+    "target": "reslife-request",
+    "public": "dist/apps/reslife-request",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+]
+}
