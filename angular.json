@@ -120,6 +120,31 @@
         }
       }
     },
+    "reslife-main-welcome": {
+      "projectType": "library",
+      "root": "libs/reslife-main/welcome",
+      "sourceRoot": "libs/reslife-main/welcome/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/reslife-main/welcome"],
+          "options": {
+            "jestConfig": "libs/reslife-main/welcome/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/reslife-main/welcome/src/**/*.ts",
+              "libs/reslife-main/welcome/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "reslife-request": {
       "projectType": "application",
       "root": "apps/reslife-request",
