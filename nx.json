@@ -43,6 +43,9 @@
     "reslife-request-e2e": {
       "tags": [],
       "implicitDependencies": ["reslife-request"]
+    },
+    "shared-ui": {
+      "tags": []
     }
   }
 }
