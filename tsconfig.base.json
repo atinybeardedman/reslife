@@ -17,7 +17,8 @@
     "paths": {
       "@reslife/reslife-main/welcome": [
         "libs/reslife-main/welcome/src/index.ts"
-      ]
+      ],
+      "@reslife/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
