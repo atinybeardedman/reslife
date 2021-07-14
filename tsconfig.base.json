@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@reslife/reslife-main/check-in": [
+        "libs/reslife-main/check-in/src/index.ts"
+      ],
       "@reslife/reslife-main/welcome": [
         "libs/reslife-main/welcome/src/index.ts"
       ],

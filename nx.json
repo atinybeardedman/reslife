@@ -34,6 +34,9 @@
       "tags": [],
       "implicitDependencies": ["reslife-app"]
     },
+    "reslife-main-check-in": {
+      "tags": []
+    },
     "reslife-main-welcome": {
       "tags": []
     },

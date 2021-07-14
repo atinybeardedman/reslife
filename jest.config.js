@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/reslife-request',
     '<rootDir>/libs/reslife-main/welcome',
     '<rootDir>/libs/shared/ui',
+    '<rootDir>/libs/reslife-main/check-in',
   ],
 };
