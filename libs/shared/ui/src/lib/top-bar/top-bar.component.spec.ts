@@ -59,4 +59,12 @@ describe('TopBarComponent', () => {
     const name = await icon.getName();
     expect(name).toEqual('menu');
   });
+
+  it('should emit a click event when menu is clicked', async () => {
+    const spy = jest.spyOn(component.menuClick, 'emit');
+    const button = await loader.getHarness(MatButtonHarness);
+    await button.click();
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalled();
+  })
 });

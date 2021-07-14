@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'reslife-top-bar',
@@ -8,5 +8,6 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class TopBarComponent {
   @Input() title!: string;
+  @Output() menuClick = new EventEmitter<Event>();
 
 }

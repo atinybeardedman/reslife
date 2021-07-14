@@ -1,0 +1,9 @@
+<reslife-top-bar [title]="title" (menuClick)="side.toggle()"></reslife-top-bar>
+<mat-sidenav-container>
+    <mat-sidenav #side>
+        <ng-content select="[navigation]"></ng-content>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>
