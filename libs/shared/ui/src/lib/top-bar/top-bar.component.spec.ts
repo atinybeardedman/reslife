@@ -45,8 +45,10 @@ describe('TopBarComponent', () => {
   it('should render the title', async () => {
     component.title = 'My App';
     fixture.detectChanges();
-    const toolbars = await loader.getAllHarnesses(MatToolbarHarness.with({text: 'My App'}));
-    expect(toolbars.length).toBe(1);
+    const toolbar = await loader.getHarness(MatToolbarHarness);
+    const toolbarText = await toolbar.getRowsAsText();
+    expect(toolbarText.length).toBe(1);
+    expect(toolbarText[0]).toContain('My App');
   });
 
   it('should render the hamburger menu', async () => {
