@@ -67,7 +67,7 @@ describe('ChecklistComponent', () => {
       const card = await loader.getHarness(MatCardHarness);
       let titleText = await card.getTitleText();
       expect(titleText).toContain('To-Check');
-      expect(titleText).toContain('1');
+      expect(titleText).toContain(component.items.length.toString());
       component.type = 'Checked In';
       fixture.detectChanges();
       titleText = await card.getTitleText();
