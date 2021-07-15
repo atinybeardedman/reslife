@@ -8,4 +8,5 @@ import { Component,ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class MainViewComponent {
   @Input() title!: string;
+  @Input() pageTitle!: string;
 }

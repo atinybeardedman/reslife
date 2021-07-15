@@ -1,1 +1,23 @@
-<p>checklist works!</p>
+<mat-card>
+    <mat-card-title>
+        <div class="flex space-between">
+            <div class="title">
+                {{type}}
+            </div>
+            <div class="count">
+                {{items?.length}}
+            </div>
+        </div>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-list>
+            <ng-container *ngFor="let item of items; last as isLast">
+                <mat-list-item>
+                    <reslife-checklist-item [item]="item" [icon]="icon" (action)="checked.emit($event)"></reslife-checklist-item>
+                </mat-list-item>
+                <mat-divider *ngIf="!isLast"></mat-divider>
+            </ng-container>
+            
+        </mat-list>
+    </mat-card-content>
+</mat-card>

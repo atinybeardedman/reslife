@@ -51,6 +51,16 @@ describe('TopBarComponent', () => {
     expect(toolbarText[0]).toContain('My App');
   });
 
+  it('should render the pageTitle if it exists', async () => {
+    component.title = 'My App';
+    component.pageTitle = 'My Page';
+    fixture.detectChanges();
+    const toolbar = await loader.getHarness(MatToolbarHarness);
+    const toolbarText = await toolbar.getRowsAsText();
+    expect(toolbarText.length).toBe(1);
+    expect(toolbarText[0]).toContain('My App  -  My Page');
+  })
+
   it('should render the hamburger menu', async () => {
     const button = await loader.getHarness(MatButtonHarness);
     expect(button).toBeTruthy();

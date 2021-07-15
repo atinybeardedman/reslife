@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+
+import { Item } from '@reslife/data';
 
 @Component({
   selector: 'reslife-checklist-item',
@@ -6,11 +8,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./checklist-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChecklistItemComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class ChecklistItemComponent {
+  @Input() icon!: string;
+  @Input() item!: Item; 
+  @Output() action = new EventEmitter<Item>();
 
 }

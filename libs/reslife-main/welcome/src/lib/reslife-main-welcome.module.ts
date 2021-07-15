@@ -3,18 +3,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { SharedUiModule } from '@reslife/shared/ui';
-export const reslifeMainWelcomeRoutes: Route[] = [];
+const welcomeRoutes: Route[] = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: WelcomePageComponent
+  }
+];
 
 @NgModule({
   imports: [CommonModule, 
-    RouterModule.forChild([
-    {
-      path: '',
-      pathMatch: 'full',
-      component: WelcomePageComponent
-    }
-  ]
-    ),
+    RouterModule.forChild(welcomeRoutes),
   SharedUiModule],
   declarations: [
     WelcomePageComponent

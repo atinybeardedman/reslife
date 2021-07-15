@@ -8,6 +8,7 @@ import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from 
 })
 export class TopBarComponent {
   @Input() title!: string;
+  @Input() pageTitle!: string;
   @Output() menuClick = new EventEmitter<Event>();
 
 }

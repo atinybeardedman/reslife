@@ -1,1 +1,6 @@
-<p>checklist-item works!</p>
+<div class="space-between">
+    <div class="name">{{item?.name}}</div>
+    <button mat-icon-button (click)="action.emit(item)">
+        <mat-icon>{{icon}}</mat-icon>
+    </button>
+</div>

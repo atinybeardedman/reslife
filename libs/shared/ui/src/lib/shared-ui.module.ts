@@ -16,7 +16,8 @@ import { ReslifeMaterialModule } from './reslife-material/reslife-material.modul
   ],
   exports: [
     TopBarComponent,
-    MainViewComponent
+    MainViewComponent,
+    ReslifeMaterialModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
