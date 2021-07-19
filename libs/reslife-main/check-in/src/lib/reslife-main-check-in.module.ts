@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { ChecklistItemComponent } from './checklist/checklist-item/checklist-item.component';
-import { SharedUiModule } from '@reslife/shared/ui';
+import { ReslifeMaterialModule } from '@reslife/shared/ui';
 import { CheckInPageComponent } from './check-in-page/check-in-page.component';
 import { Route, RouterModule } from '@angular/router';
 const checkInRoutes: Route[] = [
@@ -16,7 +16,7 @@ const checkInRoutes: Route[] = [
   },
 ];
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(checkInRoutes), SharedUiModule],
+  imports: [CommonModule, RouterModule.forChild(checkInRoutes), ReslifeMaterialModule],
   declarations: [
     ChecklistComponent,
     ChecklistItemComponent,
