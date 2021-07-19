@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
-import { Item } from '@reslife/data';
+import { ChecklistItem } from '@reslife/data';
 
 @Component({
   selector: 'reslife-checklist-item',
@@ -10,7 +10,7 @@ import { Item } from '@reslife/data';
 })
 export class ChecklistItemComponent {
   @Input() icon!: string;
-  @Input() item!: Item; 
-  @Output() action = new EventEmitter<Item>();
+  @Input() item!: ChecklistItem; 
+  @Output() action = new EventEmitter<ChecklistItem>();
 
 }
