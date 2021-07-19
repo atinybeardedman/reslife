@@ -1,1 +1,19 @@
-<p>check-in-page works!</p>
+<check-in-choice
+  (dateSelected)="selectDate($event)"
+  [checkinOpts]="checkInOpts$ | async"
+  (checkinSelected)="selectCheckIn($event)"
+></check-in-choice>
+<mat-tab-group>
+  <mat-tab label="Check Lists">
+    <reslife-checklist
+      [items]="toCheck$ | async"
+      (checked)="checkIn($event)"
+    ></reslife-checklist>
+    <reslife-checklist
+      [items]="checked$ | async"
+      type="Checked In"
+      (checked)="unCheckIn($event)"
+    ></reslife-checklist>
+  </mat-tab>
+  <mat-tab label="Excused"></mat-tab>
+</mat-tab-group>

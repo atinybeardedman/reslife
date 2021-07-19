@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTabsModule
   ],
   exports: [
     MatToolbarModule,
@@ -27,7 +29,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTabsModule
   ],
 })
 export class ReslifeMaterialModule {}

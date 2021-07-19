@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { Item } from '@reslife/data';
+import { CheckInItem } from '@reslife/data';
 
 @Component({
   selector: 'reslife-checklist',
@@ -17,8 +17,8 @@ import { Item } from '@reslife/data';
 })
 export class ChecklistComponent implements OnChanges {
   @Input() type: 'To-Check' | 'Checked In' = 'To-Check';
-  @Input() items: Item[] = [];
-  @Output() checked = new EventEmitter<Item>();
+  @Input() items: CheckInItem[] = [];
+  @Output() checked = new EventEmitter<CheckInItem>();
   public icon = 'check';
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.type.currentValue && !changes.type.isFirstChange) {
