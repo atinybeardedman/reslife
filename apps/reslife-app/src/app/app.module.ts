@@ -10,9 +10,14 @@ import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, SharedUiModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    SharedUiModule,
+    RouterModule.forRoot(appRoutes),
+  ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { MainViewComponent } from './main-view/main-view.component';
@@ -12,6 +13,7 @@ import { ReslifeMaterialModule } from './reslife-material/reslife-material.modul
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     ReslifeMaterialModule,
   ],
   exports: [

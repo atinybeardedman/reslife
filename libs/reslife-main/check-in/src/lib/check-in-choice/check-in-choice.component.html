@@ -1,0 +1,26 @@
+<mat-card>
+  <div class="flex space-between">
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input
+        (dateChange)="emitDate($event)"
+        [value]="today"
+        matInput
+        [matDatepicker]="picker"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choose a check-in</mat-label>
+      <mat-select
+        (selectionChange)="emitCheckIn($event)"
+        [disabled]="checkIns?.length === 0"
+      >
+        <mat-option *ngFor="let checkIn of checkIns" [value]="checkIn">{{
+          checkIn
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-card>

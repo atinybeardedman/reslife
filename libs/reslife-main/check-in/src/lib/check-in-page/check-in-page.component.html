@@ -1,8 +1,8 @@
-<check-in-choice
+<reslife-check-in-choice
   (dateSelected)="selectDate($event)"
-  [checkinOpts]="checkInOpts$ | async"
-  (checkinSelected)="selectCheckIn($event)"
-></check-in-choice>
+  [checkIns]="checkInOpts$ | async"
+  (checkInSelected)="selectCheckIn($event)"
+></reslife-check-in-choice>
 <mat-tab-group>
   <mat-tab label="Check Lists">
     <reslife-checklist

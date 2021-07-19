@@ -5,14 +5,12 @@ import { ChecklistItemComponent } from './checklist/checklist-item/checklist-ite
 import { ReslifeMaterialModule } from '@reslife/shared/ui';
 import { CheckInPageComponent } from './check-in-page/check-in-page.component';
 import { Route, RouterModule } from '@angular/router';
+import { CheckInChoiceComponent } from './check-in-choice/check-in-choice.component';
 const checkInRoutes: Route[] = [
   {
-    path: 'check-in',
+    path: '',
     pathMatch: 'full',
     component: CheckInPageComponent,
-    data: {
-      pageTitle: 'Check In'
-    }
   },
 ];
 @NgModule({
@@ -21,6 +19,7 @@ const checkInRoutes: Route[] = [
     ChecklistComponent,
     ChecklistItemComponent,
     CheckInPageComponent,
+    CheckInChoiceComponent,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

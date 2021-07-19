@@ -3,7 +3,7 @@
 
     const tzo = -date.getTimezoneOffset(),
       dif = tzo >= 0 ? "+" : "-",
-      pad = num => {
+      pad = (num : number) => {
         const norm = Math.floor(Math.abs(num));
         return (norm < 10 ? "0" : "") + norm;
       };
@@ -27,7 +27,7 @@
   }
 
 export function getDateString(date = new Date()): string {
-    const datestring = this.getIsoTimezoneString(date);
+    const datestring = getIsoTimezoneString(date);
     const i = datestring.indexOf("T");
     return datestring.substring(0, i);
 }
