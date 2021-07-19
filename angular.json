@@ -6,6 +6,16 @@
       "sourceRoot": "libs/data/src",
       "projectType": "library",
       "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/data",
+            "main": "libs/data/src/index.ts",
+            "tsConfig": "libs/data/tsconfig.lib.json",
+            "assets": ["libs/data/*.md"]
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
