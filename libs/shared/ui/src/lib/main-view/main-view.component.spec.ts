@@ -1,6 +1,10 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { MainViewComponent } from './main-view.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MainViewComponent', () => {
   let component: MainViewComponent;
@@ -8,7 +12,12 @@ describe('MainViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainViewComponent ]
+      imports: [
+        MatSidenavModule,
+        NoopAnimationsModule
+      ],
+      declarations: [ MainViewComponent, TopBarComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });
