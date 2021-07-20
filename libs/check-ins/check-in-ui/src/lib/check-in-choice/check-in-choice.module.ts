@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
@@ -17,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatFormFieldModule,
         MatDatepickerModule,
         MatSelectModule,
+        MatInputModule,
         MatNativeDateModule
     ],
     exports: [CheckInChoiceComponent]

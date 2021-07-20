@@ -8,8 +8,9 @@ import { MatDividerHarness } from '@angular/material/divider/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { ChecklistComponent } from './checklist.component';
 import { ChecklistItemComponent } from '../checklist/checklist-item/checklist-item.component';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { SharedUiModule } from '@reslife/shared/ui';
+import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 describe('ChecklistComponent', () => {
   let component: ChecklistComponent;
   let fixture: ComponentFixture<ChecklistComponent>;
@@ -17,8 +18,12 @@ describe('ChecklistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedUiModule],
+      imports: [
+        MatCardModule,
+        MatListModule
+      ],
       declarations: [ChecklistComponent, ChecklistItemComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .overrideComponent(ChecklistComponent, {
         set: { changeDetection: ChangeDetectionStrategy.Default },

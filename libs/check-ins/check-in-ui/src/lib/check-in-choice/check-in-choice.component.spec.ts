@@ -3,11 +3,17 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { CheckInChoiceComponent } from './check-in-choice.component';
 
 import { HarnessLoader } from '@angular/cdk/testing';
-import { SharedUiModule } from '@reslife/shared/ui';
-import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { MatDatepickerInputHarness } from '@angular/material/datepicker/testing';
 import { MatSelectHarness } from '@angular/material/select/testing';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 describe('CheckInChoiceComponent', () => {
   let component: CheckInChoiceComponent;
   let fixture: ComponentFixture<CheckInChoiceComponent>;
@@ -15,8 +21,17 @@ describe('CheckInChoiceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedUiModule],
-      declarations: [ CheckInChoiceComponent ]
+      imports: [
+        MatCardModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatSelectModule,
+        MatNativeDateModule,
+        NoopAnimationsModule
+      ],
+      declarations: [ CheckInChoiceComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .overrideComponent(CheckInChoiceComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default },

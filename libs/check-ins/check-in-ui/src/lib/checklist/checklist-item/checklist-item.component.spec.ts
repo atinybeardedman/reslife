@@ -5,9 +5,10 @@ import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 
 import { ChecklistItemComponent } from './checklist-item.component';
 import {MatButtonHarness} from '@angular/material/button/testing';
-import { SharedUiModule } from '@reslife/shared/ui'
 
 import {HarnessLoader} from '@angular/cdk/testing';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 describe('ChecklistItemComponent', () => {
   let component: ChecklistItemComponent;
   let fixture: ComponentFixture<ChecklistItemComponent>;
@@ -15,7 +16,10 @@ describe('ChecklistItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedUiModule],
+      imports: [
+        MatButtonModule,
+        MatIconModule
+      ],
       declarations: [ ChecklistItemComponent ]
     })
     .overrideComponent(ChecklistItemComponent, {
