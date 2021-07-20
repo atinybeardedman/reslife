@@ -9,19 +9,16 @@ import { appRoutes } from './routes';
 })
 export class AppComponent {
   pageTitle!: string;
-  constructor(private router: Router){
-    
+  constructor(private router: Router) {
     this.router.events.subscribe((event) => {
-      if(event instanceof NavigationEnd){
+      if (event instanceof NavigationEnd) {
         const url = event.url.split('/')[1];
-        const route = appRoutes.find(r => r.path === url);
-        console.log()
-        if(route?.data?.pageTitle){
+        const route = appRoutes.find((r) => r.path === url);
+        console.log();
+        if (route?.data?.pageTitle) {
           this.pageTitle = route.data.pageTitle;
         }
-
       }
     });
   }
-
 }

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
-import { CheckInItem } from '@reslife/data';
+import { CheckInItem } from '@reslife/check-ins/check-in-model';
 
 @Component({
   selector: 'reslife-checklist-item',

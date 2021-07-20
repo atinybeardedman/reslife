@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CheckInItem, CheckInRecord, ExcusedRecord } from '@reslife/data';
+import { CheckInItem, CheckInRecord, ExcusedRecord } from '@reslife/check-ins/check-in-model';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

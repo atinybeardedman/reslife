@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatSelectChange } from '@angular/material/select';
-import { getDateString } from '@reslife/data';
+import { getDateString } from '@reslife/utils';
 
 @Component({
   selector: 'reslife-check-in-choice',

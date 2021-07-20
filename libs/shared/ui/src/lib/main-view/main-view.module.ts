@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainViewComponent } from './main-view.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,5 +17,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
   ],
   exports: [MainViewComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainViewModule {}

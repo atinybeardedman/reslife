@@ -1,18 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainViewComponent } from './main-view/main-view.component';
+import { MainViewModule } from './main-view/main-view.module';
 
 @NgModule({
-  declarations: [
-    MainViewComponent
-  ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
   ],
   exports: [
-    MainViewComponent,
+    MainViewModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

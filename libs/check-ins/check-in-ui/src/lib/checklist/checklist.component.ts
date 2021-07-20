@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { CheckInItem, CheckInRecord } from '@reslife/data';
+import { CheckInItem, CheckInRecord } from '@reslife/check-ins/check-in-model';
 
 @Component({
   selector: 'reslife-checklist',
