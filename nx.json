@@ -39,9 +39,6 @@
     "check-ins-check-in-ui": {
       "tags": ["type:ui"]
     },
-    "data": {
-      "tags": []
-    },
     "reslife-app": {
       "tags": []
     },
