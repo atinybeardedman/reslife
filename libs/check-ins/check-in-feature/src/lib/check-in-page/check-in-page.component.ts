@@ -5,9 +5,11 @@ import {
   CheckInItem,
   CheckInRecord,
   ExcusedRecord,
-  getDateString,
-} from '@reslife/data';
-import { CheckInDataService } from '../check-in-data.service';
+} from '@reslife/check-ins/check-in-model';
+import {
+  getDateString
+} from '@reslife/utils';
+import { CheckInDataService } from '@reslife/check-ins/check-in-data-access';
 
 @Component({
   selector: 'reslife-check-in-page',

@@ -1,1 +1,2 @@
-export * from './lib/check-ins-check-in-data-access.module';
+export * from './lib/check-in-data-access.module';
+export * from './lib/check-in-data.service';

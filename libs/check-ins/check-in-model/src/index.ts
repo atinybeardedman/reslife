@@ -1,1 +1,1 @@
-export * from './lib/check-ins-check-in-model';
+export * from './lib/check-in.model';

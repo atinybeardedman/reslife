@@ -28,12 +28,6 @@
         "libs/check-ins/check-in-ui/src/index.ts"
       ],
       "@reslife/data": ["libs/data/src/index.ts"],
-      "@reslife/reslife-main/check-in": [
-        "libs/reslife-main/check-in/src/index.ts"
-      ],
-      "@reslife/reslife-main/welcome": [
-        "libs/reslife-main/welcome/src/index.ts"
-      ],
       "@reslife/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@reslife/utils": ["libs/utils/src/index.ts"],
       "@reslife/welcome-feature": ["libs/welcome-feature/src/index.ts"]

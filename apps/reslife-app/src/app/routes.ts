@@ -3,16 +3,16 @@ export const appRoutes = [
         path: '',
         pathMatch: 'full',
         loadChildren: () => 
-          import('@reslife/reslife-main/welcome').then(
-            (module) => module.ReslifeMainWelcomeModule
+          import('@reslife/welcome-feature').then(
+            (module) => module.WelcomeFeatureModule
           )
       },
       {
         path: 'check-in',
         pathMatch: 'full',
         loadChildren: () => 
-          import('@reslife/reslife-main/check-in').then(
-            (module) => module.ReslifeMainCheckInModule
+          import('@reslife/check-ins/check-in-feature').then(
+            (module) => module.CheckInFeatureModule
           ),
           data: {
             pageTitle: 'Check In'

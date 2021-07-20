@@ -1,1 +1,1 @@
-export * from './lib/check-ins-check-in-ui.module';
+export * from './lib/check-in-ui.module';
