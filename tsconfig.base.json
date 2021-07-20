@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@reslife/check-ins/check-in-data-access": [
+        "libs/check-ins/check-in-data-access/src/index.ts"
+      ],
+      "@reslife/check-ins/check-in-feature": [
+        "libs/check-ins/check-in-feature/src/index.ts"
+      ],
+      "@reslife/check-ins/check-in-model": [
+        "libs/check-ins/check-in-model/src/index.ts"
+      ],
+      "@reslife/check-ins/check-in-ui": [
+        "libs/check-ins/check-in-ui/src/index.ts"
+      ],
       "@reslife/data": ["libs/data/src/index.ts"],
       "@reslife/reslife-main/check-in": [
         "libs/reslife-main/check-in/src/index.ts"
@@ -22,7 +34,8 @@
       "@reslife/reslife-main/welcome": [
         "libs/reslife-main/welcome/src/index.ts"
       ],
-      "@reslife/shared/ui": ["libs/shared/ui/src/index.ts"]
+      "@reslife/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@reslife/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

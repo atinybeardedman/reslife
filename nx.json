@@ -27,6 +27,18 @@
     ]
   },
   "projects": {
+    "check-ins-check-in-data-access": {
+      "tags": ["type:data-access"]
+    },
+    "check-ins-check-in-feature": {
+      "tags": ["type:feature"]
+    },
+    "check-ins-check-in-model": {
+      "tags": ["type:model"]
+    },
+    "check-ins-check-in-ui": {
+      "tags": ["type:ui"]
+    },
     "data": {
       "tags": []
     },
@@ -52,6 +64,9 @@
     },
     "shared-ui": {
       "tags": []
+    },
+    "utils": {
+      "tags": ["type:util"]
     }
   }
 }

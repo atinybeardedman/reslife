@@ -1,6 +1,102 @@
 {
   "version": 1,
   "projects": {
+    "check-ins-check-in-data-access": {
+      "projectType": "library",
+      "root": "libs/check-ins/check-in-data-access",
+      "sourceRoot": "libs/check-ins/check-in-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/check-ins/check-in-data-access"],
+          "options": {
+            "jestConfig": "libs/check-ins/check-in-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/check-ins/check-in-data-access/src/**/*.ts",
+              "libs/check-ins/check-in-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "check-ins-check-in-feature": {
+      "projectType": "library",
+      "root": "libs/check-ins/check-in-feature",
+      "sourceRoot": "libs/check-ins/check-in-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/check-ins/check-in-feature"],
+          "options": {
+            "jestConfig": "libs/check-ins/check-in-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/check-ins/check-in-feature/src/**/*.ts",
+              "libs/check-ins/check-in-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "check-ins-check-in-model": {
+      "root": "libs/check-ins/check-in-model",
+      "sourceRoot": "libs/check-ins/check-in-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/check-ins/check-in-model/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/check-ins/check-in-model"],
+          "options": {
+            "jestConfig": "libs/check-ins/check-in-model/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "check-ins-check-in-ui": {
+      "projectType": "library",
+      "root": "libs/check-ins/check-in-ui",
+      "sourceRoot": "libs/check-ins/check-in-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/check-ins/check-in-ui"],
+          "options": {
+            "jestConfig": "libs/check-ins/check-in-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/check-ins/check-in-ui/src/**/*.ts",
+              "libs/check-ins/check-in-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "data": {
       "root": "libs/data",
       "sourceRoot": "libs/data/src",
@@ -373,6 +469,27 @@
               "libs/shared/ui/src/**/*.ts",
               "libs/shared/ui/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "utils": {
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils"],
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
