@@ -35,7 +35,8 @@
         "libs/reslife-main/welcome/src/index.ts"
       ],
       "@reslife/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@reslife/utils": ["libs/utils/src/index.ts"]
+      "@reslife/utils": ["libs/utils/src/index.ts"],
+      "@reslife/welcome-feature": ["libs/welcome-feature/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
