@@ -40,21 +40,21 @@
       "tags": ["type:ui"]
     },
     "reslife-app": {
-      "tags": []
+      "tags": ["type:app"]
     },
     "reslife-app-e2e": {
       "tags": [],
       "implicitDependencies": ["reslife-app"]
     },
     "reslife-request": {
-      "tags": []
+      "tags": ["type:app"]
     },
     "reslife-request-e2e": {
       "tags": [],
       "implicitDependencies": ["reslife-request"]
     },
     "shared-ui": {
-      "tags": []
+      "tags": ["type:ui"]
     },
     "utils": {
       "tags": ["type:util"]
