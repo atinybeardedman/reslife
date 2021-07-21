@@ -46,12 +46,16 @@ describe('ChecklistComponent', () => {
     beforeEach(() => {
       component.items = [
         {
-          name: 'Test Name',
-          uid: '1234',
+          name: 'Test 1',
+          uid: '1'
         },
         {
-          name: 'Other Name',
-          uid: '4567',
+          name: 'Test 2',
+          uid: '2'
+        },
+        {
+          name: 'Test 3',
+          uid: '3'
         },
       ];
       fixture.detectChanges();
@@ -64,14 +68,10 @@ describe('ChecklistComponent', () => {
       expect(text).toContain(component.icon);
       expect(items.length).toBe(component.items.length);
     });
-    it('should render dividers for all items except the last', async () => {
-      const dividers = await loader.getAllHarnesses(MatDividerHarness);
-      expect(dividers.length).toBe(component.items.length - 1);
-    });
     it('Should render the title and number of items in the list', async () => {
       const card = await loader.getHarness(MatCardHarness);
       let titleText = await card.getTitleText();
-      expect(titleText).toContain('To-Check');
+      expect(titleText).toContain('To Check');
       expect(titleText).toContain(component.items.length.toString());
       component.type = 'Checked In';
       fixture.detectChanges();
