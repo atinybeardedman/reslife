@@ -1,6 +1,6 @@
-<div class="space-between">
-    <div class="name">{{item?.name}}</div>
-    <button mat-icon-button (click)="action.emit(item)">
+<div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxFlex class="name">{{item?.name}}</div>
+    <button fxFlex="nogrow" color="accent" mat-icon-button (click)="action.emit(item)">
         <mat-icon>{{icon}}</mat-icon>
     </button>
 </div>

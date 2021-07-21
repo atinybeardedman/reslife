@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -19,7 +20,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatDatepickerModule,
         MatSelectModule,
         MatInputModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        FlexLayoutModule
     ],
     exports: [CheckInChoiceComponent]
 })

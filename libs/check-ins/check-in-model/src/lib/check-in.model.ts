@@ -11,3 +11,5 @@ export interface CheckInRecord extends CheckInItem{
 export interface ExcusedRecord extends CheckInItem {
   note: string;
 }
+
+export type ChecklistType = 'To Check' | 'Checked In' | 'Excused';

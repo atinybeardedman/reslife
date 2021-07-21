@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { CheckInItem, CheckInRecord } from '@reslife/check-ins/check-in-model';
+import { CheckInItem, CheckInRecord, ChecklistType } from '@reslife/check-ins/check-in-model';
 
 @Component({
   selector: 'reslife-checklist',
@@ -16,14 +16,23 @@ import { CheckInItem, CheckInRecord } from '@reslife/check-ins/check-in-model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChecklistComponent implements OnChanges {
-  @Input() type: 'To-Check' | 'Checked In' = 'To-Check';
+  @Input() type: ChecklistType = 'To Check';
   @Input() items!: CheckInItem[] | null;
   @Output() checked = new EventEmitter<CheckInItem | CheckInRecord>();
   public icon = 'check';
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.type){
       if (changes.type.currentValue && !changes.type.isFirstChange) {
-        this.icon = this.type === 'To-Check' ? 'check' : 'undo';
+        switch(this.type){
+          case 'To Check':
+            this.icon = 'check';
+            break;
+          case 'Checked In':
+            this.icon = 'undo';
+            break;
+          case 'Excused':
+            this.icon = 'info'
+        }
       }
     }
   }

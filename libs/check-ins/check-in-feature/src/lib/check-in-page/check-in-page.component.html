@@ -1,19 +1,55 @@
-<reslife-check-in-choice
-  (dateSelected)="selectDate($event)"
-  [checkIns]="checkInOpts$ | async"
-  (checkInSelected)="selectCheckIn($event)"
-></reslife-check-in-choice>
-<mat-tab-group>
-  <mat-tab label="Check Lists">
-    <reslife-checklist
-      [items]="toCheck$ | async"
-      (checked)="checkIn($event)"
-    ></reslife-checklist>
-    <reslife-checklist
-      [items]="checked$ | async"
-      type="Checked In"
-      (checked)="unCheckIn($event)"
-    ></reslife-checklist>
+<section class="container p-2" fxLayout="row" fxLayoutAlign="center center">
+  <div fxFlexFill></div>
+  <reslife-check-in-choice
+    fxFlex="1 1 30rem"
+    fxFlex.lt-md="90vw"
+    (dateSelected)="selectDate($event)"
+    [checkIns]="checkInOpts$ | async"
+    (checkInSelected)="selectCheckIn($event)"
+  ></reslife-check-in-choice>
+  <div fxFlexFill></div>
+</section>
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Expected">
+    <section
+      class="container p-1"
+      fxLayout="row"
+      fxLayoutGap="1rem"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="space-evenly center"
+      fxLayoutAlign.lt-md="start stretch"
+    >
+      <reslife-checklist
+        fxFlex="1 1 40vw"
+        fxFlex.lt-md
+        [items]="toCheck$ | async"
+        (checked)="checkIn($event)"
+      ></reslife-checklist>
+      <reslife-checklist
+        fxFlex="1 1 40vw"
+        fxFlex.lt-md
+        [items]="checked$ | async"
+        type="Checked In"
+        (checked)="unCheckIn($event)"
+      ></reslife-checklist>
+    </section>
   </mat-tab>
-  <mat-tab label="Excused"></mat-tab>
+  <mat-tab label="Excused">
+    <section
+    class="container p-1"
+    fxLayout="row"
+    fxLayoutGap="1rem"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="space-evenly center"
+    fxLayoutAlign.lt-md="start stretch"
+  >
+    <reslife-checklist
+      fxFlex="1 1 40vw"
+      fxFlex.lt-md
+      [items]="excused$ | async"
+      type="Excused"
+      (checked)="getInfo($event)"
+    ></reslife-checklist>
+    </section>
+  </mat-tab>
 </mat-tab-group>

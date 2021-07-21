@@ -63,4 +63,8 @@ export class CheckInPageComponent {
       this.selectedCheckIn$.value
     );
   }
+
+  getInfo(item: CheckInItem): void {
+    // show excusal information in modal
+  }
 }
