@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ChecklistItemComponent } from './checklist-item/checklist-item.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedUiModule } from '@reslife/shared/ui'
 
 @NgModule({
   declarations: [ChecklistComponent, ChecklistItemComponent],
@@ -21,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatExpansionModule,
     FlexLayoutModule,
+    SharedUiModule
   ],
   exports: [ChecklistComponent],
 })

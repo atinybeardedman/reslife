@@ -1,49 +1,65 @@
 <mat-card fxShow fxHide.lt-md="true">
-    <mat-card-title>
-        <div class="w-full" fxLayout="row" fxLayoutAlign="space-between">
-            <div class="title" fxFlex>
-                {{type}}
-            </div>
-            <div class="count" fxFlex="nogrow">
-                {{items?.length}}
-            </div>
-        </div>
-    </mat-card-title>
-    <mat-card-content>
-        <mat-list>
-            <ng-container *ngFor="let item of items; last as isLast">
-                <mat-list-item>
-                    <reslife-checklist-item class="w-full" [item]="item" [icon]="icon" (action)="checked.emit($event)"></reslife-checklist-item>
-                </mat-list-item>
-                <mat-divider *ngIf="!isLast"></mat-divider>
-            </ng-container>
-            
-        </mat-list>
-    </mat-card-content>
+  <mat-card-title>
+    <div class="w-full" fxLayout="row" fxLayoutAlign="space-between">
+      <div class="title" fxFlex>
+        {{ type }}
+      </div>
+      <div class="count" fxFlex="nogrow">
+        {{ items?.length }}
+      </div>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+    <reslife-search-select
+      *ngIf="type === 'To Check'"
+      [list]="items"
+      (itemSelected)="onSelected($event)"
+    ></reslife-search-select>
+    <mat-list>
+      <ng-container *ngFor="let item of items; last as isLast">
+        <mat-list-item>
+          <reslife-checklist-item
+            class="w-full"
+            [item]="item"
+            [icon]="icon"
+            (action)="checked.emit($event)"
+          ></reslife-checklist-item>
+        </mat-list-item>
+        <mat-divider *ngIf="!isLast"></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-card-content>
 </mat-card>
 
-
-    <mat-expansion-panel fxHide fxShow.lt-md="true" [expanded]="true">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <div class="w-full" fxLayout="row" fxLayoutAlign="space-between center">
-                    <h2 class="title m-0" fxFlex>
-                        {{type}}
-                    </h2>
-                    <h2 class="count m-0" fxFlex="nogrow">
-                        {{items?.length}}
-                    </h2>
-                </div>
-              </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-list>
-            <ng-container *ngFor="let item of items; last as isLast">
-                <mat-list-item>
-                    <reslife-checklist-item class="w-full" [item]="item" [icon]="icon" (action)="checked.emit($event)"></reslife-checklist-item>
-                </mat-list-item>
-                <mat-divider *ngIf="!isLast"></mat-divider>
-            </ng-container>
-            
-        </mat-list>
-    </mat-expansion-panel>
-
+<mat-expansion-panel fxHide fxShow.lt-md="true" [expanded]="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <div class="w-full" fxLayout="row" fxLayoutAlign="space-between center">
+        <h2 class="title m-0" fxFlex>
+          {{ type }}
+        </h2>
+        <h2 class="count m-0" fxFlex="nogrow">
+          {{ items?.length }}
+        </h2>
+      </div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <reslife-search-select
+  *ngIf="type === 'To Check'"
+  [list]="items"
+  (itemSelected)="onSelected($event)"
+></reslife-search-select>
+  <mat-list>
+    <ng-container *ngFor="let item of items; last as isLast">
+      <mat-list-item>
+        <reslife-checklist-item
+          class="w-full"
+          [item]="item"
+          [icon]="icon"
+          (action)="checked.emit($event)"
+        ></reslife-checklist-item>
+      </mat-list-item>
+      <mat-divider *ngIf="!isLast"></mat-divider>
+    </ng-container>
+  </mat-list>
+</mat-expansion-panel>

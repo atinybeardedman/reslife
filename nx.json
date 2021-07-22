@@ -53,6 +53,9 @@
       "tags": [],
       "implicitDependencies": ["reslife-request"]
     },
+    "shared-models": {
+      "tags": ["type:model"]
+    },
     "shared-ui": {
       "tags": ["type:ui"]
     },

@@ -24,6 +24,30 @@ export class CheckInDataService {
         name: 'Test 3',
         uid: '3'
       },
+      {
+        name: 'Test 1',
+        uid: '1'
+      },
+      {
+        name: 'Test 2',
+        uid: '2'
+      },
+      {
+        name: 'Test 3',
+        uid: '3'
+      },
+      {
+        name: 'Test 1',
+        uid: '1'
+      },
+      {
+        name: 'Test 2',
+        uid: '2'
+      },
+      {
+        name: 'Test 3',
+        uid: '3'
+      },
     ])
   }
   getChecked(date: string, checkin: string): Observable<CheckInRecord[]> {

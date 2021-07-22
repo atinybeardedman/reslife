@@ -1,5 +1,5 @@
-export interface CheckInItem {
-  name: string;
+import { NamedItem } from '@reslife/shared-models';
+export interface CheckInItem extends NamedItem {
   uid: string;
 }
 

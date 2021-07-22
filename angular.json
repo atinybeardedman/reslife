@@ -335,6 +335,27 @@
         }
       }
     },
+    "shared-models": {
+      "root": "libs/shared-models",
+      "sourceRoot": "libs/shared-models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared-models/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared-models"],
+          "options": {
+            "jestConfig": "libs/shared-models/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "shared-ui": {
       "projectType": "library",
       "root": "libs/shared/ui",

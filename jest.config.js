@@ -12,5 +12,6 @@ module.exports = {
     '<rootDir>/libs/check-ins/check-in-model',
     '<rootDir>/libs/utils',
     '<rootDir>/libs/welcome-feature',
+    '<rootDir>/libs/shared-models',
   ],
 };

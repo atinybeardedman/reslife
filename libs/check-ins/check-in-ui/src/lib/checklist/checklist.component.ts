@@ -8,6 +8,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { CheckInItem, CheckInRecord, ChecklistType } from '@reslife/check-ins/check-in-model';
+import { NamedItem } from '@reslife/shared-models';
 
 @Component({
   selector: 'reslife-checklist',
@@ -35,5 +36,9 @@ export class ChecklistComponent implements OnChanges {
         }
       }
     }
+  }
+
+  onSelected(item: NamedItem){
+    this.checked.emit(<CheckInItem>item);
   }
 }
