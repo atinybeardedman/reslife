@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { CheckInItem, CheckInRecord, ChecklistType } from '@reslife/check-ins/check-in-model';
+import { CheckInItem, CheckInRecord, ChecklistType, ExcusedRecord } from '@reslife/check-ins/check-in-model';
 import { NamedItem } from '@reslife/shared-models';
 
 @Component({
@@ -19,7 +19,8 @@ import { NamedItem } from '@reslife/shared-models';
 export class ChecklistComponent implements OnChanges {
   @Input() type: ChecklistType = 'To Check';
   @Input() items!: CheckInItem[] | null;
-  @Output() checked = new EventEmitter<CheckInItem | CheckInRecord>();
+  @Output() checked = new EventEmitter<CheckInItem | CheckInRecord |
+  ExcusedRecord>();
   public icon = 'check';
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.type){

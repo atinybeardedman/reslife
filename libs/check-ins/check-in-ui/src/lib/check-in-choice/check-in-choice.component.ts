@@ -17,6 +17,7 @@ import { getDateString } from '@reslife/utils';
 })
 export class CheckInChoiceComponent {
   @Input() checkIns: string[] | null = [];
+  @Input() suggested!: string | null;
   @Output() checkInSelected = new EventEmitter<string>();
   @Output() dateSelected = new EventEmitter<string>();
   today = new Date();

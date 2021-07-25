@@ -11,7 +11,7 @@ import {
 } from '@reslife/check-ins/check-in-model';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { getTimeDiff, combineDatetime } from '@reslife/utils';
+import { getTimeDiff, combineDatetime, getTime } from '@reslife/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -28,15 +28,26 @@ export class CheckInDataService {
     }
   }
 
-  getCheckInOpts(date: string): Observable<string[]> {
+  getCheckInDocs(date: string): Observable<CheckInDocument[]> {
     const checkInCollection = this.af.collection<CheckInDocument>(
       'check-ins',
-      (ref) => ref.where('date', '==', date)
+      (ref) => ref.where('date', '==', date).orderBy('start')
     );
     return checkInCollection
       .valueChanges()
-      .pipe(map((docs) => docs.map((d) => d['check-in'])));
   }
+
+  getSuggestedCheckIn(choices: CheckInDocument[]): string {
+    const time = getTime();
+    if(choices.length > 0){
+      const choice = choices.find(c => {
+       return time < c.end
+      });
+      return choice ? choice['check-in'] : choices[choices.length - 1]['check-in'];
+    }
+    return ''
+  }
+
   getToCheck(): Observable<CheckInItem[]> {
     if (this.selectedCheckInDocument) {
       return this.selectedCheckInDocument
