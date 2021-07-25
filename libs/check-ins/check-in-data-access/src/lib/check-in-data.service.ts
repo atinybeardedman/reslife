@@ -10,7 +10,6 @@ import {
   ExcusedRecord,
 } from '@reslife/check-ins/check-in-model';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { getTimeDiff, combineDatetime, getTime } from '@reslife/utils';
 
 @Injectable({
@@ -21,7 +20,7 @@ export class CheckInDataService {
   constructor(private af: AngularFirestore) {}
 
   setCheckIn(date: string, checkin: string): void {
-    if(date && checkin){
+    if (date && checkin) {
       this.selectedCheckInDocument = this.af.doc<CheckInDocument>(
         `check-ins/${date}+${checkin}`
       );
@@ -33,19 +32,21 @@ export class CheckInDataService {
       'check-ins',
       (ref) => ref.where('date', '==', date).orderBy('start')
     );
-    return checkInCollection
-      .valueChanges()
+    return checkInCollection.valueChanges();
   }
 
   getSuggestedCheckIn(choices: CheckInDocument[]): string {
-    const time = getTime();
-    if(choices.length > 0){
-      const choice = choices.find(c => {
-       return time < c.end
-      });
-      return choice ? choice['check-in'] : choices[choices.length - 1]['check-in'];
+    if (choices.length === 0) {
+      return '';
     }
-    return ''
+    const time = getTime();
+
+    const choice = choices.find((c) => {
+      return time < c.end;
+    });
+    return choice
+      ? choice['check-in']
+      : choices[choices.length - 1]['check-in'];
   }
 
   getToCheck(): Observable<CheckInItem[]> {
@@ -102,7 +103,7 @@ export class CheckInDataService {
   unCheckIn(record: CheckInRecord): Promise<void> {
     const item: CheckInItem = {
       uid: record.uid,
-      name: record.name
+      name: record.name,
     };
 
     const batch = this.af.firestore.batch();
