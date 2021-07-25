@@ -23,7 +23,7 @@ export class ChecklistComponent implements OnChanges {
   public icon = 'check';
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.type){
-      if (changes.type.currentValue && !changes.type.isFirstChange) {
+      if (changes.type.currentValue) {
         switch(this.type){
           case 'To Check':
             this.icon = 'check';

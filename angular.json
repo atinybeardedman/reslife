@@ -9,7 +9,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/check-ins/check-in-data-access"],
+          "outputs": [
+            "coverage/libs/check-ins/check-in-data-access"
+          ],
           "options": {
             "jestConfig": "libs/check-ins/check-in-data-access/jest.config.js",
             "passWithNoTests": true
@@ -34,7 +36,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/check-ins/check-in-feature"],
+          "outputs": [
+            "coverage/libs/check-ins/check-in-feature"
+          ],
           "options": {
             "jestConfig": "libs/check-ins/check-in-feature/jest.config.js",
             "passWithNoTests": true
@@ -59,12 +63,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/check-ins/check-in-model/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/check-ins/check-in-model/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/check-ins/check-in-model"],
+          "outputs": [
+            "coverage/libs/check-ins/check-in-model"
+          ],
           "options": {
             "jestConfig": "libs/check-ins/check-in-model/jest.config.js",
             "passWithNoTests": true
@@ -80,7 +88,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/check-ins/check-in-ui"],
+          "outputs": [
+            "coverage/libs/check-ins/check-in-ui"
+          ],
           "options": {
             "jestConfig": "libs/check-ins/check-in-ui/jest.config.js",
             "passWithNoTests": true
@@ -105,7 +115,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/reslife-app",
             "index": "apps/reslife-app/src/index.html",
@@ -117,7 +129,9 @@
               "apps/reslife-app/src/favicon.ico",
               "apps/reslife-app/src/assets"
             ],
-            "styles": ["apps/reslife-app/src/styles.scss"],
+            "styles": [
+              "apps/reslife-app/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -182,11 +196,17 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/reslife-app"],
+          "outputs": [
+            "coverage/apps/reslife-app"
+          ],
           "options": {
             "jestConfig": "apps/reslife-app/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
@@ -211,7 +231,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/reslife-app-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/reslife-app-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -224,7 +246,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/reslife-request",
             "index": "apps/reslife-request/src/index.html",
@@ -236,7 +260,9 @@
               "apps/reslife-request/src/favicon.ico",
               "apps/reslife-request/src/assets"
             ],
-            "styles": ["apps/reslife-request/src/styles.scss"],
+            "styles": [
+              "apps/reslife-request/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -301,7 +327,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/reslife-request"],
+          "outputs": [
+            "coverage/apps/reslife-request"
+          ],
           "options": {
             "jestConfig": "apps/reslife-request/jest.config.js",
             "passWithNoTests": true
@@ -330,7 +358,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/reslife-request-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/reslife-request-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -343,12 +373,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/shared-models/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/shared-models/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared-models"],
+          "outputs": [
+            "coverage/libs/shared-models"
+          ],
           "options": {
             "jestConfig": "libs/shared-models/jest.config.js",
             "passWithNoTests": true
@@ -364,7 +398,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/ui"],
+          "outputs": [
+            "coverage/libs/shared/ui"
+          ],
           "options": {
             "jestConfig": "libs/shared/ui/jest.config.js",
             "passWithNoTests": true
@@ -389,12 +425,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/utils/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/utils/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils"],
+          "outputs": [
+            "coverage/libs/utils"
+          ],
           "options": {
             "jestConfig": "libs/utils/jest.config.js",
             "passWithNoTests": true
@@ -410,7 +450,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/welcome-feature"],
+          "outputs": [
+            "coverage/libs/welcome-feature"
+          ],
           "options": {
             "jestConfig": "libs/welcome-feature/jest.config.js",
             "passWithNoTests": true

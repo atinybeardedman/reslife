@@ -1,4 +1,5 @@
 
+  
   function getIsoTimezoneString(date = new Date()): string {
 
     const tzo = -date.getTimezoneOffset(),
@@ -30,4 +31,21 @@ export function getDateString(date = new Date()): string {
     const datestring = getIsoTimezoneString(date);
     const i = datestring.indexOf("T");
     return datestring.substring(0, i);
+}
+
+export function getTime(date = new Date()): string {
+  const datestring = getIsoTimezoneString(date);
+  const i = datestring.indexOf("T");
+  return datestring.substr(i+1, 5);
+}
+
+export function combineDatetime(date: Date, time: string): Date {
+  const d = new Date(date);
+  d.setHours(parseInt(time.substr(0, 2)));
+  d.setMinutes(parseInt(time.substr(3)));
+  return new Date(d);
+}
+
+export function getTimeDiff(end: Date, start: Date): number {
+  return (end.getTime() - start.getTime()) / (1000 * 60);
 }

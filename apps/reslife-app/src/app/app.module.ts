@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SharedUiModule } from '@reslife/shared/ui';
 import { appRoutes } from './routes';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +16,7 @@ import { appRoutes } from './routes';
     BrowserModule,
     BrowserAnimationsModule,
     SharedUiModule,
+    AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],

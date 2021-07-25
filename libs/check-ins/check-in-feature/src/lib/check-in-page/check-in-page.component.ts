@@ -34,9 +34,10 @@ export class CheckInPageComponent {
     combineLatest([this.selectedDate$, this.selectedCheckIn$])
       .pipe(takeUntil(this.untilDestroy$))
       .subscribe(([date, checkin]) => {
-        this.toCheck$ = this.cs.getToCheck(date, checkin);
-        this.checked$ = this.cs.getChecked(date, checkin);
-        this.excused$ = this.cs.getExcused(date, checkin);
+        this.cs.setCheckIn(date, checkin);
+        this.toCheck$ = this.cs.getToCheck();
+        this.checked$ = this.cs.getChecked();
+        this.excused$ = this.cs.getExcused();
       });
   }
 
@@ -49,18 +50,12 @@ export class CheckInPageComponent {
   }
 
   checkIn(item: CheckInItem): void {
-    this.cs.checkIn(
-      item,
-      this.selectedDate$.value,
-      this.selectedCheckIn$.value
-    );
+    this.cs.checkIn(item);
   }
 
   unCheckIn(item: CheckInItem): void {
     this.cs.unCheckIn(
-      item as CheckInRecord,
-      this.selectedDate$.value,
-      this.selectedCheckIn$.value
+      item as CheckInRecord
     );
   }
 

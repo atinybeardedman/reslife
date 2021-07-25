@@ -1,87 +1,109 @@
 import { Injectable } from '@angular/core';
-import { CheckInItem, CheckInRecord, ExcusedRecord } from '@reslife/check-ins/check-in-model';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
+import {
+  CheckInDocument,
+  CheckInItem,
+  CheckInRecord,
+  ExcusedRecord,
+} from '@reslife/check-ins/check-in-model';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { getTimeDiff, combineDatetime } from '@reslife/utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CheckInDataService {
-  // constructor() {}
+  private selectedCheckInDocument!: AngularFirestoreDocument<CheckInDocument>;
+  constructor(private af: AngularFirestore) {}
+
+  setCheckIn(date: string, checkin: string): void {
+    if(date && checkin){
+      this.selectedCheckInDocument = this.af.doc<CheckInDocument>(
+        `check-ins/${date}+${checkin}`
+      );
+    }
+  }
+
   getCheckInOpts(date: string): Observable<string[]> {
-    return of(['Dinner']);
+    const checkInCollection = this.af.collection<CheckInDocument>(
+      'check-ins',
+      (ref) => ref.where('date', '==', date)
+    );
+    return checkInCollection
+      .valueChanges()
+      .pipe(map((docs) => docs.map((d) => d['check-in'])));
   }
-  getToCheck(date: string, checkin: string): Observable<CheckInItem[]> {
-    return of([
-      {
-        name: 'Test 1',
-        uid: '1'
-      },
-      {
-        name: 'Test 2',
-        uid: '2'
-      },
-      {
-        name: 'Test 3',
-        uid: '3'
-      },
-      {
-        name: 'Test 1',
-        uid: '1'
-      },
-      {
-        name: 'Test 2',
-        uid: '2'
-      },
-      {
-        name: 'Test 3',
-        uid: '3'
-      },
-      {
-        name: 'Test 1',
-        uid: '1'
-      },
-      {
-        name: 'Test 2',
-        uid: '2'
-      },
-      {
-        name: 'Test 3',
-        uid: '3'
-      },
-    ])
+  getToCheck(): Observable<CheckInItem[]> {
+    if (this.selectedCheckInDocument) {
+      return this.selectedCheckInDocument
+        .collection<CheckInItem>('expected')
+        .valueChanges();
+    } else {
+      return of([]);
+    }
   }
-  getChecked(date: string, checkin: string): Observable<CheckInRecord[]> {
-    return of([
-      {
-        name: 'Test 4',
-        uid: '4',
-        code: 'X',
-              },
-      {
-        name: 'Test 5',
-        uid: '5',
-        code: 'LT',
-      },
-      {
-        name: 'Test 6',
-        uid: '6',
-        code: 'X',
-      },
-    ])
+  getChecked(): Observable<CheckInRecord[]> {
+    if (this.selectedCheckInDocument) {
+      return this.selectedCheckInDocument
+        .collection<CheckInRecord>('checked')
+        .valueChanges();
+    } else {
+      return of([]);
+    }
   }
-  getExcused(date: string, checkin: string): Observable<ExcusedRecord[]> {
-    return of([
-      {
-        name: 'Test 7',
-        uid: '7',
-        note: 'Home'
+  getExcused(): Observable<ExcusedRecord[]> {
+    if (this.selectedCheckInDocument) {
+      return this.selectedCheckInDocument
+        .collection<ExcusedRecord>('excused')
+        .valueChanges();
+    } else {
+      return of([]);
+    }
+  }
+  async checkIn(item: CheckInItem, overrideLate = false): Promise<void> {
+    const record: CheckInRecord = { ...item };
+
+    if (!overrideLate) {
+      const snap = await this.selectedCheckInDocument.get().toPromise();
+      const endTime = snap.get('end') as string;
+      const endDate = combineDatetime(new Date(), endTime);
+      const currentTime = new Date();
+      const timeDiff = getTimeDiff(endDate, currentTime);
+      if (timeDiff > 5) {
+        record.code = 'LT';
       }
-    ])
+    }
+    const batch = this.af.firestore.batch();
+    batch.delete(
+      this.selectedCheckInDocument.collection('expected').doc(item.uid).ref
+    );
+    batch.set(
+      this.selectedCheckInDocument.collection('checked').doc(item.uid).ref,
+      record
+    );
+    return batch.commit();
   }
-  checkIn(item: CheckInItem, date: string, checkin: string): void {
-    return
-  }
-  unCheckIn(item: CheckInRecord, date: string, checkin: string): void {
-    return
+
+  unCheckIn(record: CheckInRecord): Promise<void> {
+    const item: CheckInItem = {
+      uid: record.uid,
+      name: record.name
+    };
+
+    const batch = this.af.firestore.batch();
+
+    batch.set(
+      this.selectedCheckInDocument.collection('expected').doc(item.uid).ref,
+      item
+    );
+    batch.delete(
+      this.selectedCheckInDocument.collection('checked').doc(item.uid).ref
+    );
+
+    return batch.commit();
   }
 }
