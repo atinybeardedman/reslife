@@ -1,6 +1,6 @@
 
   
-  function getIsoTimezoneString(date = new Date()): string {
+  export function getIsoTimezoneString(date = new Date()): string {
 
     const tzo = -date.getTimezoneOffset(),
       dif = tzo >= 0 ? "+" : "-",
@@ -47,5 +47,5 @@ export function combineDatetime(date: Date, time: string): Date {
 }
 
 export function getTimeDiff(end: Date, start: Date): number {
-  return (end.getTime() - start.getTime()) / (1000 * 60);
+  return Math.floor((end.getTime() - start.getTime()) / (1000 * 60));
 }
