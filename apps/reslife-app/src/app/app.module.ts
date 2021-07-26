@@ -6,21 +6,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SharedUiModule } from '@reslife/shared/ui';
+import { appRoutes } from './routes';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, SharedUiModule, RouterModule.forRoot([
-    {
-      path: '',
-      pathMatch: 'full',
-      loadChildren: () => 
-        import('@reslife/reslife-main/welcome').then(
-          (module) => module.ReslifeMainWelcomeModule
-        )
-    }
-  ])],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    SharedUiModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    RouterModule.forRoot(appRoutes),
+  ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

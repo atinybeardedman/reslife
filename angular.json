@@ -1,6 +1,112 @@
 {
   "version": 1,
   "projects": {
+    "check-ins-check-in-data-access": {
+      "projectType": "library",
+      "root": "libs/check-ins/check-in-data-access",
+      "sourceRoot": "libs/check-ins/check-in-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/check-ins/check-in-data-access"
+          ],
+          "options": {
+            "jestConfig": "libs/check-ins/check-in-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/check-ins/check-in-data-access/src/**/*.ts",
+              "libs/check-ins/check-in-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "check-ins-check-in-feature": {
+      "projectType": "library",
+      "root": "libs/check-ins/check-in-feature",
+      "sourceRoot": "libs/check-ins/check-in-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/check-ins/check-in-feature"
+          ],
+          "options": {
+            "jestConfig": "libs/check-ins/check-in-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/check-ins/check-in-feature/src/**/*.ts",
+              "libs/check-ins/check-in-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "check-ins-check-in-model": {
+      "root": "libs/check-ins/check-in-model",
+      "sourceRoot": "libs/check-ins/check-in-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/check-ins/check-in-model/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/check-ins/check-in-model"
+          ],
+          "options": {
+            "jestConfig": "libs/check-ins/check-in-model/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "check-ins-check-in-ui": {
+      "projectType": "library",
+      "root": "libs/check-ins/check-in-ui",
+      "sourceRoot": "libs/check-ins/check-in-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/check-ins/check-in-ui"
+          ],
+          "options": {
+            "jestConfig": "libs/check-ins/check-in-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/check-ins/check-in-ui/src/**/*.ts",
+              "libs/check-ins/check-in-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "reslife-app": {
       "projectType": "application",
       "root": "apps/reslife-app",
@@ -9,7 +115,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/reslife-app",
             "index": "apps/reslife-app/src/index.html",
@@ -21,7 +129,9 @@
               "apps/reslife-app/src/favicon.ico",
               "apps/reslife-app/src/assets"
             ],
-            "styles": ["apps/reslife-app/src/styles.scss"],
+            "styles": [
+              "apps/reslife-app/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -86,11 +196,17 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/reslife-app"],
+          "outputs": [
+            "coverage/apps/reslife-app"
+          ],
           "options": {
             "jestConfig": "apps/reslife-app/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
@@ -115,31 +231,8 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/reslife-app-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "reslife-main-welcome": {
-      "projectType": "library",
-      "root": "libs/reslife-main/welcome",
-      "sourceRoot": "libs/reslife-main/welcome/src",
-      "prefix": "reslife",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/reslife-main/welcome"],
-          "options": {
-            "jestConfig": "libs/reslife-main/welcome/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/reslife-main/welcome/src/**/*.ts",
-              "libs/reslife-main/welcome/src/**/*.html"
+              "apps/reslife-app-e2e/**/*.{js,ts}"
             ]
           }
         }
@@ -153,7 +246,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/reslife-request",
             "index": "apps/reslife-request/src/index.html",
@@ -165,7 +260,9 @@
               "apps/reslife-request/src/favicon.ico",
               "apps/reslife-request/src/assets"
             ],
-            "styles": ["apps/reslife-request/src/styles.scss"],
+            "styles": [
+              "apps/reslife-request/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -230,7 +327,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/reslife-request"],
+          "outputs": [
+            "coverage/apps/reslife-request"
+          ],
           "options": {
             "jestConfig": "apps/reslife-request/jest.config.js",
             "passWithNoTests": true
@@ -259,7 +358,34 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/reslife-request-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/reslife-request-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "shared-models": {
+      "root": "libs/shared-models",
+      "sourceRoot": "libs/shared-models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared-models/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared-models"
+          ],
+          "options": {
+            "jestConfig": "libs/shared-models/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
@@ -270,25 +396,11 @@
       "sourceRoot": "libs/shared/ui/src",
       "prefix": "reslife",
       "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/shared/ui"],
-          "options": {
-            "project": "libs/shared/ui/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/shared/ui/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/shared/ui/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/ui"],
+          "outputs": [
+            "coverage/libs/shared/ui"
+          ],
           "options": {
             "jestConfig": "libs/shared/ui/jest.config.js",
             "passWithNoTests": true
@@ -300,6 +412,58 @@
             "lintFilePatterns": [
               "libs/shared/ui/src/**/*.ts",
               "libs/shared/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "utils": {
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/utils/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/utils"
+          ],
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "welcome-feature": {
+      "projectType": "library",
+      "root": "libs/welcome-feature",
+      "sourceRoot": "libs/welcome-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/welcome-feature"
+          ],
+          "options": {
+            "jestConfig": "libs/welcome-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/welcome-feature/src/**/*.ts",
+              "libs/welcome-feature/src/**/*.html"
             ]
           }
         }

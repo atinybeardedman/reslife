@@ -27,25 +27,43 @@
     ]
   },
   "projects": {
+    "check-ins-check-in-data-access": {
+      "tags": ["type:data-access"]
+    },
+    "check-ins-check-in-feature": {
+      "tags": ["type:feature"]
+    },
+    "check-ins-check-in-model": {
+      "tags": ["type:model"]
+    },
+    "check-ins-check-in-ui": {
+      "tags": ["type:ui"]
+    },
     "reslife-app": {
-      "tags": []
+      "tags": ["type:app"]
     },
     "reslife-app-e2e": {
       "tags": [],
       "implicitDependencies": ["reslife-app"]
     },
-    "reslife-main-welcome": {
-      "tags": []
-    },
     "reslife-request": {
-      "tags": []
+      "tags": ["type:app"]
     },
     "reslife-request-e2e": {
       "tags": [],
       "implicitDependencies": ["reslife-request"]
     },
+    "shared-models": {
+      "tags": ["type:model"]
+    },
     "shared-ui": {
-      "tags": []
+      "tags": ["type:ui"]
+    },
+    "utils": {
+      "tags": ["type:util"]
+    },
+    "welcome-feature": {
+      "tags": ["type:feature"]
     }
   }
 }

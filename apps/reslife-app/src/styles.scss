@@ -40,3 +40,17 @@ main {
   height: calc(100vh - 64px);
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.w-full {
+  width: 100%
+}
+@for $i from 0 through 4 {
+  .p-#{$i}{
+    padding: #{$i}rem;
+  }
+  .py-#{$i}{
+    padding-top: #{$i}rem;
+    padding-bottom: #{$i}rem;
+  }
+}
+

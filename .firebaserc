@@ -5,11 +5,8 @@
   "targets": {
     "reslife-staging": {
       "hosting": {
-        "reslife-main-app": [
-          "reslife-main-app"
-        ],
-        "reslife-request": [
-          "reslife-request"
+        "reslife-app": [
+          "reslife-staging"
         ]
       }
     }
