@@ -4,10 +4,8 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { SearchSelectComponent } from './search-select.component';
 import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { MatInputHarness } from '@angular/material/input/testing';
 import { MatIconHarness } from '@angular/material/icon/testing';
 import { MatAutocompleteHarness } from '@angular/material/autocomplete/testing';
-import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -32,7 +30,7 @@ describe('SearchSelectComponent', () => {
         MatOptionModule,
         MatIconModule,
         ReactiveFormsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -116,15 +114,15 @@ describe('SearchSelectComponent', () => {
     });
     it('should clear input on selection', async () => {
       await autocomplete.enterText('a');
-      await autocomplete.selectOption({text: 'a'});
+      await autocomplete.selectOption({ text: 'a' });
       expect(await autocomplete.getValue()).toBe('');
     });
     it('should emit the item on selection', async () => {
       const spy = jest.spyOn(component.itemSelected, 'emit');
       await autocomplete.enterText('a');
-      await autocomplete.selectOption({text: 'a'});
+      await autocomplete.selectOption({ text: 'a' });
       fixture.detectChanges();
       expect(spy).toHaveBeenCalledWith(component.list[0]);
-    })
+    });
   });
 });

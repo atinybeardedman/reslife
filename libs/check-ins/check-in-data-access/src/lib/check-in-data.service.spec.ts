@@ -25,7 +25,7 @@ describe('CheckInDataService', () => {
       providers: [CheckInDataService, AngularFirestore],
     });
     service = TestBed.inject(CheckInDataService);
-    afService = TestBed.inject(AngularFirestore);
+    TestBed.inject(AngularFirestore);
   });
 
   it('should be created', () => {
