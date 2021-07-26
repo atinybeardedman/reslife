@@ -35,7 +35,7 @@
               },
               {
                 "sourceTag": "type:model",
-                "onlyDependOnLibsWithTags": []
+                "onlyDependOnLibsWithTags": ["type:model"]
               },
               {
                 "sourceTag": "type:util",
