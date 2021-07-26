@@ -1,12 +1,25 @@
+import { get } from 'https';
 import * as utils from './utils';
+
+const  pad = (num : number): string => {
+  const norm = Math.floor(Math.abs(num));
+  return (norm < 10 ? "0" : "") + norm;
+};
+
+const getTimezoneOffset = (d = new Date()):string => {
+  const offset = -1 * d.getTimezoneOffset();
+  const symbol = offset >= 0 ? '+' : '-';
+  const hours = Math.floor(offset / 60);
+  const minutes = offset % 60;
+  return `${symbol}${pad(hours)}:${pad(minutes)}`
+}
 
 describe('utils', () => {
   beforeAll(() => {
     jest.useFakeTimers('modern');
     jest.setSystemTime(new Date(2021, 5, 1,8,0,0,0));
   });
-
-  const currentTimezoneString = '2021-06-01T08:00:00-04:00';
+  const currentTimezoneString = '2021-06-01T08:00:00'+getTimezoneOffset();
 
   afterAll(() => {
     jest.useRealTimers();
@@ -17,7 +30,7 @@ describe('utils', () => {
   });
   it('should give the correct string for a given date', () => {
     const d = new Date(2021,11,25,8,0,0,0);
-    const expectedString = '2021-12-25T08:00:00-05:00'
+    const expectedString = '2021-12-25T08:00:00'+getTimezoneOffset(d)
     expect(utils.getIsoTimezoneString(d)).toBe(expectedString);
   })
  });
