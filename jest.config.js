@@ -13,5 +13,6 @@ module.exports = {
     '<rootDir>/libs/utils',
     '<rootDir>/libs/welcome-feature',
     '<rootDir>/libs/shared-models',
+    '<rootDir>/libs/boarder-management-feature',
   ],
 };

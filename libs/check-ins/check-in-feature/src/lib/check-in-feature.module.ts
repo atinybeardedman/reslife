@@ -14,6 +14,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, CheckInDataAccessModule, RouterModule.forChild(routes)],
-  exports: [CheckInPageModule]
+  exports: [CheckInPageModule] 
 })
 export class CheckInFeatureModule {}

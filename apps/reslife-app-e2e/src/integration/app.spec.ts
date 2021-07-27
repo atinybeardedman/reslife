@@ -35,4 +35,14 @@ describe('check-in', () => {
   //   });
   // })
 
+});
+
+describe('boarder-management', () => {
+  beforeEach(() => {
+    cy.visit('/admin/manage-boarders');
+  });
+
+  it('should display the manage boarders page', () => {
+    cy.get('.page-title').contains('Admin: Manage Borders');
+  })
 })

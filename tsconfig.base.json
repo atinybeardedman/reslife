@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@reslife/boarder-management-feature": [
+        "libs/boarder-management-feature/src/index.ts"
+      ],
       "@reslife/check-ins/check-in-data-access": [
         "libs/check-ins/check-in-data-access/src/index.ts"
       ],
