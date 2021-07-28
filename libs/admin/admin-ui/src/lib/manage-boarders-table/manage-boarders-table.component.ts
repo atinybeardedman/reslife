@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { Boarder } from '@reslife/shared-models';
-import { BoarderAction } from '../../boarder-action';
+import { BoarderAction } from '@reslife/admin-model';
 @Component({
   selector: 'reslife-manage-boarders-table',
   templateUrl: './manage-boarders-table.component.html',

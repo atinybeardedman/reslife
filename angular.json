@@ -39,7 +39,7 @@
         }
       }
     },
-    "admin-admin-ui": {
+    "admin-ui": {
       "projectType": "library",
       "root": "libs/admin/admin-ui",
       "sourceRoot": "libs/admin/admin-ui/src",
