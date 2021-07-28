@@ -25,6 +25,7 @@
         fxFlex.lt-md
         [items]="toCheck$ | async"
         (checked)="checkIn($event)"
+        data-testid="to-check-checklist"
       ></reslife-checklist>
       <reslife-checklist
         fxFlex="1 1 40vw"
@@ -32,6 +33,7 @@
         [items]="checked$ | async"
         type="Checked In"
         (checked)="unCheckIn($event)"
+        data-testid="checked-checklist"
       ></reslife-checklist>
     </section>
   </mat-tab>

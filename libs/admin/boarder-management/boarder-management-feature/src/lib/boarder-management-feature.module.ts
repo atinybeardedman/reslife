@@ -7,7 +7,7 @@ import { BoarderManagementPageComponent } from './boarder-management-page/boarde
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', pathMatch: 'full', component: BoarderManagementPageComponent}
+      {path: '', component: BoarderManagementPageComponent}
     ]),
     BoarderManagementPageModule,
   ],
