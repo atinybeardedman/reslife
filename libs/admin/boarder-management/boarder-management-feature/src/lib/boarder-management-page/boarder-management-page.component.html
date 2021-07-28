@@ -1,2 +1,16 @@
-<button mat-raised-button color="accent">+ Add Boarder</button>
-<reslife-manage-boarders-table [boarders]="boarders$ | async"></reslife-manage-boarders-table>
+<section fxLayout="row" fxLayoutAlign="start start">
+    <div class="col" fxFlex fxHide.lt-md></div>
+    <div class="col" fxFlex="1 1 40vw" fxFlex.lt-md>
+        <div class="row">
+          <button mat-raised-button color="accent">+ Add Boarder</button>
+        </div>
+        <div class="row">
+          <mat-card>
+            <reslife-manage-boarders-table
+              [boarders]="boarders$ | async"
+            ></reslife-manage-boarders-table>
+          </mat-card>
+        </div>
+    </div>
+    <div class="col" fxFlex fxHide.lt-md></div>
+</section>
