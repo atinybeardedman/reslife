@@ -27,10 +27,10 @@
     ]
   },
   "projects": {
-    "admin-admin-data-access": {
+    "admin-data-access": {
       "tags": []
     },
-    "admin-admin-model": {
+    "admin-model": {
       "tags": ["type:model"]
     },
     "admin-ui": {

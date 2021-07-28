@@ -1,7 +1,7 @@
 {
   "version": 1,
   "projects": {
-    "admin-admin-data-access": {
+    "admin-data-access": {
       "projectType": "library",
       "root": "libs/admin/admin-data-access",
       "sourceRoot": "libs/admin/admin-data-access/src",
@@ -26,7 +26,7 @@
         }
       }
     },
-    "admin-admin-model": {
+    "admin-model": {
       "root": "libs/admin/admin-model",
       "sourceRoot": "libs/admin/admin-model/src",
       "projectType": "library",
