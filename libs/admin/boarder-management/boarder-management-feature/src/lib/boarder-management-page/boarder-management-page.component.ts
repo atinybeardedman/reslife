@@ -1,4 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Boarder } from '@reslife/shared-models';
+import { Observable } from 'rxjs';
+import { BoarderManagementService } from '../boarder-management.service';
 
 @Component({
   selector: 'reslife-boarder-management-page',
@@ -7,10 +10,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BoarderManagementPageComponent implements OnInit {
+  boarders$!: Observable<Boarder[]>;
 
-  constructor() { }
+  constructor(private bs: BoarderManagementService){}
 
   ngOnInit(): void {
+    this.boarders$ = this.bs.getActiveBoarders();
   }
 
 }

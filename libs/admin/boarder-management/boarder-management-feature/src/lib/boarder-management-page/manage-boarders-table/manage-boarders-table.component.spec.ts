@@ -11,6 +11,7 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Boarder } from '@reslife/shared-models';
+import { testBoarder } from '../../../test-helpers/testValues';
 
 describe('ManageBoardersTableComponent', () => {
   let component: ManageBoardersTableComponent;
@@ -49,22 +50,8 @@ describe('ManageBoardersTableComponent', () => {
     expect(await loader.getAllHarnesses(MatTableHarness)).toHaveLength(0);
   });
   describe('if boarders exist', () => {
-    const boarder: Boarder = {
-      name: 'Test',
-      dorm: 'dorm',
-      email: 'test@example.com',
-      type: '7 Day',
-      permissions: {
-        canWalk: true,
-        canBike: true,
-        canDrive: true
-      },
-      isActive: true,
-      start: '2021-06-01',
-      uid: '1234'
-    };
     beforeEach(() => {
-      component.boarders = [boarder];
+      component.boarders = [testBoarder];
       fixture.detectChanges();
     });
     it('should show the table when boarders exist', async () => {
@@ -81,11 +68,11 @@ describe('ManageBoardersTableComponent', () => {
       const spy = jest.spyOn(component.action, 'emit');
       const editButton = await loader.getHarness(MatButtonHarness.with({text: 'edit'}));
       await editButton.click();
-      expect(spy).toHaveBeenCalledWith({action: 'edit', boarder});
+      expect(spy).toHaveBeenCalledWith({action: 'edit', boarder: testBoarder});
 
       const deleteButton = await loader.getHarness(MatButtonHarness.with({text: 'delete'}));
       await deleteButton.click();
-      expect(spy).toHaveBeenCalledWith({action: 'delete', boarder});
+      expect(spy).toHaveBeenCalledWith({action: 'delete', boarder: testBoarder});
     });
   })
 

@@ -3,15 +3,15 @@
   "projects": {
     "boarder-management-feature": {
       "projectType": "library",
-      "root": "libs/boarder-management-feature",
-      "sourceRoot": "libs/boarder-management-feature/src",
+      "root": "libs/admin/boarder-management/boarder-management-feature",
+      "sourceRoot": "libs/admin/boarder-management/boarder-management-feature/src",
       "prefix": "reslife",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/boarder-management-feature"],
+          "outputs": ["coverage/libs/admin/boarder-management/boarder-management-feature"],
           "options": {
-            "jestConfig": "libs/boarder-management-feature/jest.config.js",
+            "jestConfig": "libs/admin/boarder-management/boarder-management-feature/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -19,8 +19,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/boarder-management-feature/src/**/*.ts",
-              "libs/boarder-management-feature/src/**/*.html"
+              "libs/admin/boarder-management/boarder-management-feature/src/**/*.ts",
+              "libs/admin/boarder-management/boarder-management-feature/src/**/*.html"
             ]
           }
         }
