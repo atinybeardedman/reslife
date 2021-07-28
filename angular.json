@@ -1,6 +1,44 @@
 {
   "version": 1,
   "projects": {
+    "admin-admin-model": {
+      "root": "libs/admin/admin-model",
+      "sourceRoot": "libs/admin/admin-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/admin/admin-model/**/*.ts"]
+          }
+        }
+      }
+    },
+    "admin-admin-ui": {
+      "projectType": "library",
+      "root": "libs/admin/admin-ui",
+      "sourceRoot": "libs/admin/admin-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/admin-ui"],
+          "options": {
+            "jestConfig": "libs/admin/admin-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/admin-ui/src/**/*.ts",
+              "libs/admin/admin-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "boarder-management-feature": {
       "projectType": "library",
       "root": "libs/admin/boarder-management/boarder-management-feature",
@@ -9,7 +47,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/admin/boarder-management/boarder-management-feature"],
+          "outputs": [
+            "coverage/libs/admin/boarder-management/boarder-management-feature"
+          ],
           "options": {
             "jestConfig": "libs/admin/boarder-management/boarder-management-feature/jest.config.js",
             "passWithNoTests": true

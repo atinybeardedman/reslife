@@ -27,6 +27,12 @@
     ]
   },
   "projects": {
+    "admin-admin-model": {
+      "tags": ["type:model"]
+    },
+    "admin-ui": {
+      "tags": ["type:ui"]
+    },
     "boarder-management-feature": {
       "tags": ["type:feature"]
     },
