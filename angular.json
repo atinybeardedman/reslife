@@ -1,6 +1,31 @@
 {
   "version": 1,
   "projects": {
+    "admin-admin-data-access": {
+      "projectType": "library",
+      "root": "libs/admin/admin-data-access",
+      "sourceRoot": "libs/admin/admin-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/admin-data-access"],
+          "options": {
+            "jestConfig": "libs/admin/admin-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/admin-data-access/src/**/*.ts",
+              "libs/admin/admin-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "admin-admin-model": {
       "root": "libs/admin/admin-model",
       "sourceRoot": "libs/admin/admin-model/src",

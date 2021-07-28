@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Boarder } from '@reslife/shared-models';
 import { Observable } from 'rxjs';
-import { BoarderManagementService } from '../boarder-management.service';
+import { BoarderManagementService } from '@reslife/admin-data-access';
 
 @Component({
   selector: 'reslife-boarder-management-page',
