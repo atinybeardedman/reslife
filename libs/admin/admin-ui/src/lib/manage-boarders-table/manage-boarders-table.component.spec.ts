@@ -11,8 +11,21 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Boarder } from '@reslife/shared-models';
-import { testBoarder } from '../../../test-helpers/testValues';
 
+const testBoarder: Boarder = {
+  name: 'Test',
+  dorm: 'Dorm',
+  email: 'tboarder@example.com',
+  type: '7 Day',
+  uid: 'test',
+  permissions: {
+    canBike: true,
+    canWalk: true,
+    canDrive: true
+  },
+  start: '2021-06-01',
+  isActive: true
+};
 describe('ManageBoardersTableComponent', () => {
   let component: ManageBoardersTableComponent;
   let fixture: ComponentFixture<ManageBoardersTableComponent>;
@@ -61,7 +74,7 @@ describe('ManageBoardersTableComponent', () => {
       expect(rows.length).toBe(1);
       const cells = await rows[0].getCells();
       const cellTexts = await parallel(() => cells.map(cell => cell.getText()));
-      expect(cellTexts).toEqual(['Test', '7 Day', 'editdelete']);
+      expect(cellTexts).toEqual([testBoarder.name, testBoarder.type, 'editdelete']);
     });
 
     it('should emit the boarder and action type when an action is clicked', async () => {

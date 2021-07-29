@@ -14,7 +14,6 @@ export interface Boarder {
   name: string;
   dorm: string;
   email: string;
-  phone?: string;
   type: BoarderType;
   uid: string;
   permissions: BoarderPermissions;
