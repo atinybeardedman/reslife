@@ -7,15 +7,19 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { BoarderManagementPageComponent } from './boarder-management-page.component';
 import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BoarderManagementService } from '../boarder-management.service';
+import { BoarderManagementService } from '@reslife/admin-data-access';
+jest.mock('@reslife/admin-data-access');
 import { testBoarder } from '../../test-helpers/testValues';
 import { of } from 'rxjs';
+
+// const mockedBoarderManagementService = BoarderManagementService  as jest.MockedClass<typeof BoarderManagementService>;
+
 
 describe('BoarderManagementPageComponent', () => {
   let component: BoarderManagementPageComponent;
   let fixture: ComponentFixture<BoarderManagementPageComponent>;
   let loader: HarnessLoader;
-  let service: jest.Mocked<BoarderManagementService>;
+  let service: BoarderManagementService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,10 +27,7 @@ describe('BoarderManagementPageComponent', () => {
       imports: [
         MatButtonModule
       ],
-      providers: [{
-        provide: BoarderManagementService,
-        useValue: jest.mock('../boarder-management.service')
-      }],
+      providers: [BoarderManagementService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .overrideComponent(BoarderManagementPageComponent, {
@@ -37,7 +38,7 @@ describe('BoarderManagementPageComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BoarderManagementPageComponent);
-    service = TestBed.inject(BoarderManagementService) as jest.Mocked<BoarderManagementService>;
+    service = TestBed.inject(BoarderManagementService);
     component = fixture.componentInstance;
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);
@@ -53,10 +54,9 @@ describe('BoarderManagementPageComponent', () => {
   });
 
   describe('if there are boarders', () => {
+    let spy;
     beforeEach(() => {
-    //   service.getActiveBoarders.mockReturnValue(of([
-    //     testBoarder
-    //   ]));
+      spy = jest.spyOn(service, 'getActiveBoarders').mockImplementation(() => of([testBoarder]));
     })
     it('should display the boarders-table component', () => {
       expect(fixture.nativeElement.querySelector('reslife-manage-boarders-table')).toBeTruthy();
