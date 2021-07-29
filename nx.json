@@ -28,7 +28,7 @@
   },
   "projects": {
     "admin-data-access": {
-      "tags": []
+      "tags": ["type:data-access"]
     },
     "admin-model": {
       "tags": ["type:model"]
