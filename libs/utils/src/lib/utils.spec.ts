@@ -1,4 +1,3 @@
-import { get } from 'https';
 import * as utils from './utils';
 
 const  pad = (num : number): string => {

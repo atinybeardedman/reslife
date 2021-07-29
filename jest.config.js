@@ -13,5 +13,8 @@ module.exports = {
     '<rootDir>/libs/utils',
     '<rootDir>/libs/welcome-feature',
     '<rootDir>/libs/shared-models',
+    '<rootDir>/libs/boarder-management-feature',
+    '<rootDir>/libs/admin/admin-ui',
+    '<rootDir>/libs/admin/admin-data-access',
   ],
 };

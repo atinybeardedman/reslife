@@ -10,6 +10,7 @@
         [value]="today"
         matInput
         [matDatepicker]="picker"
+        data-testid="check-in-date"
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -17,6 +18,7 @@
     <mat-form-field fxFlex>
       <mat-label>Choose a check-in</mat-label>
       <mat-select
+        data-testid="check-in-select"
         [value]="suggested"
         (selectionChange)="emitCheckIn($event)"
         [disabled]="checkIns?.length === 0"

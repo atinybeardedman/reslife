@@ -15,6 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@reslife/admin-data-access": [
+        "libs/admin/admin-data-access/src/index.ts"
+      ],
+      "@reslife/admin-model": ["libs/admin/admin-model/src/index.ts"],
+      "@reslife/admin-ui": ["libs/admin/admin-ui/src/index.ts"],
+      "@reslife/boarder-management-feature": [
+        "libs/admin/boarder-management/boarder-management-feature/src/index.ts"
+      ],
       "@reslife/check-ins/check-in-data-access": [
         "libs/check-ins/check-in-data-access/src/index.ts"
       ],

@@ -27,6 +27,18 @@
     ]
   },
   "projects": {
+    "admin-data-access": {
+      "tags": ["type:data-access"]
+    },
+    "admin-model": {
+      "tags": ["type:model"]
+    },
+    "admin-ui": {
+      "tags": ["type:ui"]
+    },
+    "boarder-management-feature": {
+      "tags": ["type:feature"]
+    },
     "check-ins-check-in-data-access": {
       "tags": ["type:data-access"]
     },

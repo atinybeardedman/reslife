@@ -7,6 +7,26 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+// eslint-disable-next-line
+//@ts-ignore
+import { attachCustomCommands } from "cypress-firebase";
+
+const fbConfig = {
+  apiKey: "AIzaSyBDnop9prdY-550K5vaBCQ5IqnMOS8quUQ",
+  authDomain: "reslife-staging.firebaseapp.com",
+  projectId: "reslife-staging",
+  storageBucket: "reslife-staging.appspot.com",
+  messagingSenderId: "600090189906",
+  appId: "1:600090189906:web:0beb87dd4bc6faf714bf8b"
+};
+
+firebase.initializeApp(fbConfig);
+
+attachCustomCommands({ Cypress, cy, firebase });
+
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Cypress {

@@ -1,0 +1,32 @@
+<h1 *ngIf="!boarders || boarders?.length === 0; else boarderTable">
+  No Boarders Found
+</h1>
+<ng-template #boarderTable>
+  <table mat-table class="full-width" [dataSource]="_boarders" mat-table>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let boarder">{{ boarder.name }}</td>
+    </ng-container>
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>Board Type</th>
+      <td mat-cell *matCellDef="let boarder">{{ boarder.type }}</td>
+    </ng-container>
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let boarder">
+          <button mat-icon-button (click)="action.emit({boarder, action: 'edit'})">
+              <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="action.emit({boarder, action: 'delete'})">
+              <mat-icon>delete</mat-icon>
+          </button>
+      </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>

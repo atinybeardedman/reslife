@@ -17,5 +17,16 @@ export const appRoutes = [
           data: {
             pageTitle: 'Check In'
           }
+      },
+      {
+        path: 'admin/manage-boarders',
+        pathMatch: 'full',
+        loadChildren: () => 
+          import('@reslife/boarder-management-feature').then(
+            (module) => module.BoarderManagementFeatureModule
+          ),
+          data: {
+            pageTitle: 'Admin: Boarder Management'
+          }
       }
 ]; 

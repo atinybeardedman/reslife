@@ -11,12 +11,17 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-const { preprocessTypescript } = require('@nrwl/cypress/plugins/preprocessor');
+// const { preprocessTypescript } = require('@nrwl/cypress/plugins/preprocessor');
+
+const admin = require("firebase-admin");
+const cypressFirebasePlugin = require("cypress-firebase").plugin;
 
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  const extendedConfig = cypressFirebasePlugin(on, config, admin);
 
-  // Preprocess Typescript file using Nx helper
-  on('file:preprocessor', preprocessTypescript(config));
+  // Add other plugins/tasks such as code coverage here
+   // Preprocess Typescript file using Nx helper
+  //  on('file:preprocessor', preprocessTypescript(config));
+
+  return extendedConfig;
 };

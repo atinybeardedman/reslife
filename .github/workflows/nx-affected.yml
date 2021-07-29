@@ -45,4 +45,6 @@ jobs:
 
       - name: Run Affected E2E Tests
         shell: bash
+        env:
+          SERVICE_ACCOUNT: ${{ secrets.CYPRESS_SERVICE_ACCOUNT }}
         run: npm run affected:e2e -- --base=remotes/origin/main
