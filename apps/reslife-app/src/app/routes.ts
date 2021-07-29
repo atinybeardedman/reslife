@@ -23,6 +23,46 @@ export const appRoutes: Route[] = [
           }
       },
       {
+        path: 'room-inspection',
+        pathMatch: 'full',
+        data: {
+          name: 'Room Inspection',
+          icon: 'hotel',
+          roles: ['any']
+        },
+        redirectTo: ''
+      },
+      {
+        path: 'student-signout',
+        pathMatch: 'full',
+        data: {
+          name: 'Student Signout',
+          icon: 'person_pin_circle',
+          roles: ['any']
+        },
+        redirectTo: ''
+      },
+      {
+        path: 'maintenance',
+        pathMatch: 'full',
+        data: {
+          name: 'Maintenance Request',
+          icon: 'build',
+          roles: ['any']
+        },
+        redirectTo: ''
+      },
+      {
+        path: 'dorm-notes',
+        pathMatch: 'full',
+        data: {
+          name: 'Dorm Notes',
+          icon: 'assignment',
+          roles: ['any']
+        },
+        redirectTo: ''
+      },
+      {
         path: 'admin/manage-boarders',
         pathMatch: 'full',
         loadChildren: () => 
@@ -34,5 +74,5 @@ export const appRoutes: Route[] = [
             icon: 'verified_user',
             roles: ['superadmin']
           }
-      }
+      },
 ]; 
