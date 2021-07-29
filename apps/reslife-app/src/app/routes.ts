@@ -1,4 +1,6 @@
-export const appRoutes = [
+import { Route } from '@angular/router';
+
+export const appRoutes: Route[] = [
     {
         path: '',
         pathMatch: 'full',
@@ -15,7 +17,9 @@ export const appRoutes = [
             (module) => module.CheckInFeatureModule
           ),
           data: {
-            pageTitle: 'Check In'
+            name: 'Check In',
+            icon: 'check',
+            roles: ['any']
           }
       },
       {
@@ -26,7 +30,9 @@ export const appRoutes = [
             (module) => module.BoarderManagementFeatureModule
           ),
           data: {
-            pageTitle: 'Admin: Boarder Management'
+            name: 'Manage Boarders',
+            icon: 'verified_user',
+            roles: ['superadmin']
           }
       }
 ]; 

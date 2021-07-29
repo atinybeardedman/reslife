@@ -9,11 +9,12 @@ import { InfoDialogModule } from './info-dialog/info-dialog.module';
     CommonModule,
     SearchSelectModule,
     InfoDialogModule,
+    MainViewModule,
   ],
   exports: [
     MainViewModule,
     SearchSelectModule,
-    InfoDialogModule
+    InfoDialogModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
