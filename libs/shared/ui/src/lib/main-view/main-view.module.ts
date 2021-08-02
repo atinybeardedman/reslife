@@ -6,15 +6,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [MainViewComponent, TopBarComponent],
+  declarations: [MainViewComponent, TopBarComponent, SidenavComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
+    RouterModule
   ],
   exports: [MainViewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
