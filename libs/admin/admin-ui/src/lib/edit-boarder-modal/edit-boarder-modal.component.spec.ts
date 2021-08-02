@@ -12,7 +12,6 @@ import {
 import { EditBoarderModalModule } from './edit-boarder-modal.module';
 import { Boarder } from '@reslife/shared-models';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
-import { MatStepperHarness } from '@angular/material/stepper/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatSelectHarness } from '@angular/material/select/testing';
 import { MatRadioGroupHarness } from '@angular/material/radio/testing';
@@ -22,6 +21,23 @@ describe('EditBoarderModalComponent', () => {
   let component: EditBoarderModalComponent;
   let fixture: ComponentFixture<EditBoarderModalComponent>;
   let loader: HarnessLoader;
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        // addListener: jest.fn(), // deprecated
+        // removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  })
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, EditBoarderModalModule],
@@ -40,6 +56,10 @@ describe('EditBoarderModalComponent', () => {
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);
   });
+
+  afterEach(() => {
+    fixture.destroy();
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();

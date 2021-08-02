@@ -1,16 +1,18 @@
 import { Boarder } from "@reslife/shared-models";
 
 export const testBoarder: Boarder = {
-    name: 'Test',
+    firstName: 'Test',
+    lastName: 'Boarder',
+    name: 'Test Boarder',
     dorm: 'dorm',
     email: 'test@example.com',
     type: '7 Day',
     permissions: {
       canWalk: true,
       canBike: true,
-      canDrive: true
+      canCar: true
     },
     isActive: true,
-    start: '2021-06-01',
+    startDate: '2021-06-01T08:00:00-04:00',
     uid: '1234'
 };

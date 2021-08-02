@@ -11,6 +11,7 @@ import { BoarderManagementService } from '@reslife/admin-data-access';
 jest.mock('@reslife/admin-data-access');
 import { testBoarder } from '../../test-helpers/testValues';
 import { of } from 'rxjs';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // const mockedBoarderManagementService = BoarderManagementService  as jest.MockedClass<typeof BoarderManagementService>;
 
@@ -25,7 +26,8 @@ describe('BoarderManagementPageComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ BoarderManagementPageComponent ],
       imports: [
-        MatButtonModule
+        MatButtonModule,
+        MatDialogModule
       ],
       providers: [BoarderManagementService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
