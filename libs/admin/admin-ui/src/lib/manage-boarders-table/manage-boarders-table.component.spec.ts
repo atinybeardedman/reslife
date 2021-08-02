@@ -13,19 +13,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { Boarder } from '@reslife/shared-models';
 
 const testBoarder: Boarder = {
-  name: 'Test',
-  dorm: 'Dorm',
-  email: 'tboarder@example.com',
+  firstName: 'Test',
+  lastName: 'Boarder',
+  name: 'Test Boarder',
+  dorm: 'dorm',
+  email: 'test@example.com',
   type: '7 Day',
-  uid: 'test',
   permissions: {
-    canBike: true,
     canWalk: true,
-    canDrive: true
+    canBike: true,
+    canCar: true
   },
-  start: '2021-06-01',
-  isActive: true
+  isActive: true,
+  startDate: '2021-06-01T08:00:00-04:00',
+  uid: '1234'
 };
+
 describe('ManageBoardersTableComponent', () => {
   let component: ManageBoardersTableComponent;
   let fixture: ComponentFixture<ManageBoardersTableComponent>;
