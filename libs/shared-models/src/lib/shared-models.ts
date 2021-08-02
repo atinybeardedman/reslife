@@ -7,17 +7,20 @@ export type BoarderType = '5 Day' | '7 Day';
 export interface BoarderPermissions {
   canWalk: boolean;
   canBike: boolean;
-  canDrive: boolean;
+  canCar: boolean;
+  carRestriction?: string;
 }
 
 export interface Boarder {
+  firstName: string;
+  lastName: string;
   name: string;
   dorm: string;
   email: string;
   type: BoarderType;
   uid: string;
   permissions: BoarderPermissions;
-  start: string;
-  end?: string;
+  startDate: string;
+  endDate?: string;
   isActive: boolean;
 }

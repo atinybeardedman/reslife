@@ -1,0 +1,167 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+  <mat-vertical-stepper linear>
+    <mat-step [stepControl]="bioStepGroup" [editable]="true">
+      <form [formGroup]="bioStepGroup" id="bioStep">
+        <ng-template matStepLabel>General</ng-template>
+        <div fxLayout>
+          <mat-form-field fxFlex>
+            <mat-label>First Name</mat-label>
+            <input
+              formControlName="firstName"
+              required
+              type="text"
+              matInput
+              placeholder="Elizebeth (Liz)"
+            />
+            <mat-hint>You can include nicknames in parentheses</mat-hint>
+          </mat-form-field>
+        </div>
+        <div fxLayout>
+          <mat-form-field fxFlex>
+            <mat-label>Last Name</mat-label>
+            <input
+              formControlName="lastName"
+              required
+              type="text"
+              matInput
+              placeholder="Friedman"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout>
+          <mat-form-field fxFlex>
+            <mat-label>Email</mat-label>
+            <input
+              formControlName="email"
+              required
+              type="email"
+              matInput
+              placeholder="efriedman"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout fxLayoutGap="10px">
+          <mat-form-field fxFlex>
+            <mat-label>Dorm</mat-label>
+            <mat-select formControlName="dorm" required>
+              <mat-option *ngFor="let dorm of dorms" [value]="dorm">{{
+                dorm
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Board Type</mat-label>
+            <mat-select formControlName="type" required>
+              <mat-option *ngFor="let type of boarderTypes" [value]="type">{{
+                type
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout>
+          <mat-form-field fxFlex>
+            <mat-label>Start date</mat-label>
+            <input
+              formControlName="startDate"
+              matInput
+              required
+              [matDatepicker]="picker"
+              data-testid="start-date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </form>
+      <div>
+        <button mat-button matStepperNext>Next Step</button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="permissionsStepGroup" [editable]="true">
+      <form
+        class="py-1"
+        [formGroup]="permissionsStepGroup"
+        id="permissionsStep"
+      >
+        <ng-template matStepLabel>Permissions</ng-template>
+        <div class="p-1" fxLayout>
+          <div fxFlex fxLayout fxLayoutAlign="space-between">
+            <label fxFlex="1 1 auto" id="can-walk-label">Can Walk Off?</label>
+            <mat-radio-group
+              fxFlex="1 1 auto"
+              fxLayout
+              fxLayoutGap="1em"
+              fxLayoutAlign="end"
+              formControlName="canWalk"
+              aria-labelledby="can-walk-label"
+            >
+              <mat-radio-button [value]="true">Yes</mat-radio-button>
+              <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="p-1" fxLayout>
+          <div fxFlex fxLayout fxLayoutAlign="space-between">
+            <label fxFlex="1 1 auto" id="can-bike-label"
+              >Can Bike/Skate etc?</label
+            >
+            <mat-radio-group
+              fxFlex="1 1 auto"
+              fxLayout
+              fxLayoutGap="1em"
+              fxLayoutAlign="end"
+              formControlName="canBike"
+              aria-labelledby="can-bike-label"
+            >
+              <mat-radio-button [value]="true">Yes</mat-radio-button>
+              <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="p-1">
+          <div fxFlexFill fxLayout fxLayoutAlign="space-between">
+            <label fxFlex="1 1 auto" id="can-car-label"
+              >Allowed in a Car?</label
+            >
+            <mat-radio-group
+              fxFlex="1 1 auto"
+              fxLayout
+              fxLayoutGap="1em"
+              fxLayoutAlign="end"
+              formControlName="canCar"
+              aria-labelledby="can-car-label"
+            >
+              <mat-radio-button [value]="true">Yes</mat-radio-button>
+              <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="px-1" *ngIf="permissionsStepGroup.get('canCar')?.value">
+          <mat-form-field class="w-full">
+            <mat-label>Optional Car Restriction</mat-label>
+            <input
+              formControlName="carRestriction"
+              type="text"
+              matInput
+              placeholder="Ex. No Student Drivers"
+            />
+          </mat-form-field>
+        </div>
+      </form>
+      <div>
+        <button
+          [disabled]="permissionsStepGroup.invalid"
+          color="accent"
+          mat-raised-button
+         (click)="save.emit(editedBoarder)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

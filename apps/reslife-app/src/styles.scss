@@ -44,6 +44,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .w-full {
   width: 100%
 }
+.w-half {
+  width: 50%
+}
+
 @for $i from 0 through 4 {
   .p-#{$i}{
     padding: #{$i}rem;
@@ -52,5 +56,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding-top: #{$i}rem;
     padding-bottom: #{$i}rem;
   }
+  .px-#{$i}{
+    padding-right: #{$i}rem;
+    padding-left: #{$i}rem;  }
 }
 
