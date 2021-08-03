@@ -38,13 +38,12 @@ export class BoarderManagementPageComponent implements OnInit {
     
   }
 
-  saveBoarder(boarder: Boarder){
+  async saveBoarder(boarder: Boarder){
     this.dialog.getDialogById('edit-boarder')?.close();
     if(boarder.uid){
-      this.bs.updateBoarder(boarder);
+      await this.bs.updateBoarder(boarder);
     } else {
-      // create new
-      this.bs.addBoarder(boarder);
+      await this.bs.addBoarder(boarder);
     }
     this.selectedBoarder = null;
     
