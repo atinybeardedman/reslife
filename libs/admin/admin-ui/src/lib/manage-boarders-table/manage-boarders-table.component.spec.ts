@@ -11,6 +11,7 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Boarder } from '@reslife/shared-models';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const testBoarder: Boarder = {
   firstName: 'Test',
@@ -40,7 +41,8 @@ describe('ManageBoardersTableComponent', () => {
       imports: [
         MatTableModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        MatPaginatorModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -83,14 +85,15 @@ describe('ManageBoardersTableComponent', () => {
     });
 
     it('should emit the boarder and action type when an action is clicked', async () => {
-      const spy = jest.spyOn(component.action, 'emit');
+      const editSpy = jest.spyOn(component.edit, 'emit');
+      const deleteSpy = jest.spyOn(component.delete, 'emit');
       const editButton = await loader.getHarness(MatButtonHarness.with({text: 'edit'}));
       await editButton.click();
-      expect(spy).toHaveBeenCalledWith({action: 'edit', boarder: testBoarder});
+      expect(editSpy).toHaveBeenCalledWith({action: 'edit', boarder: testBoarder});
 
       const deleteButton = await loader.getHarness(MatButtonHarness.with({text: 'delete'}));
       await deleteButton.click();
-      expect(spy).toHaveBeenCalledWith({action: 'delete', boarder: testBoarder});
+      expect(deleteSpy).toHaveBeenCalledWith({action: 'delete', boarder: testBoarder});
     });
   })
 
