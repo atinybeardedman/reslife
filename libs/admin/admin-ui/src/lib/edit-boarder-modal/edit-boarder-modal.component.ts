@@ -84,7 +84,7 @@ export class EditBoarderModalComponent implements OnChanges {
         canBike: canBike.value as boolean,
         canCar: canCar.value as boolean,
       },
-      isActive: this.boarder?.isActive || false,
+      isActive: false,
       uid: this.boarder?.uid || ''
     };
     if(carRestriction.value){
