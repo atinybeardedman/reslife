@@ -1,6 +1,6 @@
 import { HarnessLoader, parallel } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatTableHarness } from '@angular/material/table/testing';
@@ -68,7 +68,9 @@ describe('ManageBoardersTableComponent', () => {
   describe('if boarders exist', () => {
     beforeEach(() => {
       component.boarders = [testBoarder];
-      fixture.detectChanges();
+      component.ngOnChanges({
+        boarders: new SimpleChange(null, [testBoarder], false)
+      });
     });
     it('should show the table when boarders exist', async () => {
       const table = await loader.getHarness(MatTableHarness);

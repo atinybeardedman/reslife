@@ -124,7 +124,7 @@ describe('EditBoarderModalComponent', () => {
     expect(inputValues).toEqual([
       testBoarder.firstName,
       testBoarder.lastName,
-      testBoarder.email,
+      testBoarder.email.replace('@oakwoodfriends.org', ''),
       new Date(testBoarder.startDate).toLocaleDateString('en-US'),
       testBoarder.permissions.carRestriction
     ]);
