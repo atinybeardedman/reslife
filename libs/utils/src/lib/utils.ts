@@ -33,6 +33,11 @@ export function getDateString(date = new Date()): string {
     return datestring.substring(0, i);
 }
 
+export function getDateFromDatestring(datestring = getDateString()): Date {
+  const [ year, month, days] = datestring.split('-').map(d => parseInt(d, 10));
+  return new Date(year, month - 1, days, 8);
+}
+
 export function getTime(date = new Date()): string {
   const datestring = getIsoTimezoneString(date);
   const i = datestring.indexOf("T");
