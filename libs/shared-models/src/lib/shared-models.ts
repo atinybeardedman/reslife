@@ -24,3 +24,8 @@ export interface Boarder {
   endDate?: string;
   isActive: boolean;
 }
+
+export interface DormDocument {
+  name: string;
+  isActive: boolean;
+}
