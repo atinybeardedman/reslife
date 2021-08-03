@@ -46,6 +46,17 @@ describe('utils', () => {
   });
  });
 
+ describe('getDateFromDatestring', () => {
+   it('should correctly set a date given a date string', () => {
+     const string = '2021-12-25';
+     const expectedDate = new Date(2021, 11, 25, 8);
+     expect(utils.getDateFromDatestring(string)).toEqual(expectedDate);
+   });
+   it('should correctly set the date for the current date', () => {
+     expect(utils.getDateFromDatestring()).toEqual(new Date());
+   })
+ })
+
  describe('getTime', () => {
    it('should give the current time string based on the current date', () => {
      expect(utils.getTime()).toBe('08:00');

@@ -25,6 +25,11 @@ export interface Boarder {
   isActive: boolean;
 }
 
+export interface DormDocument {
+  name: string;
+  isActive: boolean;
+}
+
 export type Role = 'aod' | 'superadmin' | 'any';
 
 export interface NavigationItem {

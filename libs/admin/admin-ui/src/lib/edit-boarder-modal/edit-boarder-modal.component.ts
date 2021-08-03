@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
   OnChanges,
@@ -9,8 +8,8 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { Boarder, BoarderType } from '@reslife/shared-models';
+import { getDateString, getDateFromDatestring } from '@reslife/utils';
 
 @Component({
   selector: 'reslife-edit-boarder-modal',
@@ -18,7 +17,7 @@ import { Boarder, BoarderType } from '@reslife/shared-models';
   styleUrls: ['./edit-boarder-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditBoarderModalComponent implements OnInit, OnChanges {
+export class EditBoarderModalComponent implements OnChanges {
   @Input() boarder!: Boarder | null;
   @Input() dorms!: string[] | null;
   @Input() boarderTypes: BoarderType[] = ['5 Day', '7 Day'];
@@ -30,9 +29,7 @@ export class EditBoarderModalComponent implements OnInit, OnChanges {
   permissionsStepGroup!: FormGroup;
   bioFields = ['firstName', 'lastName', 'email', 'dorm', 'type', 'startDate'];
   permissionFields = ['canWalk', 'canRide', 'canCar', 'carRestriction'];
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {
     this.bioStepGroup = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -59,10 +56,10 @@ export class EditBoarderModalComponent implements OnInit, OnChanges {
     if(boarder){
       this.bioStepGroup.controls.firstName.setValue(boarder.firstName);
       this.bioStepGroup.controls.lastName.setValue(boarder.lastName);
-      this.bioStepGroup.controls.email.setValue(boarder.email);
+      this.bioStepGroup.controls.email.setValue(boarder.email.replace('@oakwoodfriends.org', ''));
       this.bioStepGroup.controls.dorm.setValue(boarder.dorm);
       this.bioStepGroup.controls.type.setValue(boarder.type);
-      this.bioStepGroup.controls.startDate.setValue(boarder.startDate);
+      this.bioStepGroup.controls.startDate.setValue(getDateFromDatestring(boarder.startDate));
 
       this.permissionsStepGroup.controls.canWalk.setValue(boarder.permissions.canWalk);
       this.permissionsStepGroup.controls.canBike.setValue(boarder.permissions.canBike);
@@ -78,16 +75,16 @@ export class EditBoarderModalComponent implements OnInit, OnChanges {
       firstName: firstName.value as string,
       lastName: lastName.value as string,
       name: firstName.value + ' ' + lastName.value,
-      email: email.value as string,
+      email: email.value + '@oakwoodfriends.org',
       dorm: dorm.value as string,
       type: type.value as BoarderType,
-      startDate: startDate.value as string,
+      startDate: getDateString(startDate.value),
       permissions: {
         canWalk: canWalk.value as boolean,
         canBike: canBike.value as boolean,
         canCar: canCar.value as boolean,
       },
-      isActive: startDate.value >= this.today.toISOString(),
+      isActive: false,
       uid: this.boarder?.uid || ''
     };
     if(carRestriction.value){
