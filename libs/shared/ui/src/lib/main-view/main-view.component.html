@@ -1,7 +1,9 @@
 <reslife-top-bar [title]="title" [pageTitle]="pageTitle" (menuClick)="toggleSidenav()"></reslife-top-bar>
 <mat-sidenav-container>
-    <mat-sidenav>
-        <ng-content select="[navigation]"></ng-content>
+    <mat-sidenav mode="side">
+        <nav>
+            <reslife-sidenav [links]="links"></reslife-sidenav>
+        </nav>
     </mat-sidenav>
     <mat-sidenav-content>
         <ng-content></ng-content>
