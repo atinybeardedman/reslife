@@ -29,3 +29,12 @@ export interface DormDocument {
   name: string;
   isActive: boolean;
 }
+
+export type Role = 'aod' | 'superadmin' | 'any';
+
+export interface NavigationItem {
+  path: string;
+  name: string;
+  icon: string;
+  roles?: Role[];
+}
