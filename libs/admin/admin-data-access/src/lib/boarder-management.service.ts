@@ -43,4 +43,9 @@ export class BoarderManagementService {
     boarder.isActive = boarder.startDate <= today;
     return this.af.doc(`boarders/${uid}`).update(boarder);
   }
+
+  deleteBoarder(boarder: Boarder): Promise<void> {
+    const uid = boarder.uid;
+    return this.af.doc(`boarders/${uid}`).delete();
+  }
 }

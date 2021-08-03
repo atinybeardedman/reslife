@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { BoarderManagementService } from '@reslife/admin-data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { BoarderAction } from '@reslife/admin-model';
+import { ConfirmModalComponent } from '@reslife/admin-ui';
 
 @Component({
   selector: 'reslife-boarder-management-page',
@@ -24,18 +25,29 @@ export class BoarderManagementPageComponent implements OnInit {
     this.dorms$ = this.bs.getActiveDorms();
   }
 
-  open(action?: BoarderAction): void {
+  edit(action?: BoarderAction): void {
     if(action){
-      if (action.action === 'delete'){
-        return
-      } else {
         this.modalTitle = 'Edit Boarder';
         this.selectedBoarder = action.boarder;
+      } else {
+        this.modalTitle = 'Add Boarder';
+        this.selectedBoarder = null;
       }
-    }  
+
       
     this.dialog.open(this.dialogTemplate, {id: 'edit-boarder'});
-    
+  }
+
+  delete(action: BoarderAction): void {
+    this.dialog.open(ConfirmModalComponent, {
+      data: {
+        message: 'Are you sure you want to delete this boarder?'
+      }
+    }).afterClosed().subscribe(val => {
+      if(val){
+        this.bs.deleteBoarder(action.boarder);
+      }
+    });
   }
 
   async saveBoarder(boarder: Boarder){

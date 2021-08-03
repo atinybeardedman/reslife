@@ -14,7 +14,8 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ManageBoardersTableComponent implements OnChanges, AfterViewInit {
   datasource = new MatTableDataSource<Boarder>([]);
   @Input() boarders!: Boarder[] | null;
-  @Output() action = new EventEmitter<BoarderAction>();
+  @Output() edit = new EventEmitter<BoarderAction>();
+  @Output() delete = new EventEmitter<BoarderAction>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns = ['name', 'type', 'actions'];
