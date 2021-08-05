@@ -5,7 +5,7 @@ import {
   BoarderSignoutMeta,
   StudentSignout,
 } from '@reslife/student-signout/student-signout-model';
-import { getDateString } from '@reslife/utils';
+import { getDateString, getIsoTimezoneString } from '@reslife/utils';
 import { Boarder, CampusedStudentRecord } from '@reslife/shared-models';
 import { map } from 'rxjs/operators';
 @Injectable({
@@ -15,7 +15,7 @@ export class StudentSignoutDataService {
   constructor(private af: AngularFirestore) {}
 
   getCurrentSignouts(): Observable<StudentSignout[]> {
-    return this.af.collection<StudentSignout>('signouts').valueChanges();
+    return this.af.collection<StudentSignout>('signouts', ref => ref.where('isCurrentlyOut','==', true).orderBy('timeOut')).valueChanges();
   }
 
   getAvailableBoarders(): Observable<BoarderSignoutMeta[]> {
@@ -47,5 +47,20 @@ export class StudentSignoutDataService {
         })
       })
     )
+  }
+
+  signIn(signout: StudentSignout): Promise<void> {
+    return this.af.doc<StudentSignout>(`signouts/${signout.uid}`).update({
+      timeIn: new Date().toISOString(),
+      isCurrentlyOut: false
+    });
+  }
+
+  saveSignout(signout: StudentSignout): Promise<void> {
+    if(signout.uid === ''){
+      signout.uid = this.af.createId();
+      return this.af.doc<StudentSignout>(`signouts/${signout.uid}`).set(signout);
+    }
+    return this.af.doc<StudentSignout>(`signouts/${signout.uid}`).update(signout);
   }
 }
