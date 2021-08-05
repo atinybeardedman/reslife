@@ -3,6 +3,7 @@
   *ngFor="let link of renderedLinks"
     routerLinkActive="active-list-link"
     [routerLink]="[link.path]"
+    (click)="navigationClick.emit(link)"
     mat-list-item
   >
     <mat-icon mat-list-icon>{{ link.icon }}</mat-icon>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { NavigationItem, Role } from '@reslife/shared-models';
 
 @Component({
@@ -9,7 +9,8 @@ import { NavigationItem, Role } from '@reslife/shared-models';
 })
 export class SidenavComponent {
   @Input() links: NavigationItem[] = [];
-  @Input() role: Role = 'any'; 
+  @Input() role: Role = 'any';
+  @Output() navigationClick = new EventEmitter<NavigationItem>(); 
 
   get renderedLinks(): NavigationItem[] {
     return this.links.filter(l => {
