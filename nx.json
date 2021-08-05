@@ -77,7 +77,7 @@
     "student-signout-feature": {
       "tags": ["type:feature"]
     },
-    "student-signout-student-signout-model": {
+    "student-signout-model": {
       "tags": ["type:model"]
     },
     "student-signout-ui": {
