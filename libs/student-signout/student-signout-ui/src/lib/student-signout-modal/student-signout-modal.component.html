@@ -1,1 +1,67 @@
-<p>student-signout-modal works!</p>
+<h1 mat-dialog-title>Student Signout</h1>
+<div mat-dialog-content>
+  <div fxLayout>
+    <reslife-search-select
+      fxFill
+      [list]="boarders"
+      (itemSelected)="selectBoarder($event)"
+      [clearOnSelect]="false"
+      *ngIf="!signout; else disabledName"
+    ></reslife-search-select>
+    <ng-template #disabledName>
+      <mat-form-field fxFill>
+        <input
+          type="text"
+          matInput
+          [disabled]="true"
+          [value]="signout?.student?.name"
+        />
+      </mat-form-field>
+    </ng-template>
+  </div>
+  <ng-container *ngIf="selectedBoarder">
+    <h3 *ngIf="selectedBoarder.isCampused; else signoutForm">Campused</h3>
+    <ng-template #signoutForm>
+      <form [formGroup]="signoutFields">
+        <div fxLayout>
+          <mat-form-field fxFill>
+            <mat-label>Destination</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              formControlName="destination"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout fxLayoutGap="10px">
+          <mat-form-field fxFlex>
+            <mat-label> Tranport </mat-label>
+            <mat-select formControlName="transport">
+              <mat-option
+                *ngFor="let option of transportOptions"
+                [value]="option"
+              >
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field
+            fxFlex
+            *ngIf="signoutFields.controls.transport.value === 'Car'"
+          >
+            <mat-label>Which Car?</mat-label>
+            <input matInput required type="text" formControlName="carDetail" />
+            <mat-hint *ngIf="selectedBoarder.permissions.carRestriction">{{
+              selectedBoarder.permissions.carRestriction
+            }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </form>
+    </ng-template>
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [disabled]="signoutFields.invalid || !selectedBoarder || selectedBoarder.isCampused" [mat-dialog-close]="editedSignout">Sign Out</button>
+</div>
