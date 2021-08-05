@@ -1,1 +1,32 @@
-<p>student-signout-page works!</p>
+<section fxLayout="row" fxLayoutAlign="start start">
+    <div class="col" fxFlex fxHide.lt-md></div>
+    <div class="col" fxFlex="1 1 40vw" fxFlex.lt-md>
+      <div class="row">
+        <button mat-raised-button color="accent" (click)="newSignout()">
+          + New Signout
+        </button>
+      </div>
+      <div class="row">
+        <mat-card>
+          <mat-card-title>Current Signouts</mat-card-title>
+          <mat-card-content>
+            <reslife-student-signout-table
+              [signouts]="signouts$ | async"
+              (edit)="editSignout($event)"
+              (checkIn)="checkIn($event)"
+            ></reslife-student-signout-table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col" fxFlex fxHide.lt-md></div>
+  </section>
+  
+  <ng-template>
+    <reslife-student-signout-modal
+      [signout]="selectedSignout"
+      [boarders]="boarders$ | async"
+      (save)="saveSignout($event)"
+    ></reslife-student-signout-modal>
+  </ng-template>
+  
