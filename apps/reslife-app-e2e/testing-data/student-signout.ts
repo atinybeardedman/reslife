@@ -7,5 +7,6 @@ export const generateSignout = () => ({
     timeOut: new Date(new Date().getTime() - (5  * 60 *1000)).toISOString(),
     destination: 'Starbucks',
     transportation: 'Walk',
+    isCurrentlyOut: true,
     uid: 'abc'
 });

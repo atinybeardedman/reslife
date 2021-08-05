@@ -1,9 +1,51 @@
 import { Injectable } from '@angular/core';
-
+import { AngularFirestore } from '@angular/fire/firestore';
+import { combineLatest, Observable } from 'rxjs';
+import {
+  BoarderSignoutMeta,
+  StudentSignout,
+} from '@reslife/student-signout/student-signout-model';
+import { getDateString } from '@reslife/utils';
+import { Boarder, CampusedStudentRecord } from '@reslife/shared-models';
+import { map } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StudentSignoutDataService {
+  constructor(private af: AngularFirestore) {}
 
-  constructor() { }
+  getCurrentSignouts(): Observable<StudentSignout[]> {
+    return this.af.collection<StudentSignout>('signouts').valueChanges();
+  }
+
+  getAvailableBoarders(): Observable<BoarderSignoutMeta[]> {
+    const currentSignouts$ = this.getCurrentSignouts();
+    const campused$ = this.af
+      .collection<CampusedStudentRecord>('campusedStudents', (ref) =>
+        ref.where('endDate', '>=', getDateString())
+      )
+      .valueChanges();
+    const allBoarders$ = this.af.collection<Boarder>('boarders', ref => ref.where('isActive', '==', true)).valueChanges();
+    return combineLatest([allBoarders$, currentSignouts$, campused$]).pipe(
+      map(([allBoarders, currentSignouts, campused]) => {
+        return allBoarders.filter(b => {
+          if(currentSignouts.find(c => c.student.uid === b.uid)){
+            return false
+          }
+          return true;
+        }).map(boarder => {
+          let isCampused: true | undefined;
+          if(campused.find(c => c.uid === boarder.uid)){
+            isCampused = true;
+          }
+          return {
+            name: boarder.name,
+            uid: boarder.uid,
+            permissions: boarder.permissions,
+            isCampused
+          }
+        })
+      })
+    )
+  }
 }
