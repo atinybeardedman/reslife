@@ -4,7 +4,9 @@ import {
   expected,
   generateCheckInDocument,
   generateCheckInPath,
-} from '../../testing-data/lists';
+} from '../../testing-data/check-in-lists';
+
+import { generateSignout } from '../../testing-data/student-signout';
 
 describe('reslife-app', () => {
   beforeEach(() => cy.visit('/'));
@@ -85,3 +87,20 @@ describe('check-in', () => {
 //     cy.get('.page-title').contains('Admin: Boarder Management');
 //   })
 // })
+
+describe('student-signout', () => {
+  beforeEach(() => {
+    cy.visit('/student-signout');
+      });
+    
+      it('should display the student signout page', () => {
+        cy.get('.page-title').contains('Student Signout');
+      });
+
+      it('should display current signouts', () => {
+        const signout = generateSignout();
+        cy.callFirestore('delete', 'signouts');
+        cy.callFirestore('set', `signouts/${signout.uid}`, signout);
+        cy.get('[data-testid="signouts"]').contains(signout.student.name);
+      })
+})
