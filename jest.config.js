@@ -16,5 +16,8 @@ module.exports = {
     '<rootDir>/libs/boarder-management-feature',
     '<rootDir>/libs/admin/admin-ui',
     '<rootDir>/libs/admin/admin-data-access',
+    '<rootDir>/libs/student-signout/student-signout-feature',
+    '<rootDir>/libs/student-signout/student-signout-ui',
+    '<rootDir>/libs/student-signout/student-signout-data-access',
   ],
 };

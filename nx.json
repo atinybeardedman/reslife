@@ -71,6 +71,18 @@
     "shared-ui": {
       "tags": ["type:ui"]
     },
+    "student-signout-data-access": {
+      "tags": ["type:data-access"]
+    },
+    "student-signout-feature": {
+      "tags": ["type:feature"]
+    },
+    "student-signout-student-signout-model": {
+      "tags": ["type:model"]
+    },
+    "student-signout-ui": {
+      "tags": ["type:ui"]
+    },
     "utils": {
       "tags": ["type:util"]
     },
