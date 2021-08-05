@@ -80,6 +80,13 @@ describe('SidenavComponent', () => {
       expect(links).toHaveLength(3);
       expect(await links[2].getText()).toBe(component.links[2].name);
     });
+
+    it('should emit an event when a link is clicked', async () => {
+      const spy = jest.spyOn(component.navigationClick, 'emit');
+      await links[0].click();
+      fixture.detectChanges();
+      expect(spy).toHaveBeenCalledTimes(1);
+    })
   })
 
 });
