@@ -1,1 +1,58 @@
-<p>student-signout-table works!</p>
+<h1 *ngIf="!signouts || signouts?.length === 0; else signoutsTable">
+    No Students Signed Out
+  </h1>
+  <ng-template #signoutsTable>
+    <table mat-table class="w-full" [dataSource]="datasource" mat-table>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let signout">{{ signout.student.name }}</td>
+      </ng-container>
+      <!-- Time Out Column -->
+      <ng-container matColumnDef="timeOut">
+        <th mat-header-cell *matHeaderCellDef>Time Out</th>
+        <td mat-cell *matCellDef="let signout">{{ signout.timeOut | date :
+            'shortTime' }}</td>
+      </ng-container>
+
+      <!-- Destination Column -->
+      <ng-container matColumnDef="destination">
+        <th mat-header-cell *matHeaderCellDef>Destination</th>
+        <td mat-cell *matCellDef="let signout">{{ signout.destination }}</td>
+      </ng-container>
+
+      <!-- Transport Column -->
+      <ng-container matColumnDef="transport">
+        <th mat-header-cell *matHeaderCellDef>Transport</th>
+        <td mat-cell *matCellDef="let signout">{{ signout.transport !== 'Car' ? signout.transport : signout.transportNote + ' (Car)' }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let signout">
+          <button
+            mat-icon-button
+            (click)="edit.emit(signout)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="signIn.emit(signout)"
+          >
+            <mat-icon>check</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [pageSizeOptions]="[15]"
+      showFirstLastButtons
+      aria-label="Select page of signouts"
+    >
+    </mat-paginator>
+  </ng-template>

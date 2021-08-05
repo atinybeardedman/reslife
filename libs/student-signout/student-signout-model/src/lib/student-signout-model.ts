@@ -13,6 +13,7 @@ export interface StudentSignout {
   transport: TransportMethod;
   transportNote?: string; // only set if there's a car
   isCurrentlyOut: boolean;
+  uid: string;
 }
 
 /**

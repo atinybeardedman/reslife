@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentSignoutModalComponent } from './student-signout-modal.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { StudentSignoutModalComponent } from './student-signout-modal.component'
     StudentSignoutModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatDialogModule,
   ],
   exports: [
     StudentSignoutModalComponent
