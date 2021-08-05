@@ -21,6 +21,7 @@ import { NamedItem } from '@reslife/shared-models';
 export class SearchSelectComponent implements OnInit {
   @Input() list!: NamedItem[] | null;
   @Input() icon = 'search';
+  @Input() clearOnSelect = true;
   @Output() itemSelected = new EventEmitter<NamedItem>();
   autoControl = new FormControl();
   filteredOptions$!: Observable<NamedItem[]>;
@@ -41,7 +42,9 @@ export class SearchSelectComponent implements OnInit {
 
   onSelected(selected: MatAutocompleteSelectedEvent): void {
     this.itemSelected.emit(selected.option.value);
-    this.autoControl.setValue('');
+    if(this.clearOnSelect){
+      this.autoControl.setValue('');
+    }
   }
 
   displayFn(item: CheckInItem) {
