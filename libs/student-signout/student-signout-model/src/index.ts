@@ -1,1 +1,1 @@
-export * from './lib/student-signout-student-signout-model';
+export * from './lib/student-signout-model';
