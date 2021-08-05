@@ -22,4 +22,10 @@ describe('StudentSignoutPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // it('should display the current signouts')
+
+  // it('should open the modal for a new signout')
+
+  // it('should allow students to be signed in when selected from the table')
 });
