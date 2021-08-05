@@ -25,8 +25,8 @@
   <ng-template>
     <reslife-student-signout-modal
       [signout]="selectedSignout"
+      [signoutMeta]="signoutMeta$ | async"
       [boarders]="boarders$ | async"
-      (save)="saveSignout($event)"
     ></reslife-student-signout-modal>
   </ng-template>
   
