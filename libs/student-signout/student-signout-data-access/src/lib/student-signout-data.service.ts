@@ -25,7 +25,7 @@ export class StudentSignoutDataService {
   getAvailableBoarders(): Observable<BoarderSignoutMeta[]> {
     const currentSignouts$ = this.getCurrentSignouts();
     const campused$ = this.af
-      .collection<CampusedStudentRecord>('campusedStudents', (ref) =>
+      .collection<CampusedStudentRecord>('campused', (ref) =>
         ref.where('endDate', '>=', getDateString())
       )
       .valueChanges();

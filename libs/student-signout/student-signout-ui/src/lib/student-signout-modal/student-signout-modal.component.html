@@ -20,7 +20,7 @@
     </ng-template>
   </div>
   <ng-container *ngIf="selectedBoarder">
-    <h3 *ngIf="selectedBoarder.isCampused; else signoutForm">Campused</h3>
+    <h3 *ngIf="selectedBoarder.isCampused; else signoutForm" class="text-warn">Campused</h3>
     <ng-template #signoutForm>
       <form [formGroup]="signoutFields">
         <div fxLayout>
@@ -34,7 +34,7 @@
             />
           </mat-form-field>
         </div>
-        <div fxLayout fxLayoutGap="10px">
+        <div fxLayout="column" fxLayoutGap="10px" fxLayout.gt-md="row">
           <mat-form-field fxFlex>
             <mat-label> Tranport </mat-label>
             <mat-select formControlName="transport">
