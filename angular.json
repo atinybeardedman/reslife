@@ -527,7 +527,7 @@
         }
       }
     },
-    "student-signout-student-signout-model": {
+    "student-signout-model": {
       "root": "libs/student-signout/student-signout-model",
       "sourceRoot": "libs/student-signout/student-signout-model/src",
       "projectType": "library",
