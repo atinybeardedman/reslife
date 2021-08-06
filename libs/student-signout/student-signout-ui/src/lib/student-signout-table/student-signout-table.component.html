@@ -2,7 +2,7 @@
     No Students Signed Out
   </h1>
   <ng-template #signoutsTable>
-    <table mat-table class="w-full" [dataSource]="datasource" mat-table>
+    <table mat-table class="w-full" data-testid="signouts-table" [dataSource]="datasource" mat-table>
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -32,12 +32,14 @@
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let signout">
           <button
-            mat-icon-button
-            (click)="edit.emit(signout)"
+          data-testid="edit-button"
+          mat-icon-button
+          (click)="edit.emit(signout)"
           >
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          data-testid="signIn-button"
             mat-icon-button
             (click)="signIn.emit(signout)"
           >
