@@ -28,8 +28,17 @@ export class StudentSignoutModalComponent implements OnChanges {
     this.signoutFields = this.fb.group({
       destination: ['', Validators.required],
       transport: ['', Validators.required],
-      carDetail: ['', Validators.required],
+      carDetail: [''],
     });
+    this.signoutFields.controls.transport.valueChanges.subscribe(val => {
+      const carDetailCtrl = this.signoutFields.controls.carDetail;
+      if(val === 'Car'){
+        carDetailCtrl.setValidators(Validators.required);
+      } else {
+        carDetailCtrl.setValidators(null);
+      }
+      carDetailCtrl.updateValueAndValidity();
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -99,6 +108,8 @@ export class StudentSignoutModalComponent implements OnChanges {
     }
     if (signout.transport === 'Car') {
       signout.transportNote = this.signoutFields.controls.carDetail.value;
+    } else {
+      delete signout.transportNote;
     }
     return signout;
   }
