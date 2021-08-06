@@ -5,5 +5,9 @@ import { StudentSignoutModalModule } from './student-signout-modal/student-signo
 
 @NgModule({
   imports: [CommonModule, StudentSignoutTableModule, StudentSignoutModalModule],
+  exports: [
+    StudentSignoutTableModule,
+    StudentSignoutModalModule
+  ]
 })
 export class StudentSignoutUiModule {}
