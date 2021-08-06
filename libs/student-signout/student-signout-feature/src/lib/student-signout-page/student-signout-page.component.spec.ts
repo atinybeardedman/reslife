@@ -2,19 +2,30 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StudentSignoutPageComponent } from './student-signout-page.component';
 
+import { StudentSignoutDataService } from '@reslife/student-signout/student-signout-data-access';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { StudentSignoutUiModule } from '@reslife/student-signout/student-signout-ui';
+jest.mock('@reslife/student-signout/student-signout-data-access');
 describe('StudentSignoutPageComponent', () => {
   let component: StudentSignoutPageComponent;
   let fixture: ComponentFixture<StudentSignoutPageComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StudentSignoutPageComponent ]
+      imports: [
+        StudentSignoutUiModule
+      ],
+      declarations: [ StudentSignoutPageComponent ],
+      providers: [
+       StudentSignoutDataService,
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StudentSignoutPageComponent);
+    TestBed.inject(StudentSignoutDataService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,9 +34,5 @@ describe('StudentSignoutPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should display the current signouts')
-
-  // it('should open the modal for a new signout')
-
-  // it('should allow students to be signed in when selected from the table')
+  
 });
