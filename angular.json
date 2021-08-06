@@ -475,6 +475,98 @@
         }
       }
     },
+    "student-signout-data-access": {
+      "projectType": "library",
+      "root": "libs/student-signout/student-signout-data-access",
+      "sourceRoot": "libs/student-signout/student-signout-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/student-signout/student-signout-data-access"
+          ],
+          "options": {
+            "jestConfig": "libs/student-signout/student-signout-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/student-signout/student-signout-data-access/src/**/*.ts",
+              "libs/student-signout/student-signout-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "student-signout-feature": {
+      "projectType": "library",
+      "root": "libs/student-signout/student-signout-feature",
+      "sourceRoot": "libs/student-signout/student-signout-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/student-signout/student-signout-feature"],
+          "options": {
+            "jestConfig": "libs/student-signout/student-signout-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/student-signout/student-signout-feature/src/**/*.ts",
+              "libs/student-signout/student-signout-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "student-signout-model": {
+      "root": "libs/student-signout/student-signout-model",
+      "sourceRoot": "libs/student-signout/student-signout-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/student-signout/student-signout-model/**/*.ts"
+            ]
+          }
+        }
+      }
+    },
+    "student-signout-ui": {
+      "projectType": "library",
+      "root": "libs/student-signout/student-signout-ui",
+      "sourceRoot": "libs/student-signout/student-signout-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/student-signout/student-signout-ui"],
+          "options": {
+            "jestConfig": "libs/student-signout/student-signout-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/student-signout/student-signout-ui/src/**/*.ts",
+              "libs/student-signout/student-signout-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "utils": {
       "root": "libs/utils",
       "sourceRoot": "libs/utils/src",

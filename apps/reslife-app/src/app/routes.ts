@@ -40,7 +40,10 @@ export const appRoutes: Route[] = [
           icon: 'person_pin_circle',
           roles: ['any']
         },
-        redirectTo: ''
+        loadChildren: () => 
+          import('@reslife/student-signout-feature').then(
+            (module) => module.StudentSignoutFeatureModule
+          ),
       },
       {
         path: 'maintenance',

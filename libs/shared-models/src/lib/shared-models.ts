@@ -38,3 +38,10 @@ export interface NavigationItem {
   icon: string;
   roles?: Role[];
 }
+
+export interface CampusedStudentRecord {
+  name: string;
+  uid: string;
+  startDate: string;
+  endDate: string;
+}

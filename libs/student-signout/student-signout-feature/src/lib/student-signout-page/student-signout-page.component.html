@@ -1,0 +1,32 @@
+<section fxLayout="row" fxLayoutAlign="start start">
+    <div class="col" fxFlex fxHide.lt-md></div>
+    <div class="col" fxFlex="1 1 80%" fxFlex.lt-md>
+      <div class="m-1">
+        <button data-testid="new-signout-button" mat-raised-button color="accent" (click)="newSignout()">
+          + New Signout
+        </button>
+      </div>
+      <div class="m-1">
+        <mat-card>
+          <mat-card-title>Current Signouts</mat-card-title>
+          <mat-card-content>
+            <reslife-student-signout-table
+              [signouts]="signouts$ | async"
+              (edit)="editSignout($event)"
+              (signIn)="signIn($event)"
+            ></reslife-student-signout-table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col" fxFlex fxHide.lt-md></div>
+  </section>
+  
+  <ng-template>
+    <reslife-student-signout-modal
+      [signout]="selectedSignout"
+      [signoutMeta]="signoutMeta$ | async"
+      [boarders]="boarders$ | async"
+    ></reslife-student-signout-modal>
+  </ng-template>
+  

@@ -112,11 +112,19 @@ describe('SearchSelectComponent', () => {
       await autocomplete.enterText('c');
       expect(await autocomplete.getOptions()).toHaveLength(1);
     });
-    it('should clear input on selection', async () => {
+    it('should clear input on selection by default', async () => {
       await autocomplete.enterText('a');
       await autocomplete.selectOption({ text: 'a' });
       expect(await autocomplete.getValue()).toBe('');
     });
+    it('should not clear the input if clearOnSelect input is false', async () => {
+      component.clearOnSelect = false;
+      fixture.detectChanges();
+      await autocomplete.enterText('a');
+      await autocomplete.selectOption({ text: 'a' });
+      expect(await autocomplete.getValue()).toBe('a');
+
+    })
     it('should emit the item on selection', async () => {
       const spy = jest.spyOn(component.itemSelected, 'emit');
       await autocomplete.enterText('a');
