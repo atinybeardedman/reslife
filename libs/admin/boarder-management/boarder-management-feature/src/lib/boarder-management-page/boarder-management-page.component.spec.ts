@@ -9,7 +9,7 @@ import { BoarderManagementPageComponent } from './boarder-management-page.compon
 import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BoarderManagementService } from '@reslife/admin-data-access';
 jest.mock('@reslife/admin-data-access');
-import { testBoarder } from '../../test-helpers/testValues';
+import { testBoarder } from '@reslife/shared-models';
 import { of } from 'rxjs';
 import { MatDialogModule } from '@angular/material/dialog';
 
