@@ -38,17 +38,14 @@
       "@reslife/maintenance-request-feature": [
         "libs/maintenance-request/maintenance-request-feature/src/index.ts"
       ],
-      "@reslife/maintenance-request/maintenance-request-model": [
+      "@reslife/maintenance-request-model": [
         "libs/maintenance-request/maintenance-request-model/src/index.ts"
       ],
-      "@reslife/maintenence-request/maintenance-request-data-access": [
-        "libs/maintenence-request/maintenance-request-data-access/src/index.ts"
+      "@reslife/maintenance-request-data-access": [
+        "libs/maintenance-request/maintenance-request-data-access/src/index.ts"
       ],
-      "@reslife/maintenence-request/maintenance-request-model": [
-        "libs/maintenence-request/maintenance-request-model/src/index.ts"
-      ],
-      "@reslife/maintenence-request/maintenance-request-ui": [
-        "libs/maintenence-request/maintenance-request-ui/src/index.ts"
+      "@reslife/maintenance-request-ui": [
+        "libs/maintenance-request/maintenance-request-ui/src/index.ts"
       ],
       "@reslife/shared-models": ["libs/shared-models/src/index.ts"],
       "@reslife/shared/ui": ["libs/shared/ui/src/index.ts"],

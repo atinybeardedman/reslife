@@ -189,17 +189,17 @@
     },
     "maintenance-request-data-access": {
       "projectType": "library",
-      "root": "libs/maintenence-request/maintenance-request-data-access",
-      "sourceRoot": "libs/maintenence-request/maintenance-request-data-access/src",
+      "root": "libs/maintenance-request/maintenance-request-data-access",
+      "sourceRoot": "libs/maintenance-request/maintenance-request-data-access/src",
       "prefix": "reslife",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/maintenence-request/maintenance-request-data-access"
+            "coverage/libs/maintenance-request/maintenance-request-data-access"
           ],
           "options": {
-            "jestConfig": "libs/maintenence-request/maintenance-request-data-access/jest.config.js",
+            "jestConfig": "libs/maintenance-request/maintenance-request-data-access/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -207,8 +207,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/maintenence-request/maintenance-request-data-access/src/**/*.ts",
-              "libs/maintenence-request/maintenance-request-data-access/src/**/*.html"
+              "libs/maintenance-request/maintenance-request-data-access/src/**/*.ts",
+              "libs/maintenance-request/maintenance-request-data-access/src/**/*.html"
             ]
           }
         }
@@ -258,17 +258,17 @@
     },
     "maintenance-request-ui": {
       "projectType": "library",
-      "root": "libs/maintenence-request/maintenance-request-ui",
-      "sourceRoot": "libs/maintenence-request/maintenance-request-ui/src",
+      "root": "libs/maintenance-request/maintenance-request-ui",
+      "sourceRoot": "libs/maintenance-request/maintenance-request-ui/src",
       "prefix": "reslife",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/maintenence-request/maintenance-request-ui"
+            "coverage/libs/maintenance-request/maintenance-request-ui"
           ],
           "options": {
-            "jestConfig": "libs/maintenence-request/maintenance-request-ui/jest.config.js",
+            "jestConfig": "libs/maintenance-request/maintenance-request-ui/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -276,8 +276,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/maintenence-request/maintenance-request-ui/src/**/*.ts",
-              "libs/maintenence-request/maintenance-request-ui/src/**/*.html"
+              "libs/maintenance-request/maintenance-request-ui/src/**/*.ts",
+              "libs/maintenance-request/maintenance-request-ui/src/**/*.html"
             ]
           }
         }

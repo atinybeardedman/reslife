@@ -22,4 +22,8 @@ describe('MaintenanceRequestPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the button for a new request');
+
+  it('should render the table of requests');
 });

@@ -1,7 +1,7 @@
 import {
   testRequests,
   MaintenanceRequest,
-} from '@reslife/maintenance-request/maintenance-request-model';
+} from '@reslife/maintenance-request-model';
 import { getDateString } from '@reslife/utils';
 describe('maintenance request', () => {
   beforeEach(() => {
