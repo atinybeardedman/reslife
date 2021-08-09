@@ -57,6 +57,20 @@ describe('utils', () => {
    })
  })
 
+ describe('getYearEndDateString', () => {
+   it('should correctly get the year end given a date', () => {
+     const fallDate = new Date(2021, 10, 10);
+     const springDate = new Date(2022, 4,1);
+     const expectedString = '2022-06-30';
+     expect(utils.getYearEndDateString(fallDate)).toBe(expectedString);
+     expect(utils.getYearEndDateString(springDate)).toBe(expectedString);
+   });
+
+   it('should correctly get the year end when no date is given', () => {
+     expect(utils.getYearEndDateString()).toBe('2021-06-30');
+   })
+ })
+
  describe('getTime', () => {
    it('should give the current time string based on the current date', () => {
      expect(utils.getTime()).toBe('08:00');

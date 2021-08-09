@@ -21,7 +21,7 @@ export interface Boarder {
   uid: string;
   permissions: BoarderPermissions;
   startDate: string;
-  endDate?: string;
+  endDate: string;
   isActive: boolean;
 }
 

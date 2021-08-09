@@ -10,11 +10,12 @@ import {
   SimpleChange,
 } from '@angular/core';
 import { EditBoarderModalModule } from './edit-boarder-modal.module';
-import { Boarder } from '@reslife/shared-models';
+import { testBoarder } from '@reslife/shared-models';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatSelectHarness } from '@angular/material/select/testing';
 import { MatRadioGroupHarness } from '@angular/material/radio/testing';
+import { getDateFromDatestring } from '@reslife/utils';
 
 
 describe('EditBoarderModalComponent', () => {
@@ -86,26 +87,11 @@ describe('EditBoarderModalComponent', () => {
       'Dorm *',
       'Board Type *',
       'Start date *',
+      'End date *'
     ]);
   });
   it('should fill the fields if data is provided', async () => {
-    const testBoarder: Boarder = {
-      firstName: 'Elizabeth (Liz)',
-      lastName: 'Friedman',
-      name: 'Elizabeth (Liz) Friedman',
-      email: 'efriedman@oakwoodfriends.org',
-      type: '7 Day',
-      dorm: 'Newlin',
-      permissions: {
-        canWalk: true,
-        canBike: false,
-        canCar: true,
-        carRestriction: 'No Student Drivers',
-      },
-      uid: '1234',
-      startDate: '2021-06-01T08:00:00-04:00',
-      isActive: true,
-    };
+    
     component.boarder = testBoarder;
     component.dorms = ['Newlin', 'Reagan'];
     fixture.detectChanges();
@@ -125,7 +111,8 @@ describe('EditBoarderModalComponent', () => {
       testBoarder.firstName,
       testBoarder.lastName,
       testBoarder.email.replace('@oakwoodfriends.org', ''),
-      new Date(testBoarder.startDate).toLocaleDateString('en-US'),
+      getDateFromDatestring(testBoarder.startDate).toLocaleDateString('en-US'),
+      getDateFromDatestring(testBoarder.endDate).toLocaleDateString('en-US'),
       testBoarder.permissions.carRestriction
     ]);
     expect(selectValues).toEqual([testBoarder.dorm, testBoarder.type]);

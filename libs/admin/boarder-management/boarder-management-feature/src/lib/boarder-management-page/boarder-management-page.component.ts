@@ -14,6 +14,7 @@ import { ConfirmModalComponent } from '@reslife/admin-ui';
 })
 export class BoarderManagementPageComponent implements OnInit {
   boarders$!: Observable<Boarder[]>;
+  inactiveBoarders$!: Observable<Boarder[]>;
   dorms$!: Observable<string[]>;
   @ViewChild(TemplateRef) dialogTemplate!: TemplateRef<any>;
   modalTitle = 'New Boarder';
@@ -22,6 +23,7 @@ export class BoarderManagementPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.boarders$ = this.bs.getActiveBoarders();
+    this.inactiveBoarders$ = this.bs.getInactiveBoarders();
     this.dorms$ = this.bs.getActiveDorms();
   }
 

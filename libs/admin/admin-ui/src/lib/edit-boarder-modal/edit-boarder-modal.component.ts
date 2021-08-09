@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Boarder, BoarderType } from '@reslife/shared-models';
-import { getDateString, getDateFromDatestring } from '@reslife/utils';
+import { getDateString, getDateFromDatestring, getYearEndDateString } from '@reslife/utils';
 
 @Component({
   selector: 'reslife-edit-boarder-modal',
@@ -25,6 +25,7 @@ export class EditBoarderModalComponent implements OnChanges {
   @Output() save = new EventEmitter<Boarder>();
 
   today = new Date();
+  endDate = getDateFromDatestring(getYearEndDateString());
   bioStepGroup!: FormGroup;
   permissionsStepGroup!: FormGroup;
   bioFields = ['firstName', 'lastName', 'email', 'dorm', 'type', 'startDate'];
@@ -37,6 +38,7 @@ export class EditBoarderModalComponent implements OnChanges {
       dorm: ['', Validators.required],
       type: ['7 Day', Validators.required],
       startDate: [this.today, Validators.required],
+      endDate: [this.endDate, Validators.required]
     });
     this.permissionsStepGroup = this.fb.group({
       canWalk: [false, Validators.required],
@@ -60,6 +62,7 @@ export class EditBoarderModalComponent implements OnChanges {
       this.bioStepGroup.controls.dorm.setValue(boarder.dorm);
       this.bioStepGroup.controls.type.setValue(boarder.type);
       this.bioStepGroup.controls.startDate.setValue(getDateFromDatestring(boarder.startDate));
+      this.bioStepGroup.controls.endDate.setValue(getDateFromDatestring(boarder.endDate))
 
       this.permissionsStepGroup.controls.canWalk.setValue(boarder.permissions.canWalk);
       this.permissionsStepGroup.controls.canBike.setValue(boarder.permissions.canBike);
@@ -69,7 +72,7 @@ export class EditBoarderModalComponent implements OnChanges {
   }
 
   get editedBoarder(): Boarder {
-    const {firstName, lastName, email, dorm, type, startDate } = this.bioStepGroup.controls;
+    const {firstName, lastName, email, dorm, type, startDate, endDate } = this.bioStepGroup.controls;
     const { canWalk, canBike, canCar, carRestriction } = this.permissionsStepGroup.controls;
     const boarder: Boarder = {
       firstName: firstName.value as string,
@@ -79,6 +82,7 @@ export class EditBoarderModalComponent implements OnChanges {
       dorm: dorm.value as string,
       type: type.value as BoarderType,
       startDate: getDateString(startDate.value),
+      endDate: getDateString(endDate.value),
       permissions: {
         canWalk: canWalk.value as boolean,
         canBike: canBike.value as boolean,

@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>{{ title }}</h1>
 <div mat-dialog-content>
-  <mat-vertical-stepper linear>
+  <mat-stepper class="no-padding" orientation="vertical" linear>
     <mat-step [stepControl]="bioStepGroup" [editable]="true">
-      <form [formGroup]="bioStepGroup" id="bioStep">
+      <form class="px-1" [formGroup]="bioStepGroup" id="bioStep">
         <ng-template matStepLabel>General</ng-template>
         <div fxLayout>
           <mat-form-field fxFlex>
@@ -39,10 +39,11 @@
               matInput
               placeholder="efriedman"
             />
-            <span matSuffix>@oakwoodfriends.org</span>
+            <span fxHide fxShow.gt-md matSuffix>@oakwoodfriends.org</span>
+            <mat-hint fxShow fxHide.gt-md>Do not include @oakwoodfriends.org</mat-hint>
           </mat-form-field>
         </div>
-        <div fxLayout fxLayoutGap="10px">
+        <div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="10px">
           <mat-form-field fxFlex>
             <mat-label>Dorm</mat-label>
             <mat-select formControlName="dorm" required>
@@ -67,14 +68,31 @@
               formControlName="startDate"
               matInput
               required
-              [matDatepicker]="picker"
+              [matDatepicker]="startPicker"
               data-testid="start-date"
             />
             <mat-datepicker-toggle
               matSuffix
-              [for]="picker"
+              [for]="startPicker"
             ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxLayout>
+          <mat-form-field fxFlex>
+            <mat-label>End date</mat-label>
+            <input
+              formControlName="endDate"
+              matInput
+              required
+              [matDatepicker]="endPicker"
+              data-testid="end-date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="endPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
           </mat-form-field>
         </div>
       </form>
@@ -89,7 +107,7 @@
         id="permissionsStep"
       >
         <ng-template matStepLabel>Permissions</ng-template>
-        <div class="p-1" fxLayout>
+        <div ngClass.gt-md="px-1" class="py-1" fxLayout>
           <div fxFlex fxLayout fxLayoutAlign="space-between">
             <label fxFlex="1 1 auto" id="can-walk-label">Can Walk Off?</label>
             <mat-radio-group
@@ -105,10 +123,10 @@
             </mat-radio-group>
           </div>
         </div>
-        <div class="p-1" fxLayout>
+        <div ngClass.gt-md="px-1" class="py-1" fxLayout>
           <div fxFlex fxLayout fxLayoutAlign="space-between">
             <label fxFlex="1 1 auto" id="can-bike-label"
-              >Can Bike/Skate etc?</label
+              >Can Bike/Skate?</label
             >
             <mat-radio-group
               fxFlex="1 1 auto"
@@ -123,7 +141,7 @@
             </mat-radio-group>
           </div>
         </div>
-        <div class="p-1">
+        <div ngClass.gt-md="px-1" class="py-1">
           <div fxFlexFill fxLayout fxLayoutAlign="space-between">
             <label fxFlex="1 1 auto" id="can-car-label"
               >Allowed in a Car?</label
@@ -141,7 +159,7 @@
             </mat-radio-group>
           </div>
         </div>
-        <div class="px-1" *ngIf="permissionsStepGroup.get('canCar')?.value">
+        <div ngClass.gt-md="px-1" *ngIf="permissionsStepGroup.get('canCar')?.value">
           <mat-form-field class="w-full">
             <mat-label>Optional Car Restriction</mat-label>
             <input
@@ -164,5 +182,5 @@
         </button>
       </div>
     </mat-step>
-  </mat-vertical-stepper>
+  </mat-stepper>
 </div>

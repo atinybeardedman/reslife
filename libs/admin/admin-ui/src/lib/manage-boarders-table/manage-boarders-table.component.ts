@@ -3,6 +3,8 @@ import { Boarder } from '@reslife/shared-models';
 import { BoarderAction } from '@reslife/admin-model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { getDateFromDatestring } from '@reslife/utils';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -13,12 +15,21 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ManageBoardersTableComponent implements OnChanges, AfterViewInit {
   datasource = new MatTableDataSource<Boarder>([]);
+  getDate = getDateFromDatestring
   @Input() boarders!: Boarder[] | null;
+  @Input() showDates = false;
   @Output() edit = new EventEmitter<BoarderAction>();
   @Output() delete = new EventEmitter<BoarderAction>();
+  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  displayedColumns = ['name', 'type', 'actions'];
+  @ViewChild(MatSort) sort!: MatSort;
+  get displayedColumns(): string[] {
+    
+  const baseColumns = ['name', 'type', 'actions'];
+  const dateColumns = ['name', 'startDate', 'endDate', 'actions'];
+  return this.showDates ? dateColumns : baseColumns;
+  }
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -29,7 +40,16 @@ export class ManageBoardersTableComponent implements OnChanges, AfterViewInit {
 
   ngAfterViewInit(){
     this.datasource.paginator = this.paginator;
+      this.datasource.sort = this.sort;
+      if(this.showDates){
+        this.sort.sort({
+          id: 'startDate',
+          start: 'asc',
+          disableClear: false
+        })
+      }
   }
+
 
  
 
