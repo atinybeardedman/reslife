@@ -38,6 +38,16 @@ export function getDateFromDatestring(datestring = getDateString()): Date {
   return new Date(year, month - 1, days, 8);
 }
 
+/**
+ * Returns June 30th datestring to represent the end of the current academic year based on the date given
+ * @param date
+ */
+export function getYearEndDateString(date = new Date()): string {
+  const [year, month ] = getDateString(date).split('-').map(d => parseInt(d, 10));
+  const newYear = month > 6 ? year + 1 : year;
+  return `${newYear}-06-30`;
+}
+
 export function getTime(date = new Date()): string {
   const datestring = getIsoTimezoneString(date);
   const i = datestring.indexOf("T");
