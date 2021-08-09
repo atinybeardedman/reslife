@@ -8,12 +8,32 @@
     </div>
     <div class="m-1">
       <mat-card>
-        <mat-card-title>Boarders</mat-card-title>
+        <mat-card-title>Active Boarders</mat-card-title>
         <mat-card-content>
           <reslife-manage-boarders-table
             [boarders]="boarders$ | async"
             (edit)="edit($event)"
             (delete)="delete($event)"
+          ></reslife-manage-boarders-table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="col" fxFlex fxHide.lt-md></div>
+</section>
+
+<section fxLayout="row" fxLayoutAlign="start start">
+  <div class="col" fxFlex fxHide.lt-md></div>
+  <div class="col" fxFlex="1 1 40vw" fxFlex.lt-md>
+    <div class="m-1">
+      <mat-card>
+        <mat-card-title>Inactive Boarders</mat-card-title>
+        <mat-card-content>
+          <reslife-manage-boarders-table
+            [boarders]="inactiveBoarders$ | async"
+            (edit)="edit($event)"
+            (delete)="delete($event)"
+            [showDates]="true"
           ></reslife-manage-boarders-table>
         </mat-card-content>
       </mat-card>

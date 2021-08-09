@@ -19,6 +19,14 @@ export class BoarderManagementService {
       .valueChanges();
   }
 
+  getInactiveBoarders(): Observable<Boarder[]> {
+    return this.af
+      .collection<Boarder>('boarders', (ref) =>
+        ref.where('isActive', '==', false)
+      )
+      .valueChanges();
+  }
+
   getActiveDorms(): Observable<string[]> {
     return this.af
       .collection<DormDocument>('dorms', (ref) =>
@@ -34,7 +42,6 @@ export class BoarderManagementService {
     const today = getDateString();
     boarder.isActive = boarder.startDate <= today;
     return this.af.collection('boarders').doc(uid).set(boarder);
-  
   }
 
   updateBoarder(boarder: Boarder): Promise<void> {
