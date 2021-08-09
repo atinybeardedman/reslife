@@ -6,6 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 
 @NgModule({
@@ -13,10 +16,13 @@ import { MatSortModule } from "@angular/material/sort";
     imports: [
       CommonModule,
       MatButtonModule,
+      MatInputModule,
+      MatFormFieldModule,
       MatTableModule,
       MatIconModule,
       MatPaginatorModule,
-      MatSortModule
+      MatSortModule,
+      FlexLayoutModule
     ],
     exports: [ManageBoardersTableComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

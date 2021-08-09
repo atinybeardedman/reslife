@@ -50,6 +50,11 @@ export class ManageBoardersTableComponent implements OnChanges, AfterViewInit {
       }
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.datasource.filter = filterValue.trim().toLowerCase();
+  }
+
 
  
 
