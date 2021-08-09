@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { testBoarder } from '@reslife/shared-models';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { By } from '@angular/platform-browser';
 
 describe('ManageBoardersTableComponent', () => {
   let component: ManageBoardersTableComponent;
@@ -51,8 +52,9 @@ describe('ManageBoardersTableComponent', () => {
   });
 
   it('should show no results if no boarders exist', async () => {
-    expect(fixture.nativeElement.textContent).toContain('No Boarders Found');
-    expect(await loader.getAllHarnesses(MatTableHarness)).toHaveLength(0);
+    expect(fixture.debugElement.query(By.css('h1')).nativeElement.textContent).toContain('No Boarders Found');
+    const table =  await loader.getHarness(MatTableHarness);
+    expect(await table.getRows()).toHaveLength(0);
   });
   describe('if boarders exist', () => {
     beforeEach(() => {
@@ -109,7 +111,7 @@ describe('ManageBoardersTableComponent', () => {
         showDates: new SimpleChange(null, true, false),
       });
       fixture.detectChanges();
-      
+
       table = await loader.getHarness(MatTableHarness);
       [headerRow] = await table.getHeaderRows();
       cells = await headerRow.getCellTextByIndex();

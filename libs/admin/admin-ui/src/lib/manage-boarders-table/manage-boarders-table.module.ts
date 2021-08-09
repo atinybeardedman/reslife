@@ -5,6 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
       MatButtonModule,
       MatTableModule,
       MatIconModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      MatSortModule
     ],
     exports: [ManageBoardersTableComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
