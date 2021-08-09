@@ -59,6 +59,8 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+// Utilities
+
 .w-full {
   width: 100%;
 }
@@ -90,4 +92,11 @@ body {
     margin-right: #{$i}rem;
     margin-left: #{$i}rem;
   }
+}
+
+// overrides
+
+mat-stepper.no-padding .mat-vertical-content {
+  padding-left: 0px;
+  padding-right: 0px;
 }
