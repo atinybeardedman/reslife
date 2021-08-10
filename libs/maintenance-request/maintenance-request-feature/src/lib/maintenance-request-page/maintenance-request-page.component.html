@@ -30,5 +30,6 @@
 <ng-template #new>
   <reslife-maintenance-request-modal
    (saveRequest)="save($event)"
+   [dorms] ="dorms$ | async"
   ></reslife-maintenance-request-modal>
 </ng-template>

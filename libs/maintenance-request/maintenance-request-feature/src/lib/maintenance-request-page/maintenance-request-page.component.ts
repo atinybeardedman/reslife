@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class MaintenanceRequestPageComponent implements OnInit {
   requests$!: Observable<MaintenanceRequestDoc[]>;
+  dorms$!: Observable<string[]>;
   selectedRequest!: MaintenanceRequestDoc; 
   @ViewChild('detail') detailDialogTemplate!: TemplateRef<MaintenanceRequestDetailModalComponent>;
   @ViewChild('new') requestDialogTemplate!: TemplateRef<MaintenanceRequestModalComponent>;
@@ -20,6 +21,7 @@ export class MaintenanceRequestPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.requests$ = this.mds.getRequests();
+    this.dorms$ = this.mds.getActiveDorms();
   }
 
   openDetail(request: MaintenanceRequestDoc): void {
@@ -38,7 +40,7 @@ export class MaintenanceRequestPageComponent implements OnInit {
 
   save(request: MaintenanceRequest): void {
     this.dialog.getDialogById('newRequest')?.close();
-    console.log(request);
+    this.mds.addRequest(request);
   }
 
 }

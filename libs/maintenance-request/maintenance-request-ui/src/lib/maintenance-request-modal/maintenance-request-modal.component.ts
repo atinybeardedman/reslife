@@ -9,7 +9,7 @@ import { getDateString } from '@reslife/utils';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MaintenanceRequestModalComponent {
-  @Input() dorms!: string[];
+  @Input() dorms!: string[] | null;
   @Output() saveRequest = new EventEmitter<MaintenanceRequest>();
   requestForm: FormGroup;
   constructor(fb: FormBuilder) { 
