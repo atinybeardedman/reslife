@@ -28,6 +28,21 @@ const mockedGetDateString = getDateString as jest.MockedFunction<
   typeof getDateString
 >;
 describe('MaintenanceRequestModalComponent', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        // addListener: jest.fn(), // deprecated
+        // removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  });
   let component: MaintenanceRequestModalComponent;
   let fixture: ComponentFixture<MaintenanceRequestModalComponent>;
   let loader: HarnessLoader;
@@ -101,18 +116,17 @@ describe('MaintenanceRequestModalComponent', () => {
       await select.clickOptions({ text: testRequest.building });
     });
     it('should show the other building field only if other is chosen', async () => {
-      let otherField = await loader.getHarness(
-        MatFormFieldHarness.with({ floatingLabelText: 'Which Building? *' })
-      );
-      expect(otherField).toBeNull();
-
+      
+      // console.log(await loader.getAllHarnesses(MatFormFieldHarness))
+      expect(await loader.getAllHarnesses(
+        MatFormFieldHarness.with({ selector: '[data-testid="otherBuilding"]' })
+        )).toHaveLength(0);
+      
       await select.open();
       await select.clickOptions({ text: 'Other' });
-
-      otherField = await loader.getHarness(
-        MatFormFieldHarness.with({ floatingLabelText: 'Which Building? *' })
-      );
-      expect(otherField).toBeNull();
+        expect(await loader.getHarness(
+          MatFormFieldHarness.with({ selector: '[data-testid="otherBuilding"]' })
+          )).not.toBeNull();
     });
 
     it('should not allow saving unless form is valid', async () => {
