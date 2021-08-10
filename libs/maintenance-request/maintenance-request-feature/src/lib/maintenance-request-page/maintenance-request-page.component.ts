@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MaintenanceRequestDataService } from '@reslife/maintenance-request-data-access';
-import {  MaintenanceRequestDoc } from '@reslife/maintenance-request-model'
+import {  MaintenanceRequest, MaintenanceRequestDoc } from '@reslife/maintenance-request-model'
 import { MaintenanceRequestDetailModalComponent, MaintenanceRequestModalComponent } from '@reslife/maintenance-request-ui';
 import { Observable } from 'rxjs';
 @Component({
@@ -28,7 +28,13 @@ export class MaintenanceRequestPageComponent implements OnInit {
   }
 
   newRequest(): void {
-    this.dialog.open(this.requestDialogTemplate);
+    this.dialog.open(this.requestDialogTemplate, {
+      minWidth: '30rem'
+    });
+  }
+
+  save(request: MaintenanceRequest): void {
+    console.log(request);
   }
 
 }

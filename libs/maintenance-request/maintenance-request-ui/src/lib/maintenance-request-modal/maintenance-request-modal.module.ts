@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaintenanceRequestModalComponent } from './maintenance-request-modal.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -30,6 +30,9 @@ import { MatInputModule } from '@angular/material/input';
   ],
   exports: [
     MaintenanceRequestModalComponent
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class MaintenanceRequestModalModule { }

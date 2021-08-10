@@ -1,4 +1,4 @@
-import { MaintenanceRequestDoc } from '../lib/maintenance-request-model';
+import { MaintenanceRequest, MaintenanceRequestDoc } from '../lib/maintenance-request-model';
 export const testRequests: MaintenanceRequestDoc[] = [
   {
     subject: 'Leaky Faucet',
@@ -53,3 +53,11 @@ export const testRequests: MaintenanceRequestDoc[] = [
     uid: '4',
   },
 ];
+
+export const testRequest: MaintenanceRequest = {
+  subject: 'Heat not Working',
+  room: 'R201',
+  building: 'Reagan',
+  request: 'The heat seems to not be working in this room. Maybe they can get a space heater?',
+  date: '2021-06-01'
+}
