@@ -1,6 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MaintenanceRequestDataService } from '@reslife/maintenance-request-data-access';
-import { MaintenanceRequestDoc } from '@reslife/maintenance-request-model'
+import {  MaintenanceRequestDoc } from '@reslife/maintenance-request-model'
+import { MaintenanceRequestDetailModalComponent, MaintenanceRequestModalComponent } from '@reslife/maintenance-request-ui';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'reslife-maintenance-request-page',
@@ -10,10 +12,23 @@ import { Observable } from 'rxjs';
 })
 export class MaintenanceRequestPageComponent implements OnInit {
   requests$!: Observable<MaintenanceRequestDoc[]>;
-  constructor(private mds: MaintenanceRequestDataService) { }
+  selectedRequest!: MaintenanceRequestDoc; 
+  @ViewChild('detail') detailDialogTemplate!: TemplateRef<MaintenanceRequestDetailModalComponent>;
+  @ViewChild('new') requestDialogTemplate!: TemplateRef<MaintenanceRequestModalComponent>;
+
+  constructor(private mds: MaintenanceRequestDataService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.requests$ = this.mds.getRequests();
+  }
+
+  openDetail(request: MaintenanceRequestDoc): void {
+    this.selectedRequest = request;
+    this.dialog.open(this.detailDialogTemplate);
+  }
+
+  newRequest(): void {
+    this.dialog.open(this.requestDialogTemplate);
   }
 
 }

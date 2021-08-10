@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{request?.subject}}</h1>
+<div mat-dialog-content>
+    <div fxLayout fxLayoutGap="10px" fxLayoutAlign="start baseline">
+        <h2 fxFlex="nogrow">Building:</h2> <span fxFlex>{{request?.building}}</span>
+    </div>
+    <div fxLayout fxLayoutGap="10px" fxLayoutAlign="start baseline" *ngIf="request?.room">
+        <h2 fxFlex="nogrow">Room:</h2> <span fxFlex>{{request?.room}}</span>
+    </div>
+    <div fxLayout fxLayoutGap="10px" fxLayoutAlign="start baseline">
+        <h2 fxFlex="nogrow">Requestor:</h2> <span fxFlex>{{request?.requestor?.name}}</span>
+    </div>
+    <div fxLayout fxLayoutGap="10px" fxLayoutAlign="start baseline">
+        <h2 fxFlex="nogrow">Date Requested:</h2> <span fxFlex>{{request?.date}}</span>
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start baseline">
+        <h2 fxFlexFill>Details:</h2> <p fxFlex="30rem">{{request?.request}}</p>
+    </div>
+</div>
