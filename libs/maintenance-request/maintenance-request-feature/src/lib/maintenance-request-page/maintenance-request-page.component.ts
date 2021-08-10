@@ -24,16 +24,20 @@ export class MaintenanceRequestPageComponent implements OnInit {
 
   openDetail(request: MaintenanceRequestDoc): void {
     this.selectedRequest = request;
-    this.dialog.open(this.detailDialogTemplate);
+    this.dialog.open(this.detailDialogTemplate, {
+      id: 'detail'
+    });
   }
 
   newRequest(): void {
     this.dialog.open(this.requestDialogTemplate, {
-      minWidth: '30rem'
+      minWidth: '30rem',
+      id: 'newRequest'
     });
   }
 
   save(request: MaintenanceRequest): void {
+    this.dialog.getDialogById('newRequest')?.close();
     console.log(request);
   }
 

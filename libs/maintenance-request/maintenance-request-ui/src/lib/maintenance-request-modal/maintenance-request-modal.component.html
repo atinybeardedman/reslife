@@ -47,5 +47,5 @@
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [disabled]="requestForm.invalid" mat-dialog-close (click)="saveRequest.emit(newRequest)">Submit</button>
+  <button mat-button [disabled]="requestForm.invalid" (click)="saveRequest.emit(newRequest)">Submit</button>
 </div>
