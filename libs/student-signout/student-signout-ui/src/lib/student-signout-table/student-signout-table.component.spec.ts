@@ -15,7 +15,7 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { StudentSignout } from '@reslife/student-signout/student-signout-model';
+import { StudentSignout } from '@reslife/student-signout-model';
 describe('StudentSignoutTableComponent', () => {
   let component: StudentSignoutTableComponent;
   let fixture: ComponentFixture<StudentSignoutTableComponent>;

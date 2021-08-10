@@ -52,13 +52,13 @@
       "@reslife/student-signout-feature": [
         "libs/student-signout/student-signout-feature/src/index.ts"
       ],
-      "@reslife/student-signout/student-signout-data-access": [
+      "@reslife/student-signout-data-access": [
         "libs/student-signout/student-signout-data-access/src/index.ts"
       ],
-      "@reslife/student-signout/student-signout-model": [
+      "@reslife/student-signout-model": [
         "libs/student-signout/student-signout-model/src/index.ts"
       ],
-      "@reslife/student-signout/student-signout-ui": [
+      "@reslife/student-signout-ui": [
         "libs/student-signout/student-signout-ui/src/index.ts"
       ],
       "@reslife/utils": ["libs/utils/src/index.ts"],

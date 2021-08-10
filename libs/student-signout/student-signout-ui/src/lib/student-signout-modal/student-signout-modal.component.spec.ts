@@ -14,7 +14,7 @@ import { MatSelectHarness } from '@angular/material/select/testing';
 import { By } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {  MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -30,7 +30,7 @@ import {
   carRestrictionTest,
   campusedTest,
   testCurrentSignout,
-} from '@reslife/student-signout/student-signout-model';
+} from '@reslife/student-signout-model';
 describe('StudentSignoutModalComponent', () => {
   let component: StudentSignoutModalComponent;
   let fixture: ComponentFixture<StudentSignoutModalComponent>;

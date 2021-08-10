@@ -1,5 +1,5 @@
 import { testBoarder } from '@reslife/shared-models';
-import { testCurrentSignout } from '@reslife/student-signout/student-signout-model'
+import { testCurrentSignout } from '@reslife/student-signout-model'
 describe('student-signout', () => {
  const signout = testCurrentSignout;
   beforeEach(() => {

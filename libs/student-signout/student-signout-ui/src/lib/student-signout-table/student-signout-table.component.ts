@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { StudentSignout } from '@reslife/student-signout/student-signout-model';
+import { StudentSignout } from '@reslife/student-signout-model';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 @Component({
