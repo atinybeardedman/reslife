@@ -4,6 +4,14 @@ import { MaintenanceRequestModalModule } from './maintenance-request-modal/maint
 import { MaintenanceRequestTableModule } from './maintenance-request-table/maintenance-request-table.module';
 
 @NgModule({
-  imports: [CommonModule, MaintenanceRequestModalModule, MaintenanceRequestTableModule],
+  imports: [
+    CommonModule,
+    MaintenanceRequestModalModule,
+    MaintenanceRequestTableModule,
+  ],
+  exports: [
+    MaintenanceRequestModalModule,
+    MaintenanceRequestTableModule
+  ]
 })
 export class MaintenanceRequestUiModule {}

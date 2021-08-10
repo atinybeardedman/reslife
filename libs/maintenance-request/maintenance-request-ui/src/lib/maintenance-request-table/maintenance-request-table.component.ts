@@ -26,7 +26,7 @@ import { map, takeUntil } from 'rxjs/operators';
 export class MaintenanceRequestTableComponent
   implements OnChanges, AfterViewInit, OnDestroy
 {
-  @Input() requests!: MaintenanceRequestDoc[];
+  @Input() requests!: MaintenanceRequestDoc[] | null;
   @Output() showDetail = new EventEmitter<MaintenanceRequestDoc>();
   datasource = new MatTableDataSource<MaintenanceRequestDoc>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
