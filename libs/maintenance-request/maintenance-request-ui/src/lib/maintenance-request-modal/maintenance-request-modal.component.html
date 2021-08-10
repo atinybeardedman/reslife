@@ -4,13 +4,19 @@
     <div fxLayout>
       <mat-form-field fxFill>
         <mat-label>Subject</mat-label>
-        <input matInput required type="text" formControlName="subject" />
+        <input
+          data-testid="subject"
+          matInput
+          required
+          type="text"
+          formControlName="subject"
+        />
       </mat-form-field>
     </div>
     <div fxLayout="column" fxLayoutGap="10px" fxLayout.gt-md="row">
       <mat-form-field fxFlex>
         <mat-label> Building </mat-label>
-        <mat-select required formControlName="building">
+        <mat-select data-testid="building" required formControlName="building">
           <mat-option *ngFor="let option of dorms" [value]="option">
             {{ option }}
           </mat-option>
@@ -36,6 +42,7 @@
       <mat-form-field fxFill>
         <mat-label>Details</mat-label>
         <textarea
+          data-testid="request"
           matInput
           required
           cols="30"
@@ -47,5 +54,11 @@
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [disabled]="requestForm.invalid" (click)="saveRequest.emit(newRequest)">Submit</button>
+  <button
+    mat-button
+    [disabled]="requestForm.invalid"
+    (click)="saveRequest.emit(newRequest)"
+  >
+    Submit
+  </button>
 </div>
