@@ -67,14 +67,14 @@
       "tags": ["type:app"]
     },
     "reslife-app-e2e": {
-      "tags": [],
+      "tags": ["type:e2e"],
       "implicitDependencies": ["reslife-app"]
     },
     "reslife-request": {
       "tags": ["type:app"]
     },
     "reslife-request-e2e": {
-      "tags": [],
+      "tags": ["type:e2e"],
       "implicitDependencies": ["reslife-request"]
     },
     "shared-models": {
