@@ -53,7 +53,10 @@ export const appRoutes: Route[] = [
           icon: 'build',
           roles: ['any']
         },
-        redirectTo: ''
+        loadChildren: () => 
+        import('@reslife/maintenance-request-feature').then(
+          (module) => module.MaintenanceRequestFeatureModule
+        ),
       },
       {
         path: 'dorm-notes',

@@ -11,7 +11,7 @@ import {
   BoarderSignoutMeta,
   StudentSignout,
   TransportMethod,
-} from '@reslife/student-signout/student-signout-model';
+} from '@reslife/student-signout-model';
 @Component({
   selector: 'reslife-student-signout-modal',
   templateUrl: './student-signout-modal.component.html',
@@ -30,15 +30,15 @@ export class StudentSignoutModalComponent implements OnChanges {
       transport: ['', Validators.required],
       carDetail: [''],
     });
-    this.signoutFields.controls.transport.valueChanges.subscribe(val => {
+    this.signoutFields.controls.transport.valueChanges.subscribe((val) => {
       const carDetailCtrl = this.signoutFields.controls.carDetail;
-      if(val === 'Car'){
+      if (val === 'Car') {
         carDetailCtrl.setValidators(Validators.required);
       } else {
         carDetailCtrl.setValidators(null);
       }
       carDetailCtrl.updateValueAndValidity();
-    })
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,7 +47,7 @@ export class StudentSignoutModalComponent implements OnChanges {
     }
   }
 
-  selectBoarder(boarderMeta: NamedItem){
+  selectBoarder(boarderMeta: NamedItem) {
     this.selectedBoarder = boarderMeta as BoarderSignoutMeta;
   }
 
@@ -60,16 +60,16 @@ export class StudentSignoutModalComponent implements OnChanges {
     }
   }
 
-  get transportOptions(): string[]{
+  get transportOptions(): string[] {
     const options: TransportMethod[] = [];
-    if(this.selectedBoarder){
-      if(this.selectedBoarder.permissions.canWalk){
+    if (this.selectedBoarder) {
+      if (this.selectedBoarder.permissions.canWalk) {
         options.push('Walk');
       }
-      if(this.selectedBoarder.permissions.canBike){
+      if (this.selectedBoarder.permissions.canBike) {
         options.push('Bike');
       }
-      if(this.selectedBoarder.permissions.canCar){
+      if (this.selectedBoarder.permissions.canCar) {
         options.push('Car');
       }
     }

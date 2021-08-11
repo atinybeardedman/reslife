@@ -4,7 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import {
   BoarderSignoutMeta,
   StudentSignout,
-} from '@reslife/student-signout/student-signout-model';
+} from '@reslife/student-signout-model';
 import { getDateString, getIsoTimezoneString } from '@reslife/utils';
 import { Boarder, CampusedStudentRecord } from '@reslife/shared-models';
 import { map } from 'rxjs/operators';
@@ -60,17 +60,21 @@ export class StudentSignoutDataService {
   }
 
   getSignoutMetaById(uid: string): Observable<BoarderSignoutMeta | null> {
-    return this.af.doc<Boarder>(`boarders/${uid}`).valueChanges().pipe(
-      map(boarder => {
-        if(boarder){
-          return {
-            name: boarder.name,
-            uid: boarder.uid,
-            permissions: boarder.permissions,
+    return this.af
+      .doc<Boarder>(`boarders/${uid}`)
+      .valueChanges()
+      .pipe(
+        map((boarder) => {
+          if (boarder) {
+            return {
+              name: boarder.name,
+              uid: boarder.uid,
+              permissions: boarder.permissions,
+            };
           }
-        }
-        return null
-      }))
+          return null;
+        })
+      );
   }
 
   signIn(signout: StudentSignout): Promise<void> {

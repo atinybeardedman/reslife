@@ -35,18 +35,30 @@
       "@reslife/check-ins/check-in-ui": [
         "libs/check-ins/check-in-ui/src/index.ts"
       ],
+      "@reslife/maintenance-request-feature": [
+        "libs/maintenance-request/maintenance-request-feature/src/index.ts"
+      ],
+      "@reslife/maintenance-request-model": [
+        "libs/maintenance-request/maintenance-request-model/src/index.ts"
+      ],
+      "@reslife/maintenance-request-data-access": [
+        "libs/maintenance-request/maintenance-request-data-access/src/index.ts"
+      ],
+      "@reslife/maintenance-request-ui": [
+        "libs/maintenance-request/maintenance-request-ui/src/index.ts"
+      ],
       "@reslife/shared-models": ["libs/shared-models/src/index.ts"],
       "@reslife/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@reslife/student-signout-feature": [
         "libs/student-signout/student-signout-feature/src/index.ts"
       ],
-      "@reslife/student-signout/student-signout-data-access": [
+      "@reslife/student-signout-data-access": [
         "libs/student-signout/student-signout-data-access/src/index.ts"
       ],
-      "@reslife/student-signout/student-signout-model": [
+      "@reslife/student-signout-model": [
         "libs/student-signout/student-signout-model/src/index.ts"
       ],
-      "@reslife/student-signout/student-signout-ui": [
+      "@reslife/student-signout-ui": [
         "libs/student-signout/student-signout-ui/src/index.ts"
       ],
       "@reslife/utils": ["libs/utils/src/index.ts"],

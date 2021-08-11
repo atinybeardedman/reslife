@@ -19,5 +19,9 @@ module.exports = {
     '<rootDir>/libs/student-signout/student-signout-feature',
     '<rootDir>/libs/student-signout/student-signout-ui',
     '<rootDir>/libs/student-signout/student-signout-data-access',
+    '<rootDir>/libs/maintenance-request/maintenance-request-feature',
+    '<rootDir>/libs/maintenence-request/maintenance-request-ui',
+    '<rootDir>/libs/maintenence-request/maintenance-request-model',
+    '<rootDir>/libs/maintenence-request/maintenance-request-data-access',
   ],
 };

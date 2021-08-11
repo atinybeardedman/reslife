@@ -51,18 +51,30 @@
     "check-ins-check-in-ui": {
       "tags": ["type:ui"]
     },
+    "maintenance-request-data-access": {
+      "tags": ["type:data-access"]
+    },
+    "maintenance-request-feature": {
+      "tags": ["type:feature"]
+    },
+    "maintenance-request-model": {
+      "tags": ["type:model"]
+    },
+    "maintenance-request-ui": {
+      "tags": ["type:ui"]
+    },
     "reslife-app": {
       "tags": ["type:app"]
     },
     "reslife-app-e2e": {
-      "tags": [],
+      "tags": ["type:e2e"],
       "implicitDependencies": ["reslife-app"]
     },
     "reslife-request": {
       "tags": ["type:app"]
     },
     "reslife-request-e2e": {
-      "tags": [],
+      "tags": ["type:e2e"],
       "implicitDependencies": ["reslife-request"]
     },
     "shared-models": {

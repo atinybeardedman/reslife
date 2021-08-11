@@ -187,6 +187,102 @@
         }
       }
     },
+    "maintenance-request-data-access": {
+      "projectType": "library",
+      "root": "libs/maintenance-request/maintenance-request-data-access",
+      "sourceRoot": "libs/maintenance-request/maintenance-request-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/maintenance-request/maintenance-request-data-access"
+          ],
+          "options": {
+            "jestConfig": "libs/maintenance-request/maintenance-request-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/maintenance-request/maintenance-request-data-access/src/**/*.ts",
+              "libs/maintenance-request/maintenance-request-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "maintenance-request-feature": {
+      "projectType": "library",
+      "root": "libs/maintenance-request/maintenance-request-feature",
+      "sourceRoot": "libs/maintenance-request/maintenance-request-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/maintenance-request/maintenance-request-feature"
+          ],
+          "options": {
+            "jestConfig": "libs/maintenance-request/maintenance-request-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/maintenance-request/maintenance-request-feature/src/**/*.ts",
+              "libs/maintenance-request/maintenance-request-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "maintenance-request-model": {
+      "root": "libs/maintenance-request/maintenance-request-model",
+      "sourceRoot": "libs/maintenance-request/maintenance-request-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/maintenance-request/maintenance-request-model/**/*.ts"
+            ]
+          }
+        }
+      }
+    },
+    "maintenance-request-ui": {
+      "projectType": "library",
+      "root": "libs/maintenance-request/maintenance-request-ui",
+      "sourceRoot": "libs/maintenance-request/maintenance-request-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/maintenance-request/maintenance-request-ui"
+          ],
+          "options": {
+            "jestConfig": "libs/maintenance-request/maintenance-request-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/maintenance-request/maintenance-request-ui/src/**/*.ts",
+              "libs/maintenance-request/maintenance-request-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "reslife-app": {
       "projectType": "application",
       "root": "apps/reslife-app",

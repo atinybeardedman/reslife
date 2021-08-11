@@ -1,12 +1,11 @@
-import { generateSignout } from '../../testing-data/student-signout';
-import { testBoarder } from '../../testing-data/boarders';
+import { testBoarder } from '@reslife/shared-models';
+import { testCurrentSignout } from '@reslife/student-signout-model'
 describe('student-signout', () => {
-  let signout: any;
+ const signout = testCurrentSignout;
   beforeEach(() => {
     cy.callFirestore('delete', 'boarders')
     cy.callFirestore('set', `boarders/${testBoarder.uid}`, testBoarder);
     cy.visit('/student-signout');
-    signout = generateSignout();
   });
 
   it('should display the student signout page', () => {

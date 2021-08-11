@@ -1,0 +1,35 @@
+<section fxLayout="row" fxLayoutAlign="start start">
+  <div class="col" fxFlex fxHide.lt-md></div>
+  <div class="col" fxFlex="1 1 80%" fxFlex.lt-md>
+    <div class="m-1">
+      <button data-testid="new-request-button" mat-raised-button color="accent" (click)="newRequest()">
+        + New Request
+      </button>
+    </div>
+    <div class="m-1">
+      <mat-card>
+        <mat-card-title>Past Requests</mat-card-title>
+        <mat-card-content>
+          <reslife-maintenance-request-table
+            [requests]="requests$ | async"
+            (showDetail)="openDetail($event)"
+          ></reslife-maintenance-request-table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="col" fxFlex fxHide.lt-md></div>
+</section>
+
+<ng-template #detail>
+  <reslife-maintenance-request-detail-modal
+    [request]="selectedRequest"
+  ></reslife-maintenance-request-detail-modal>
+</ng-template>
+
+<ng-template #new>
+  <reslife-maintenance-request-modal
+   (saveRequest)="save($event)"
+   [dorms] ="dorms$ | async"
+  ></reslife-maintenance-request-modal>
+</ng-template>
