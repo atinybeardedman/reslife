@@ -1,0 +1,56 @@
+<mat-card fxShow fxHide.lt-md="true">
+    <mat-card-title>
+      <div class="w-full" fxLayout="row" fxLayoutAlign="space-between">
+        <div class="title" fxFlex>
+          {{ title }}
+        </div>
+        <div data-testid="inspection-count" class="count" fxFlex="nogrow">
+          {{ inspectionDocs?.length }}
+        </div>
+      </div>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <ng-container *ngFor="let item of inspectionDocs; last as isLast">
+          <mat-list-item>
+            <reslife-room-inspection-list-item
+              class="w-full"
+              [inspectionDoc]="item"
+              (inspection)="inspectionResult.emit($event)"
+            ></reslife-room-inspection-list-item>
+          </mat-list-item>
+          <mat-divider *ngIf="!isLast"></mat-divider>
+        </ng-container>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-expansion-panel fxHide fxShow.lt-md="true" [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <div class="w-full" fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 class="title m-0" fxFlex>
+            {{ title }}
+          </h2>
+          <h2 class="count m-0" fxFlex="nogrow">
+            {{ inspectionDocs?.length }}
+          </h2>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let item of inspectionDocs; last as isLast">
+        <mat-list-item>
+            <mat-list-item>
+                <reslife-room-inspection-list-item
+                  class="w-full"
+                  [inspectionDoc]="item"
+                  (inspection)="inspectionResult.emit($event)"
+                ></reslife-room-inspection-list-item>
+              </mat-list-item>
+        </mat-list-item>
+        <mat-divider *ngIf="!isLast"></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  

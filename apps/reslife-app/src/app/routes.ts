@@ -30,7 +30,10 @@ export const appRoutes: Route[] = [
           icon: 'hotel',
           roles: ['any']
         },
-        redirectTo: ''
+        loadChildren: () => 
+        import('@reslife/room-inspection-feature').then(
+          (module) => module.RoomInspectionFeatureModule
+        ),
       },
       {
         path: 'student-signout',
