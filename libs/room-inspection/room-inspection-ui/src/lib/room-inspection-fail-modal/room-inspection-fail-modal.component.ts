@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { RoomInspectionStudentDoc } from '@reslife/room-inspection-model';
 
 @Component({
   selector: 'reslife-room-inspection-fail-modal',
@@ -6,11 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./room-inspection-fail-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RoomInspectionFailModalComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class RoomInspectionFailModalComponent {
+  @Input() inspectionDoc!: RoomInspectionStudentDoc;
+  @Output() save = new EventEmitter<RoomInspectionStudentDoc>();
 }

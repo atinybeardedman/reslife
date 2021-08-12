@@ -5,6 +5,16 @@ import { RoomInspectionListModule } from './room-inspection-list/room-inspection
 import { RoomInspectionFailModalModule } from './room-inspection-fail-modal/room-inspection-fail-modal.module';
 
 @NgModule({
-  imports: [CommonModule, RoomInspectionPickerModule, RoomInspectionListModule, RoomInspectionFailModalModule],
+  imports: [
+    CommonModule,
+    RoomInspectionPickerModule,
+    RoomInspectionListModule,
+    RoomInspectionFailModalModule,
+  ],
+  exports: [
+    RoomInspectionPickerModule,
+    RoomInspectionListModule,
+    RoomInspectionFailModalModule
+  ]
 })
 export class RoomInspectionUiModule {}
