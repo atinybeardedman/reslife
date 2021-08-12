@@ -1,5 +1,10 @@
 export type RoomInspectionResult = 'pending' | 'passed' | 'failed';
 
+export interface RoomInspectionPickerEvent {
+    date: string;
+    dorm: string;
+}
+
 export interface RoomInspectionStudentDoc {
     uid: string;
     name: string;
