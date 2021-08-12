@@ -1,5 +1,6 @@
-
-  
+interface NamedItem {
+  name: string;
+}  
   export function getIsoTimezoneString(date = new Date()): string {
 
     const tzo = -date.getTimezoneOffset(),
@@ -63,4 +64,13 @@ export function combineDatetime(date: Date, time: string): Date {
 
 export function getTimeDiff(end: Date, start: Date): number {
   return Math.floor((end.getTime() - start.getTime()) / (1000 * 60));
+}
+
+export function orderByName(a: NamedItem, b: NamedItem): number {
+  if(a.name > b.name) {
+    return 1;
+  } else if (a.name < b.name){
+    return -1
+  } 
+  return 0;
 }

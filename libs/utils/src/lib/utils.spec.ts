@@ -90,3 +90,12 @@ describe('utils', () => {
    })
  })
 });
+
+describe('orderByName', () => {
+  it('should sort nameditems by name', () => {
+    const names = ['b', 'a', 'd', 'c'];
+    const items = names.map(d => ({name: d}))
+    items.sort(utils.orderByName);
+    expect(items).toEqual(names.sort().map(d => ({name: d})));
+  })
+})
