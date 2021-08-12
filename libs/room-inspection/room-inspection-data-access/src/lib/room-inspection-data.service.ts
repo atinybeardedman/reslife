@@ -11,6 +11,8 @@ import {
 } from '@reslife/room-inspection-model';
 import { DormDocument} from '@reslife/shared-models';
 
+import { orderByName } from '@reslife/utils'
+
 @Injectable({
   providedIn: 'root',
 })
@@ -40,9 +42,11 @@ export class RoomInspectionDataService {
     if (this.selectedInspectionMetaDoc) {
       return this.selectedInspectionMetaDoc
         .collection<RoomInspectionStudentDoc>('students', (ref) =>
-          ref.where('result', '!=', 'pending').orderBy('name')
+          ref.where('result', '!=', 'pending')
         )
-        .valueChanges();
+        .valueChanges().pipe(
+          map(list => list.sort(orderByName))
+        );
     } else {
       return of([]);
     }
