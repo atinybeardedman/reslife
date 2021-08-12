@@ -33,7 +33,8 @@ export class MaintenanceRequestPageComponent implements OnInit {
 
   newRequest(): void {
     this.dialog.open(this.requestDialogTemplate, {
-      minWidth: '30rem',
+      width: '30rem',
+      maxWidth: '90vw',
       id: 'newRequest'
     });
   }

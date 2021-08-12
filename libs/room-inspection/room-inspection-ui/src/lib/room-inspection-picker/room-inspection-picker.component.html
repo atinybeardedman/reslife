@@ -10,6 +10,7 @@
           <input
             (dateChange)="emitChange()"
             [value]="today"
+            [max]="today"
             matInput
             [matDatepicker]="picker"
             formControlName="date"
