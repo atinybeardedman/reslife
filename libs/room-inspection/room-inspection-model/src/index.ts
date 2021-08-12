@@ -1,1 +1,1 @@
-export * from './lib/room-inspection-room-inspection-model';
+export * from './lib/room-inspection.model';
