@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RoomInspectionPageComponent } from './room-inspection-page.component';
-
+import { RoomInspectionUiModule } from '@reslife/room-inspection-ui';
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { RoomInspectionPageComponent } from './room-inspection-page.component';
     RoomInspectionPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RoomInspectionUiModule
   ],
   exports: [
     RoomInspectionPageComponent

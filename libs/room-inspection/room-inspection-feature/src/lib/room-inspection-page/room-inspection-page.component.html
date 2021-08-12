@@ -1,1 +1,45 @@
-<p>room-inspection-page works!</p>
+<section
+  class="container p-1"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  fxLayout.lt-md="column"
+  fxLayoutAlign.lt-md="start stretch"
+>
+  <div fxFlexFill></div>
+  <reslife-room-inspection-picker
+    [dorms]="dorms$ | async"
+    (inspectionSelected)="onInspectionSelected($event)"
+    fxFlex="1 1 30rem"
+    fxFlex.lt-md
+  ></reslife-room-inspection-picker>
+  <div fxFlexFill></div>
+</section>
+<section
+  class="container p-1"
+  fxLayout="row"
+  fxLayoutGap="1rem"
+  fxLayout.lt-md="column"
+  fxLayoutAlign="space-evenly start"
+  fxLayoutAlign.lt-md="start stretch"
+>
+  <reslife-room-inspection-list
+    fxFlex="1 1 45%"
+    fxFlex.lt-md
+    [inspectionDocs]="toInspect$ | async"
+    (inspectionResult)="checkForSave($event)"
+    data-testid="to-inspect-list"
+  ></reslife-room-inspection-list>
+  <reslife-room-inspection-list
+    fxFlex="1 1 45%"
+    fxFlex.lt-md
+    [inspectionDocs]="inspected$ | async"
+    title="Inspected"
+    (inspectionResult)="checkForSave($event)"
+    data-testid="inspected-list"
+  ></reslife-room-inspection-list>
+</section>
+
+<ng-template>
+    <reslife-room-inspection-fail-modal *ngIf="selectedFailed" (save)="saveInspection($event)" [inspectionDoc]="selectedFailed"></reslife-room-inspection-fail-modal>
+</ng-template>
+
