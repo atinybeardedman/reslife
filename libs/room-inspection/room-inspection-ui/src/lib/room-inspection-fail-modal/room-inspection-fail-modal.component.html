@@ -2,7 +2,7 @@
 <div mat-dialog-content *ngIf="inspectionDoc">
     <mat-form-field>
         <mat-label>Reason for Failure</mat-label>
-        <input [(ngModel)]="inspectionDoc.note" matInput type="text">
+        <input [(ngModel)]="inspectionDoc.note" matInput id="fail-reason" type="text">
         <mat-hint>Entering a reason is optional</mat-hint>
     </mat-form-field>
 </div>
