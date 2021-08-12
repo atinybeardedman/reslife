@@ -525,6 +525,98 @@
         }
       }
     },
+    "room-inspection-data-access": {
+      "projectType": "library",
+      "root": "libs/room-inspection/room-inspection-data-access",
+      "sourceRoot": "libs/room-inspection/room-inspection-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/room-inspection/room-inspection-data-access"
+          ],
+          "options": {
+            "jestConfig": "libs/room-inspection/room-inspection-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/room-inspection/room-inspection-data-access/src/**/*.ts",
+              "libs/room-inspection/room-inspection-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "room-inspection-feature": {
+      "projectType": "library",
+      "root": "libs/room-inspection/room-inspection-feature",
+      "sourceRoot": "libs/room-inspection/room-inspection-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/room-inspection/room-inspection-feature"],
+          "options": {
+            "jestConfig": "libs/room-inspection/room-inspection-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/room-inspection/room-inspection-feature/src/**/*.ts",
+              "libs/room-inspection/room-inspection-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "room-inspection-model": {
+      "root": "libs/room-inspection/room-inspection-model",
+      "sourceRoot": "libs/room-inspection/room-inspection-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/room-inspection/room-inspection-model/**/*.ts"
+            ]
+          }
+        }
+      }
+    },
+    "room-inspection-ui": {
+      "projectType": "library",
+      "root": "libs/room-inspection/room-inspection-ui",
+      "sourceRoot": "libs/room-inspection/room-inspection-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/room-inspection/room-inspection-ui"],
+          "options": {
+            "jestConfig": "libs/room-inspection/room-inspection-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/room-inspection/room-inspection-ui/src/**/*.ts",
+              "libs/room-inspection/room-inspection-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "shared-models": {
       "root": "libs/shared-models",
       "sourceRoot": "libs/shared-models/src",

@@ -23,5 +23,8 @@ module.exports = {
     '<rootDir>/libs/maintenence-request/maintenance-request-ui',
     '<rootDir>/libs/maintenence-request/maintenance-request-model',
     '<rootDir>/libs/maintenence-request/maintenance-request-data-access',
+    '<rootDir>/libs/room-inspection/room-inspection-feature',
+    '<rootDir>/libs/room-inspection/room-inspection-ui',
+    '<rootDir>/libs/room-inspection/room-inspection-data-access',
   ],
 };

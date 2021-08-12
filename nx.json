@@ -77,6 +77,18 @@
       "tags": ["type:e2e"],
       "implicitDependencies": ["reslife-request"]
     },
+    "room-inspection-data-access": {
+      "tags": ["type:data-access"]
+    },
+    "room-inspection-feature": {
+      "tags": ["type:feature"]
+    },
+    "room-inspection-model": {
+      "tags": ["type:model"]
+    },
+    "room-inspection-ui": {
+      "tags": ["type:ui"]
+    },
     "shared-models": {
       "tags": ["type:model"]
     },
