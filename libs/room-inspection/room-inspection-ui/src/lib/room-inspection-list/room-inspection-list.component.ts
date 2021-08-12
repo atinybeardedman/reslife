@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component,  ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import {  RoomInspectionStudentDoc } from '@reslife/room-inspection-model';
 
 @Component({
   selector: 'reslife-room-inspection-list',
@@ -6,11 +7,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./room-inspection-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RoomInspectionListComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class RoomInspectionListComponent {
+  @Input() inspectionDocs!: RoomInspectionStudentDoc[] | null;
+  @Input() title: 'To Inspect' | 'Inspected' = 'To Inspect';
+  @Output() inspectionResult = new EventEmitter<RoomInspectionStudentDoc>();
 
 }
+

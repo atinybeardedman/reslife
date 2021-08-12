@@ -22,4 +22,11 @@ describe('RoomInspectionListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the title');
+
+  it('should render the count of items');
+
+  it('should render a list of mat-list-items');
+
 });

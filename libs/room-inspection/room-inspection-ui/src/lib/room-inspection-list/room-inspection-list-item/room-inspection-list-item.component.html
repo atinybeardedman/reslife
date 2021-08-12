@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxFlex class="name">{{inspectionDoc?.name}}</div>
+    <div fxLayout fxFlex="nogrow" fxLayoutGap="10px">
+        <ng-container *ngIf="inspectionDoc?.result === 'pending'; else inspectedBlock">
+            <button fxFlex="nogrow" color="accent" mat-icon-button (click)="pass()">
+                <mat-icon>thumb_up</mat-icon>
+            </button>
+            <button fxFlex="nogrow" color="warning" mat-icon-button (click)="fail()">
+                <mat-icon>thumb_down</mat-icon>
+            </button>
+        </ng-container>
+        
+    </div>
+    <ng-template #inspectedBlock>
+            <mat-icon fxFlex="nogrow" [color]="inspectedIcon.color">{{inspectedIcon.icon}}</mat-icon>
+            <button fxFlex="nogrow" color="accent" mat-icon-button (click)="reverse()">
+                <mat-icon>swap_horiz</mat-icon>
+            </button>
+    </ng-template>
+    
+</div>
