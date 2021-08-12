@@ -13,7 +13,7 @@ export class RoomInspectionListItemComponent {
   get inspectedIcon(): {icon: string, color: string} {
     const result = {
       icon: 'thumb_down',
-      color: 'warning'
+      color: 'warn'
     };
 
     if(this.inspectionDoc?.result === 'passed' ){
