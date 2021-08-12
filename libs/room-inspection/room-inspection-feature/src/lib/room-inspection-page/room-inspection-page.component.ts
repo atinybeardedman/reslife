@@ -20,6 +20,7 @@ export class RoomInspectionPageComponent implements OnDestroy {
   selectedFailed!: RoomInspectionStudentDoc | null;
   @ViewChild(TemplateRef) dialogTemplate!: TemplateRef<RoomInspectionFailModalComponent>;
   constructor(private dialog: MatDialog, private rds: RoomInspectionDataService) {
+    this.dorms$ = this.rds.getActiveDorms();
     this.inspectionId$.pipe(takeUntil(this.destroy$)).subscribe(id => {
       if(id){
         this.rds.setInspection(id);

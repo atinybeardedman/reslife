@@ -4,10 +4,12 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {
   RoomInspectionMetaDoc,
   RoomInspectionStudentDoc,
 } from '@reslife/room-inspection-model';
+import { DormDocument} from '@reslife/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +59,14 @@ export class RoomInspectionDataService {
         .update(doc);
     }
     return new Promise(() => {return});
+  }
+
+  getActiveDorms(): Observable<string[]> {
+    return this.af
+      .collection<DormDocument>('dorms', (ref) =>
+        ref.where('isActive', '==', true)
+      )
+      .valueChanges()
+      .pipe(map((docs) => docs.map((d) => d.name)));
   }
 }
