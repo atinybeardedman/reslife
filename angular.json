@@ -187,6 +187,31 @@
         }
       }
     },
+    "dorm-notes-ui": {
+      "projectType": "library",
+      "root": "libs/dorm-notes/dorm-notes-ui",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dorm-notes/dorm-notes-ui"],
+          "options": {
+            "jestConfig": "libs/dorm-notes/dorm-notes-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dorm-notes/dorm-notes-ui/src/**/*.ts",
+              "libs/dorm-notes/dorm-notes-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "dorm-notes-feature": {
       "projectType": "library",
       "root": "libs/dorm-notes/dorm-notes-feature",

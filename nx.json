@@ -51,6 +51,9 @@
     "check-ins-check-in-ui": {
       "tags": ["type:ui"]
     },
+    "dorm-notes-ui": {
+      "tags": ["type:ui"]
+    },
     "dorm-notes-feature": {
       "tags": ["type:feature"]
     },
