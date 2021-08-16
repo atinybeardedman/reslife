@@ -8,5 +8,6 @@ export interface DormNoteField {
   fieldName: string;
   note: string;
   order: number;
-  author: string;
+  isLocked: boolean;
+  author?: string;
 }

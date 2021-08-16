@@ -1,1 +1,12 @@
-<p>dorm-notes-field works!</p>
+<mat-form-field *ngIf="field">
+  <mat-label>{{ field.fieldName }}</mat-label>
+  <textarea
+    matInput
+    [formControl]="control"
+    [name]="field.fieldName"
+    [id]="field.fieldName"
+    cols="30"
+    rows="10"
+  ></textarea>
+  <mat-hint *ngIf="field.author">Last updated by: {{ field.author }}</mat-hint>
+</mat-form-field>
