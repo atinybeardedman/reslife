@@ -187,17 +187,17 @@
         }
       }
     },
-    "dorm-notes-ui": {
+    "dorm-notes-data-access": {
       "projectType": "library",
-      "root": "libs/dorm-notes/dorm-notes-ui",
-      "sourceRoot": "libs/dorm-notes/dorm-notes-ui/src",
+      "root": "libs/dorm-notes/dorm-notes-data-access",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-data-access/src",
       "prefix": "reslife",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/dorm-notes/dorm-notes-ui"],
+          "outputs": ["coverage/libs/dorm-notes/dorm-notes-data-access"],
           "options": {
-            "jestConfig": "libs/dorm-notes/dorm-notes-ui/jest.config.js",
+            "jestConfig": "libs/dorm-notes/dorm-notes-data-access/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -205,8 +205,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/dorm-notes/dorm-notes-ui/src/**/*.ts",
-              "libs/dorm-notes/dorm-notes-ui/src/**/*.html"
+              "libs/dorm-notes/dorm-notes-data-access/src/**/*.ts",
+              "libs/dorm-notes/dorm-notes-data-access/src/**/*.html"
             ]
           }
         }
@@ -232,6 +232,31 @@
             "lintFilePatterns": [
               "libs/dorm-notes/dorm-notes-feature/src/**/*.ts",
               "libs/dorm-notes/dorm-notes-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "dorm-notes-ui": {
+      "projectType": "library",
+      "root": "libs/dorm-notes/dorm-notes-ui",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dorm-notes/dorm-notes-ui"],
+          "options": {
+            "jestConfig": "libs/dorm-notes/dorm-notes-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dorm-notes/dorm-notes-ui/src/**/*.ts",
+              "libs/dorm-notes/dorm-notes-ui/src/**/*.html"
             ]
           }
         }

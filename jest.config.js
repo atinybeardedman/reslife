@@ -28,5 +28,6 @@ module.exports = {
     '<rootDir>/libs/room-inspection/room-inspection-data-access',
     '<rootDir>/libs/dorm-notes/dorm-notes-feature',
     '<rootDir>/libs/dorm-notes/dorm-notes-ui',
+    '<rootDir>/libs/dorm-notes/dorm-notes-data-access',
   ],
 };

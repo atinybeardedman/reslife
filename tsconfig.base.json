@@ -35,6 +35,9 @@
       "@reslife/check-ins/check-in-ui": [
         "libs/check-ins/check-in-ui/src/index.ts"
       ],
+      "@reslife/dorm-notes-data-access": [
+        "libs/dorm-notes/dorm-notes-data-access/src/index.ts"
+      ],
       "@reslife/dorm-notes-feature": [
         "libs/dorm-notes/dorm-notes-feature/src/index.ts"
       ],

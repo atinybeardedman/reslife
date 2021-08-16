@@ -51,11 +51,14 @@
     "check-ins-check-in-ui": {
       "tags": ["type:ui"]
     },
-    "dorm-notes-ui": {
-      "tags": ["type:ui"]
+    "dorm-notes-data-access": {
+      "tags": ["type:data-access"]
     },
     "dorm-notes-feature": {
       "tags": ["type:feature"]
+    },
+    "dorm-notes-ui": {
+      "tags": ["type:ui"]
     },
     "maintenance-request-data-access": {
       "tags": ["type:data-access"]
