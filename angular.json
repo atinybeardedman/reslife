@@ -212,6 +212,29 @@
         }
       }
     },
+    "dorm-notes-model": {
+      "root": "libs/dorm-notes/dorm-notes-model",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-model/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/dorm-notes/dorm-notes-model",
+            "main": "libs/dorm-notes/dorm-notes-model/src/index.ts",
+            "tsConfig": "libs/dorm-notes/dorm-notes-model/tsconfig.lib.json",
+            "assets": ["libs/dorm-notes/dorm-notes-model/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/dorm-notes/dorm-notes-model/**/*.ts"]
+          }
+        }
+      }
+    },
     "dorm-notes-feature": {
       "projectType": "library",
       "root": "libs/dorm-notes/dorm-notes-feature",

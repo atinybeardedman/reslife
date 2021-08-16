@@ -54,6 +54,9 @@
     "dorm-notes-data-access": {
       "tags": ["type:data-access"]
     },
+    "dorm-notes-model": {
+      "tags": ["type:model"]
+    },
     "dorm-notes-feature": {
       "tags": ["type:feature"]
     },
