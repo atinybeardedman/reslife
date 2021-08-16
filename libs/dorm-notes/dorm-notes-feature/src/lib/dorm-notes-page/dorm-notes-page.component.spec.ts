@@ -22,4 +22,10 @@ describe('DormNotesPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('on initial load', () => {
+    it('should display the picker');
+
+    it('should display the notes');
+  })
 });
