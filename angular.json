@@ -187,6 +187,31 @@
         }
       }
     },
+    "dorm-notes-feature": {
+      "projectType": "library",
+      "root": "libs/dorm-notes/dorm-notes-feature",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dorm-notes/dorm-notes-feature"],
+          "options": {
+            "jestConfig": "libs/dorm-notes/dorm-notes-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dorm-notes/dorm-notes-feature/src/**/*.ts",
+              "libs/dorm-notes/dorm-notes-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "maintenance-request-data-access": {
       "projectType": "library",
       "root": "libs/maintenance-request/maintenance-request-data-access",
