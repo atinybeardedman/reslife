@@ -1,1 +1,1 @@
-export * from './lib/dorm-notes-dorm-notes-model';
+export * from './lib/dorm-notes-model';
