@@ -12,6 +12,7 @@ describe('dorm-notes', () => {
 
     describe('the notes', () => {
       beforeEach(() => {
+        cy.callFirestore('delete', 'dorm-notes')
         cy.callFirestore('get', 'configuration/dorm-notes').then(snap => {
           const fields = snap.fields as string[];
           cy.callFirestore('set', `dorm-notes/${today}+Reagan`, {
@@ -42,12 +43,23 @@ describe('dorm-notes', () => {
         it('should allow the user to enter notes for the selected date', () => {
          
           cy.get('textarea#Room-Inspections').clear().type('All passed');
-          cy.clock();
-          cy.tick(1100);
-          cy.clock().then(clock => clock.restore());
-          cy.callFirestore('get', `dorm-notes/${today}+Reagan/notes/0`).then(d => {
-            expect(d.note).to.eq('All passed');
-          })
+          /* eslint-disable cypress/no-unnecessary-waiting */ 
+          cy.wait(1100); 
+
+         cy.get('[data-testid="dorm-select"]').as('dorm-select');
+        cy.get('@dorm-select')
+          .focus()
+          .click()
+          .then(() => {
+            cy.get('mat-option').contains('Newlin').click({waitForAnimations: true});
+          });
+          cy.get('@dorm-select')
+          .focus()
+          .click()
+          .then(() => {
+            cy.get('mat-option').contains('Reagan').click({waitForAnimations: true});
+          });
+         cy.get('textarea#Room-Inspections').should('have.value', 'All passed');
 
 
         });
