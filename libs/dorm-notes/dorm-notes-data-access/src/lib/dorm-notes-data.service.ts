@@ -22,7 +22,7 @@ export class DormNotesDataService {
   }
 
   setDormandDate({dorm, date}: DormDatePickerEvent): void{
-    this.selectedDoc = this.af.doc(`dormNotes/${date}+${dorm}`);
+    this.selectedDoc = this.af.doc(`dorm-notes/${date}+${dorm}`);
   }
 
   getFields(): Observable<DormNoteField[]>{

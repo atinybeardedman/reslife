@@ -12,8 +12,8 @@
       cdkTextareaAutosize
       #autosize="cdkTextareaAutosize"
       [formControl]="control"
-      [name]="field.fieldName"
-      [id]="field.fieldName"
+      [name]="field.fieldName.split(' ').join('-')"
+      [id]="field.fieldName.split(' ').join('-')"
       cols="30"
       rows="5"
     ></textarea>
