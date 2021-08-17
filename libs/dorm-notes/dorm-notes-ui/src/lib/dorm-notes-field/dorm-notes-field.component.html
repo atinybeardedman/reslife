@@ -1,0 +1,21 @@
+<mat-expansion-panel class="expansion-margin" *ngIf="field" [expanded]="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{ field.fieldName }}</mat-panel-title>
+    <mat-panel-description *ngIf="field.author">
+      Updated by: {{ field.author }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-form-field class="w-full py-1">
+    <mat-label>Enter your notes</mat-label>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      [formControl]="control"
+      [name]="field.fieldName.split(' ').join('-')"
+      [id]="field.fieldName.split(' ').join('-')"
+      cols="30"
+      rows="5"
+    ></textarea>
+  </mat-form-field>
+</mat-expansion-panel>

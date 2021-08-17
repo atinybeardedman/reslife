@@ -6,12 +6,12 @@
   fxLayoutAlign.lt-md="start stretch"
 >
   <div fxFlexFill></div>
-  <reslife-room-inspection-picker
+  <reslife-dorm-date-picker
     [dorms]="dorms$ | async"
-    (inspectionSelected)="onInspectionSelected($event)"
+    (choiceSelected)="onInspectionSelected($event)"
     fxFlex="1 1 30rem"
     fxFlex.lt-md
-  ></reslife-room-inspection-picker>
+  ></reslife-dorm-date-picker>
   <div fxFlexFill></div>
 </section>
 <section

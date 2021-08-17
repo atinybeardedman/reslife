@@ -45,3 +45,8 @@ export interface CampusedStudentRecord {
   startDate: string;
   endDate: string;
 }
+
+export interface DormDatePickerEvent {
+  dorm: string;
+  date: string;
+}

@@ -187,6 +187,104 @@
         }
       }
     },
+    "dorm-notes-data-access": {
+      "projectType": "library",
+      "root": "libs/dorm-notes/dorm-notes-data-access",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dorm-notes/dorm-notes-data-access"],
+          "options": {
+            "jestConfig": "libs/dorm-notes/dorm-notes-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dorm-notes/dorm-notes-data-access/src/**/*.ts",
+              "libs/dorm-notes/dorm-notes-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "dorm-notes-model": {
+      "root": "libs/dorm-notes/dorm-notes-model",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-model/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/dorm-notes/dorm-notes-model",
+            "main": "libs/dorm-notes/dorm-notes-model/src/index.ts",
+            "tsConfig": "libs/dorm-notes/dorm-notes-model/tsconfig.lib.json",
+            "assets": ["libs/dorm-notes/dorm-notes-model/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/dorm-notes/dorm-notes-model/**/*.ts"]
+          }
+        }
+      }
+    },
+    "dorm-notes-feature": {
+      "projectType": "library",
+      "root": "libs/dorm-notes/dorm-notes-feature",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dorm-notes/dorm-notes-feature"],
+          "options": {
+            "jestConfig": "libs/dorm-notes/dorm-notes-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dorm-notes/dorm-notes-feature/src/**/*.ts",
+              "libs/dorm-notes/dorm-notes-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "dorm-notes-ui": {
+      "projectType": "library",
+      "root": "libs/dorm-notes/dorm-notes-ui",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dorm-notes/dorm-notes-ui"],
+          "options": {
+            "jestConfig": "libs/dorm-notes/dorm-notes-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dorm-notes/dorm-notes-ui/src/**/*.ts",
+              "libs/dorm-notes/dorm-notes-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "maintenance-request-data-access": {
       "projectType": "library",
       "root": "libs/maintenance-request/maintenance-request-data-access",

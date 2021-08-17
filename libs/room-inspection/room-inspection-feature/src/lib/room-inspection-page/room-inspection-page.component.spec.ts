@@ -5,6 +5,7 @@ import { RoomInspectionUiModule } from '@reslife/room-inspection-ui';
 import { MockModule, MockProvider } from 'ng-mocks';
 
 import { RoomInspectionPageComponent } from './room-inspection-page.component';
+import { SharedUiModule } from '@reslife/shared/ui';
 
 describe('RoomInspectionPageComponent', () => {
   let component: RoomInspectionPageComponent;
@@ -14,6 +15,8 @@ describe('RoomInspectionPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MockModule(RoomInspectionUiModule),
+        MockModule(SharedUiModule),
+
       ],
       declarations: [ RoomInspectionPageComponent ],
       providers: [MockProvider(RoomInspectionDataService)],

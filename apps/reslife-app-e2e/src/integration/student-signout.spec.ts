@@ -38,9 +38,11 @@ describe('student-signout', () => {
               cy.get('[data-testid="new-signout-button"]')
                 .click()
                 .then(() => {
+                  /* eslint-disable cypress/no-unnecessary-waiting*/
+                  cy.wait(500);
                   cy.get('input').as('search');
                   cy.get('@search').click()
-                    .type(testBoarder.firstName.substr(0,4), {delay: 100})
+                    .type(testBoarder.firstName.substr(0,4), {delay: 100, waitForAnimations: true})
                   cy.get('mat-option').click();
                 }).then(() => {
                     cy.get('input[formcontrolname="destination"]').type("Starbucks");

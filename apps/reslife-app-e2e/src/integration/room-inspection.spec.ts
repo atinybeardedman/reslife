@@ -22,7 +22,7 @@ describe('room inspection', () => {
           doc
         );
       }
-      cy.get('[data-testid="inspection-date"]').as('date-input');
+      cy.get('[data-testid="picker-date"]').as('date-input');
       cy.get('[data-testid="dorm-select"]').as('dorm-select');
       cy.get('@date-input').clear().type('9/14/2021');
       cy.get('@dorm-select')
@@ -33,7 +33,7 @@ describe('room inspection', () => {
         });
     });
     it('should display the correct values', () => {
-      cy.get('[data-testid="inspection-date"]').as('date-input');
+      cy.get('[data-testid="picker-date"]').as('date-input');
       cy.get('[data-testid="dorm-select"]').as('dorm-select');
       cy.get('@date-input').should('have.value', '9/14/2021');
 
