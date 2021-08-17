@@ -69,7 +69,10 @@ export const appRoutes: Route[] = [
           icon: 'assignment',
           roles: ['any']
         },
-        redirectTo: ''
+        loadChildren: () => 
+        import('@reslife/dorm-notes-feature').then(
+          (module) => module.DormNotesFeatureModule
+        ),
       },
       {
         path: 'admin/manage-boarders',

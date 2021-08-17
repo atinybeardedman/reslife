@@ -12,5 +12,8 @@ import { DormNotesPageComponent } from './dorm-notes-page/dorm-notes-page.compon
     ]),
     DormNotesPageModule,
   ],
+  exports: [
+    DormNotesPageModule
+  ]
 })
 export class DormNotesFeatureModule {}
