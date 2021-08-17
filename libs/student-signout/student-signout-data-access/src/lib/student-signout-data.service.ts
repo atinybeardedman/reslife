@@ -5,7 +5,7 @@ import {
   BoarderSignoutMeta,
   StudentSignout,
 } from '@reslife/student-signout-model';
-import { getDateString, getIsoTimezoneString } from '@reslife/utils';
+import { getDateString } from '@reslife/utils';
 import { Boarder, CampusedStudentRecord } from '@reslife/shared-models';
 import { map } from 'rxjs/operators';
 @Injectable({

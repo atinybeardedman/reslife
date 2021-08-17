@@ -1,13 +1,29 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { HarnessLoader } from '@angular/cdk/testing';
-import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA, SimpleChange } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  CUSTOM_ELEMENTS_SCHEMA,
+  SimpleChange,
+} from '@angular/core';
 
 import { DormNotesFieldComponent } from './dorm-notes-field.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldHarness } from '@angular/material/form-field/testing'
-import { uninitializedField, filledField, lockedField } from '@reslife/dorm-notes-model';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatExpansionPanelHarness } from '@angular/material/expansion/testing';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import {
+  uninitializedField,
+  filledField,
+  lockedField,
+} from '@reslife/dorm-notes-model';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputHarness } from '@angular/material/input/testing';
@@ -17,20 +33,22 @@ describe('DormNotesFieldComponent', () => {
   let loader: HarnessLoader;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DormNotesFieldComponent ],
+      declarations: [DormNotesFieldComponent],
       imports: [
         MatFormFieldModule,
+        MatExpansionModule,
         MatInputModule,
+        TextFieldModule,
         FormsModule,
         ReactiveFormsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
-    .overrideComponent(DormNotesFieldComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default },
-    })
-    .compileComponents();
+      .overrideComponent(DormNotesFieldComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default },
+      })
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -45,17 +63,17 @@ describe('DormNotesFieldComponent', () => {
   });
 
   describe('When field is uninitialized', () => {
-    let field: MatFormFieldHarness;
+    let panel: MatExpansionPanelHarness;
     beforeEach(async () => {
       component.field = uninitializedField;
       component.ngOnChanges({
-        field: new SimpleChange(null, component.field, true)
-      })
+        field: new SimpleChange(null, component.field, true),
+      });
       fixture.detectChanges();
-      field = await loader.getHarness(MatFormFieldHarness);
+      panel = await loader.getHarness(MatExpansionPanelHarness);
     });
     it('should render the title of the field', async () => {
-      const label = await field.getLabel();
+      const label = await panel.getTitle();
       expect(label).toBe(uninitializedField.fieldName);
     });
 
@@ -66,27 +84,31 @@ describe('DormNotesFieldComponent', () => {
       tick(1000);
       expect(spy).toHaveBeenCalledWith({
         ...component.field,
-        note: 'Example dorm note'
-      })
-    }))
+        note: 'Example dorm note',
+      });
+    }));
   });
 
   describe('When field is already filled', () => {
     let field: MatFormFieldHarness;
+    let panel: MatExpansionPanelHarness;
     beforeEach(async () => {
       component.field = filledField;
       component.ngOnChanges({
-        field: new SimpleChange(null, component.field, true)
+        field: new SimpleChange(null, component.field, true),
       });
       fixture.detectChanges();
       field = await loader.getHarness(MatFormFieldHarness);
+      panel = await loader.getHarness(MatExpansionPanelHarness);
     });
     it('should render the textfield with the content provided', async () => {
       const textarea = await loader.getHarness(MatInputHarness);
       expect(await textarea.getValue()).toBe(filledField.note);
     });
     it('should render the author of the note', async () => {
-      expect(await field.getTextHints()).toContain('Last updated by: '+ filledField.author);
+      expect(await panel.getDescription()).toContain(
+        'Updated by: ' + filledField.author
+      );
     });
   });
 
@@ -94,18 +116,13 @@ describe('DormNotesFieldComponent', () => {
     beforeEach(async () => {
       component.field = lockedField;
       component.ngOnChanges({
-        field: new SimpleChange(null, component.field, true)
-      })
+        field: new SimpleChange(null, component.field, true),
+      });
       fixture.detectChanges();
     });
     it('should be disabled', async () => {
       const textarea = await loader.getHarness(MatInputHarness);
       expect(await textarea.isDisabled()).toBeTruthy();
     });
-
-  })
-
-  
-
-
+  });
 });

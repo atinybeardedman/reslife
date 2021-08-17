@@ -1,1 +1,34 @@
-<p>dorm-notes-page works!</p>
+<section
+  class="container p-1"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  fxLayout.lt-md="column"
+  fxLayoutAlign.lt-md="start stretch"
+>
+  <div fxFlexFill></div>
+  <reslife-dorm-date-picker
+    fxFlex="1 1 30rem"
+    fxFlex.lt-md
+    [dorms]="dorms$ | async"
+    (choiceSelected)="onChoiceSelected($event)"
+  ></reslife-dorm-date-picker>
+  <div fxFlexFill></div>
+</section>
+
+<section
+  class="container p-1"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  fxLayout.lt-md="column"
+  fxLayoutAlign.lt-md="start stretch"
+>
+  <div fxFlexFill></div>
+  <div fxFlex="1 1 40rem" fxFlex.lt-md>
+    <reslife-dorm-notes-field
+      *ngFor="let field of fields$ | async; let i = index; trackBy: trackByFn"
+      [field]="field"
+      (updatedField)="updateField($event)"
+    ></reslife-dorm-notes-field>
+  </div>
+  <div fxFlexFill></div>
+</section>
