@@ -2,7 +2,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Boarder, LeaveReturnTiming, NamedItem } from '@reslife/shared-models';
 import { Observable } from 'rxjs';
-import { AodCheckInService, SharedAodDataService } from '@reslife/aod-data-access';
+import {
+  AodCheckInService,
+  SharedAodDataService,
+} from '@reslife/aod-data-access';
 @Component({
   selector: 'reslife-aod-check-in-page',
   templateUrl: './aod-check-in-page.component.html',
@@ -16,19 +19,22 @@ export class AodCheckInPageComponent implements OnInit {
   selectedBoarder!: Boarder | null;
   selectedCheckIns: string[] = [];
   selectedTiming!: LeaveReturnTiming | null;
-  constructor(fb: FormBuilder, private acs: AodCheckInService, private sad: SharedAodDataService) {
+  constructor(
+    fb: FormBuilder,
+    private acs: AodCheckInService,
+    private sad: SharedAodDataService
+  ) {
     this.excusalForm = fb.group({
       reason: ['', Validators.required],
       choice: ['check-in', Validators.required],
     });
   }
-  
-  
+
   get choice(): 'check-in' | 'time' {
     return this.excusalForm.controls.choice.value;
   }
-  
-  ngOnInit(){
+
+  ngOnInit() {
     this.boarders$ = this.sad.getActiveBoarders();
     this.checkIns$ = this.acs.getCheckIns();
   }
@@ -37,7 +43,7 @@ export class AodCheckInPageComponent implements OnInit {
     this.selectedBoarder = boarder as Boarder;
   }
 
-  setSelectedCheckIns(checkIns: string[]): void{
+  setSelectedCheckIns(checkIns: string[]): void {
     this.selectedCheckIns = checkIns;
     this.selectedTiming = null;
   }
@@ -48,19 +54,19 @@ export class AodCheckInPageComponent implements OnInit {
   }
 
   get isValid(): boolean {
-    if(this.excusalForm.valid && this.selectedBoarder){
-      if(this.choice === 'check-in' && this.selectedCheckIns.length > 0){
-        return true
+    if (this.excusalForm.valid && this.selectedBoarder) {
+      if (this.choice === 'check-in' && this.selectedCheckIns.length > 0) {
+        return true;
       } else {
-        if(this.choice === 'time' && this.selectedTiming){
-          return true
+        if (this.choice === 'time' && this.selectedTiming) {
+          return true;
         }
-      } 
+      }
     }
-    return false
+    return false;
   }
 
-  save(): void{
+  save(): void {
     console.log('saved');
   }
 }

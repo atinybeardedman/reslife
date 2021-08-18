@@ -63,14 +63,14 @@ describe('TimeBasedExcusalFormComponent', () => {
   describe('When the form is valid', () => {
     it('should emit the leave and return time when any value changes', async () => {
       const spy = jest.spyOn(component.timing, 'emit');
-      const departureTimeInput = await loader.getHarness(
-        MatInputHarness.with({ value: '08:00' })
+      const returnTimeInput = await loader.getHarness(
+        MatInputHarness.with({ value: '' })
       );
-      await departureTimeInput.setValue('09:00');
+      await returnTimeInput.setValue('09:00');
       fixture.detectChanges();
       expect(spy).toHaveBeenLastCalledWith({
-        leaveDate: '2021-09-01T13:00:00.000Z',
-        returnDate: '2021-09-02T12:00:00.000Z',
+        leaveDate: '2021-09-01T12:00:00.000Z',
+        returnDate: '2021-09-02T13:00:00.000Z',
       });
     });
   });
