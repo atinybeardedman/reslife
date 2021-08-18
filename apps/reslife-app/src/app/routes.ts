@@ -87,4 +87,15 @@ export const appRoutes: Route[] = [
             roles: ['superadmin']
           }
       },
+      {
+        path: 'aod', 
+        loadChildren: () => import('@reslife/aod-feature').then(
+          (module) => module.AodFeatureModule
+        ),
+        data: {
+          name: 'AOD Features',
+          icon: 'verified_user',
+          roles: ['aod']
+        }
+      }
 ]; 
