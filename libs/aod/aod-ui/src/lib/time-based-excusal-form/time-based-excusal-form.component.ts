@@ -14,7 +14,7 @@ export class TimeBasedExcusalFormComponent {
   departureGroup!: FormGroup;
   returnGroup!: FormGroup; 
   subscription: Subscription;
-  @Output() timing = new EventEmitter<LeaveReturnTiming>();
+  @Output() timing = new EventEmitter<LeaveReturnTiming | null>();
   constructor(fb: FormBuilder) {
     const today = new Date();
     const tomorrow = new Date(today.getTime() + 24 * 3600 * 1000);
@@ -24,7 +24,7 @@ export class TimeBasedExcusalFormComponent {
     });
     this.returnGroup = fb.group({
       returnDateCtrl: [tomorrow, Validators.required],
-      returnTimeCtrl: [getTime(tomorrow), Validators.required]
+      returnTimeCtrl: ['', Validators.required]
     });
 
     this.timeExcusalForm = fb.group({
@@ -42,6 +42,8 @@ export class TimeBasedExcusalFormComponent {
           leaveDate,
           returnDate
         });
+      } else {
+        this.timing.emit(null);
       }
     })
    }

@@ -10,28 +10,40 @@
     <mat-card-title>Check In Excusals</mat-card-title>
     <mat-card-content>
       <form [formGroup]="excusalForm">
-        <reslife-search-select
-          [list]="boarders$ | async"
-          (itemSelected)="selectBoarder($event)"
-          [clearOnSelect]="false"
-        ></reslife-search-select>
-        <mat-form-field>
-          <mat-label>Excusal Reason</mat-label>
-          <input formControlName="reason" matInput required type="text" />
-        </mat-form-field>
-        <mat-radio-group formControlName="choice">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <reslife-search-select
+            fxFlex
+            label="Select Student"
+            [list]="boarders$ | async"
+            (itemSelected)="selectBoarder($event)"
+            [clearOnSelect]="false"
+          ></reslife-search-select>
+          <mat-form-field fxFlex>
+            <mat-label>Excusal Reason</mat-label>
+            <input formControlName="reason" matInput required type="text" />
+          </mat-form-field>
+        </div>
+        <mat-radio-group
+          class="py-1"
+          formControlName="choice"
+          fxLayout="row"
+          fxLayoutGap="10px"
+          fxLayoutAlign="start"
+        >
           <mat-radio-button value="check-in"
             >Excuse By Check In</mat-radio-button
           >
           <mat-radio-button value="time">Excuse By Time</mat-radio-button>
         </mat-radio-group>
-        <div>
+        <div fxLayout="row" class="py-1">
           <reslife-check-in-based-excusal-form
+            fxFlex
             *ngIf="choice === 'check-in'"
             [checkins]="checkIns$ | async"
             (selectedCheckins)="setSelectedCheckIns($event)"
           ></reslife-check-in-based-excusal-form>
           <reslife-time-based-excusal-form
+            fxFlex
             *ngIf="choice === 'time'"
             (timing)="setExcusalTiming($event)"
           ></reslife-time-based-excusal-form>
@@ -39,7 +51,7 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-        <button [disabled]="!isValid" (click)="save()" mat-button>Save</button>
+      <button [disabled]="!isValid" (click)="save()" mat-button>Save</button>
     </mat-card-actions>
   </mat-card>
   <div fxFlexFill></div>

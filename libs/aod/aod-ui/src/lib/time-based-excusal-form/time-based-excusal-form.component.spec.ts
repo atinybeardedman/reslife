@@ -18,7 +18,7 @@ describe('TimeBasedExcusalFormComponent', () => {
   });
   afterAll(() => {
     jest.useRealTimers();
-  })
+  });
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TimeBasedExcusalFormComponent],
@@ -36,7 +36,6 @@ describe('TimeBasedExcusalFormComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);
-   
   });
 
   it('should create', () => {
@@ -64,25 +63,27 @@ describe('TimeBasedExcusalFormComponent', () => {
   describe('When the form is valid', () => {
     it('should emit the leave and return time when any value changes', async () => {
       const spy = jest.spyOn(component.timing, 'emit');
-      const departureTimeInput = await loader.getHarness(MatInputHarness.with({value: '08:00'}));
+      const departureTimeInput = await loader.getHarness(
+        MatInputHarness.with({ value: '08:00' })
+      );
       await departureTimeInput.setValue('09:00');
       fixture.detectChanges();
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith({
+      expect(spy).toHaveBeenLastCalledWith({
         leaveDate: '2021-09-01T13:00:00.000Z',
-        returnDate: '2021-09-02T12:00:00.000Z'
-      })
-
+        returnDate: '2021-09-02T12:00:00.000Z',
+      });
     });
   });
 
   describe('When the form is invalid', () => {
-    it('Should not emit a value when the form value changes', async () => {
+    it('Should emit null when the form value changes', async () => {
       const spy = jest.spyOn(component.timing, 'emit');
-      const departureTimeInput = await loader.getHarness(MatInputHarness.with({value: '08:00'}));
+      const departureTimeInput = await loader.getHarness(
+        MatInputHarness.with({ value: '08:00' })
+      );
       await departureTimeInput.setValue('Bad Input');
       fixture.detectChanges();
-      expect(spy).toHaveBeenCalledTimes(0);
+      expect(spy).toHaveBeenLastCalledWith(null);
     });
-  })
+  });
 });
