@@ -56,7 +56,7 @@ describe('TimeBasedExcusalFormComponent', () => {
       '9/1/2021',
       '08:00',
       '9/2/2021',
-      '08:00',
+      '',
     ]);
   });
 
