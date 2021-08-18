@@ -21,6 +21,7 @@ import { NamedItem } from '@reslife/shared-models';
 export class SearchSelectComponent implements OnInit {
   @Input() list!: NamedItem[] | null;
   @Input() icon = 'search';
+  @Input() label!: string;
   @Input() clearOnSelect = true;
   @Output() itemSelected = new EventEmitter<NamedItem>();
   autoControl = new FormControl();

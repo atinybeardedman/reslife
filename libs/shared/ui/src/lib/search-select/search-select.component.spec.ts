@@ -10,10 +10,12 @@ import { MatAutocompleteHarness } from '@angular/material/autocomplete/testing';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
 
 describe('SearchSelectComponent', () => {
   let component: SearchSelectComponent;
@@ -66,6 +68,13 @@ describe('SearchSelectComponent', () => {
       );
       expect(await icon.getName()).toBe('check');
     });
+
+    it('should render the label if given', async () => {
+      component.label = 'Student Name';
+      fixture.detectChanges();
+      const field = await loader.getAllHarnesses(MatFormFieldHarness.with({floatingLabelText: component.label}));
+      expect(field).toHaveLength(1);
+    })
 
     it('should render the list as the autocomplete options', async () => {
       component.list = [
