@@ -20,6 +20,10 @@
       ],
       "@reslife/admin-model": ["libs/admin/admin-model/src/index.ts"],
       "@reslife/admin-ui": ["libs/admin/admin-ui/src/index.ts"],
+      "@reslife/aod-data-access": ["libs/aod/aod-data-access/src/index.ts"],
+      "@reslife/aod-feature": ["libs/aod/aod-feature/src/index.ts"],
+      "@reslife/aod-model": ["libs/aod/aod-model/src/index.ts"],
+      "@reslife/aod-ui": ["libs/aod/aod-ui/src/index.ts"],
       "@reslife/boarder-management-feature": [
         "libs/admin/boarder-management/boarder-management-feature/src/index.ts"
       ],

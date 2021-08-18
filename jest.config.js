@@ -29,5 +29,8 @@ module.exports = {
     '<rootDir>/libs/dorm-notes/dorm-notes-feature',
     '<rootDir>/libs/dorm-notes/dorm-notes-ui',
     '<rootDir>/libs/dorm-notes/dorm-notes-data-access',
+    '<rootDir>/libs/aod/aod-feature',
+    '<rootDir>/libs/aod/aod-ui',
+    '<rootDir>/libs/aod/aod-data-access',
   ],
 };
