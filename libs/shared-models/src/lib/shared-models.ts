@@ -50,3 +50,9 @@ export interface DormDatePickerEvent {
   dorm: string;
   date: string;
 }
+
+
+export interface LeaveReturnTiming {
+  leaveDate: string;
+  returnDate: string;
+}
