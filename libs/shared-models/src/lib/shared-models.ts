@@ -56,3 +56,10 @@ export interface LeaveReturnTiming {
   leaveDate: string;
   returnDate: string;
 }
+
+export interface DashboardCard {
+  title: string;
+  description: string;
+  path: string;
+  icon: string;
+}

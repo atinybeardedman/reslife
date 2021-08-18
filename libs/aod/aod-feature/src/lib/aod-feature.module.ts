@@ -5,8 +5,14 @@ import { AodCheckInPageModule } from './aod-check-in-page/aod-check-in-page.modu
 import { AodSignoutsPageModule } from './aod-signouts-page/aod-signouts-page.module';
 import { AodCheckInPageComponent } from './aod-check-in-page/aod-check-in-page.component';
 import { AodSignoutsPageComponent } from './aod-signouts-page/aod-signouts-page.component';
+import { AodFeatureDashboardModule } from './aod-feature-dashboard/aod-feature-dashboard.module';
+import { AodFeatureDashboardComponent } from './aod-feature-dashboard/aod-feature-dashboard.component';
 
 const routes: Route[] = [
+  {
+    path: '',
+    component: AodFeatureDashboardComponent,
+  },
   {
     path: 'check-ins',
     pathMatch: 'full',
@@ -21,6 +27,7 @@ const routes: Route[] = [
     RouterModule.forChild(routes),
     AodCheckInPageModule,
     AodSignoutsPageModule,
+    AodFeatureDashboardModule,
   ],
 })
 export class AodFeatureModule {}

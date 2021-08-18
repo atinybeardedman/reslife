@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { MatListHarness, MatNavListHarness, MatNavListItemHarness } from '@angular/material/list/testing';
+import {  MatNavListHarness, MatNavListItemHarness } from '@angular/material/list/testing';
 import { SidenavComponent } from './sidenav.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
