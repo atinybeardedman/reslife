@@ -4,6 +4,14 @@ import { CheckInBasedExcusalFormModule } from './check-in-based-excusal-form/che
 import { TimeBasedExcusalFormModule } from './time-based-excusal-form/time-based-excusal-form.module';
 
 @NgModule({
-  imports: [CommonModule, CheckInBasedExcusalFormModule, TimeBasedExcusalFormModule],
+  imports: [
+    CommonModule,
+    CheckInBasedExcusalFormModule,
+    TimeBasedExcusalFormModule,
+  ],
+  exports: [
+    CheckInBasedExcusalFormModule,
+    TimeBasedExcusalFormModule,
+  ]
 })
 export class AodUiModule {}

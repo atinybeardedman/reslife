@@ -36,22 +36,23 @@ describe('CheckInBasedExcusalFormComponent', () => {
 
   describe('When checkins are provided', () => {
     let list: MatSelectionListHarness;
+    const checkInList = ['Brunch', 'Dinner', 'Dorm'];
     beforeEach(async () => {
-      component.checkins = ['Brunch', 'Dinner', 'Dorm'];
+      component.checkins = checkInList;
       fixture.detectChanges();
       list = await loader.getHarness(MatSelectionListHarness);
 
     })
     it('should render options for the check-in list given', async () => {
       const items = await list.getItems();
-      expect(items).toHaveLength(component.checkins.length);
-      expect(await parallel(() => items.map(i => i.getText()))).toEqual(component.checkins);
+      expect(items).toHaveLength(checkInList.length);
+      expect(await parallel(() => items.map(i => i.getText()))).toEqual(checkInList);
     });
     it('should emit the selected check ins selected on change', async () => {
       const spy = jest.spyOn(component.selectedCheckins, 'emit');
-      await list.selectItems({text: component.checkins[0]});
+      await list.selectItems({text: checkInList[0]});
       fixture.detectChanges();
-      expect(spy).toHaveBeenCalledWith([component.checkins[0]]);
+      expect(spy).toHaveBeenCalledWith([checkInList[0]]);
 
     });
   })

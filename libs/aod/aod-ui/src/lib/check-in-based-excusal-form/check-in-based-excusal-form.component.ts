@@ -8,7 +8,7 @@ import { MatSelectionList } from '@angular/material/list';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckInBasedExcusalFormComponent {
-  @Input() checkins!: string[];
+  @Input() checkins!: string[] | null;
   @Output() selectedCheckins = new EventEmitter<string[]>();
 
   @ViewChild('checkInList') list!: MatSelectionList;
