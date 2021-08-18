@@ -1,6 +1,6 @@
 import { Component,ChangeDetectionStrategy, Input, ViewChild, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { NavigationItem } from '@reslife/shared-models';
+import { NavigationItem, Role } from '@reslife/shared-models';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -14,6 +14,7 @@ export class MainViewComponent implements OnDestroy{
   @Input() title!: string;
   @Input() pageTitle!: string;
   @Input() links: NavigationItem[] = [];
+  @Input() role: Role = 'any';
   @ViewChild(MatSidenav, {static: true}) private sidenav!: MatSidenav;
   destroyed = new Subject<void>();
   isMobile$ = new BehaviorSubject<boolean>(false);

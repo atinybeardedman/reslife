@@ -19,7 +19,7 @@ export const appRoutes: Route[] = [
           data: {
             name: 'Check In',
             icon: 'check',
-            roles: ['any']
+            roles: []
           }
       },
       {
@@ -28,7 +28,7 @@ export const appRoutes: Route[] = [
         data: {
           name: 'Room Inspection',
           icon: 'hotel',
-          roles: ['any']
+          roles: []
         },
         loadChildren: () => 
         import('@reslife/room-inspection-feature').then(
@@ -41,7 +41,7 @@ export const appRoutes: Route[] = [
         data: {
           name: 'Student Signout',
           icon: 'person_pin_circle',
-          roles: ['any']
+          roles: []
         },
         loadChildren: () => 
           import('@reslife/student-signout-feature').then(
@@ -54,7 +54,7 @@ export const appRoutes: Route[] = [
         data: {
           name: 'Maintenance Request',
           icon: 'build',
-          roles: ['any']
+          roles: []
         },
         loadChildren: () => 
         import('@reslife/maintenance-request-feature').then(
@@ -67,7 +67,7 @@ export const appRoutes: Route[] = [
         data: {
           name: 'Dorm Notes',
           icon: 'assignment',
-          roles: ['any']
+          roles: []
         },
         loadChildren: () => 
         import('@reslife/dorm-notes-feature').then(
