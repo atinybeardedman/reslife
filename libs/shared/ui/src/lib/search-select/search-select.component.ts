@@ -44,8 +44,12 @@ export class SearchSelectComponent implements OnInit {
   onSelected(selected: MatAutocompleteSelectedEvent): void {
     this.itemSelected.emit(selected.option.value);
     if(this.clearOnSelect){
-      this.autoControl.setValue('');
+      this.clear();
     }
+  }
+
+  clear(): void {
+    this.autoControl.setValue('');
   }
 
   displayFn(item: CheckInItem) {

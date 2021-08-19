@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Boarder, LeaveReturnTiming, NamedItem } from '@reslife/shared-models';
 import { Observable } from 'rxjs';
@@ -6,6 +6,7 @@ import {
   AodCheckInService,
   SharedAodDataService,
 } from '@reslife/aod-data-access';
+import { SearchSelectComponent } from '@reslife/shared/ui';
 @Component({
   selector: 'reslife-aod-check-in-page',
   templateUrl: './aod-check-in-page.component.html',
@@ -19,6 +20,8 @@ export class AodCheckInPageComponent implements OnInit {
   selectedBoarder!: Boarder | null;
   selectedCheckIns: string[] = [];
   selectedTiming!: LeaveReturnTiming | null;
+
+  @ViewChild(SearchSelectComponent) searchSelect!: SearchSelectComponent;
   constructor(
     fb: FormBuilder,
     private acs: AodCheckInService,
@@ -83,11 +86,14 @@ export class AodCheckInPageComponent implements OnInit {
     return false
   }
 
-  save(clear = false): Promise<void> {
+  async save(clear = false): Promise<void> {
     if(this.choice === 'check-in'){
-      return this.acs.excuseByCheckIns(this.selectedBoarder as Boarder, this.reason, this.selectedCheckIns, clear);
+      await this.acs.excuseByCheckIns(this.selectedBoarder as Boarder, this.reason, this.selectedCheckIns, clear);
     } else {
-      return this.acs.excuseByTime(this.selectedBoarder as Boarder, this.reason, this.selectedTiming as LeaveReturnTiming, clear);
+      await this.acs.excuseByTime(this.selectedBoarder as Boarder, this.reason, this.selectedTiming as LeaveReturnTiming, clear);
     }
+    this.searchSelect.clear();
+    this.excusalForm.controls.reason.reset();
+    this.selectedBoarder = null;
   }
 }
