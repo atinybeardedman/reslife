@@ -20,8 +20,11 @@ export const testBoarder: Boarder = {
   };
 
 export const testCampusedRecord: CampusedStudentRecord = {
-  name: 'Test Boarder',
-  uid: '1234',
+  student: {
+    name: 'Test Boarder',
+    uid: '1234',  
+  },
+  uid: '1',
   startDate: '2021-09-14',
   endDate: '2021-09-30'
 };

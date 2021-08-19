@@ -65,7 +65,7 @@ describe('CampusedManagementTableComponent', () => {
         cells.map((cell) => cell.getText())
       );
       expect(cellTexts).toEqual([
-        testCampusedRecord.name,
+        testCampusedRecord.student.name,
         formatDate(getDateFromDatestring(testCampusedRecord.startDate), 'M/d', 'en-US'),
         formatDate(getDateFromDatestring(testCampusedRecord.endDate), 'M/d', 'en-US'),
         'editdelete',

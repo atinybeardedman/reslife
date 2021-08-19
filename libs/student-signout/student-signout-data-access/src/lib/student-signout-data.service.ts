@@ -45,7 +45,7 @@ export class StudentSignoutDataService {
           })
           .map((boarder) => {
             let isCampused: true | undefined;
-            if (campused.find((c) => c.uid === boarder.uid)) {
+            if (campused.find((c) => c.student.uid === boarder.uid)) {
               isCampused = true;
             }
             return {

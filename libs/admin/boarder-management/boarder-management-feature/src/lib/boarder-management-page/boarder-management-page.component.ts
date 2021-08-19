@@ -16,8 +16,8 @@ export class BoarderManagementPageComponent implements OnInit {
   boarders$!: Observable<Boarder[]>;
   inactiveBoarders$!: Observable<Boarder[]>;
   dorms$!: Observable<string[]>;
-  @ViewChild('edit') editDialogTemplate!: TemplateRef<EditBoarderModalComponent>;
-  @ViewChild('confirm') confirmDialogTemplate!: TemplateRef<ConfirmModalComponent>;
+  @ViewChild('editTemplate') editDialogTemplate!: TemplateRef<EditBoarderModalComponent>;
+  @ViewChild('confirmTemplate') confirmDialogTemplate!: TemplateRef<ConfirmModalComponent>;
   modalTitle = 'New Boarder';
   selectedBoarder!: Boarder | null;
   constructor(private bs: BoarderManagementService, private dialog: MatDialog){}
