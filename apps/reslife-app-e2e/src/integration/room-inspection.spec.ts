@@ -90,7 +90,7 @@ describe('room inspection', () => {
             .contains('swap_horiz')
             .click();
         })
-        cy.get('@last-item').should('contain.text', 'thumb_up');
+        cy.get('[data-testid="inspected-list"] mat-list-item').contains('Test Student 6').parent().should('contain.text', 'thumb_up');
       });
     });
   });

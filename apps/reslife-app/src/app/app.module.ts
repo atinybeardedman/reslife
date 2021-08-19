@@ -9,6 +9,7 @@ import { SharedUiModule } from '@reslife/shared/ui';
 import { appRoutes } from './routes';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { AngularFirestoreModule,  SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +18,17 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     SharedUiModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: FIRESTORE_SETTINGS,
+      useValue: !environment.production ? {
+        experimentalForceLongPolling: true  
+      } : undefined,
+    },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
