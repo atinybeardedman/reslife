@@ -1,4 +1,4 @@
-import { Boarder } from "./shared-models";
+import { Boarder, CampusedStudentRecord } from "./shared-models";
 
 export const testBoarder: Boarder = {
     firstName: 'Elizabeth (Liz)',
@@ -18,3 +18,10 @@ export const testBoarder: Boarder = {
     endDate: '2022-06-30',
     isActive: true,
   };
+
+export const testCampusedRecord: CampusedStudentRecord = {
+  name: 'Test Boarder',
+  uid: '1234',
+  startDate: '2021-09-14',
+  endDate: '2021-09-30'
+};

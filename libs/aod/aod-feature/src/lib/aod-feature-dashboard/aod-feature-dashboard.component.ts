@@ -21,7 +21,13 @@ export class AodFeatureDashboardComponent {
       icon: 'person_pin_circle',
       path: 'signouts',
       description:
-        'Override student permissions for a one time sign out, for the weekend, or campus a student',
+        'Override student permissions for a one time sign out, or for the entire weekend',
+    },
+    {
+      title: 'Campused Students',
+      icon: 'person_off',
+      path: 'campused',
+      description: 'Manage campused students',
     },
   ];
 }

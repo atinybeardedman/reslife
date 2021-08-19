@@ -7,6 +7,8 @@ import { AodCheckInPageComponent } from './aod-check-in-page/aod-check-in-page.c
 import { AodSignoutsPageComponent } from './aod-signouts-page/aod-signouts-page.component';
 import { AodFeatureDashboardModule } from './aod-feature-dashboard/aod-feature-dashboard.module';
 import { AodFeatureDashboardComponent } from './aod-feature-dashboard/aod-feature-dashboard.component';
+import { AodCampusedManagementPageModule } from './aod-campused-management-page/aod-campused-management-page.module';
+import { AodCampusedManagementPageComponent } from './aod-campused-management-page/aod-campused-management-page.component';
 
 const routes: Route[] = [
   {
@@ -19,6 +21,10 @@ const routes: Route[] = [
     component: AodCheckInPageComponent,
   },
   { path: 'signouts', pathMatch: 'full', component: AodSignoutsPageComponent },
+  {
+    path: 'campused',
+    component: AodCampusedManagementPageComponent
+  }
 ];
 
 @NgModule({
@@ -28,6 +34,7 @@ const routes: Route[] = [
     AodCheckInPageModule,
     AodSignoutsPageModule,
     AodFeatureDashboardModule,
+    AodCampusedManagementPageModule,
   ],
 })
 export class AodFeatureModule {}

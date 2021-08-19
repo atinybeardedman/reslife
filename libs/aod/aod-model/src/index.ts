@@ -1,1 +1,1 @@
-export * from './lib/aod-aod-model';
+export * from './lib/aod-model';
