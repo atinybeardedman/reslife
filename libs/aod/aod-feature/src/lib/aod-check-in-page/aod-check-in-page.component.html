@@ -51,7 +51,8 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button [disabled]="!isValid" (click)="save()" mat-button>Save</button>
+      <button [disabled]="!isValidClear" (click)="save(true)" mat-button>Clear Excusals</button>
+      <button [disabled]="!isValidExcusal" (click)="save()" mat-button>Excuse</button>
     </mat-card-actions>
   </mat-card>
   <div fxFlexFill></div>

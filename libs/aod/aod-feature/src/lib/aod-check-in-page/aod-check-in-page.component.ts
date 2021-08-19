@@ -34,6 +34,10 @@ export class AodCheckInPageComponent implements OnInit {
     return this.excusalForm.controls.choice.value;
   }
 
+  get reason(): string {
+    return this.excusalForm.controls.reason.value;
+  }
+
   ngOnInit() {
     this.boarders$ = this.sad.getActiveBoarders();
     this.checkIns$ = this.acs.getCheckIns();
@@ -53,7 +57,7 @@ export class AodCheckInPageComponent implements OnInit {
     this.selectedTiming = timing;
   }
 
-  get isValid(): boolean {
+  get isValidExcusal(): boolean {
     if (this.excusalForm.valid && this.selectedBoarder) {
       if (this.choice === 'check-in' && this.selectedCheckIns.length > 0) {
         return true;
@@ -66,7 +70,24 @@ export class AodCheckInPageComponent implements OnInit {
     return false;
   }
 
-  save(): void {
-    console.log('saved');
+  get isValidClear(): boolean {
+    if(this.selectedBoarder){
+      if (this.choice === 'check-in' && this.selectedCheckIns.length > 0) {
+        return true;
+      } else {
+        if (this.choice === 'time' && this.selectedTiming) {
+          return true;
+        }
+      }
+    }
+    return false
+  }
+
+  save(clear = false): Promise<void> {
+    if(this.choice === 'check-in'){
+      return this.acs.excuseByCheckIns(this.selectedBoarder as Boarder, this.reason, this.selectedCheckIns, clear);
+    } else {
+      return this.acs.excuseByTime(this.selectedBoarder as Boarder, this.reason, this.selectedTiming as LeaveReturnTiming, clear);
+    }
   }
 }
