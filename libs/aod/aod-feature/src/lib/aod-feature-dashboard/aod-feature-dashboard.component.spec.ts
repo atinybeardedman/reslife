@@ -1,4 +1,6 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MockModule } from 'ng-mocks';
 
 import { AodFeatureDashboardComponent } from './aod-feature-dashboard.component';
 import { AodFeatureDashboardModule } from './aod-feature-dashboard.module';
@@ -9,8 +11,9 @@ describe('AodFeatureDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AodFeatureDashboardModule],
-      declarations: [ AodFeatureDashboardComponent ]
+      imports: [MockModule(AodFeatureDashboardModule)],
+      declarations: [ AodFeatureDashboardComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });

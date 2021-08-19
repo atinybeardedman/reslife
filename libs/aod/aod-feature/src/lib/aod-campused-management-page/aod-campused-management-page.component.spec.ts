@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AodSignoutDataService, SharedAodDataService } from '@reslife/aod-data-access';
 import { MockModule, MockProvider } from 'ng-mocks';
@@ -18,7 +19,8 @@ describe('AodCampusedManagementPageComponent', () => {
       providers: [
         MockProvider(SharedAodDataService),
         MockProvider(AodSignoutDataService),
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });

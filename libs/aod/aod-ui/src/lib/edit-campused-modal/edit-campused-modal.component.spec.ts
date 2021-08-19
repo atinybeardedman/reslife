@@ -29,6 +29,20 @@ describe('EditCampusedModalComponent', () => {
   beforeAll(() => {
     jest.useFakeTimers('modern');
     jest.setSystemTime(new Date(2021, 8, 1, 8, 0, 0, 0));
+
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        // addListener: jest.fn(), // deprecated
+        // removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
   });
   afterAll(() => {
     jest.useRealTimers();
@@ -119,15 +133,17 @@ describe('EditCampusedModalComponent', () => {
       const inputs = await loader.getAllHarnesses(MatInputHarness);
       await inputs[1].setValue('9/5/2021');
       fixture.detectChanges();
-      const button = await loader.getHarness(MatButtonHarness);
+      const button = await loader.getHarness(MatButtonHarness.with({text: 'Save'}));
+
       await button.click();
       fixture.detectChanges();
 
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith({
-        ...component.selectedBoarder,
+        student: component.selectedBoarder,
         startDate: '2021-09-01',
         endDate: '2021-09-05',
+        uid: ''
       });
     });
   });
