@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { BoarderManagementService } from '@reslife/admin-data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { BoarderAction } from '@reslife/admin-model';
-import { ConfirmModalComponent } from '@reslife/admin-ui';
+import { ConfirmModalComponent, EditBoarderModalComponent } from '@reslife/admin-ui';
 
 @Component({
   selector: 'reslife-boarder-management-page',
@@ -16,7 +16,8 @@ export class BoarderManagementPageComponent implements OnInit {
   boarders$!: Observable<Boarder[]>;
   inactiveBoarders$!: Observable<Boarder[]>;
   dorms$!: Observable<string[]>;
-  @ViewChild(TemplateRef) dialogTemplate!: TemplateRef<any>;
+  @ViewChild('edit') editDialogTemplate!: TemplateRef<EditBoarderModalComponent>;
+  @ViewChild('confirm') confirmDialogTemplate!: TemplateRef<ConfirmModalComponent>;
   modalTitle = 'New Boarder';
   selectedBoarder!: Boarder | null;
   constructor(private bs: BoarderManagementService, private dialog: MatDialog){}
@@ -37,19 +38,21 @@ export class BoarderManagementPageComponent implements OnInit {
       }
 
       
-    this.dialog.open(this.dialogTemplate, {id: 'edit-boarder'});
+    this.dialog.open(this.editDialogTemplate, {id: 'edit-boarder'});
   }
 
   delete(action: BoarderAction): void {
-    this.dialog.open(ConfirmModalComponent, {
-      data: {
-        message: 'Are you sure you want to delete this boarder?'
-      }
-    }).afterClosed().subscribe(val => {
-      if(val){
-        this.bs.deleteBoarder(action.boarder);
-      }
-    });
+    this.selectedBoarder = action.boarder;
+    this.dialog.open(this.confirmDialogTemplate, {id: 'confirm'});
+  }
+
+  async confirmDelete(shouldDelete: boolean): Promise<void> {
+    this.dialog.getDialogById('confirm')?.close();
+    if(shouldDelete){
+      await this.bs.deleteBoarder(this.selectedBoarder as Boarder);
+      this.selectedBoarder = null;
+
+    }
   }
 
   async saveBoarder(boarder: Boarder){

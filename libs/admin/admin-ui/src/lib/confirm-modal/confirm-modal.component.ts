@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'reslife-confirm-modal',
@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfirmModalComponent {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {message: string} ) { }
+  @Input() message!: string;
+  @Output() isConfirmed = new EventEmitter<boolean>();
 
 }
