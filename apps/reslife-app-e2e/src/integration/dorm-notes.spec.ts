@@ -41,7 +41,7 @@ describe('dorm-notes', () => {
       })
 
         it('should allow the user to enter notes for the selected date', () => {
-         
+          cy.get('mat-expansion-panel').contains('Room Inspections').click();
           cy.get('textarea#Room-Inspections').clear().type('All passed');
           /* eslint-disable cypress/no-unnecessary-waiting */ 
           cy.wait(1100); 
@@ -59,6 +59,7 @@ describe('dorm-notes', () => {
           .then(() => {
             cy.get('mat-option').contains('Reagan').click({waitForAnimations: true});
           });
+          cy.get('mat-expansion-panel').contains('Room Inspections').click();
          cy.get('textarea#Room-Inspections').should('have.value', 'All passed');
 
 
