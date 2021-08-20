@@ -1,7 +1,7 @@
 <div mat-dialog-content>
-    {{data.message}}
+    {{message}}
 </div>
 <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="false">Cancel</button>
-    <button mat-button color="accent" [mat-dialog-close]="true">Confirm</button>
+    <button mat-button (click)="isConfirmed.emit(false)">Cancel</button>
+    <button mat-button color="accent" (click)="isConfirmed.emit(true)">Confirm</button>
 </div>

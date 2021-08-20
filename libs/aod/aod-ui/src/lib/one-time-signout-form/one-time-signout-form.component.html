@@ -1,0 +1,36 @@
+<form [formGroup]="signoutFields" *ngIf="signoutMeta">
+    <div fxLayout>
+      <mat-form-field fxFill>
+        <mat-label>Destination</mat-label>
+        <input
+          matInput
+          required
+          type="text"
+          formControlName="destination"
+        />
+      </mat-form-field>
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px" fxLayout.gt-md="row">
+      <mat-form-field fxFlex>
+        <mat-label> Tranport </mat-label>
+        <mat-select required formControlName="transport">
+          <mat-option
+            *ngFor="let option of transportOptions"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field
+        fxFlex
+        *ngIf="signoutFields.controls.transport.value === 'Car'"
+      >
+        <mat-label>Which Car?</mat-label>
+        <input matInput required type="text" formControlName="carDetail" />
+        <mat-hint *ngIf="signoutMeta.permissions.carRestriction">{{
+          signoutMeta.permissions.carRestriction
+        }}</mat-hint>
+      </mat-form-field>
+    </div>
+  </form>

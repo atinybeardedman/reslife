@@ -2,6 +2,10 @@ export interface NamedItem {
   name: string;
 }
 
+export interface SimpleItem extends NamedItem {
+  uid: string;
+}
+
 export type BoarderType = '5 Day' | '7 Day';
 
 export interface BoarderPermissions {
@@ -40,7 +44,7 @@ export interface NavigationItem {
 }
 
 export interface CampusedStudentRecord {
-  name: string;
+  student: SimpleItem;
   uid: string;
   startDate: string;
   endDate: string;
@@ -49,4 +53,17 @@ export interface CampusedStudentRecord {
 export interface DormDatePickerEvent {
   dorm: string;
   date: string;
+}
+
+
+export interface LeaveReturnTiming {
+  leaveDate: string;
+  returnDate: string;
+}
+
+export interface DashboardCard {
+  title: string;
+  description: string;
+  path: string;
+  icon: string;
 }

@@ -1,0 +1,68 @@
+<form
+        class="py-1"
+        [formGroup]="permissionsGroup"
+      >
+        <div ngClass.gt-md="px-1" class="py-1" fxLayout>
+          <div fxFlex fxLayout fxLayoutAlign="space-between">
+            <label fxFlex="1 1 auto" id="can-walk-label">Can Walk Off?</label>
+            <mat-radio-group
+              fxFlex="1 1 auto"
+              fxLayout
+              fxLayoutGap="1em"
+              fxLayoutAlign="end"
+              formControlName="canWalk"
+              aria-labelledby="can-walk-label"
+            >
+              <mat-radio-button [value]="true">Yes</mat-radio-button>
+              <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div ngClass.gt-md="px-1" class="py-1" fxLayout>
+          <div fxFlex fxLayout fxLayoutAlign="space-between">
+            <label fxFlex="1 1 auto" id="can-bike-label"
+              >Can Bike/Skate?</label
+            >
+            <mat-radio-group
+              fxFlex="1 1 auto"
+              fxLayout
+              fxLayoutGap="1em"
+              fxLayoutAlign="end"
+              formControlName="canBike"
+              aria-labelledby="can-bike-label"
+            >
+              <mat-radio-button [value]="true">Yes</mat-radio-button>
+              <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div ngClass.gt-md="px-1" class="py-1">
+          <div fxFlexFill fxLayout fxLayoutAlign="space-between">
+            <label fxFlex="1 1 auto" id="can-car-label"
+              >Allowed in a Car?</label
+            >
+            <mat-radio-group
+              fxFlex="1 1 auto"
+              fxLayout
+              fxLayoutGap="1em"
+              fxLayoutAlign="end"
+              formControlName="canCar"
+              aria-labelledby="can-car-label"
+            >
+              <mat-radio-button [value]="true">Yes</mat-radio-button>
+              <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div ngClass.gt-md="px-1" *ngIf="permissionsGroup.get('canCar')?.value">
+          <mat-form-field class="w-full">
+            <mat-label>Optional Car Restriction</mat-label>
+            <input
+              formControlName="carRestriction"
+              type="text"
+              matInput
+              placeholder="Ex. No Student Drivers"
+            />
+          </mat-form-field>
+        </div>
+      </form>

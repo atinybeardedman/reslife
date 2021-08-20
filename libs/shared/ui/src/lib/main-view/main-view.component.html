@@ -2,7 +2,7 @@
 <mat-sidenav-container>
     <mat-sidenav [opened]="(isMobile$ | async) === false" [mode]="(isMobile$ | async) ?'over' : 'side'">
         <nav>
-            <reslife-sidenav (navigationClick)="handleClick()" [links]="links"></reslife-sidenav>
+            <reslife-sidenav (navigationClick)="handleClick()" [links]="links" [role]="role"></reslife-sidenav>
         </nav>
     </mat-sidenav>
     <mat-sidenav-content>

@@ -1,0 +1,60 @@
+<form [formGroup]="timeExcusalForm">
+  <div fxLayout="row" fxLayoutAlign="space-evenly start" formGroupName="departureGroup">
+    <mat-form-field>
+      <mat-label>Departure Date</mat-label>
+      <input
+        required
+        formControlName="departureDateCtrl"
+        matInput
+        [matDatepicker]="departurePicker"
+        id="departure-date"
+        name="departure-date"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="departurePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #departurePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Departure Time</mat-label>
+      <input
+        required
+        formControlName="departureTimeCtrl"
+        matInput
+        type="time"
+        name="departure-time"
+        id="departure-time"
+      />
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-evenly start" formGroupName="returnGroup">
+    <mat-form-field>
+      <mat-label>Return Date</mat-label>
+      <input
+        required
+        formControlName="returnDateCtrl"
+        matInput
+        [matDatepicker]="returnPicker"
+        id="return-date"
+        name="return-date"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="returnPicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #returnPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Return Time</mat-label>
+      <input
+        required
+        formControlName="returnTimeCtrl"
+        matInput
+        type="time"
+        name="return-time"
+        id="return-time"
+      />
+    </mat-form-field>
+  </div>
+</form>

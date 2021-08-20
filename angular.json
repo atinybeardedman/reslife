@@ -64,6 +64,94 @@
         }
       }
     },
+    "aod-model": {
+      "root": "libs/aod/aod-model",
+      "sourceRoot": "libs/aod/aod-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/aod/aod-model/**/*.ts"]
+          }
+        }
+      }
+    },
+    "aod-data-access": {
+      "projectType": "library",
+      "root": "libs/aod/aod-data-access",
+      "sourceRoot": "libs/aod/aod-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/aod/aod-data-access"],
+          "options": {
+            "jestConfig": "libs/aod/aod-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/aod/aod-data-access/src/**/*.ts",
+              "libs/aod/aod-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "aod-feature": {
+      "projectType": "library",
+      "root": "libs/aod/aod-feature",
+      "sourceRoot": "libs/aod/aod-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/aod/aod-feature"],
+          "options": {
+            "jestConfig": "libs/aod/aod-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/aod/aod-feature/src/**/*.ts",
+              "libs/aod/aod-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "aod-ui": {
+      "projectType": "library",
+      "root": "libs/aod/aod-ui",
+      "sourceRoot": "libs/aod/aod-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/aod/aod-ui"],
+          "options": {
+            "jestConfig": "libs/aod/aod-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/aod/aod-ui/src/**/*.ts",
+              "libs/aod/aod-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "boarder-management-feature": {
       "projectType": "library",
       "root": "libs/admin/boarder-management/boarder-management-feature",
@@ -212,29 +300,6 @@
         }
       }
     },
-    "dorm-notes-model": {
-      "root": "libs/dorm-notes/dorm-notes-model",
-      "sourceRoot": "libs/dorm-notes/dorm-notes-model/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/workspace:tsc",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/dorm-notes/dorm-notes-model",
-            "main": "libs/dorm-notes/dorm-notes-model/src/index.ts",
-            "tsConfig": "libs/dorm-notes/dorm-notes-model/tsconfig.lib.json",
-            "assets": ["libs/dorm-notes/dorm-notes-model/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/dorm-notes/dorm-notes-model/**/*.ts"]
-          }
-        }
-      }
-    },
     "dorm-notes-feature": {
       "projectType": "library",
       "root": "libs/dorm-notes/dorm-notes-feature",
@@ -256,6 +321,29 @@
               "libs/dorm-notes/dorm-notes-feature/src/**/*.ts",
               "libs/dorm-notes/dorm-notes-feature/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "dorm-notes-model": {
+      "root": "libs/dorm-notes/dorm-notes-model",
+      "sourceRoot": "libs/dorm-notes/dorm-notes-model/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/dorm-notes/dorm-notes-model",
+            "main": "libs/dorm-notes/dorm-notes-model/src/index.ts",
+            "tsConfig": "libs/dorm-notes/dorm-notes-model/tsconfig.lib.json",
+            "assets": ["libs/dorm-notes/dorm-notes-model/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/dorm-notes/dorm-notes-model/**/*.ts"]
           }
         }
       }

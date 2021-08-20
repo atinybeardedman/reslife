@@ -42,11 +42,18 @@
   <div class="col" fxFlex fxHide.lt-md></div>
 </section>
 
-<ng-template>
+<ng-template #editTemplate>
   <reslife-edit-boarder-modal
     [dorms]="dorms$ | async"
     [boarder]="selectedBoarder"
     [title]="modalTitle"
     (save)="saveBoarder($event)"
   ></reslife-edit-boarder-modal>
+</ng-template>
+
+<ng-template #confirmTemplate>
+  <reslife-confirm-modal
+    message="Are you sure you want to delete this boarder?"
+    (isConfirmed)="confirmDelete($event)"
+  ></reslife-confirm-modal>
 </ng-template>

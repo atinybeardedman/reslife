@@ -1,0 +1,99 @@
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Boarder, LeaveReturnTiming, NamedItem } from '@reslife/shared-models';
+import { Observable } from 'rxjs';
+import {
+  AodCheckInService,
+  SharedAodDataService,
+} from '@reslife/aod-data-access';
+import { SearchSelectComponent } from '@reslife/shared/ui';
+@Component({
+  selector: 'reslife-aod-check-in-page',
+  templateUrl: './aod-check-in-page.component.html',
+  styleUrls: ['./aod-check-in-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AodCheckInPageComponent implements OnInit {
+  excusalForm: FormGroup;
+  boarders$!: Observable<Boarder[]>;
+  checkIns$!: Observable<string[]>;
+  selectedBoarder!: Boarder | null;
+  selectedCheckIns: string[] = [];
+  selectedTiming!: LeaveReturnTiming | null;
+
+  @ViewChild(SearchSelectComponent) searchSelect!: SearchSelectComponent;
+  constructor(
+    fb: FormBuilder,
+    private acs: AodCheckInService,
+    private sad: SharedAodDataService
+  ) {
+    this.excusalForm = fb.group({
+      reason: ['', Validators.required],
+      choice: ['check-in', Validators.required],
+    });
+  }
+
+  get choice(): 'check-in' | 'time' {
+    return this.excusalForm.controls.choice.value;
+  }
+
+  get reason(): string {
+    return this.excusalForm.controls.reason.value;
+  }
+
+  ngOnInit() {
+    this.boarders$ = this.sad.getActiveBoarders();
+    this.checkIns$ = this.acs.getCheckIns();
+  }
+
+  selectBoarder(boarder: NamedItem): void {
+    this.selectedBoarder = boarder as Boarder;
+  }
+
+  setSelectedCheckIns(checkIns: string[]): void {
+    this.selectedCheckIns = checkIns;
+    this.selectedTiming = null;
+  }
+
+  setExcusalTiming(timing: LeaveReturnTiming | null): void {
+    this.selectedCheckIns = [];
+    this.selectedTiming = timing;
+  }
+
+  get isValidExcusal(): boolean {
+    if (this.excusalForm.valid && this.selectedBoarder) {
+      if (this.choice === 'check-in' && this.selectedCheckIns.length > 0) {
+        return true;
+      } else {
+        if (this.choice === 'time' && this.selectedTiming) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  get isValidClear(): boolean {
+    if(this.selectedBoarder){
+      if (this.choice === 'check-in' && this.selectedCheckIns.length > 0) {
+        return true;
+      } else {
+        if (this.choice === 'time' && this.selectedTiming) {
+          return true;
+        }
+      }
+    }
+    return false
+  }
+
+  async save(clear = false): Promise<void> {
+    if(this.choice === 'check-in'){
+      await this.acs.excuseByCheckIns(this.selectedBoarder as Boarder, this.reason, this.selectedCheckIns, clear);
+    } else {
+      await this.acs.excuseByTime(this.selectedBoarder as Boarder, this.reason, this.selectedTiming as LeaveReturnTiming, clear);
+    }
+    this.searchSelect.clear();
+    this.excusalForm.controls.reason.reset();
+    this.selectedBoarder = null;
+  }
+}

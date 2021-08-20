@@ -1,0 +1,33 @@
+<section
+  fxLayout="row wrap"
+  fxLayoutAlign="start"
+  fxLayoutAlign.lt-md="space-around"
+  fxLayoutGap="2em"
+  fxLayoutGap.lt-md="0"
+  fxLayoutAlign.xs="center"
+  class="m-2"
+>
+  <a
+    fxFlex.gt-md="30"
+    fxFlex.gt-xs="45"
+    fxFlex.xs="100"
+    [routerLink]="card.path"
+    *ngFor="let card of cards"
+  >
+    <mat-card style="margin: 1em 0; height: 5em">
+      <mat-card-header class="no-margin">
+        <mat-card-title style="width: max-content">
+          {{ card.title }}
+        </mat-card-title>
+
+        <div fxFlex="grow"></div>
+        <div>
+          <mat-icon>{{ card.icon }}</mat-icon>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        {{ card.description }}
+      </mat-card-content>
+    </mat-card>
+  </a>
+</section>

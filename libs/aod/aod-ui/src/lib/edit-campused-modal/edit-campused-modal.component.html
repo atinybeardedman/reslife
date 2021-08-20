@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+  <div fxLayout>
+    <reslife-search-select
+      fxFill
+      [list]="boarders"
+      (itemSelected)="selectBoarder($event)"
+      [clearOnSelect]="false"
+      *ngIf="!record; else disabledName"
+    ></reslife-search-select>
+    <ng-template #disabledName>
+      <mat-form-field fxFill>
+        <input type="text" matInput [disabled]="true" [value]="record?.student?.name" />
+      </mat-form-field>
+    </ng-template>
+  </div>
+    <form [formGroup]="campusedTimingForm" *ngIf="selectedBoarder">
+      <div fxLayout="row wrap" fxLayoutGap="10px">
+        <mat-form-field fxFlex fxFlex.lt-md="100">
+          <mat-label>Start date</mat-label>
+          <input
+            formControlName="startDate"
+            matInput
+            required
+            [matDatepicker]="startPicker"
+            data-testid="start-date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field fxFlex fxFlex.lt-md="100">
+          <mat-label>End date</mat-label>
+          <input
+            formControlName="endDate"
+            matInput
+            required
+            [matDatepicker]="endPicker"
+            data-testid="end-date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button
+    (click)="save.emit(editedRecord)"
+    [disabled]="!(campusedTimingForm.valid && selectedBoarder)"
+    mat-button
+  >
+    Save
+  </button>
+</div>
