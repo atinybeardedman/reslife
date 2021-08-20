@@ -15,6 +15,7 @@ describe('student-signout', () => {
   describe('when signouts currently exist', () => {
     beforeEach(() => {
         cy.callFirestore('delete', 'signouts');
+        cy.callFirestore('delete', 'campused');
         cy.callFirestore('set', `signouts/${signout.uid}`, signout);
     })
     it('should display current signouts', () => {
@@ -45,7 +46,7 @@ describe('student-signout', () => {
                     .type(testBoarder.firstName.substr(0,4), {delay: 100, waitForAnimations: true})
                   cy.get('mat-option').click();
                 }).then(() => {
-                    cy.get('input[formcontrolname="destination"]').type("Starbucks");
+                    cy.get('input[formControlName="destination"]').type("Starbucks");
                     cy.get('mat-select').click();
                     cy.get('mat-option').contains('Walk').click();
                     cy.get('button').contains('Sign Out').click();
