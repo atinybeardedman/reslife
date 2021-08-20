@@ -69,20 +69,10 @@
       "sourceRoot": "libs/aod/aod-model/src",
       "projectType": "library",
       "architect": {
-        "build": {
-          "builder": "@nrwl/workspace:tsc",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/aod/aod-model",
-            "main": "libs/aod/aod-model/src/index.ts",
-            "tsConfig": "libs/aod/aod-model/tsconfig.lib.json",
-            "assets": ["libs/aod/aod-model/*.md"]
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/aod/aod-model/**/*.ts"]
+            "lintFilePatterns": ["libs/aod/aod-model/**/*.*ts"]
           }
         }
       }
