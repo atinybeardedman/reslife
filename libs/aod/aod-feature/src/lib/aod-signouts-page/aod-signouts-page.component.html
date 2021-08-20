@@ -8,6 +8,10 @@
   <div fxFlexFill></div>
   <mat-card fxFlex="1 1 30rem" fxFlex.lt-md>
     <mat-card-title>Signout Overrides</mat-card-title>
+    <mat-card-subtitle class="mt-1"
+      >Note: Students currently signed out will not be able to be edited
+      here</mat-card-subtitle
+    >
     <mat-card-content>
       <form [formGroup]="signoutForm">
         <div fxLayout="row" fxLayoutGap="10px">
@@ -26,10 +30,10 @@
           fxLayoutGap="10px"
           fxLayoutAlign="start"
         >
-          <mat-radio-button value="one-time"
-            >One Time Signout</mat-radio-button
+          <mat-radio-button value="one-time">One Time Signout</mat-radio-button>
+          <mat-radio-button value="weekend"
+            >Temporary Permission Override</mat-radio-button
           >
-          <mat-radio-button value="weekend">Temporary Permission Override</mat-radio-button>
         </mat-radio-group>
         <div fxLayout="row" class="py-1" *ngIf="selectedSignoutMeta">
           <reslife-one-time-signout-form
@@ -53,4 +57,3 @@
   </mat-card>
   <div fxFlexFill></div>
 </section>
-
