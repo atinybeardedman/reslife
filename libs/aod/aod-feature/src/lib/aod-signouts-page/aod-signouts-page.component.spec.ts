@@ -14,11 +14,10 @@ describe('AodSignoutsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MockModule(AodSignoutsPageModule), NoopAnimationsModule],
+      imports: [AodSignoutsPageModule, NoopAnimationsModule],
       declarations: [ AodSignoutsPageComponent ],
       providers: [
         MockProvider(AodSignoutDataService),
-        MockProvider(FormBuilder)
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })

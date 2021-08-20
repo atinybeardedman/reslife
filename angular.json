@@ -72,7 +72,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/aod/aod-model/**/*.*ts"]
+            "lintFilePatterns": ["libs/aod/aod-model/**/*.ts"]
           }
         }
       }
