@@ -1,6 +1,6 @@
 <form [formGroup]="timeExcusalForm">
-  <div fxLayout="row" fxLayoutAlign="space-evenly start" formGroupName="departureGroup">
-    <mat-form-field>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" formGroupName="departureGroup">
+    <mat-form-field fxFlex fxFlex.lt-md="100">
       <mat-label>Departure Date</mat-label>
       <input
         required
@@ -16,7 +16,7 @@
       ></mat-datepicker-toggle>
       <mat-datepicker #departurePicker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field fxFlex fxFlex.lt-md="100">
       <mat-label>Departure Time</mat-label>
       <input
         required
@@ -28,8 +28,8 @@
       />
     </mat-form-field>
   </div>
-  <div fxLayout="row" fxLayoutAlign="space-evenly start" formGroupName="returnGroup">
-    <mat-form-field>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" formGroupName="returnGroup">
+    <mat-form-field fxFlex fxFlex.lt-md="100">
       <mat-label>Return Date</mat-label>
       <input
         required
@@ -45,7 +45,7 @@
       ></mat-datepicker-toggle>
       <mat-datepicker #returnPicker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field fxFlex fxFlex.lt-md="100">
       <mat-label>Return Time</mat-label>
       <input
         required
