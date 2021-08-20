@@ -9,7 +9,7 @@
   <mat-card fxFlex="1 1 30rem" fxFlex.lt-md>
     <mat-card-title>Signout Overrides</mat-card-title>
     <mat-card-content>
-      <form [formGroup]="excusalForm">
+      <form [formGroup]="signoutForm">
         <div fxLayout="row" fxLayoutGap="10px">
           <reslife-search-select
             fxFlex
@@ -31,23 +31,24 @@
           >
           <mat-radio-button value="weekend">Temporary Permission Override</mat-radio-button>
         </mat-radio-group>
-        <div fxLayout="row" class="py-1">
-          <reslife-check-in-based-excusal-form
+        <div fxLayout="row" class="py-1" *ngIf="selectedSignoutMeta">
+          <reslife-one-time-signout-form
             fxFlex
-            *ngIf="choice === 'check-in'"
-            [checkins]="checkIns$ | async"
-            (selectedCheckins)="setSelectedCheckIns($event)"
-          ></reslife-check-in-based-excusal-form>
-          <reslife-time-based-excusal-form
+            *ngIf="choice === 'one-time'"
+            [signoutMeta]="selectedSignoutMeta"
+            (signout)="setSignout($event)"
+          ></reslife-one-time-signout-form>
+          <reslife-override-permissions-form
             fxFlex
-            *ngIf="choice === 'time'"
-            (timing)="setExcusalTiming($event)"
-          ></reslife-time-based-excusal-form>
+            *ngIf="choice === 'weekend'"
+            [permissions]="selectedSignoutMeta.permissions"
+            (permissionsChange)="setTempPermissions($event)"
+          ></reslife-override-permissions-form>
         </div>
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button [disabled]="!isValidExcusal" (click)="save()" mat-button>Save</button>
+      <button [disabled]="!isValid" (click)="save()" mat-button>Save</button>
     </mat-card-actions>
   </mat-card>
   <div fxFlexFill></div>
