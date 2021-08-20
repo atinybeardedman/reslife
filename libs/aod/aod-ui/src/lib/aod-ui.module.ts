@@ -4,6 +4,8 @@ import { CheckInBasedExcusalFormModule } from './check-in-based-excusal-form/che
 import { TimeBasedExcusalFormModule } from './time-based-excusal-form/time-based-excusal-form.module';
 import { CampusedManagementTableModule } from './campused-management-table/campused-management-table.module';
 import { EditCampusedModalModule } from './edit-campused-modal/edit-campused-modal.module';
+import { OneTimeSignoutFormModule } from './one-time-signout-form/one-time-signout-form.module';
+import { OverridePermissionsFormModule } from './override-permissions-form/override-permissions-form.module';
 
 @NgModule({
   imports: [
@@ -12,12 +14,16 @@ import { EditCampusedModalModule } from './edit-campused-modal/edit-campused-mod
     TimeBasedExcusalFormModule,
     CampusedManagementTableModule,
     EditCampusedModalModule,
+    OneTimeSignoutFormModule,
+    OverridePermissionsFormModule,
   ],
   exports: [
     CheckInBasedExcusalFormModule,
     TimeBasedExcusalFormModule,
     CampusedManagementTableModule,
     EditCampusedModalModule,
+    OneTimeSignoutFormModule,
+    OverridePermissionsFormModule,
   ]
 })
 export class AodUiModule {}

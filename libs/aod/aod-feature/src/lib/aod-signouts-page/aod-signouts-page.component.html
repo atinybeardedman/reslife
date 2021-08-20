@@ -1,1 +1,55 @@
-<p>aod-signouts-page works!</p>
+<section
+  class="container p-1"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  fxLayout.lt-md="column"
+  fxLayoutAlign.lt-md="start stretch"
+>
+  <div fxFlexFill></div>
+  <mat-card fxFlex="1 1 30rem" fxFlex.lt-md>
+    <mat-card-title>Signout Overrides</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="excusalForm">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <reslife-search-select
+            fxFlex
+            label="Select Student"
+            [list]="boarders$ | async"
+            (itemSelected)="selectBoarder($event)"
+            [clearOnSelect]="false"
+          ></reslife-search-select>
+        </div>
+        <mat-radio-group
+          class="py-1"
+          formControlName="choice"
+          fxLayout="row"
+          fxLayoutGap="10px"
+          fxLayoutAlign="start"
+        >
+          <mat-radio-button value="one-time"
+            >One Time Signout</mat-radio-button
+          >
+          <mat-radio-button value="weekend">Temporary Permission Override</mat-radio-button>
+        </mat-radio-group>
+        <div fxLayout="row" class="py-1">
+          <reslife-check-in-based-excusal-form
+            fxFlex
+            *ngIf="choice === 'check-in'"
+            [checkins]="checkIns$ | async"
+            (selectedCheckins)="setSelectedCheckIns($event)"
+          ></reslife-check-in-based-excusal-form>
+          <reslife-time-based-excusal-form
+            fxFlex
+            *ngIf="choice === 'time'"
+            (timing)="setExcusalTiming($event)"
+          ></reslife-time-based-excusal-form>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="!isValidExcusal" (click)="save()" mat-button>Save</button>
+    </mat-card-actions>
+  </mat-card>
+  <div fxFlexFill></div>
+</section>
+
