@@ -32,5 +32,5 @@ module.exports = {
     '<rootDir>/libs/aod/aod-feature',
     '<rootDir>/libs/aod/aod-ui',
     '<rootDir>/libs/aod/aod-data-access',
-  ],
+  ]
 };

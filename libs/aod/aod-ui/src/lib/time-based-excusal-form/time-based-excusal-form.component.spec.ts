@@ -69,8 +69,8 @@ describe('TimeBasedExcusalFormComponent', () => {
       await returnTimeInput.setValue('09:00');
       fixture.detectChanges();
       expect(spy).toHaveBeenLastCalledWith({
-        leaveDate: '2021-09-01T12:00:00.000Z',
-        returnDate: '2021-09-02T13:00:00.000Z',
+        leaveDate: '2021-09-01T08:00:00.000Z',
+        returnDate: '2021-09-02T09:00:00.000Z',
       });
     });
   });

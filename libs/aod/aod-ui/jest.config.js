@@ -8,6 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
+  globalSetup: '../../../global-setup.ts',
   coverageDirectory: '../../../coverage/libs/aod/aod-ui',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
