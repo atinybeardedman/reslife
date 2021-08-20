@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AodSignoutDataService, SharedAodDataService } from '@reslife/aod-data-access';
-import { Boarder, BoarderPermissions, NamedItem } from '@reslife/shared-models';
+import { AodSignoutDataService } from '@reslife/aod-data-access';
+import { BoarderPermissions, NamedItem } from '@reslife/shared-models';
 import { SearchSelectComponent } from '@reslife/shared/ui';
 import { BoarderSignoutMeta, StudentSignout } from '@reslife/student-signout-model';
 import { Observable } from 'rxjs';

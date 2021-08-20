@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AodSignoutsPageComponent } from './aod-signouts-page.component';
 import { AodUiModule } from '@reslife/aod-ui';
@@ -30,6 +30,9 @@ import { MatInputModule } from '@angular/material/input';
   ],
   exports: [
     AodSignoutsPageComponent
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class AodSignoutsPageModule { }
