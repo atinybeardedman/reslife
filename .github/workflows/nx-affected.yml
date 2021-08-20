@@ -33,11 +33,11 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Lint 
         shell: bash
-        run: npm run affected:lint -- --base=remotes/origin/main 
+        run: npm run affected:lint -- --base=remotes/origin/main --parallel --maxParallel=5
         
       - name: Run Affected Tests
         shell: bash
