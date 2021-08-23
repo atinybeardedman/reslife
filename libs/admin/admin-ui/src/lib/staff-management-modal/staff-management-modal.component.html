@@ -1,1 +1,31 @@
-<p>staff-management-modal works!</p>
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="editStaffForm">
+        <div fxLayout="row wrap" fxLayoutAlign="start">
+            <mat-form-field fxFill>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text" required>
+            </mat-form-field>
+            <mat-form-field fxFill>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="email" required>
+                <mat-error *ngIf="editStaffForm.controls.email.invalid">Email is already taken</mat-error>
+            </mat-form-field>
+            <div fxFill>
+                <mat-checkbox formControlName="isAOD">AOD</mat-checkbox>
+            </div>
+            <div fxFill>
+                <mat-checkbox formControlName="isAdmin">Admin</mat-checkbox>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button
+    (click)="save.emit(editedRecord)"
+    [disabled]="!editStaffForm.valid"
+    mat-button
+  >
+    Save
+  </button>
+</div>
