@@ -29,8 +29,7 @@ export interface Boarder {
   isActive: boolean;
 }
 
-export interface DormDocument {
-  name: string;
+export interface DormDocument extends SimpleItem {
   isActive: boolean;
 }
 

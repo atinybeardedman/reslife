@@ -15,6 +15,12 @@ import { DormManagementModalModule } from './dorm-management-modal/dorm-manageme
     DormManagementTableModule,
     DormManagementModalModule,
   ],
-  exports: [ManageBoardersTableModule, EditBoarderModalModule, ConfirmModalModule],
+  exports: [
+    ManageBoardersTableModule,
+    EditBoarderModalModule,
+    ConfirmModalModule,
+    DormManagementTableModule,
+    DormManagementModalModule,
+  ],
 })
 export class AdminUiModule {}

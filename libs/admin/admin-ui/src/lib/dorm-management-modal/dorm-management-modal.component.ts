@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnChanges, ChangeDetectionStrategy, Input, SimpleChanges, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DormDocument } from '@reslife/shared-models';
 
 @Component({
   selector: 'reslife-dorm-management-modal',
@@ -6,11 +8,45 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./dorm-management-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DormManagementModalComponent implements OnInit {
+export class DormManagementModalComponent implements OnChanges {
+  @Input() title!: string;
+  @Input() dorm!: DormDocument | null;
 
-  constructor() { }
+  @Output() save = new EventEmitter<DormDocument>();
+  dormForm: FormGroup;
+  constructor(fb: FormBuilder) {
+    this.dormForm = fb.group({
+      name: ['', Validators.required],
+      isActive: false
+    })
+   }
 
-  ngOnInit(): void {
-  }
+   ngOnChanges(changes: SimpleChanges): void {
+    if(changes.dorm && this.dorm){
+      const nameCtrl = this.dormForm.controls.name;
+      nameCtrl.setValue(this.dorm.name);
+      nameCtrl.disable();
+      this.dormForm.controls.isActive.setValue(this.dorm.isActive);
+    }
+   }
+
+
+   get dormRecord(): DormDocument {
+     const {name, isActive} = this.dormForm.controls;
+     const doc: DormDocument = {
+       name: name.value,
+       isActive: isActive.value,
+       uid: ''
+     };
+     if(this.dorm){
+       doc.uid = this.dorm.uid;
+     }
+     return doc;
+
+   }
+
+
+
+ 
 
 }

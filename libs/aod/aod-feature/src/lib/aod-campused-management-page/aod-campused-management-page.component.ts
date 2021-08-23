@@ -5,7 +5,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { Boarder, CampusedStudentRecord } from '@reslife/shared-models';
+import { Boarder, CampusedStudentRecord, RecordAction  } from '@reslife/shared-models';
 import { ConfirmModalComponent } from '@reslife/admin-ui';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, combineLatest } from 'rxjs';
@@ -14,7 +14,6 @@ import {
   AodSignoutDataService,
   SharedAodDataService,
 } from '@reslife/aod-data-access';
-import { RecordAction } from '@reslife/aod-model';
 import { EditCampusedModalComponent } from '@reslife/aod-ui';
 @Component({
   selector: 'reslife-aod-campused-management-page',

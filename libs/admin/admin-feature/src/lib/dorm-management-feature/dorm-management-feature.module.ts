@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { DormManagementFeatureComponent } from './dorm-management-feature.component';
 import { DormManagementPageModule } from '../dorm-management-page/dorm-management-page.module';
+import { DormManagementPageComponent } from '../dorm-management-page/dorm-management-page.component';
 
 
 const routes: Routes = [
-  { path: '', component: DormManagementFeatureComponent }
+  { path: '', component: DormManagementPageComponent }
 ];
 
 @NgModule({
-  declarations: [
-    DormManagementFeatureComponent
-  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

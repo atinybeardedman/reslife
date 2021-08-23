@@ -19,14 +19,17 @@ const testDorms: DormDocument[] = [
   {
     name: 'Newlin',
     isActive: true,
+    uid: '1'
   },
   {
     name: 'Reagan',
     isActive: true,
+    uid: '2'
   },
   {
     name: 'Craig',
     isActive: false,
+    uid: '3'
   },
 ];
 describe('DormManagementTableComponent', () => {
