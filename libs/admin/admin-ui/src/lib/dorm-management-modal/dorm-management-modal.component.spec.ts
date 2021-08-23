@@ -14,6 +14,23 @@ describe('DormManagementModalComponent', () => {
   let component: DormManagementModalComponent;
   let fixture: ComponentFixture<DormManagementModalComponent>;
   let loader: HarnessLoader;
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        // addListener: jest.fn(), // deprecated
+        // removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  })
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -76,7 +93,7 @@ describe('DormManagementModalComponent', () => {
       const input = await loader.getHarness(MatInputHarness);
       const checkbox = await loader.getHarness(MatCheckboxHarness);
 
-      expect(await input.getValue()).toBe(component.dorm.name);
+      expect(await input.getValue()).toBe(component?.dorm?.name);
       expect(await input.isDisabled()).toBeTruthy();
       expect(await checkbox.isChecked()).toBeTruthy();
     });
