@@ -94,7 +94,7 @@ export const appRoutes: Route[] = [
         data: {
           name: 'AOD Features',
           icon: 'supervisor_account',
-          roles: ['aod']
+          roles: ['aod', 'superadmin']
         }
       }
 ]; 
