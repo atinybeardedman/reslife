@@ -75,15 +75,14 @@ export const appRoutes: Route[] = [
         ),
       },
       {
-        path: 'admin/manage-boarders',
-        pathMatch: 'full',
+        path: 'admin',
         loadChildren: () => 
-          import('@reslife/boarder-management-feature').then(
-            (module) => module.BoarderManagementFeatureModule
+          import('@reslife/admin-feature').then(
+            (module) => module.AdminFeatureModule
           ),
           data: {
-            name: 'Manage Boarders',
-            icon: 'verified_user',
+            name: 'Admin Features',
+            icon: 'admin_panel_settings',
             roles: ['superadmin']
           }
       },
@@ -94,7 +93,7 @@ export const appRoutes: Route[] = [
         ),
         data: {
           name: 'AOD Features',
-          icon: 'verified_user',
+          icon: 'supervisor_account',
           roles: ['aod']
         }
       }

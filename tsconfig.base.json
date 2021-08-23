@@ -18,6 +18,7 @@
       "@reslife/admin-data-access": [
         "libs/admin/admin-data-access/src/index.ts"
       ],
+      "@reslife/admin-feature": ["libs/admin/admin-feature/src/index.ts"],
       "@reslife/admin-model": ["libs/admin/admin-model/src/index.ts"],
       "@reslife/admin-ui": ["libs/admin/admin-ui/src/index.ts"],
       "@reslife/aod-data-access": ["libs/aod/aod-data-access/src/index.ts"],
