@@ -23,6 +23,13 @@ export class AdminFeatureDashboardComponent {
       description:
         'Manage which dorms are active'
     },
+    {
+      title: 'Manage Staff',
+      icon: 'account_supervisor',
+      path: 'manage-staff',
+      description:
+        'Manage staff and edit their access to admin and aod features'
+    },
     // {
     //   title: 'Campused Students',
     //   icon: 'person_off',

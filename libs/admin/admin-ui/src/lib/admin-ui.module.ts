@@ -5,6 +5,8 @@ import { EditBoarderModalModule } from './edit-boarder-modal/edit-boarder-modal.
 import { ConfirmModalModule } from './confirm-modal/confirm-modal.module';
 import { DormManagementTableModule } from './dorm-management-table/dorm-management-table.module';
 import { DormManagementModalModule } from './dorm-management-modal/dorm-management-modal.module';
+import { StaffManagementTableModule } from './staff-management-table/staff-management-table.module';
+import { StaffManagementModalModule } from './staff-management-modal/staff-management-modal.module';
 
 @NgModule({
   imports: [
@@ -14,6 +16,8 @@ import { DormManagementModalModule } from './dorm-management-modal/dorm-manageme
     ConfirmModalModule,
     DormManagementTableModule,
     DormManagementModalModule,
+    StaffManagementTableModule,
+    StaffManagementModalModule,
   ],
   exports: [
     ManageBoardersTableModule,
