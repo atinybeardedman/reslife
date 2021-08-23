@@ -10,7 +10,7 @@ import { AodFeatureDashboardComponent } from './aod-feature-dashboard/aod-featur
 import { AodCampusedManagementPageModule } from './aod-campused-management-page/aod-campused-management-page.module';
 import { AodCampusedManagementPageComponent } from './aod-campused-management-page/aod-campused-management-page.component';
 
-const routes: Route[] = [
+  const routes: Route[] = [
   {
     path: '',
     component: AodFeatureDashboardComponent,
