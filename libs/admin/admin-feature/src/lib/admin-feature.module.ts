@@ -16,7 +16,7 @@ const routes: Route[] = [
     component: BoarderManagementPageComponent
   },
   { path: 'dorms', loadChildren: () => import('./dorm-management-feature/dorm-management-feature.module').then(m => m.DormManagementFeatureModule) },
-  { path: 'staff-management', loadChildren: () => import('./staff-management-feature/staff-management-feature.module').then(m => m.StaffManagementFeatureModule) },
+  { path: 'manage-staff', loadChildren: () => import('./staff-management-feature/staff-management-feature.module').then(m => m.StaffManagementFeatureModule) },
 ];
 
 @NgModule({

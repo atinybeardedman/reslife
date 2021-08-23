@@ -25,7 +25,7 @@ export class AdminFeatureDashboardComponent {
     },
     {
       title: 'Manage Staff',
-      icon: 'account_supervisor',
+      icon: 'supervisor_account',
       path: 'manage-staff',
       description:
         'Manage staff and edit their access to admin and aod features'

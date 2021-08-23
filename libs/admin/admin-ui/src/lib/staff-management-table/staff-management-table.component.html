@@ -14,15 +14,11 @@
     <ng-container matColumnDef="roles">
       <th mat-header-cell *matHeaderCellDef >Roles</th>
       <td mat-cell *matCellDef="let record">
-       <mat-icon color="accent" *ngFor="let role of record.roles">
-           <ng-container [ngSwitch]="role">
-               <ng-container *ngSwitchCase="'aod'">
+       <mat-icon *ngIf="record.roles.includes('aod')" matTooltip="AOD" color="accent" class="px-1">
                 supervisor_account
-               </ng-container>
-               <ng-container *ngSwitchCase="'superadmin'">
-                admin_panel_settings
-               </ng-container>
-           </ng-container>
+       </mat-icon>
+       <mat-icon *ngIf="record.roles.includes('superadmin')" matTooltip="Admin" color="accent">
+        admin_panel_settings
        </mat-icon>
       </td>
     </ng-container>

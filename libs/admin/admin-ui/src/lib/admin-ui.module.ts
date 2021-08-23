@@ -25,6 +25,8 @@ import { StaffManagementModalModule } from './staff-management-modal/staff-manag
     ConfirmModalModule,
     DormManagementTableModule,
     DormManagementModalModule,
+    StaffManagementTableModule,
+    StaffManagementModalModule,
   ],
 })
 export class AdminUiModule {}

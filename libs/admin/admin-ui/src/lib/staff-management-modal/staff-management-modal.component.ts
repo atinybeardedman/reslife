@@ -11,8 +11,8 @@ import { StaffMember } from '@reslife/admin-model';
 })
 export class StaffManagementModalComponent implements OnChanges {
   @Input() title!: string;
-  @Input() currentEmails!: string[];
-  @Input() staffMember!: StaffMember;
+  @Input() currentEmails!: string[] | null;
+  @Input() staffMember!: StaffMember | null;
 
   @Output() save = new EventEmitter<StaffMember>();
 
