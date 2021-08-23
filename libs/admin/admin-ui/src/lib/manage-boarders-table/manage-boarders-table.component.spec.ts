@@ -88,7 +88,7 @@ describe('ManageBoardersTableComponent', () => {
       await editButton.click();
       expect(editSpy).toHaveBeenCalledWith({
         action: 'edit',
-        boarder: testBoarder,
+        record: testBoarder,
       });
 
       const deleteButton = await loader.getHarness(
@@ -97,7 +97,7 @@ describe('ManageBoardersTableComponent', () => {
       await deleteButton.click();
       expect(deleteSpy).toHaveBeenCalledWith({
         action: 'delete',
-        boarder: testBoarder,
+        record: testBoarder,
       });
     });
     it('should show the correct columns based on the showDate input', async () => {

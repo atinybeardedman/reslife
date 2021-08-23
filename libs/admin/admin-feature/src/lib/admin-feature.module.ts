@@ -15,6 +15,7 @@ const routes: Route[] = [
     pathMatch: 'full',
     component: BoarderManagementPageComponent
   },
+  { path: 'dorms', loadChildren: () => import('./dorm-management-feature/dorm-management-feature.module').then(m => m.DormManagementFeatureModule) },
 ];
 
 @NgModule({

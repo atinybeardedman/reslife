@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
-import { Boarder } from '@reslife/shared-models';
+import { Boarder, RecordAction } from '@reslife/shared-models';
 import { Observable } from 'rxjs';
 import { BoarderManagementService } from '@reslife/admin-data-access';
 import { MatDialog } from '@angular/material/dialog';
-import { BoarderAction } from '@reslife/admin-model';
 import { ConfirmModalComponent, EditBoarderModalComponent } from '@reslife/admin-ui';
 
 @Component({
@@ -28,10 +27,10 @@ export class BoarderManagementPageComponent implements OnInit {
     this.dorms$ = this.bs.getActiveDorms();
   }
 
-  edit(action?: BoarderAction): void {
+  edit(action?: RecordAction<Boarder>): void {
     if(action){
         this.modalTitle = 'Edit Boarder';
-        this.selectedBoarder = action.boarder;
+        this.selectedBoarder = action.record;
       } else {
         this.modalTitle = 'Add Boarder';
         this.selectedBoarder = null;
@@ -41,8 +40,8 @@ export class BoarderManagementPageComponent implements OnInit {
     this.dialog.open(this.editDialogTemplate, {id: 'edit-boarder'});
   }
 
-  delete(action: BoarderAction): void {
-    this.selectedBoarder = action.boarder;
+  delete(action: RecordAction<Boarder>): void {
+    this.selectedBoarder = action.record;
     this.dialog.open(this.confirmDialogTemplate, {id: 'confirm'});
   }
 

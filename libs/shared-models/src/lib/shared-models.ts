@@ -67,3 +67,8 @@ export interface DashboardCard {
   path: string;
   icon: string;
 }
+
+export interface RecordAction<T> {
+  record: T;
+  action: 'edit' | 'delete';
+}
