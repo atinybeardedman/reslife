@@ -4,12 +4,10 @@ import { ChangeDetectionStrategy, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DAYNAMES, ScheduleItem, testBrunchScheduleItem } from '@reslife/admin-model';
-import { getAcademicYear } from '@reslife/utils';
 
 import { RegularScheduleModalComponent } from './regular-schedule-modal.component';
 import { RegularScheduleModalModule } from './regular-schedule-modal.module';
@@ -18,6 +16,24 @@ describe('RegularScheduleModalComponent', () => {
   let component: RegularScheduleModalComponent;
   let fixture: ComponentFixture<RegularScheduleModalComponent>;
   let loader: HarnessLoader;
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        // addListener: jest.fn(), // deprecated
+        // removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  })
+
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
