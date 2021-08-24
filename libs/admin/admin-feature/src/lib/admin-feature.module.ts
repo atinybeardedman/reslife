@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 import { AdminFeatureDashboardModule } from './admin-feature-dashboard/admin-feature-dashboard.module';
 import { AdminFeatureDashboardComponent } from './admin-feature-dashboard/admin-feature-dashboard.component';
-import { BoarderManagementFeatureModule, BoarderManagementPageComponent } from '@reslife/boarder-management-feature'
+import {
+  BoarderManagementFeatureModule,
+  BoarderManagementPageComponent,
+} from '@reslife/boarder-management-feature';
 const routes: Route[] = [
   {
     path: '',
@@ -13,10 +16,23 @@ const routes: Route[] = [
   {
     path: 'manage-boarders',
     pathMatch: 'full',
-    component: BoarderManagementPageComponent
+    component: BoarderManagementPageComponent,
   },
-  { path: 'dorms', loadChildren: () => import('./dorm-management-feature/dorm-management-feature.module').then(m => m.DormManagementFeatureModule) },
-  { path: 'manage-staff', loadChildren: () => import('./staff-management-feature/staff-management-feature.module').then(m => m.StaffManagementFeatureModule) },
+  {
+    path: 'dorms',
+    loadChildren: () =>
+      import('./dorm-management-feature/dorm-management-feature.module').then(
+        (m) => m.DormManagementFeatureModule
+      ),
+  },
+  {
+    path: 'manage-staff',
+    loadChildren: () =>
+      import('./staff-management-feature/staff-management-feature.module').then(
+        (m) => m.StaffManagementFeatureModule
+      ),
+  },
+  { path: 'manage-schedule', loadChildren: () => import('./schedule-management-feature/schedule-management-feature.module').then(m => m.ScheduleManagementFeatureModule) },
 ];
 
 @NgModule({
@@ -24,7 +40,7 @@ const routes: Route[] = [
     CommonModule,
     RouterModule.forChild(routes),
     AdminFeatureDashboardModule,
-    BoarderManagementFeatureModule
-  ],  
+    BoarderManagementFeatureModule,
+  ],
 })
 export class AdminFeatureModule {}

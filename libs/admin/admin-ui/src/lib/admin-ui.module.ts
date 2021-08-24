@@ -7,6 +7,10 @@ import { DormManagementTableModule } from './dorm-management-table/dorm-manageme
 import { DormManagementModalModule } from './dorm-management-modal/dorm-management-modal.module';
 import { StaffManagementTableModule } from './staff-management-table/staff-management-table.module';
 import { StaffManagementModalModule } from './staff-management-modal/staff-management-modal.module';
+import { RegularScheduleAccordionModule } from './regular-schedule-accordion/regular-schedule-accordion.module';
+import { RegularScheduleModalModule } from './regular-schedule-modal/regular-schedule-modal.module';
+import { ScheduleExceptionsTableModule } from './schedule-exceptions-table/schedule-exceptions-table.module';
+import { ScheduleExceptionModalModule } from './schedule-exception-modal/schedule-exception-modal.module';
 
 @NgModule({
   imports: [
@@ -18,6 +22,10 @@ import { StaffManagementModalModule } from './staff-management-modal/staff-manag
     DormManagementModalModule,
     StaffManagementTableModule,
     StaffManagementModalModule,
+    RegularScheduleAccordionModule,
+    RegularScheduleModalModule,
+    ScheduleExceptionsTableModule,
+    ScheduleExceptionModalModule,
   ],
   exports: [
     ManageBoardersTableModule,
