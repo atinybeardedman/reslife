@@ -1,1 +1,25 @@
-<p>regular-schedule-modal works!</p>
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="scheduleForm">
+        <div fxLayout>
+            <mat-form-field fxFill>
+                <mat-label>Check In Name</mat-label>
+                <input matInput required formControlName="name" type="text" name="name" id="name">
+            </mat-form-field>
+            <mat-form-field fxFill>
+                <mat-label>Start Time</mat-label>
+                <input matInput required formControlName="startTime" type="time" name="startTime" id="startTime">
+            </mat-form-field>
+            <mat-form-field fxFill>
+                <mat-label>End Time</mat-label>
+                <input matInput required formControlName="endTime" type="time" name="endTime" id="endTime">
+            </mat-form-field>
+        </div>
+        <div fxLayout formArrayName="days">
+            <mat-checkbox fxFill *ngFor="let dayName of dayNames; let i = index" [formControlName]="i">{{dayName}}</mat-checkbox>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="!(scheduleForm.valid && isAnyDaySelected)" (click)="save.emit(editedScheduleItem)" mat-button>Save</button>
+</div>
