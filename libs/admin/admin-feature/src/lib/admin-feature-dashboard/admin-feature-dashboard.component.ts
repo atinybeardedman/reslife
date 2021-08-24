@@ -30,6 +30,13 @@ export class AdminFeatureDashboardComponent {
       description:
         'Manage staff and edit their access to admin and aod features'
     },
+    {
+      title: 'Manage Schedule',
+      icon: 'event_available',
+      path: 'manage-schedule',
+      description:
+        'Manage the regular check in schedule and also add/remove exceptions'
+    },
     // {
     //   title: 'Campused Students',
     //   icon: 'person_off',

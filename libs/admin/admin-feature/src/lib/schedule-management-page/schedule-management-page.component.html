@@ -1,1 +1,54 @@
-<p>schedule-management-page works!</p>
+<section fxLayout="row" fxLayoutAlign="start start" class="my-1">
+  <div class="col" fxFlex fxHide.lt-md></div>
+  <div class="col" fxFlex="1 1 30rem" fxFlex.lt-md>
+    <mat-card>
+        <mat-card-title>Choose an Academic Year</mat-card-title>
+        <mat-card-content>
+            <div fxLayout fxLayoutAlign="center" class="py-1">
+                <mat-form-field>
+                    <mat-label>Academic Year</mat-label>
+                    <mat-select (selectionChange)="selectedYear$.next($event.value)" [value]="selectedYear$ | async">
+                      <mat-option *ngFor="let year of years$ | async" [value]="year">{{year}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col" fxFlex fxHide.lt-md></div>
+</section>
+
+<section fxLayout="row" fxLayoutAlign="start start">
+  <div class="col" fxFlex fxHide.lt-md></div>
+  <div class="col" fxFlex="1 1 40vw" fxFlex.lt-md>
+    <div class="m-1">
+      <button mat-raised-button color="accent" (click)="edit()">
+        + New Check In
+      </button>
+    </div>
+    <div class="m-1">
+      <reslife-regular-schedule-accordion
+        [scheduleItems]="scheduleItems$ | async"
+        (edit)="edit($event)"
+        (delete)="delete($event)"
+      ></reslife-regular-schedule-accordion>
+    </div>
+  </div>
+  <div class="col" fxFlex fxHide.lt-md></div>
+</section>
+
+<ng-template #editTemplate>
+  <reslife-regular-schedule-modal
+    [scheduleItem]="selectedScheduleItem"
+    [academicYear]="selectedYear$ | async"
+    [title]="modalTitle"
+    (save)="saveRecord($event)"
+  ></reslife-regular-schedule-modal>
+</ng-template>
+
+<ng-template #confirmTemplate>
+  <reslife-confirm-modal
+    message="Are you sure you want to delete this check-in?"
+    (isConfirmed)="confirmDelete($event)"
+  ></reslife-confirm-modal>
+</ng-template>

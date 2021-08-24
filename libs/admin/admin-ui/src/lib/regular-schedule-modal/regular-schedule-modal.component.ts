@@ -12,7 +12,7 @@ import { getAcademicYear } from '@reslife/utils';
 export class RegularScheduleModalComponent implements OnChanges{
   @Input() title!: string;
   @Input() scheduleItem!: ScheduleItem | null;
-  @Input() academicYear = getAcademicYear();
+  @Input() academicYear: string | null = getAcademicYear();
 
   @Output() save = new EventEmitter<ScheduleItem>();
   scheduleForm: FormGroup;
@@ -65,7 +65,7 @@ export class RegularScheduleModalComponent implements OnChanges{
        startTime: startTime.value,
        endTime: endTime.value,
        days,
-       academicYear: this.academicYear,
+       academicYear: this.academicYear as string,
        uid: ''
      };
      if(this.scheduleItem){

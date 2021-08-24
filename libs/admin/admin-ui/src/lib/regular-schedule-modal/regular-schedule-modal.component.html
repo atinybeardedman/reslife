@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{title}}</h1>
 <div mat-dialog-content>
     <form [formGroup]="scheduleForm">
-        <div fxLayout>
+        <div fxLayout="row wrap">
             <mat-form-field fxFill>
                 <mat-label>Check In Name</mat-label>
                 <input matInput required formControlName="name" type="text" name="name" id="name">
@@ -15,7 +15,7 @@
                 <input matInput required formControlName="endTime" type="time" name="endTime" id="endTime">
             </mat-form-field>
         </div>
-        <div fxLayout formArrayName="days">
+        <div fxLayout="row wrap" formArrayName="days">
             <mat-checkbox fxFill *ngFor="let dayName of dayNames; let i = index" [formControlName]="i">{{dayName}}</mat-checkbox>
         </div>
     </form>

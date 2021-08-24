@@ -3,27 +3,27 @@
     <mat-expansion-panel-header>
       <mat-panel-title>{{ day }}</mat-panel-title>
     </mat-expansion-panel-header>
-    <div class="check-in-block py-1" *ngFor="let checkin of getCheckIns(i)">
-      <h2>{{ checkin.name }}</h2>
-      <p>
-        Start Time:
-        {{ checkin.startTime }}
-      </p>
-      <p>End Time: {{ checkin.endTime }}</p>
-      <div class="check-in-actions" fxLayout fxLayoutGap="10px">
-        <button
-          (click)="edit.emit({ record: checkin, action: 'edit' })"
-          mat-icon-button
-        >
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button
-          (click)="delete.emit({ record: checkin, action: 'delete' })"
-          mat-icon-button
-        >
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
+    <div class="check-in-block" *ngFor="let checkin of getCheckIns(i)">
+        <div fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
+            <h3 class="my-1">
+                {{ checkin.name }}
+                <span>({{checkin.startTime}} - {{checkin.endTime}})</span>
+            </h3>
+            <div class="check-in-actions" fxLayout fxLayoutGap="10px">
+              <button
+                (click)="edit.emit({ record: checkin, action: 'edit' })"
+                mat-icon-button
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                (click)="delete.emit({ record: checkin, action: 'delete' })"
+                mat-icon-button
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+        </div>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

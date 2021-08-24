@@ -83,7 +83,7 @@ describe('RegularScheduleModalComponent', () => {
       const expectedItem: ScheduleItem = {
         ...testBrunchScheduleItem,
         uid: '',
-        academicYear: component.academicYear
+        academicYear: component.academicYear as string
       };
 
       const [nameCtrl, startCtrl, endCtrl] = await parallel(() => fields.map(f => f.getControl())) as MatInputHarness[];

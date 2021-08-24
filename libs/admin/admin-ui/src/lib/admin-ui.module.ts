@@ -35,6 +35,10 @@ import { ScheduleExceptionModalModule } from './schedule-exception-modal/schedul
     DormManagementModalModule,
     StaffManagementTableModule,
     StaffManagementModalModule,
+    RegularScheduleAccordionModule,
+    RegularScheduleModalModule,
+    ScheduleExceptionsTableModule,
+    ScheduleExceptionModalModule,
   ],
 })
 export class AdminUiModule {}
