@@ -49,6 +49,16 @@ export function getYearEndDateString(date = new Date()): string {
   return `${newYear}-06-30`;
 }
 
+/**
+ * 
+ * @param date - Date to get academic year for
+ * @returns a string representing the current academic year in the format YYYY-YY
+ */
+export function getAcademicYear(date = new Date()): string {
+  const startYear = date.getMonth() > 5 ? date.getFullYear() : date.getFullYear() - 1;
+  return `${startYear}-${(startYear + 1).toString().substr(2)}`;
+}
+
 export function getTime(date = new Date()): string {
   const datestring = getIsoTimezoneString(date);
   const i = datestring.indexOf("T");
