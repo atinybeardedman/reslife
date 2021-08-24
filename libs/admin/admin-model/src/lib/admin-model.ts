@@ -14,9 +14,24 @@ export const DAYNAMES = [
     'Saturday'
 ];
 
+
+
 export interface ScheduleItem extends SimpleItem {
     startTime: string;
     endTime: string;
     days: number[];
     academicYear: string;
+}
+
+export interface CheckInException {
+    startTime: string;
+    endTime: string;
+    'check-in': string;
+}
+
+export interface ScheduleDayException {
+    uid: string;
+    date: string;
+    note: string;
+    checkIns: CheckInException[]
 }

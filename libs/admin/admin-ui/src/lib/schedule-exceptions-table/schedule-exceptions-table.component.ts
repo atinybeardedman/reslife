@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, EventEmitter, Input, Output, SimpleChanges, OnChanges } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ScheduleDayException } from '@reslife/admin-model';
+import { RecordAction } from '@reslife/shared-models';
 
 @Component({
   selector: 'reslife-schedule-exceptions-table',
@@ -6,11 +9,18 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./schedule-exceptions-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScheduleExceptionsTableComponent implements OnInit {
+export class ScheduleExceptionsTableComponent implements OnChanges {
+  @Input() exceptions!: ScheduleDayException[] | null;
+  @Output() edit = new EventEmitter<RecordAction<ScheduleDayException>>();
+  @Output() delete = new EventEmitter<RecordAction<ScheduleDayException>>();
+  
+  datasource = new MatTableDataSource<ScheduleDayException>([]);
+  displayedColumns = ['date', 'note', 'actions'];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.exceptions && this.exceptions){
+      this.datasource.data = this.exceptions;
+    }
   }
 
 }

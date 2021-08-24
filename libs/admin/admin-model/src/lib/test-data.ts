@@ -1,4 +1,4 @@
-import { ScheduleItem, StaffMember } from "./admin-model";
+import { ScheduleDayException, ScheduleItem, StaffMember } from "./admin-model";
 
 export const testStaffMember: StaffMember = {
     name: 'Test Faculty 1',
@@ -29,4 +29,17 @@ export const testBrunchScheduleItem: ScheduleItem = {
     endTime: '12:30',
     days: [0,6],
     academicYear: '2021-22'
+};
+
+export const testExceptionDay: ScheduleDayException = {
+    uid: '1',
+    date: '2021-09-10',
+    note: 'No Brunch',
+    checkIns: [
+        {
+            "check-in": 'Dinner',
+            startTime: '17:30',
+            endTime: '18:15'
+        }
+    ]
 };
