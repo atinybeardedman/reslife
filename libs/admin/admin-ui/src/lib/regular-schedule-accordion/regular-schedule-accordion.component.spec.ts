@@ -9,28 +9,12 @@ import { RegularScheduleAccordionModule } from './regular-schedule-accordion.mod
 import { MatExpansionPanelHarness } from '@angular/material/expansion/testing'
 import { DAYNAMES, testDinnerScheduleItem, testBrunchScheduleItem } from '@reslife/admin-model';
 import { MatButtonHarness } from '@angular/material/button/testing';
-import { combineDatetime } from '@reslife/utils';
-import { formatDate } from '@angular/common';
+
 describe('RegularScheduleAccordionComponent', () => {
   let component: RegularScheduleAccordionComponent;
   let fixture: ComponentFixture<RegularScheduleAccordionComponent>;
   let loader: HarnessLoader;
 
-  beforeAll(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: jest.fn().mockImplementation(query => ({
-        matches: false,
-        media: query,
-        onchange: null,
-        // addListener: jest.fn(), // deprecated
-        // removeListener: jest.fn(), // deprecated
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
-      })),
-    });
-  })
 
 
   beforeEach(async () => {
