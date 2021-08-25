@@ -7,7 +7,7 @@
         <div fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
             <h3 class="my-1">
                 {{ checkin.name }}
-                <span>({{checkin.startTime}} - {{checkin.endTime}})</span>
+                <span>({{getDate(date, checkin.startTime) | date : 'shortTime'}} - {{getDate(date, checkin.endTime) | date : 'shortTime'}})</span>
             </h3>
             <div class="check-in-actions" fxLayout fxLayoutGap="10px">
               <button

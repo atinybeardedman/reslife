@@ -11,6 +11,7 @@ import { combineDatetime } from '@reslife/utils';
 })
 export class RegularScheduleAccordionComponent {
   days = DAYNAMES;
+  date = new Date();
   getDate = combineDatetime;
   
   @Input() scheduleItems!: ScheduleItem[] | null;

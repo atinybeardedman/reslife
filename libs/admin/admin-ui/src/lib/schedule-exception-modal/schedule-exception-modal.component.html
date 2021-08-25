@@ -14,9 +14,9 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field fxFlex>
-        <mat-label>Note</mat-label>
-        <input required matInput formControlName="note" type="text" />
-        <mat-hint>Short Explanation of Exception</mat-hint>
+        <mat-label>Type of Exception</mat-label>
+        <input placeholder="Ex. No Brunch" #note required matInput maxlength="10" formControlName="note" type="text" />
+        <mat-hint align="end">{{note.value.length}} / 10</mat-hint>
       </mat-form-field>
     </div>
     <div formArrayName="checkIns">
