@@ -92,6 +92,12 @@ body {
     margin-top: #{$i}rem;
     margin-bottom: #{$i}rem;
   }
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem;
+  }
+  .mt-#{$i} {
+    margin-top: #{$i}rem;
+  }
   .mx-#{$i} {
     margin-right: #{$i}rem;
     margin-left: #{$i}rem;

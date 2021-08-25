@@ -8,13 +8,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RegularScheduleTabComponent } from '../schedule-management-page/regular-schedule-tab/regular-schedule-tab.component';
+import { ExceptionsScheduleTabComponent } from '../schedule-management-page/exceptions-schedule-tab/exceptions-schedule-tab.component';
 
 const routes: Routes = [
   { path: '', component: ScheduleManagementPageComponent },
 ];
 
 @NgModule({
-  declarations: [ScheduleManagementPageComponent],
+  declarations: [
+    ScheduleManagementPageComponent,
+    RegularScheduleTabComponent,
+    ExceptionsScheduleTabComponent,
+  ],
   imports: [
     CommonModule,
     AdminUiModule,

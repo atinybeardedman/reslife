@@ -41,5 +41,6 @@ export const testExceptionDay: ScheduleDayException = {
             startTime: '17:30',
             endTime: '18:15'
         }
-    ]
+    ],
+    academicYear: '2021-22'
 };

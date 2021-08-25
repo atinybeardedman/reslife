@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -17,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    MatPaginatorModule,
     FlexLayoutModule
   ],
   exports: [

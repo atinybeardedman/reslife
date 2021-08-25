@@ -33,5 +33,6 @@ export interface ScheduleDayException {
     uid: string;
     date: string;
     note: string;
-    checkIns: CheckInException[]
+    checkIns: CheckInException[];
+    academicYear: string;
 }
