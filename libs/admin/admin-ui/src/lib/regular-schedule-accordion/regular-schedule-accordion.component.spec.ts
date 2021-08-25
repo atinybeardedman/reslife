@@ -9,6 +9,8 @@ import { RegularScheduleAccordionModule } from './regular-schedule-accordion.mod
 import { MatExpansionPanelHarness } from '@angular/material/expansion/testing'
 import { DAYNAMES, testDinnerScheduleItem, testBrunchScheduleItem } from '@reslife/admin-model';
 import { MatButtonHarness } from '@angular/material/button/testing';
+import { combineDatetime } from '@reslife/utils';
+import { formatDate } from '@angular/common';
 describe('RegularScheduleAccordionComponent', () => {
   let component: RegularScheduleAccordionComponent;
   let fixture: ComponentFixture<RegularScheduleAccordionComponent>;
@@ -72,8 +74,10 @@ describe('RegularScheduleAccordionComponent', () => {
     const contentList = await parallel(() => panels.map(p => p.getTextContent()));
     for(const content of contentList){
       expect(content).toContain(testDinnerScheduleItem.name);
-      expect(content).toContain(testDinnerScheduleItem.startTime);
-      expect(content).toContain(testDinnerScheduleItem.endTime);
+      const formattedStart = formatDate(combineDatetime(new Date(), testBrunchScheduleItem.startTime), 'shortTime', 'en-US');
+      const formattedEnd = formatDate(combineDatetime(new Date(), testBrunchScheduleItem.endTime), 'shortTime', 'en-US');
+      expect(content).toContain(formattedStart);
+      expect(content).toContain(formattedEnd);
       expect(content).toContain('edit');
       expect(content).toContain('delete');
     }

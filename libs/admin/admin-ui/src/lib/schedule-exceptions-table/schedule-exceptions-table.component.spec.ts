@@ -1,5 +1,6 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { formatDate } from '@angular/common';
 import { ChangeDetectionStrategy, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
@@ -76,7 +77,7 @@ describe('ScheduleExceptionsTableComponent', () => {
       const rows = await table.getRows();
       expect(rows).toHaveLength(1);
       expect(await rows[0].getCellTextByIndex()).toEqual([
-        testExceptionDay.date,
+        formatDate(getDateFromDateString(testExceptionDay.date), 'E, M/d', 'en-US'),
         testExceptionDay.note,
         'editdelete',
       ]);
@@ -104,3 +105,7 @@ describe('ScheduleExceptionsTableComponent', () => {
     });
   });
 });
+function getDateFromDateString(date: string): string | number | Date {
+  throw new Error('Function not implemented.');
+}
+
