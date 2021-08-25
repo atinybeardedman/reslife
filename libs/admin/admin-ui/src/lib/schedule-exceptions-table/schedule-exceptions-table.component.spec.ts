@@ -8,6 +8,7 @@ import { MatTableHarness } from '@angular/material/table/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { testExceptionDay } from '@reslife/admin-model';
+import { getDateFromDatestring } from '@reslife/utils';
 
 import { ScheduleExceptionsTableComponent } from './schedule-exceptions-table.component';
 import { ScheduleExceptionsTableModule } from './schedule-exceptions-table.module';
@@ -77,7 +78,7 @@ describe('ScheduleExceptionsTableComponent', () => {
       const rows = await table.getRows();
       expect(rows).toHaveLength(1);
       expect(await rows[0].getCellTextByIndex()).toEqual([
-        formatDate(getDateFromDateString(testExceptionDay.date), 'E, M/d', 'en-US'),
+        formatDate(getDateFromDatestring(testExceptionDay.date), 'E, M/d', 'en-US'),
         testExceptionDay.note,
         'editdelete',
       ]);
@@ -105,7 +106,5 @@ describe('ScheduleExceptionsTableComponent', () => {
     });
   });
 });
-function getDateFromDateString(date: string): string | number | Date {
-  throw new Error('Function not implemented.');
-}
+
 

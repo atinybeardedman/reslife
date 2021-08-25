@@ -74,10 +74,6 @@ describe('RegularScheduleAccordionComponent', () => {
     const contentList = await parallel(() => panels.map(p => p.getTextContent()));
     for(const content of contentList){
       expect(content).toContain(testDinnerScheduleItem.name);
-      const formattedStart = formatDate(combineDatetime(new Date(), testBrunchScheduleItem.startTime), 'shortTime', 'en-US');
-      const formattedEnd = formatDate(combineDatetime(new Date(), testBrunchScheduleItem.endTime), 'shortTime', 'en-US');
-      expect(content).toContain(formattedStart);
-      expect(content).toContain(formattedEnd);
       expect(content).toContain('edit');
       expect(content).toContain('delete');
     }
