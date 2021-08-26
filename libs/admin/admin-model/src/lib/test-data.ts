@@ -57,7 +57,4 @@ export const testAcademicYear: AcademicYear = {
     uid: '2020-21',
     start: '2020-09-10',
     end: '2021-06-10',
-    breaks: [
-        testBreak
-    ]
 }

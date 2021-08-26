@@ -97,7 +97,6 @@ describe('AcademicYearPickerComponent', () => {
         uid: getAcademicYear(),
         start: '',
         end: '',
-        breaks: []
       };
       expect(spy).toHaveBeenCalledWith(expectedDoc);
     })

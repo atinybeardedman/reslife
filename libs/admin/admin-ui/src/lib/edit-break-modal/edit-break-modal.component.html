@@ -1,1 +1,26 @@
-<p>edit-break-modal works!</p>
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="breakForm">
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+            <mat-form-field fxFlex fxFlex.lt-md="100">
+                <mat-label>Break Name</mat-label>
+                <input matInput required formControlName="name" type="text" name="name" id="name">
+            </mat-form-field>
+            <mat-form-field fxFlex fxFlex.lt-md="100">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input required [formGroup]="range" [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="Start date">
+                  <input matEndDate formControlName="end" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              
+                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+              </mat-form-field>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [disabled]="breakForm.invalid" (click)="save.emit(editedBreakDoc)">Save</button>
+</div>

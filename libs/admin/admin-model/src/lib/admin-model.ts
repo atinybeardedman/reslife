@@ -42,6 +42,7 @@ export interface NamedTimeSpan extends SimpleItem {
     end: string;
 }
 
+// This is the same interface, duplicating for semantics 
 export interface AcademicYear extends NamedTimeSpan {
-    breaks: NamedTimeSpan[];
+    uid: string;
 }
