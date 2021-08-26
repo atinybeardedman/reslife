@@ -13,8 +13,6 @@ import { ScheduleExceptionsTableModule } from './schedule-exceptions-table/sched
 import { ScheduleExceptionModalModule } from './schedule-exception-modal/schedule-exception-modal.module';
 import { AcademicYearPickerModule } from './academic-year-picker/academic-year-picker.module';
 import { EditAcademicYearCardModule } from './edit-academic-year-card/edit-academic-year-card.module';
-import { BreakManagementTableModule } from './break-management-table/break-management-table.module';
-import { EditBreakModalModule } from './edit-break-modal/edit-break-modal.module';
 
 @NgModule({
   imports: [
@@ -32,8 +30,7 @@ import { EditBreakModalModule } from './edit-break-modal/edit-break-modal.module
     ScheduleExceptionModalModule,
     AcademicYearPickerModule,
     EditAcademicYearCardModule,
-    BreakManagementTableModule,
-    EditBreakModalModule,
+    
   ],
   exports: [
     ManageBoardersTableModule,
@@ -49,8 +46,7 @@ import { EditBreakModalModule } from './edit-break-modal/edit-break-modal.module
     ScheduleExceptionModalModule,
     AcademicYearPickerModule,
     EditAcademicYearCardModule,
-    BreakManagementTableModule,
-    EditBreakModalModule,
+    
   ],
 })
 export class AdminUiModule {}
