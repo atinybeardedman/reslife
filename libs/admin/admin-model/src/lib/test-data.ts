@@ -1,4 +1,4 @@
-import { ScheduleDayException, ScheduleItem, StaffMember } from "./admin-model";
+import { AcademicYear, NamedTimeSpan, ScheduleDayException, ScheduleItem, StaffMember } from "./admin-model";
 
 export const testStaffMember: StaffMember = {
     name: 'Test Faculty 1',
@@ -44,3 +44,20 @@ export const testExceptionDay: ScheduleDayException = {
     ],
     academicYear: '2021-22'
 };
+
+const testBreak: NamedTimeSpan = {
+    uid: '1',
+    name: 'Thanksgiving Break',
+    start: '2020-11-18',
+    end: '2020-11-30'
+};
+
+export const testAcademicYear: AcademicYear = {
+    name: '2020-21',
+    uid: '2020-21',
+    start: '2020-09-10',
+    end: '2021-06-10',
+    breaks: [
+        testBreak
+    ]
+}

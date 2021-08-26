@@ -83,6 +83,14 @@ describe('utils', () => {
    it('should correctly get the year end when no date is given', () => {
     expect(utils.getAcademicYear()).toBe('2020-21');
   })
+ });
+
+ describe('incrementAcademicYear',() => {
+   it('should increment the academic year', () => {
+     const year = '2020-21';
+     const expected = '2021-22';
+     expect(utils.incrementAcademicYear(year)).toBe(expected);
+   })
  })
 
  describe('getTime', () => {

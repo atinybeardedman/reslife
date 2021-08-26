@@ -59,6 +59,10 @@ export function getAcademicYear(date = new Date()): string {
   return `${startYear}-${(startYear + 1).toString().substr(2)}`;
 }
 
+export function incrementAcademicYear(year: string): string {
+  return year.split('-').map(y => parseInt(y, 10) + 1).join('-');
+}
+
 export function getTime(date = new Date()): string {
   const datestring = getIsoTimezoneString(date);
   const i = datestring.indexOf("T");

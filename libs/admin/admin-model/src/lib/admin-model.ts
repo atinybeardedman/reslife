@@ -43,6 +43,5 @@ export interface NamedTimeSpan extends SimpleItem {
 }
 
 export interface AcademicYear extends NamedTimeSpan {
-    year: string;
     breaks: NamedTimeSpan[];
 }
