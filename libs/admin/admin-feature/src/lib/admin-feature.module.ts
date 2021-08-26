@@ -7,6 +7,7 @@ import {
   BoarderManagementFeatureModule,
   BoarderManagementPageComponent,
 } from '@reslife/boarder-management-feature';
+import { SetUpYearFeatureModule } from './set-up-year-feature/set-up-year-feature.module';
 const routes: Route[] = [
   {
     path: '',
@@ -32,7 +33,19 @@ const routes: Route[] = [
         (m) => m.StaffManagementFeatureModule
       ),
   },
-  { path: 'manage-schedule', loadChildren: () => import('./schedule-management-feature/schedule-management-feature.module').then(m => m.ScheduleManagementFeatureModule) },
+  {
+    path: 'manage-schedule',
+    loadChildren: () =>
+      import(
+        './schedule-management-feature/schedule-management-feature.module'
+      ).then((m) => m.ScheduleManagementFeatureModule),
+  },
+  {
+    path: 'set-up-year',
+    loadChildren: () => 
+      import ('./set-up-year-feature/set-up-year-feature.module')
+        .then(m => m.SetUpYearFeatureModule)
+  }
 ];
 
 @NgModule({
@@ -41,6 +54,7 @@ const routes: Route[] = [
     RouterModule.forChild(routes),
     AdminFeatureDashboardModule,
     BoarderManagementFeatureModule,
+    SetUpYearFeatureModule,
   ],
 })
 export class AdminFeatureModule {}

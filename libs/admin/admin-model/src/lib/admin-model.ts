@@ -36,3 +36,13 @@ export interface ScheduleDayException {
     checkIns: CheckInException[];
     academicYear: string;
 }
+
+export interface NamedTimeSpan extends SimpleItem {
+    start: string;
+    end: string;
+}
+
+export interface AcademicYear extends NamedTimeSpan {
+    year: string;
+    breaks: NamedTimeSpan[];
+}

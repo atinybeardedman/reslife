@@ -37,11 +37,12 @@ export class AdminFeatureDashboardComponent {
       description:
         'Manage the regular check in schedule and also add/remove exceptions'
     },
-    // {
-    //   title: 'Campused Students',
-    //   icon: 'person_off',
-    //   path: 'campused',
-    //   description: 'Manage campused students',
-    // },
+    {
+      title: 'Year Set Up',
+      icon: 'event_available',
+      path: 'set-up-year',
+      description:
+        'Set up or edit an academic year by defining the start and end dates as well as breaks.'
+    },
   ];
 }
