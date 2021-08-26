@@ -45,7 +45,7 @@ export const testExceptionDay: ScheduleDayException = {
     academicYear: '2021-22'
 };
 
-const testBreak: NamedTimeSpan = {
+export const testBreak: NamedTimeSpan = {
     uid: '1',
     name: 'Thanksgiving Break',
     start: '2020-11-18',

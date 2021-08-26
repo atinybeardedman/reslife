@@ -1,1 +1,45 @@
-<p>break-management-table works!</p>
+
+    <table mat-table class="w-full"  [dataSource]="datasource">
+        <!-- Subject Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let breakDoc">{{ breakDoc.name }}</td>
+        </ng-container>
+        <!-- Range Column -->
+        <ng-container matColumnDef="range">
+          <th mat-header-cell *matHeaderCellDef>Date Range</th>
+          <td mat-cell *matCellDef="let breakDoc">{{ getRange(breakDoc) }}</td>
+        </ng-container>
+        <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let breakDoc">
+          <button
+            mat-icon-button
+            (click)="edit.emit({record:breakDoc, action: 'edit'})"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="delete.emit({record: breakDoc, action: 'delete'})"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <h1 class="text-center py-1" *ngIf="!breaks || breaks?.length === 0">
+          No Breaks Defined
+        </h1>
+      <mat-paginator
+        [pageSizeOptions]="[5]"
+        showFirstLastButtons
+        aria-label="Select page of breaks"
+      >
+      </mat-paginator>
+   
+  
