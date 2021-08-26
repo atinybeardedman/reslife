@@ -3,3 +3,4 @@ export * from './lib/boarder-management.service';
 export * from './lib/dorm-management.service';
 export * from './lib/staff-management.service';
 export * from './lib/schedule.service';
+export * from './lib/academic-year.service';

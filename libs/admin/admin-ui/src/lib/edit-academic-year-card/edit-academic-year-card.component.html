@@ -43,7 +43,7 @@
     <reslife-break-management-table
       (edit)="edit($event)"
       (delete)="delete($event)"
-      [breaks]="displayedBreaks"
+      [breaks]="filteredBreaks$ | async"
     ></reslife-break-management-table>
     <button mat-raised-button (click)="edit()">+ Add Break</button>
 
@@ -56,7 +56,7 @@
     <p>Save your changes below</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button [disabled]="startEndStepGroup.invalid" (click)="save.emit(editedDoc); stepper.reset()">
+      <button mat-button [disabled]="startEndStepGroup.invalid" (click)="save.emit(editedDoc);">
         Save
       </button>
     </div>

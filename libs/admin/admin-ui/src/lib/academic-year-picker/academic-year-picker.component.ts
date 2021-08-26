@@ -49,7 +49,6 @@ export class AcademicYearPickerComponent  {
         uid: year,
         start: '',
         end: '',
-        breaks: []
       }
     }
     this.yearSelected.emit(academicYear);

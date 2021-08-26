@@ -17,7 +17,12 @@ import {
   NamedTimeSpan,
 } from '@reslife/admin-model';
 import { RecordAction } from '@reslife/shared-models';
-import { getAcademicYear, getDateFromDatestring, getDateString } from '@reslife/utils';
+import {
+  getAcademicYear,
+  getDateFromDatestring,
+  getDateString,
+} from '@reslife/utils';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { EditBreakModalComponent } from './edit-break-modal/edit-break-modal.component';
 
@@ -35,6 +40,7 @@ export class EditAcademicYearCardComponent implements OnChanges {
   selectedBreak!: NamedTimeSpan | null;
   removedBreaks: Map<string, boolean> = new Map();
   editedBreaks: Map<string, NamedTimeSpan> = new Map();
+  filteredBreaks$ = new BehaviorSubject<NamedTimeSpan[]>([]);
   @ViewChild('editTemplate')
   editDialogTemplate!: TemplateRef<EditBreakModalComponent>;
   @ViewChild('confirmTemplate')
@@ -48,44 +54,39 @@ export class EditAcademicYearCardComponent implements OnChanges {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges){
-    if(changes.yearDoc && this.yearDoc?.uid !== ''){
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.yearDoc && this.yearDoc?.uid !== '') {
       this.modalTitle = 'Edit Break';
       this.startEndStepGroup.setValue({
         startDate: getDateFromDatestring(this.yearDoc?.start),
         endDate: getDateFromDatestring(this.yearDoc?.end),
       });
     }
+    if (changes.breaks && this.breaks) {
+      this.updateList();
+    }
   }
 
-  get displayedBreaks(): NamedTimeSpan[] {
-    if (!this.breaks) {
-      return [];
-    }
-    return this.breaks
-      .filter((b) => !this.removedBreaks.has(b.uid))
-      .map((b) => {
-        if (this.editedBreaks.has(b.uid)) {
-          return this.editedBreaks.get(b.uid) as NamedTimeSpan;
-        }
-        return b;
-      });
+  updateList(): void {
+    const inputBreaks = this.breaks || [];
+    const filteredInputs = inputBreaks.filter((b) => !(this.removedBreaks.has(b.uid) || this.editedBreaks.has(b.uid)));
+    const newList = [...filteredInputs, ...this.editedBreaks.values()];
+        this.filteredBreaks$.next(newList);
   }
 
   get editedDoc(): AcademicYearSaveEvent {
+    const year: AcademicYear = {
+      name: this.yearDoc?.name || getAcademicYear(),
+      uid: this.yearDoc?.uid || getAcademicYear(),
+      start: getDateString(this.startEndStepGroup.controls.startDate.value),
+      end: getDateString(this.startEndStepGroup.controls.endDate.value),
+    };
+    const breaks = [...this.filteredBreaks$.value];
 
-      const year: AcademicYear = {
-        name: this.yearDoc?.name || getAcademicYear(),
-        uid: this.yearDoc?.uid || getAcademicYear(),
-        start: getDateString(this.startEndStepGroup.controls.startDate.value),
-        end: getDateString(this.startEndStepGroup.controls.endDate.value)
-      };
-      const breaks = [...this.displayedBreaks];
-  
-      return {
-        year,
-        breaks
-      }
+    return {
+      year,
+      breaks,
+    };
   }
 
   edit(action?: RecordAction<NamedTimeSpan>): void {
@@ -109,15 +110,28 @@ export class EditAcademicYearCardComponent implements OnChanges {
     this.dialog.getDialogById('confirm')?.close();
     if (shouldDelete && this.selectedBreak) {
       this.removedBreaks.set(this.selectedBreak.uid, true);
+      if(this.editedBreaks.has(this.selectedBreak.uid)){
+        this.editedBreaks.delete(this.selectedBreak.uid);
+      }
+      this.updateList();
     }
     this.selectedBreak = null;
   }
 
+  getTempUid(): string {
+    return 'temp+' + this.filteredBreaks$.value.length + 1;
+  }
+
   saveRecord(record: NamedTimeSpan) {
     this.dialog.getDialogById('edit-record')?.close();
-    if (this.selectedBreak) {
+    if(this.selectedBreak){
+      this.editedBreaks.set(record.uid, record);
+    } else {
+      record.uid = this.getTempUid()
       this.editedBreaks.set(record.uid, record);
     }
+    this.updateList();
+    
     this.selectedBreak = null;
   }
 }

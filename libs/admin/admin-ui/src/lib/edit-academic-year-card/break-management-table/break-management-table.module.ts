@@ -13,14 +13,14 @@ import { MatTableModule } from '@angular/material/table';
     BreakManagementTableComponent
   ],
   imports: [
-    CommonModule
-  ],
-  exports: [
-    BreakManagementTableComponent,
+    CommonModule,
     MatButtonModule,
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
+  ],
+  exports: [
+    BreakManagementTableComponent,
   ]
 })
 export class BreakManagementTableModule { }

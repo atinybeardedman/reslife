@@ -11,6 +11,7 @@ import { SetUpYearFeatureModule } from './set-up-year-feature/set-up-year-featur
 const routes: Route[] = [
   {
     path: '',
+    pathMatch: 'full',
     component: AdminFeatureDashboardComponent,
   },
 
@@ -21,6 +22,7 @@ const routes: Route[] = [
   },
   {
     path: 'dorms',
+    pathMatch: 'full',
     loadChildren: () =>
       import('./dorm-management-feature/dorm-management-feature.module').then(
         (m) => m.DormManagementFeatureModule
@@ -28,6 +30,7 @@ const routes: Route[] = [
   },
   {
     path: 'manage-staff',
+    pathMatch: 'full',
     loadChildren: () =>
       import('./staff-management-feature/staff-management-feature.module').then(
         (m) => m.StaffManagementFeatureModule
@@ -35,6 +38,7 @@ const routes: Route[] = [
   },
   {
     path: 'manage-schedule',
+    pathMatch: 'full',
     loadChildren: () =>
       import(
         './schedule-management-feature/schedule-management-feature.module'
@@ -42,6 +46,7 @@ const routes: Route[] = [
   },
   {
     path: 'set-up-year',
+    pathMatch: 'full',
     loadChildren: () => 
       import ('./set-up-year-feature/set-up-year-feature.module')
         .then(m => m.SetUpYearFeatureModule)
@@ -54,7 +59,6 @@ const routes: Route[] = [
     RouterModule.forChild(routes),
     AdminFeatureDashboardModule,
     BoarderManagementFeatureModule,
-    SetUpYearFeatureModule,
   ],
 })
 export class AdminFeatureModule {}
