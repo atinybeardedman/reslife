@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 import { AdminFeatureDashboardModule } from './admin-feature-dashboard/admin-feature-dashboard.module';
 import { AdminFeatureDashboardComponent } from './admin-feature-dashboard/admin-feature-dashboard.component';
+import { ProcessRequestsFeatureModule } from './process-requests-feature/process-requests-feature.module';
 const routes: Route[] = [
   {
     path: '',
@@ -48,6 +49,13 @@ const routes: Route[] = [
     loadChildren: () => 
       import ('./set-up-year-feature/set-up-year-feature.module')
         .then(m => m.SetUpYearFeatureModule)
+  },
+  {
+    path: 'requests',
+    pathMatch: 'full',
+    loadChildren: () => 
+      import ('./process-requests-feature/process-requests-feature.module')
+        .then(m => m.ProcessRequestsFeatureModule)
   }
 ];
 
@@ -56,6 +64,7 @@ const routes: Route[] = [
     CommonModule,
     RouterModule.forChild(routes),
     AdminFeatureDashboardModule,
+    ProcessRequestsFeatureModule,
   ],
 })
 export class AdminFeatureModule {}

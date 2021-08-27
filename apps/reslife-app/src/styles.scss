@@ -41,6 +41,10 @@ $reslife-app-theme: mat.define-light-theme(
   }
 }
 
+.text-success {
+  color: mat.get-color-from-pallete(mat.$green-palette);
+}
+
 .text-warn {
   color: mat.get-color-from-palette($reslife-app-warn, 'default');
 }

@@ -51,3 +51,23 @@ export interface AcademicYearSaveEvent {
     year: AcademicYear;
     breaks: NamedTimeSpan[]
 }
+
+export type RequestType = 'Leave' | 'Stay';
+
+export type RequestStatus = 'Pending' | 'Approved' | 'Rejected';
+
+export interface LeaveStayRequest {
+    uid: string;
+    student: {
+        name: string;
+        uid: string;
+        email: string;
+    };
+    type: RequestType;
+    explaination: string;
+    startDate: string;
+    endDate: string;
+    status: RequestStatus;
+    rejectionReason?: string;
+    academicYear: string;
+}

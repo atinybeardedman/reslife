@@ -10,25 +10,10 @@ import { DashboardCard } from '@reslife/shared-models';
 export class AdminFeatureDashboardComponent {
   cards: DashboardCard[] = [
     {
-      title: 'Manage Boarders',
-      icon: 'manage_accounts',
-      path: 'manage-boarders',
-      description:
-        'Add, edit, or remove boarders',
-    },
-    {
-      title: 'Manage Dorms',
-      icon: 'hotel',
-      path: 'dorms',
-      description:
-        'Manage which dorms are active'
-    },
-    {
-      title: 'Manage Staff',
-      icon: 'supervisor_account',
-      path: 'manage-staff',
-      description:
-        'Manage staff and edit their access to admin and aod features'
+      title: 'Process Requests',
+      icon: 'rule',
+      path: 'requests',
+      description: 'Process leave/stay requests that students have submitted'
     },
     {
       title: 'Manage Schedule',
@@ -36,6 +21,27 @@ export class AdminFeatureDashboardComponent {
       path: 'manage-schedule',
       description:
         'Manage the regular check in schedule and also add/remove exceptions'
+    },
+    {
+      title: 'Manage Boarders',
+      icon: 'manage_accounts',
+      path: 'manage-boarders',
+      description:
+        'Add, edit, or remove boarders',
+    },
+    {
+      title: 'Manage Staff',
+      icon: 'supervisor_account',
+      path: 'manage-staff',
+      description:
+      'Manage staff and edit their access to admin and aod features'
+    },
+    {
+      title: 'Manage Dorms',
+      icon: 'hotel',
+      path: 'dorms',
+      description:
+        'Manage which dorms are active'
     },
     {
       title: 'Year Set Up',

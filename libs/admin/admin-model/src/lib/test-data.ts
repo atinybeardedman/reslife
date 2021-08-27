@@ -1,4 +1,4 @@
-import { AcademicYear, NamedTimeSpan, ScheduleDayException, ScheduleItem, StaffMember } from "./admin-model";
+import { AcademicYear, LeaveStayRequest, NamedTimeSpan, ScheduleDayException, ScheduleItem, StaffMember } from "./admin-model";
 
 export const testStaffMember: StaffMember = {
     name: 'Test Faculty 1',
@@ -58,3 +58,33 @@ export const testAcademicYear: AcademicYear = {
     start: '2020-09-10',
     end: '2021-06-10',
 }
+
+export const testStayRequest: LeaveStayRequest = {
+    uid: '1',
+    student: {
+        name: 'Test Boarder 1',
+        uid: '1',
+        email: 'boarder1@oakwoodfriends.org'
+    },
+    type: 'Stay',
+    explaination: 'Staying this weekend for the basketball game on Saturday',
+    startDate: '2021-09-10T17:00:00-04:00',
+    endDate: '2021-09-12T19:00:00-04:00',
+    status: 'Pending',
+    academicYear: '2021-22'
+};
+
+export const testLeaveRequest: LeaveStayRequest = {
+    uid: '2',
+    student: {
+        name: 'Test Boarder 2',
+        uid: '2',
+        email: 'boarder2@oakwoodfriends.org'
+    },
+    type: 'Leave',
+    explaination: 'Going on a college visit',
+    startDate: '2021-09-11T10:00:00-04:00',
+    endDate: '2021-09-12T19:00:00-04:00',
+    status: 'Pending',
+    academicYear: '2021-22'
+};

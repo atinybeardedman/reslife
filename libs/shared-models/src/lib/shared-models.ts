@@ -54,7 +54,6 @@ export interface DormDatePickerEvent {
   date: string;
 }
 
-
 export interface LeaveReturnTiming {
   leaveDate: string;
   returnDate: string;
@@ -69,5 +68,5 @@ export interface DashboardCard {
 
 export interface RecordAction<T> {
   record: T;
-  action: 'edit' | 'delete';
+  action: 'view' | 'edit' | 'delete';
 }
