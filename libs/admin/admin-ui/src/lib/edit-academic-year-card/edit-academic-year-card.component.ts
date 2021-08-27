@@ -22,7 +22,7 @@ import {
   getDateFromDatestring,
   getDateString,
 } from '@reslife/utils';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { EditBreakModalComponent } from './edit-break-modal/edit-break-modal.component';
 

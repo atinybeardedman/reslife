@@ -90,7 +90,7 @@ describe('DormNotesFieldComponent', () => {
   });
 
   describe('When field is already filled', () => {
-    let field: MatFormFieldHarness;
+   
     let panel: MatExpansionPanelHarness;
     beforeEach(async () => {
       component.field = filledField;
@@ -98,7 +98,7 @@ describe('DormNotesFieldComponent', () => {
         field: new SimpleChange(null, component.field, true),
       });
       fixture.detectChanges();
-      field = await loader.getHarness(MatFormFieldHarness);
+     
       panel = await loader.getHarness(MatExpansionPanelHarness);
     });
     it('should render the textfield with the content provided', async () => {

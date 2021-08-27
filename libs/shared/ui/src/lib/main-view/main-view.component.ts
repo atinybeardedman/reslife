@@ -3,7 +3,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationItem, Role } from '@reslife/shared-models';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import {  takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'reslife-main-view',
   templateUrl: './main-view.component.html',
