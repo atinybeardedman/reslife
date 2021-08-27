@@ -121,8 +121,8 @@ describe('RequestsTableComponent', () => {
       const table = await loader.getHarness(MatTableHarness);
       const rows = await table.getRows();
       const hosts = await parallel(() => rows.map((r) => r.host()));
-      expect(await hosts[0].hasClass('mat-success')).toBe(true);
-      expect(await hosts[1].hasClass('mat-warn')).toBe(true);
+      expect(await hosts[0].hasClass('text-warn')).toBe(false);
+      expect(await hosts[1].hasClass('text-warn')).toBe(true);
     });
   });
 });
