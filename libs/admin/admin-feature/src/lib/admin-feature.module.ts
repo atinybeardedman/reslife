@@ -3,11 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 import { AdminFeatureDashboardModule } from './admin-feature-dashboard/admin-feature-dashboard.module';
 import { AdminFeatureDashboardComponent } from './admin-feature-dashboard/admin-feature-dashboard.component';
-import {
-  BoarderManagementFeatureModule,
-  BoarderManagementPageComponent,
-} from '@reslife/boarder-management-feature';
-import { SetUpYearFeatureModule } from './set-up-year-feature/set-up-year-feature.module';
 const routes: Route[] = [
   {
     path: '',
@@ -18,7 +13,10 @@ const routes: Route[] = [
   {
     path: 'manage-boarders',
     pathMatch: 'full',
-    component: BoarderManagementPageComponent,
+   loadChildren: () => 
+    import ('@reslife/boarder-management-feature').then(
+      m => m.BoarderManagementFeatureModule
+    )
   },
   {
     path: 'dorms',
@@ -58,7 +56,6 @@ const routes: Route[] = [
     CommonModule,
     RouterModule.forChild(routes),
     AdminFeatureDashboardModule,
-    BoarderManagementFeatureModule,
   ],
 })
 export class AdminFeatureModule {}
