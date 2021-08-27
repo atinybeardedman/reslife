@@ -11,7 +11,7 @@
   </ng-container>
   <!-- Timing Column-->
   <ng-container matColumnDef="timing">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Timing </th>
     <td mat-cell *matCellDef="let request">
       {{ getDate(request.startDate) | date: 'M/d' }} -
       {{ getDate(request.endDate) | date: 'M/d' }}
@@ -31,7 +31,7 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr [ngClass]="{'mat-success': row.status === 'Approved', 'mat-warn': row.status === 'Rejected'}" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  <tr [class.text-warn]="row.status === 'Rejected'" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 <h1 class="text-center py-1" *ngIf="!requests || requests?.length === 0">
   No Requests Found

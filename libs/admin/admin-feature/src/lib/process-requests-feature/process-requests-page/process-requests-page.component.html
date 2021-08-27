@@ -1,1 +1,47 @@
-<p>process-requests-page works!</p>
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Pending Requests">
+    <section fxLayout="row" fxLayoutAlign="start start">
+      <div class="col" fxFlex fxHide.lt-md></div>
+      <mat-card class="col my-1" fxFlex="1 1 40vw" fxFlex.lt-md>
+        <mat-card-title>Pending</mat-card-title>
+        <mat-card-content>
+          <reslife-requests-table
+            (view)="openEdit($event)"
+            [requests]="pendingRequests$ | async"
+          ></reslife-requests-table>
+        </mat-card-content>
+      </mat-card>
+      <div class="col" fxFlex fxHide.lt-md></div>
+    </section>
+  </mat-tab>
+  <mat-tab label="Processed Requests">
+    <section fxLayout="row" fxLayoutAlign="start start">
+      <div class="col" fxFlex fxHide.lt-md></div>
+      <mat-card class="col my-1" fxFlex="1 1 40vw" fxFlex.lt-md>
+        <mat-card-title>Processed</mat-card-title>
+        <mat-card-content>
+          <reslife-requests-table
+            [requests]="pastRequests$ | async"
+            (view)="openReadOnly($event)"
+          ></reslife-requests-table>
+        </mat-card-content>
+      </mat-card>
+      <div class="col" fxFlex fxHide.lt-md></div>
+    </section>
+  </mat-tab>
+</mat-tab-group>
+<ng-template #editTemplate>
+  <reslife-request-modal
+    [request]="selectedRequest" 
+    (save)="save($event)">
+    </reslife-request-modal
+  >
+</ng-template>
+<ng-template #readOnlyTemplate>
+  <reslife-request-modal
+    [request]="selectedRequest" 
+    [readOnly]="true"
+    >
+    </reslife-request-modal
+  >
+</ng-template>

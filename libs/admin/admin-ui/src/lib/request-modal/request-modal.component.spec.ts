@@ -63,14 +63,14 @@ describe('RequestModalComponent', () => {
       const button = await loader.getHarness(MatButtonHarness.with({text: 'Save'}));
       expect(await button.isDisabled()).toBe(true);
 
-      const toggleButton = await loader.getHarness(MatButtonToggleHarness.with({text: 'Approve'}));
+      const toggleButton = await loader.getHarness(MatButtonToggleHarness.with({text: 'Approved'}));
       await toggleButton.check();
       fixture.detectChanges();
       expect(await button.isDisabled()).toBe(false);
     });
 
     it('should display the required reason field when rejected', async () => {
-      const toggleButton = await loader.getHarness(MatButtonToggleHarness.with({text: 'Reject'}));
+      const toggleButton = await loader.getHarness(MatButtonToggleHarness.with({text: 'Rejected'}));
       await toggleButton.check();
       fixture.detectChanges();
 
@@ -83,7 +83,7 @@ describe('RequestModalComponent', () => {
 
     it('should emit the request on save', async () => {
       const spy = jest.spyOn(component.save, 'emit');
-      const toggleButton = await loader.getHarness(MatButtonToggleHarness.with({text: 'Approve'}));
+      const toggleButton = await loader.getHarness(MatButtonToggleHarness.with({text: 'Approved'}));
       await toggleButton.check();
 
       const button = await loader.getHarness(MatButtonHarness.with({text: 'Save'}));

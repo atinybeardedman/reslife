@@ -64,7 +64,6 @@ const routes: Route[] = [
     CommonModule,
     RouterModule.forChild(routes),
     AdminFeatureDashboardModule,
-    ProcessRequestsFeatureModule,
   ],
 })
 export class AdminFeatureModule {}

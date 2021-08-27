@@ -5,3 +5,4 @@ export * from './lib/edit-boarder-modal/edit-boarder-modal.component';
 export * from './lib/dorm-management-modal/dorm-management-modal.component';
 export * from './lib/regular-schedule-modal/regular-schedule-modal.component';
 export * from './lib/schedule-exception-modal/schedule-exception-modal.component';
+export * from './lib/request-modal/request-modal.component';

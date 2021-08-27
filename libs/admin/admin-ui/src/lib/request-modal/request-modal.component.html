@@ -1,86 +1,94 @@
 <h1 mat-dialog-title>Request Detail</h1>
 <div mat-dialog-content *ngIf="request">
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input
-      matInput
-      disabled
-      [value]="request.student.name"
-      type="text"
-      name="name"
-      id="name"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Request Type</mat-label>
-    <mat-select disabled [value]="request.type">
-      <mat-option value="Leave">Leave</mat-option>
-      <mat-option value="Stay">Stay</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Details</mat-label>
-    <textarea
-      disabled
-      [value]="request.explaination"
-      matInput
-      name="detail"
-      id="detail"
-      cols="30"
-      rows="10"
-    ></textarea>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Start Date</mat-label>
-    <input
-      matInput
-      disabled
-      [value]="request.startDate | date: 'short'"
-      name="startDate"
-      id="startDate"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>End Date</mat-label>
-    <input
-      matInput
-      disabled
-      [value]="request.endDate | date: 'short'"
-      name="endDate"
-      id="endDate"
-    />
-  </mat-form-field>
-
-  <mat-button-toggle-group
-    name="status"
-    aria-label="Request Status"
-    [(ngModel)]="request.status"
-    required
-    [disabled]="readOnly"
-  >
-    <mat-button-toggle value="Pending">
-      Pending
-    </mat-button-toggle>
-    <mat-button-toggle class="text-success" value="Approved">
-      Approve
-    </mat-button-toggle>
-    <mat-button-toggle value="Rejected" class="text-warn">
-        Reject
-    </mat-button-toggle>
-  </mat-button-toggle-group>
-  <mat-form-field *ngIf="request.status === 'Rejected'">
-    <mat-label>Rejection Reason</mat-label>
-    <textarea
+  <div fxLayout="row wrap" fxLayoutGap="10px">
+    <mat-form-field fxFlex>
+      <mat-label>Name</mat-label>
+      <input
         matInput
-      [(ngModel)]="request.rejectionReason"
-      [disabled]="readOnly"
-      name="rejectionReason"
-      id="rejectionReason"
+        disabled
+        [value]="request.student.name"
+        type="text"
+        name="name"
+        id="name"
+      />
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>Request Type</mat-label>
+      <mat-select disabled [value]="request.type">
+        <mat-option value="Leave">Leave</mat-option>
+        <mat-option value="Stay">Stay</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row wrap">
+    <mat-form-field fxFlex>
+      <mat-label>Details</mat-label>
+      <textarea
+        disabled
+        [value]="request.explaination"
+        matInput
+        name="detail"
+        id="detail"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="10px">
+    <mat-form-field fxFlex>
+      <mat-label>Start Date</mat-label>
+      <input
+        matInput
+        disabled
+        [value]="request.startDate | date: 'short'"
+        name="startDate"
+        id="startDate"
+      />
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>End Date</mat-label>
+      <input
+        matInput
+        disabled
+        [value]="request.endDate | date: 'short'"
+        name="endDate"
+        id="endDate"
+      />
+    </mat-form-field>
+  </div>
+  <div fxLayout="row wrap" class="my-1" fxLayoutAlign="center">
+    <mat-button-toggle-group
+      name="status"
+      aria-label="Request Status"
+      [(ngModel)]="request.status"
       required
-      cols="30"
-      rows="10"
-    ></textarea>
-  </mat-form-field>
+      [disabled]="readOnly"
+      fxFlex="nogrow"
+    >
+      <mat-button-toggle value="Pending"> Pending </mat-button-toggle>
+      <mat-button-toggle class="text-accent" value="Approved">
+        Approved
+      </mat-button-toggle>
+      <mat-button-toggle value="Rejected" class="text-warn">
+        Rejected
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="10px">
+    <mat-form-field fxFlex *ngIf="request.status === 'Rejected'">
+      <mat-label>Rejection Reason</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="request.rejectionReason"
+        [disabled]="readOnly"
+        name="rejectionReason"
+        id="rejectionReason"
+        required
+        cols="30"
+        rows="5"
+      ></textarea>
+    </mat-form-field>
+  </div>
 </div>
 <div *ngIf="!readOnly" mat-dialog-actions>
   <button mat-button (click)="emitRequest()" [disabled]="!isValid">Save</button>
