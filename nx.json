@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "admin-feature": {
+      "tags": ["type:feature"]
+    },
     "admin-data-access": {
       "tags": ["type:data-access"]
     },
@@ -36,14 +39,14 @@
     "admin-ui": {
       "tags": ["type:ui"]
     },
-    "aod-model": {
-      "tags": ["type:model"]
-    },
     "aod-data-access": {
       "tags": ["type:data-access"]
     },
     "aod-feature": {
       "tags": ["type:feature"]
+    },
+    "aod-model": {
+      "tags": ["type:model"]
     },
     "aod-ui": {
       "tags": ["type:ui"]

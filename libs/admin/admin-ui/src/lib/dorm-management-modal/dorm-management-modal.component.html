@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="dormForm">
+        <div fxLayout fxLayoutGap="10px" fxLayoutAlign="start center">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input required formControlName="name" matInput type="text" name="name" id="name">
+            </mat-form-field>
+            <mat-checkbox color="accent" formControlName="isActive">Is Active?</mat-checkbox>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button
+    (click)="save.emit(dormRecord)"
+    [disabled]="!dormForm.valid"
+    mat-button
+  >
+    Save
+  </button>
+</div>

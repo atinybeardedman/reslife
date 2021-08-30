@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-title> Choose an Academic Year </mat-card-title>
+  <div
+    fxLayout="row"
+    class="p-1"
+    fxLayoutAlign="space-evenly center"
+    fxLayout.lt-md="column"
+    fxLayoutGap="1rem"
+  >
+    <mat-form-field fxFlex>
+      <mat-label>Choose a year</mat-label>
+      <mat-select
+        [disabled]="years.length === 0"
+        [value]="selectedYear"
+        (selectionChange)="selectYear($event.value)"
+      >
+        <mat-option *ngFor="let year of years" [value]="year">{{
+          year
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="accent" fxFlex="nogrow" (click)="addYear()">Create Next Year</button>
+  </div>
+</mat-card>

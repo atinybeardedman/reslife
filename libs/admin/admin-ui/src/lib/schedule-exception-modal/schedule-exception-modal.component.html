@@ -1,0 +1,76 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="exceptionForm">
+    <div fxLayout="row wrap" fxLayoutGap="10px">
+      <mat-form-field fxFlex>
+        <mat-label>Choose a date</mat-label>
+        <input
+          matInput
+          required
+          [matDatepicker]="picker"
+          formControlName="date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>Type of Exception</mat-label>
+        <input placeholder="Ex. No Brunch" #note required matInput maxlength="10" formControlName="note" type="text" />
+        <mat-hint align="end">{{note.value.length}} / 10</mat-hint>
+      </mat-form-field>
+    </div>
+    <div formArrayName="checkIns">
+      <div
+        fxLayout="row wrap"
+        fxLayoutGap="10px"
+        *ngFor="let checkIn of checkInArray.controls; index as i; last as isLast"
+        [formGroupName]="i"
+        class="check-in-group my-1"
+      >
+        <mat-form-field fxFlex>
+          <mat-label>Check In Name</mat-label>
+          <input
+            matInput
+            required
+            formControlName="name"
+            type="text"
+            name="name"
+            id="name"
+          />
+        </mat-form-field>
+       
+            <mat-form-field fxFlex>
+              <mat-label>Start Time</mat-label>
+              <input
+                matInput
+                required
+                formControlName="startTime"
+                type="time"
+                name="startTime"
+                id="startTime"
+              />
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <mat-label>End Time</mat-label>
+              <input
+                matInput
+                required
+                formControlName="endTime"
+                type="time"
+                name="endTime"
+                id="endTime"
+              />
+            </mat-form-field>
+
+        <button class="remove-button" (click)="removeCheckIn(i)" mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-divider *ngIf="!isLast"></mat-divider>
+      </div>
+    </div>
+    <button (click)="addCheckIn()" mat-button>Add Check In</button>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button (click)="save.emit(editedException)" [disabled]="!(exceptionForm.valid && isAnyCheckInAdded)" mat-button>Save</button>
+</div>

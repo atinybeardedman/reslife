@@ -29,8 +29,7 @@ export interface Boarder {
   isActive: boolean;
 }
 
-export interface DormDocument {
-  name: string;
+export interface DormDocument extends SimpleItem {
   isActive: boolean;
 }
 
@@ -55,7 +54,6 @@ export interface DormDatePickerEvent {
   date: string;
 }
 
-
 export interface LeaveReturnTiming {
   leaveDate: string;
   returnDate: string;
@@ -66,4 +64,9 @@ export interface DashboardCard {
   description: string;
   path: string;
   icon: string;
+}
+
+export interface RecordAction<T> {
+  record: T;
+  action: 'view' | 'edit' | 'delete';
 }

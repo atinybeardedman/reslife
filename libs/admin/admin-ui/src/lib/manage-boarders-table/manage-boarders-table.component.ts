@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
-import { Boarder } from '@reslife/shared-models';
-import { BoarderAction } from '@reslife/admin-model';
+import { Boarder, RecordAction } from '@reslife/shared-models';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { getDateFromDatestring } from '@reslife/utils';
@@ -18,8 +17,8 @@ export class ManageBoardersTableComponent implements OnChanges, AfterViewInit {
   getDate = getDateFromDatestring
   @Input() boarders!: Boarder[] | null;
   @Input() showDates = false;
-  @Output() edit = new EventEmitter<BoarderAction>();
-  @Output() delete = new EventEmitter<BoarderAction>();
+  @Output() edit = new EventEmitter<RecordAction<Boarder>>();
+  @Output() delete = new EventEmitter<RecordAction<Boarder>>();
   
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

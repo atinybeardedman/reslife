@@ -49,6 +49,20 @@ export function getYearEndDateString(date = new Date()): string {
   return `${newYear}-06-30`;
 }
 
+/**
+ * 
+ * @param date - Date to get academic year for
+ * @returns a string representing the current academic year in the format YYYY-YY
+ */
+export function getAcademicYear(date = new Date()): string {
+  const startYear = date.getMonth() > 5 ? date.getFullYear() : date.getFullYear() - 1;
+  return `${startYear}-${(startYear + 1).toString().substr(2)}`;
+}
+
+export function incrementAcademicYear(year: string): string {
+  return year.split('-').map(y => parseInt(y, 10) + 1).join('-');
+}
+
 export function getTime(date = new Date()): string {
   const datestring = getIsoTimezoneString(date);
   const i = datestring.indexOf("T");
@@ -64,6 +78,17 @@ export function combineDatetime(date: Date, time: string): Date {
 
 export function getTimeDiff(end: Date, start: Date): number {
   return Math.floor((end.getTime() - start.getTime()) / (1000 * 60));
+}
+
+export function orderByProp<T>(prop: keyof T)  {
+  return (a: T, b: T) => {
+    if(a[prop] > b[prop]){
+      return 1
+    } else if(a[prop] < b[prop]){
+      return -1;
+    }
+    return 0;
+  }
 }
 
 export function orderByName(a: NamedItem, b: NamedItem): number {

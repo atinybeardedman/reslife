@@ -1,0 +1,41 @@
+<table mat-table class="w-full" [dataSource]="datasource">
+    <!-- Name Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef >Date</th>
+      <td mat-cell *matCellDef="let record">{{ getDate(record.date) | date : 'E, M/d' }}</td>
+    </ng-container>
+    <!--Is Active Column-->
+    <ng-container matColumnDef="note">
+      <th mat-header-cell *matHeaderCellDef >Note</th>
+      <td mat-cell *matCellDef="let record">
+        {{record.note}}
+      </td>
+    </ng-container>
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let record">
+        <button mat-icon-button (click)="edit.emit({record, action: 'edit'})">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="delete.emit({record, action: 'delete'})">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <h1 class="text-center py-1" *ngIf="!exceptions || exceptions?.length === 0">
+    No Exceptions Found
+  </h1>
+  <mat-paginator
+  [pageSizeOptions]="[10]"
+  showFirstLastButtons
+  aria-label="Select page of exceptions"
+>
+</mat-paginator>
+
+
+  

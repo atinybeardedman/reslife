@@ -69,6 +69,28 @@ describe('utils', () => {
    it('should correctly get the year end when no date is given', () => {
      expect(utils.getYearEndDateString()).toBe('2021-06-30');
    })
+ });
+
+ describe('getAcademicYear', () => {
+   it('should correctly get the academic year given a date', () =>{
+    const fallDate = new Date(2021, 10, 10);
+    const springDate = new Date(2022, 4,1);
+    const expectedString = '2021-22';
+    expect(utils.getAcademicYear(fallDate)).toBe(expectedString);
+    expect(utils.getAcademicYear(springDate)).toBe(expectedString);
+   });
+
+   it('should correctly get the year end when no date is given', () => {
+    expect(utils.getAcademicYear()).toBe('2020-21');
+  })
+ });
+
+ describe('incrementAcademicYear',() => {
+   it('should increment the academic year', () => {
+     const year = '2020-21';
+     const expected = '2021-22';
+     expect(utils.incrementAcademicYear(year)).toBe(expected);
+   })
  })
 
  describe('getTime', () => {

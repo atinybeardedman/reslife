@@ -1,9 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AodSignoutDataService } from '@reslife/aod-data-access';
-import { MockModule, MockProvider } from 'ng-mocks';
+import { MockProvider } from 'ng-mocks';
 
 import { AodSignoutsPageComponent } from './aod-signouts-page.component';
 import { AodSignoutsPageModule } from './aod-signouts-page.module';

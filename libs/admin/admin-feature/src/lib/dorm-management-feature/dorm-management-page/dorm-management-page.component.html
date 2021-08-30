@@ -1,0 +1,39 @@
+<section fxLayout="row" fxLayoutAlign="start start">
+    <div class="col" fxFlex fxHide.lt-md></div>
+    <div class="col" fxFlex="1 1 40vw" fxFlex.lt-md>
+      <div class="m-1">
+        <button mat-raised-button color="accent" (click)="edit()">
+          + Add Dorm
+        </button>
+      </div>
+      <div class="m-1">
+        <mat-card>
+          <mat-card-title>Dorms</mat-card-title>
+          <mat-card-content>
+            <reslife-dorm-management-table
+              [dorms]="dorms$ | async"
+              (edit)="edit($event)"
+              (delete)="delete($event)"
+            ></reslife-dorm-management-table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col" fxFlex fxHide.lt-md></div>
+  </section>
+  
+  <ng-template #editTemplate>
+    <reslife-dorm-management-modal
+      [dorm]="selectedDorm"
+      [title]="modalTitle"
+      (save)="saveRecord($event)"
+    ></reslife-dorm-management-modal>
+  </ng-template>
+  
+  <ng-template #confirmTemplate>
+    <reslife-confirm-modal
+      message="Are you sure you want to delete this dorm?"
+      (isConfirmed)="confirmDelete($event)"
+    ></reslife-confirm-modal>
+  </ng-template>
+  

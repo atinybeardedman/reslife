@@ -14,7 +14,6 @@ const mockedGetTime = getTime as jest.MockedFunction<typeof getTime>;
 
 describe('CheckInDataService', () => {
   let service: CheckInDataService;
-  let afService: AngularFirestore;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [

@@ -2,6 +2,7 @@ module.exports = {
   displayName: 'admin-admin-ui',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globalSetup: '../../../global-setup.ts',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',

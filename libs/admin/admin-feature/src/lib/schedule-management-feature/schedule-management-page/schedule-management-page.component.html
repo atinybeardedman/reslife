@@ -1,0 +1,40 @@
+<section fxLayout="row" fxLayoutAlign="start start" class="my-1">
+  <div class="col" fxFlex fxHide.lt-md></div>
+  <div class="col" fxFlex="1 1 30rem" fxFlex.lt-md>
+    <mat-card>
+      <mat-card-title>Choose an Academic Year</mat-card-title>
+      <mat-card-content>
+        <div fxLayout fxLayoutAlign="center" class="py-1">
+          <mat-form-field>
+            <mat-label>Academic Year</mat-label>
+            <mat-select
+              (selectionChange)="selectedYear$.next($event.value)"
+              [value]="selectedYear$ | async"
+            >
+              <mat-option *ngFor="let year of years$ | async" [value]="year">{{
+                year
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col" fxFlex fxHide.lt-md></div>
+</section>
+
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Regular Schedule">
+    <reslife-regular-schedule-tab
+      [scheduleItems]="scheduleItems$ | async"
+      [selectedYear]="selectedYear$ | async"
+    ></reslife-regular-schedule-tab>
+  </mat-tab>
+  <mat-tab label="Exceptions">
+    <reslife-exceptions-schedule-tab
+    [regularSchedule]="scheduleItems$ | async"
+    [exceptions]="exceptions$ | async"
+    [academicYear]="selectedYear$ | async"
+    ></reslife-exceptions-schedule-tab>
+  </mat-tab>
+</mat-tab-group>

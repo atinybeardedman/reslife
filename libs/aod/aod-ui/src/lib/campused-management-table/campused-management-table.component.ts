@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnChanges, AfterViewInit, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { CampusedStudentRecord } from '@reslife/shared-models';
-import { RecordAction } from '@reslife/aod-model';
+import { CampusedStudentRecord, RecordAction } from '@reslife/shared-models';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';

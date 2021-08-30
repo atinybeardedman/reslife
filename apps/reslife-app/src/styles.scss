@@ -41,8 +41,20 @@ $reslife-app-theme: mat.define-light-theme(
   }
 }
 
+.text-accent {
+  color: mat.get-color-from-palette($reslife-app-accent, 'default');
+}
+
 .text-warn {
   color: mat.get-color-from-palette($reslife-app-warn, 'default');
+}
+
+.bg-warn {
+  background-color: mat.get-color-from-palette($reslife-app-warn, 'default');
+}
+
+.bg-accent {
+  background-color: mat.get-color-from-palette($reslife-app-accent, 'default');
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -92,6 +104,12 @@ body {
     margin-top: #{$i}rem;
     margin-bottom: #{$i}rem;
   }
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem;
+  }
+  .mt-#{$i} {
+    margin-top: #{$i}rem;
+  }
   .mx-#{$i} {
     margin-right: #{$i}rem;
     margin-left: #{$i}rem;
@@ -103,4 +121,15 @@ body {
 mat-stepper.no-padding .mat-vertical-content {
   padding-left: 0px;
   padding-right: 0px;
+}
+.mat-button-toggle-checked.text-accent {
+  background-color: mat.get-color-from-palette($reslife-app-accent, 'lighter');
+}
+
+.mat-button-toggle-checked.text-warn {
+  background-color: mat.get-color-from-palette($reslife-app-warn, 'lighter');
+}
+
+tr.text-warn .mat-cell {
+  color: mat.get-color-from-palette($reslife-app-warn, 'default');
 }

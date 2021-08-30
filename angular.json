@@ -1,6 +1,31 @@
 {
   "version": 1,
   "projects": {
+    "admin-feature": {
+      "projectType": "library",
+      "root": "libs/admin/admin-feature",
+      "sourceRoot": "libs/admin/admin-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/admin-feature"],
+          "options": {
+            "jestConfig": "libs/admin/admin-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/admin-feature/src/**/*.ts",
+              "libs/admin/admin-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "admin-data-access": {
       "projectType": "library",
       "root": "libs/admin/admin-data-access",
@@ -64,19 +89,6 @@
         }
       }
     },
-    "aod-model": {
-      "root": "libs/aod/aod-model",
-      "sourceRoot": "libs/aod/aod-model/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/aod/aod-model/**/*.ts"]
-          }
-        }
-      }
-    },
     "aod-data-access": {
       "projectType": "library",
       "root": "libs/aod/aod-data-access",
@@ -123,6 +135,19 @@
               "libs/aod/aod-feature/src/**/*.ts",
               "libs/aod/aod-feature/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "aod-model": {
+      "root": "libs/aod/aod-model",
+      "sourceRoot": "libs/aod/aod-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/aod/aod-model/**/*.ts"]
           }
         }
       }

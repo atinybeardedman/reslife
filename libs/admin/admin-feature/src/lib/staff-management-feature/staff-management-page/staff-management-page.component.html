@@ -1,0 +1,40 @@
+<section fxLayout="row" fxLayoutAlign="start start">
+    <div class="col" fxFlex fxHide.lt-md></div>
+    <div class="col" fxFlex="1 1 40vw" fxFlex.lt-md>
+      <div class="m-1">
+        <button mat-raised-button color="accent" (click)="edit()">
+          + Add Staff Member
+        </button>
+      </div>
+      <div class="m-1">
+        <mat-card>
+          <mat-card-title>Staff</mat-card-title>
+          <mat-card-content>
+            <reslife-staff-management-table
+              [staff]="staff$ | async"
+              (edit)="edit($event)"
+              (delete)="delete($event)"
+            ></reslife-staff-management-table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col" fxFlex fxHide.lt-md></div>
+  </section>
+  
+  <ng-template #editTemplate>
+    <reslife-staff-management-modal
+      [staffMember]="selectedStaff"
+      [currentEmails]="emails$ | async"
+    [title]="modalTitle"
+      (save)="saveRecord($event)"
+    ></reslife-staff-management-modal>
+  </ng-template>
+  
+  <ng-template #confirmTemplate>
+    <reslife-confirm-modal
+      message="Are you sure you want to delete this staff member?"
+      (isConfirmed)="confirmDelete($event)"
+    ></reslife-confirm-modal>
+  </ng-template>
+  
