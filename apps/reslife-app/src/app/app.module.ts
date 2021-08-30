@@ -32,11 +32,11 @@ import { AngularFireAuthModule, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angul
     },
     {
       provide: USE_AUTH_EMULATOR,
-      useValue: !environment.production ? ['localhost', '9099'] : undefined
+      useValue: environment.useEmulators ? ['localhost', '9099'] : undefined
     },
     {
       provide: USE_FIRESTORE_EMULATOR,
-      useValue: !environment.production ? ['localhost', '8080'] : undefined
+      useValue: environment.useEmulators ? ['localhost', '8080'] : undefined
     },
   ],
   bootstrap: [AppComponent],

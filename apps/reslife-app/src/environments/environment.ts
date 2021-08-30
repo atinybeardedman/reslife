@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  useEmulators: false,
   firebase: {
     apiKey: "AIzaSyBDnop9prdY-550K5vaBCQ5IqnMOS8quUQ",
     authDomain: "reslife-staging.firebaseapp.com",
