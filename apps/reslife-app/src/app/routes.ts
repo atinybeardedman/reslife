@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
-
+import { RoleGuard } from '@reslife/authentication';
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 export const appRoutes: Route[] = [
@@ -99,7 +99,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'admin',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard, RoleGuard],
         loadChildren: () => 
           import('@reslife/admin-feature').then(
             (module) => module.AdminFeatureModule

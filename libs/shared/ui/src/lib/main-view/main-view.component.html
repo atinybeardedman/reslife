@@ -1,6 +1,6 @@
 <reslife-top-bar [title]="title" [pageTitle]="pageTitle" (menuClick)="toggleSidenav()" [user]="user" (logout)="logout.emit()"></reslife-top-bar>
 <mat-sidenav-container>
-    <mat-sidenav [opened]="(isMobile$ | async) === false" [mode]="(isMobile$ | async) ?'over' : 'side'">
+    <mat-sidenav *ngIf="user" [opened]="(isMobile$ | async) === false" [mode]="(isMobile$ | async) ?'over' : 'side'">
         <nav>
             <reslife-sidenav (navigationClick)="handleClick()" [links]="links" [roles]="roles"></reslife-sidenav>
         </nav>

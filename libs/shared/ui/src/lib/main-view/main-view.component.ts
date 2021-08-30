@@ -38,7 +38,7 @@ export class MainViewComponent implements OnDestroy{
   }
 
   toggleSidenav(): void {
-    this.sidenav.toggle();
+    this.sidenav?.toggle();
   }
 
   async handleClick(): Promise<void> {
