@@ -6,6 +6,7 @@ import { AuthenticationService } from '@reslife/authentication';
 import { appRoutes } from './routes';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StaffMember } from '@reslife/admin-model';
 @Component({
   selector: 'reslife-root',
   templateUrl: './app.component.html',
@@ -20,6 +21,7 @@ export class AppComponent {
     roles: r.data?.roles || []
   })); 
   roles$: Observable<Role[]>;
+  user$: Observable<StaffMember | null>;
   constructor(private router: Router, private auth: AuthenticationService) {
     this.roles$ = this.auth.getUser().pipe(
       map((user) => {
@@ -29,6 +31,7 @@ export class AppComponent {
         return []
       })
     );
+    this.user$ = this.auth.getUser();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url.split('/')[1];
@@ -38,5 +41,10 @@ export class AppComponent {
         }
       }
     });
+  }
+
+  logout(){
+    this.auth.logout();
+    this.router.navigateByUrl('login');
   }
 }

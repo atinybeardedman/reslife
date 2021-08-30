@@ -1,4 +1,4 @@
-<reslife-top-bar [title]="title" [pageTitle]="pageTitle" (menuClick)="toggleSidenav()"></reslife-top-bar>
+<reslife-top-bar [title]="title" [pageTitle]="pageTitle" (menuClick)="toggleSidenav()" [user]="user" (logout)="logout.emit()"></reslife-top-bar>
 <mat-sidenav-container>
     <mat-sidenav [opened]="(isMobile$ | async) === false" [mode]="(isMobile$ | async) ?'over' : 'side'">
         <nav>

@@ -9,7 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { SidenavComponent } from './sidenav/sidenav.component';
-
+import { AuthenticationUiModule } from '@reslife/authentication-ui'
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [MainViewComponent, TopBarComponent, SidenavComponent],
   imports: [
@@ -19,7 +20,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    AuthenticationUiModule,
+    FlexLayoutModule
   ],
   exports: [MainViewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

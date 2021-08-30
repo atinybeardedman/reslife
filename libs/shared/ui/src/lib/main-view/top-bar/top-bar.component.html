@@ -1,14 +1,16 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button (click)="menuClick.emit($event)">
+<mat-toolbar fxLayout="row" color="primary">
+    <button  mat-icon-button (click)="menuClick.emit($event)">
         <mat-icon>menu</mat-icon>
     </button>
-    <span class="app-title">
+    <a routerLink="" class="app-title">
         {{title}}
-    </span>
+    </a>
     <ng-container *ngIf="pageTitle">
         <span style="width: 1rem; text-align:center"> - </span>
         <span class="page-title">
             {{pageTitle}}
         </span>
     </ng-container>
+    <div fxFlex></div>
+    <reslife-user-menu (logout)="logout.emit()" *ngIf="user" [user]="user" fxFlex="nogrow"></reslife-user-menu>
 </mat-toolbar>

@@ -3,6 +3,8 @@
   [pageTitle]="pageTitle"
   [links]="links"
   [roles]="roles$ | async"
+  [user]="user$ | async"
+  (logout)="logout()"
 >
   <main>
     <router-outlet></router-outlet>
