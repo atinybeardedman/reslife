@@ -2,7 +2,7 @@
   title="Reslife App"
   [pageTitle]="pageTitle"
   [links]="links"
-  role="superadmin"
+  [roles]="roles$ | async"
 >
   <main>
     <router-outlet></router-outlet>

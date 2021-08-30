@@ -14,7 +14,7 @@ export class MainViewComponent implements OnDestroy{
   @Input() title!: string;
   @Input() pageTitle!: string;
   @Input() links: NavigationItem[] = [];
-  @Input() role: Role = 'any';
+  @Input() roles: Role[] | null = ['any'];
   @ViewChild(MatSidenav, {static: true}) private sidenav!: MatSidenav;
   destroyed = new Subject<void>();
   isMobile$ = new BehaviorSubject<boolean>(false);

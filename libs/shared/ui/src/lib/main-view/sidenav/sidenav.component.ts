@@ -9,7 +9,7 @@ import { NavigationItem, Role } from '@reslife/shared-models';
 })
 export class SidenavComponent {
   @Input() links: NavigationItem[] = [];
-  @Input() role: Role = 'any';
+  @Input() roles: Role[] | null = ['any'];
   @Output() navigationClick = new EventEmitter<NavigationItem>(); 
 
   get renderedLinks(): NavigationItem[] {
@@ -17,7 +17,17 @@ export class SidenavComponent {
       if(!l.roles){
         return true
       } else {
-        return l.roles.length === 0 || l.roles.includes(this.role);
+        if(l.roles.length === 0){
+          return true
+        }
+        if(this.roles){
+          for(const role of this.roles){
+            if (l.roles.includes(role)){
+              return true
+            }
+          }
+        }
+        return false;
       }
     })
   }

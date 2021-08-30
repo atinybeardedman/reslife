@@ -10,6 +10,7 @@ import { appRoutes } from './routes';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule,  SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { AngularFirestoreModule,  SETTINGS as FIRESTORE_SETTINGS } from '@angula
     SharedUiModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [
