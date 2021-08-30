@@ -1,0 +1,13 @@
+<section fxLayout="row" fxLayoutAlign="start start">
+    <div class="col" fxFlex fxHide.lt-md></div>
+    <mat-card class="col my-1" fxFlex="1 1 40vw" fxFlex.lt-md>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
+            Please login to the application using your oakwood email. You will not be able to use any features until you do so.
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="login.emit()">Login</button>
+        </mat-card-actions>
+    </mat-card>
+    <div class="col" fxFlex fxHide.lt-md></div>
+</section>

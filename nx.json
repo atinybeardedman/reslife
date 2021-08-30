@@ -27,11 +27,11 @@
     ]
   },
   "projects": {
-    "admin-feature": {
-      "tags": ["type:feature"]
-    },
     "admin-data-access": {
       "tags": ["type:data-access"]
+    },
+    "admin-feature": {
+      "tags": ["type:feature"]
     },
     "admin-model": {
       "tags": ["type:model"]
@@ -49,6 +49,12 @@
       "tags": ["type:model"]
     },
     "aod-ui": {
+      "tags": ["type:ui"]
+    },
+    "authentication": {
+      "tags": ["type:feature"]
+    },
+    "authentication-ui": {
       "tags": ["type:ui"]
     },
     "boarder-management-feature": {
