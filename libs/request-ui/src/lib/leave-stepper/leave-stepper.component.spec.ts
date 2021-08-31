@@ -84,11 +84,13 @@ describe('LeaveStepperComponent', () => {
       'College Visit',
       'Parent/Guardian'
     ];
+    const startDate = '2021-09-11T17:00:00.000Z';
+    const endDate = '2021-09-12T15:30:00.000Z';
     const dates = [
       '9/11/21',
-      '17:00',
+      new Date(startDate).getHours() + ':00',
       '9/12/21',
-      '15:30'
+      new Date(endDate).getHours() + ':30'
     ];
     const whereCtrl = await loader.getHarness(MatInputHarness);
     await whereCtrl.setValue(where[0]);
@@ -110,8 +112,8 @@ describe('LeaveStepperComponent', () => {
       email: '',
       where: where[0],
       transport: where[1],
-      startDate: '2021-09-11T21:00:00.000Z',
-      endDate: '2021-09-12T19:30:00.000Z'
+      startDate: '2021-09-11T17:00:00.000Z',
+      endDate: '2021-09-12T15:30:00.000Z'
     });
   });
 });

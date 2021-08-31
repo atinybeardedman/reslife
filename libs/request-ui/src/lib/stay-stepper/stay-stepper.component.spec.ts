@@ -50,12 +50,14 @@ describe('StayStepperComponent', () => {
   it('should emit the leave request on save', async () => {
     const spy = jest.spyOn(component.save, 'emit');
     const controls = await loader.getAllHarnesses(MatInputHarness);
+    const startDate = '2021-09-11T17:00:00.000Z';
+    const endDate = '2021-09-12T15:30:00.000Z';
     const values = [
       'Parents are out of town',
       '9/11/21',
-      '17:00',
+      new Date(startDate).getHours() + ':00',
       '9/12/21',
-      '15:30'
+      new Date(endDate).getHours() + ':30'
     ];
     await parallel(() => controls.map((c, i) => c.setValue(values[i])));
     const stepper = await loader.getHarness(MatStepperHarness);
@@ -67,8 +69,8 @@ describe('StayStepperComponent', () => {
       reason: values[0],
       uid: '',
       email: '',
-      startDate: '2021-09-11T21:00:00.000Z',
-      endDate: '2021-09-12T19:30:00.000Z'
+      startDate: '2021-09-11T17:00:00.000Z',
+      endDate: '2021-09-12T15:30:00.000Z'
     })
   });
 });
