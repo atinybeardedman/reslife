@@ -19,7 +19,6 @@ export class RequestFormParentComponent {
 
   async submitStay(request: StayRequest): Promise<void> {
     const user = await this.auth.getCurrentUser();
-    console.log(user);
     await this.ds.submitStay(user, request);
     this.requestSubmitted$.next(true);
   }
