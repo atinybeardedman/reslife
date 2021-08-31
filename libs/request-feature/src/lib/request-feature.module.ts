@@ -6,6 +6,11 @@ import { RequestLoginPageComponent } from './request-login-page/request-login-pa
 import { RequestFormParentComponent } from './request-form-parent/request-form-parent.component';
 import { AuthenticationUiModule } from '@reslife/authentication-ui';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { RequestUiModule } from '@reslife/request-ui';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 const routes: Route[] = [
   {
@@ -17,7 +22,18 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes), AuthenticationUiModule, MatDialogModule],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes),
+    AuthenticationUiModule,
+    RequestUiModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FlexLayoutModule
+  ],
   exports: [RouterModule],
   declarations: [RequestLoginPageComponent, RequestFormParentComponent],
 })

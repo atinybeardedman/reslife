@@ -8,6 +8,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     AngularFirestoreModule,
     AngularFireAuthModule,
     RequestFeatureModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

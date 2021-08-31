@@ -7,7 +7,7 @@ import { Component,  ChangeDetectionStrategy } from '@angular/core';
 })
 export class RequestFormParentComponent {
 
-
- 
+  requestType!: 'stay' | 'leave';
+  requestSubmitted = false;
 
 }

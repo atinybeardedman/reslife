@@ -33,3 +33,48 @@ $request-app-theme: mat.define-light-theme(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($request-app-theme);
+
+
+html,
+body {
+  min-height: 100%;
+}
+main {
+  min-height: calc(100vh - 64px);
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+@for $i from 0 through 4 {
+    .p-#{$i} {
+      padding: #{$i}rem;
+    }
+    .py-#{$i} {
+      padding-top: #{$i}rem;
+      padding-bottom: #{$i}rem;
+    }
+    .px-#{$i} {
+      padding-right: #{$i}rem;
+      padding-left: #{$i}rem;
+    }
+  
+    .m-#{$i} {
+      margin: #{$i}rem;
+    }
+    .my-#{$i} {
+      margin-top: #{$i}rem;
+      margin-bottom: #{$i}rem;
+    }
+    .mb-#{$i} {
+      margin-bottom: #{$i}rem;
+    }
+    .mt-#{$i} {
+      margin-top: #{$i}rem;
+    }
+    .mx-#{$i} {
+      margin-right: #{$i}rem;
+      margin-left: #{$i}rem;
+    }
+  }
