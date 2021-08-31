@@ -47,5 +47,5 @@ jobs:
         shell: bash
         env:
           SERVICE_ACCOUNT: ${{ secrets.CYPRESS_SERVICE_ACCOUNT }}
-          TEST_UID: ${{ secrets.CYPRESS_TEST_UID }}
+          TEST_UID: ${{ secrets.TEST_UID }}
         run: npm run affected:e2e -- --base=remotes/origin/main
