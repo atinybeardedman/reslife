@@ -1,13 +1,14 @@
-import { getGreeting } from '../support/app.po';
+
 
 describe('reslife-request', () => {
-  beforeEach(() => cy.visit('/'));
+ 
+  beforeEach(() => {
+    cy.clearIndexedDB();
+    cy.visit('/')
+  });
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to reslife-request!');
+  it('should display login message', () => {
+  
+   cy.get('mat-card').should('contain.text', 'Login');
   });
 });
