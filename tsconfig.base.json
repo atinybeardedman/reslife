@@ -65,6 +65,10 @@
       "@reslife/maintenance-request-ui": [
         "libs/maintenance-request/maintenance-request-ui/src/index.ts"
       ],
+      "@reslife/request-data-access": ["libs/request-data-access/src/index.ts"],
+      "@reslife/request-feature": ["libs/request-feature/src/index.ts"],
+      "@reslife/request-model": ["libs/request-model/src/index.ts"],
+      "@reslife/request-ui": ["libs/request-ui/src/index.ts"],
       "@reslife/room-inspection-data-access": [
         "libs/room-inspection/room-inspection-data-access/src/index.ts"
       ],

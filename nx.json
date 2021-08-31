@@ -99,6 +99,18 @@
     "maintenance-request-ui": {
       "tags": ["type:ui"]
     },
+    "request-data-access": {
+      "tags": ["type:data-access"]
+    },
+    "request-feature": {
+      "tags": ["type:feature"]
+    },
+    "request-model": {
+      "tags": ["type:model"]
+    },
+    "request-ui": {
+      "tags": ["type:ui"]
+    },
     "reslife-app": {
       "tags": ["type:app"]
     },
