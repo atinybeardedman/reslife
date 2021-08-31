@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
 import { Router } from '@angular/router';
 import { NavigationItem, Role } from '@reslife/shared-models';
-import { AuthenticationService } from '@reslife/authentication';
+import { AuthenticationService } from '@reslife/auth-data-access';
 import { appRoutes } from './routes';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

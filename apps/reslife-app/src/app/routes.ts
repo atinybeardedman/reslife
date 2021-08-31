@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
-import { RoleGuard } from '@reslife/authentication';
+import { RoleGuard } from './role.guard';
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 export const appRoutes: Route[] = [

@@ -51,6 +51,9 @@
     "aod-ui": {
       "tags": ["type:ui"]
     },
+    "auth-data-access": {
+      "tags": ["type:data-access"]
+    },
     "authentication": {
       "tags": ["type:feature"]
     },

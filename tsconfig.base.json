@@ -25,6 +25,7 @@
       "@reslife/aod-feature": ["libs/aod/aod-feature/src/index.ts"],
       "@reslife/aod-model": ["libs/aod/aod-model/src/index.ts"],
       "@reslife/aod-ui": ["libs/aod/aod-ui/src/index.ts"],
+      "@reslife/auth-data-access": ["libs/auth-data-access/src/index.ts"],
       "@reslife/authentication": ["libs/authentication/src/index.ts"],
       "@reslife/authentication-ui": ["libs/authentication-ui/src/index.ts"],
       "@reslife/boarder-management-feature": [

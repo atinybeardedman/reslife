@@ -177,6 +177,31 @@
         }
       }
     },
+    "auth-data-access": {
+      "projectType": "library",
+      "root": "libs/auth-data-access",
+      "sourceRoot": "libs/auth-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/auth-data-access"],
+          "options": {
+            "jestConfig": "libs/auth-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/auth-data-access/src/**/*.ts",
+              "libs/auth-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "authentication": {
       "projectType": "library",
       "root": "libs/authentication",

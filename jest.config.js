@@ -35,5 +35,6 @@ module.exports = {
     '<rootDir>/libs/admin/admin-feature',
     '<rootDir>/libs/authentication',
     '<rootDir>/libs/authentication-ui',
+    '<rootDir>/libs/auth-data-access',
   ],
 };
