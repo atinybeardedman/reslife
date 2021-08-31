@@ -1,0 +1,51 @@
+<section fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="1 1 30rem" class="my-1">
+    <mat-card-title>Request</mat-card-title>
+    <mat-card-subtitle>
+      <p>
+        Submit a leave/stay request here if you wish to do something out of the
+        ordinary, such as:
+      </p>
+      <p>- Leaving for the weekend if you are a 7 day boarder</p>
+      <p>- Staying for the weekend if you are a 5 day boarder</p>
+      <p>- Staying in the dorms if you are a day student</p>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <mat-radio-group [(ngModel)]="requestType">
+        <mat-radio-button class="mt-1" value="leave"
+          >I'm a boarder requesting to leave</mat-radio-button
+        >
+        <mat-radio-button class="mt-1" value="stay"
+          >I'm a 5 day boarder or a day student requesting to
+          stay</mat-radio-button
+        >
+      </mat-radio-group>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<section fxLayout="row" fxLayoutAlign="center" class="my-1">
+    <mat-card fxFlex="1 1 30rem" *ngIf="requestSubmitted$ | async; else stepperBlock">
+      <mat-card-title>Request Submitted</mat-card-title>
+      <mat-card-content>
+        Thank you for submitting your request. You will be notified via email if
+        you request is approved or denied
+        </mat-card-content
+      >
+    </mat-card>
+    <ng-template #stepperBlock>
+        <mat-card *ngIf="requestType === 'stay'" fxFlex="1 1 30rem">
+          <mat-card-title>Stay Request</mat-card-title>
+          <mat-card-content>
+            <reslife-stay-stepper (save)="submitStay($event)"></reslife-stay-stepper>
+          </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="requestType === 'leave'" fxFlex="1 1 30rem">
+          <mat-card-title> Leave Request </mat-card-title>
+          <mat-card-content>
+            <reslife-leave-stepper (save)="submitLeave($event)"></reslife-leave-stepper>
+          </mat-card-content>
+        </mat-card>      
+    </ng-template>
+    
+</section>

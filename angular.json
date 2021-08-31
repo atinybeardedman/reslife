@@ -569,6 +569,94 @@
         }
       }
     },
+    "request-data-access": {
+      "projectType": "library",
+      "root": "libs/request-data-access",
+      "sourceRoot": "libs/request-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/request-data-access"],
+          "options": {
+            "jestConfig": "libs/request-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/request-data-access/src/**/*.ts",
+              "libs/request-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "request-feature": {
+      "projectType": "library",
+      "root": "libs/request-feature",
+      "sourceRoot": "libs/request-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/request-feature"],
+          "options": {
+            "jestConfig": "libs/request-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/request-feature/src/**/*.ts",
+              "libs/request-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "request-model": {
+      "root": "libs/request-model",
+      "sourceRoot": "libs/request-model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/request-model/**/*.ts"]
+          }
+        }
+      }
+    },
+    "request-ui": {
+      "projectType": "library",
+      "root": "libs/request-ui",
+      "sourceRoot": "libs/request-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/request-ui"],
+          "options": {
+            "jestConfig": "libs/request-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/request-ui/src/**/*.ts",
+              "libs/request-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "reslife-app": {
       "projectType": "application",
       "root": "apps/reslife-app",

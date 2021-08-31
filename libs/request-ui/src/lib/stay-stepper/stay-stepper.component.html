@@ -1,0 +1,73 @@
+<mat-stepper orientation="vertical" linear>
+  <mat-step [stepControl]="reasonCtrl" label="Reason">
+      <div fxLayout="row">
+          <mat-form-field fxFlex="100">
+            <mat-label>Reason</mat-label>
+            <input matInput required [formControl]="reasonCtrl" type="text" />
+            <mat-hint>Please give your reason for requesting this stay</mat-hint>
+          </mat-form-field>
+      </div>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step [stepControl]="whenStep" label="When">
+    <div fxLayout="row wrap" [formGroup]="startGroup" fxLayoutGap="10px">
+      <mat-form-field fxFlex fxFlex.lt-md="100">
+        <mat-label>Start Date</mat-label>
+        <input
+          [max]="endGroup.controls.dateCtrl.value"
+          matInput
+          formControlName="dateCtrl"
+          [matDatepicker]="startPicker"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="startPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field fxFlex fxFlex.lt-md="100">
+        <mat-label>Start Time</mat-label>
+        <input type="time" matInput formControlName="timeCtrl" required />
+      </mat-form-field>
+    </div>
+    <div fxLayout="row wrap" [formGroup]="endGroup" fxLayoutGap="10px">
+      <mat-form-field fxFlex fxFlex.lt-md="100">
+        <mat-label>End Date</mat-label>
+        <input
+          [min]="startGroup.controls.dateCtrl.value"
+          matInput
+          formControlName="dateCtrl"
+          [matDatepicker]="endPicker"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="endPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field fxFlex fxFlex.lt-md="100">
+        <mat-label>End Time</mat-label>
+        <input type="time" matInput formControlName="timeCtrl" required />
+      </mat-form-field>
+    </div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step label="Confirm">
+    <h3>Confirm your stay request</h3>
+    <div *ngIf="reasonCtrl.valid && whenStep.valid">
+        <p>Reason: {{stayRequest.reason}}</p>
+        <p>Beginning: {{stayRequest.startDate | date :'short'}}</p>
+        <p>Ending: {{stayRequest.endDate | date :'short'}}</p>
+    </div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button
+    color="primary"
+      mat-raised-button
+      [disabled]="reasonCtrl.invalid || whenStep.invalid"
+      (click)="save.emit(stayRequest)"
+    >
+      Submit
+    </button>
+  </mat-step>
+</mat-stepper>

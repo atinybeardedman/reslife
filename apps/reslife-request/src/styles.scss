@@ -1,1 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$request-app-primary: mat.define-palette(mat.$purple-palette);
+$request-app-accent: mat.define-palette(mat.$teal-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$request-app-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$request-app-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $request-app-primary,
+      accent: $request-app-accent,
+      warn: $request-app-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($request-app-theme);
+
+
+html,
+body {
+  min-height: 100%;
+}
+main {
+  min-height: calc(100vh - 64px);
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+@for $i from 0 through 4 {
+    .p-#{$i} {
+      padding: #{$i}rem;
+    }
+    .py-#{$i} {
+      padding-top: #{$i}rem;
+      padding-bottom: #{$i}rem;
+    }
+    .px-#{$i} {
+      padding-right: #{$i}rem;
+      padding-left: #{$i}rem;
+    }
+  
+    .m-#{$i} {
+      margin: #{$i}rem;
+    }
+    .my-#{$i} {
+      margin-top: #{$i}rem;
+      margin-bottom: #{$i}rem;
+    }
+    .mb-#{$i} {
+      margin-bottom: #{$i}rem;
+    }
+    .mt-#{$i} {
+      margin-top: #{$i}rem;
+    }
+    .mx-#{$i} {
+      margin-right: #{$i}rem;
+      margin-left: #{$i}rem;
+    }
+  }

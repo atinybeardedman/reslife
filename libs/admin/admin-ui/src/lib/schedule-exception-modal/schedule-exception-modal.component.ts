@@ -35,7 +35,7 @@ export class ScheduleExceptionModalComponent implements OnChanges {
     this.checkInArray = fb.array([]);
     this.exceptionForm = fb.group({
       date: ['', Validators.required],
-      note: ['', [Validators.required, Validators.maxLength(10)]],
+      note: ['', [Validators.required, Validators.maxLength(15)]],
       checkIns: this.checkInArray,
     });
     this.subscription = this.exceptionForm.controls.date.valueChanges.subscribe(
