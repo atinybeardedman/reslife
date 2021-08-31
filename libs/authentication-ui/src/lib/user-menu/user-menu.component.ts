@@ -3,7 +3,6 @@ import { StaffMember } from '@reslife/admin-model'
 @Component({
   selector: 'reslife-user-menu',
   templateUrl: './user-menu.component.html',
-  styleUrls: ['./user-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserMenuComponent  {
