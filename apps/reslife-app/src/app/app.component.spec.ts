@@ -14,7 +14,9 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       imports: [RouterTestingModule.withRoutes([])],
-      providers: [MockProvider(AuthenticationService)],
+      providers: [MockProvider(AuthenticationService, {
+        getUser: () => of(null)
+      })],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
