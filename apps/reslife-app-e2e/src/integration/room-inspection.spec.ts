@@ -1,6 +1,7 @@
 import { generateDocs } from '@reslife/room-inspection-model';
 describe('room inspection', () => {
   beforeEach(() => {
+    cy.login();
     cy.visit('/room-inspection');
   });
 

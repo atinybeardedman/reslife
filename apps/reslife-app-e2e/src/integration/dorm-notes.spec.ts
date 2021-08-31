@@ -2,6 +2,7 @@ import { getDateString } from '@reslife/utils';
 const today = getDateString();
 describe('dorm-notes', () => {
     beforeEach(() => {
+      cy.login();
       cy.visit('/dorm-notes');
     });
   

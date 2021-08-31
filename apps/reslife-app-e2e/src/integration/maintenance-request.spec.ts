@@ -5,6 +5,7 @@ import {
 import { getDateString } from '@reslife/utils';
 describe('maintenance request', () => {
   beforeEach(() => {
+    cy.login();
     cy.visit('/maintenance');
     cy.callFirestore('delete', 'maintenanceRequests');
     for (const request of testRequests) {

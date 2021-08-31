@@ -6,6 +6,7 @@ import {
   } from '../../testing-data/check-in-lists';
 describe('check-in', () => {
     beforeEach(() => {
+      cy.login();
       cy.visit('/check-in');
     });
   
