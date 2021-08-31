@@ -106,5 +106,14 @@ service cloud.firestore {
     match /schedule-exceptions/{exceptionItem}{
       allow read, write, list: if isAdmin();
     }
+  
+    match /leave-requests/{userId} {
+      allow create: if request.auth != null && request.auth.uid == userId
+    }
+    match /stay-requests/{userId} {
+      allow create: if request.auth != null && request.auth.uid == userId
+    }
+
   }
+
 }

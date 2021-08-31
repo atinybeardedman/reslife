@@ -25,24 +25,27 @@
 </section>
 
 <section fxLayout="row" fxLayoutAlign="center" class="my-1">
-  <mat-card *ngIf="requestType === 'stay'" fxFlex="1 1 30rem">
-    <mat-card-title>Stay Request</mat-card-title>
-    <mat-card-content>
-      <reslife-stay-stepper></reslife-stay-stepper>
-    </mat-card-content>
-  </mat-card>
-  <mat-card *ngIf="requestType === 'leave'" fxFlex="1 1 30rem">
-    <mat-card-title> Leave Request </mat-card-title>
-    <mat-card-content>
-      <reslife-leave-stepper></reslife-leave-stepper>
-    </mat-card-content>
-  </mat-card>
-  <mat-card *ngIf="requestSubmitted">
-    <mat-card-title>Request Submitted</mat-card-title>
-    <mat-card-content>
-      Thank you for submitting your request. You will be notified via email if
-      you request is approved or denied
-      </mat-card-content
-    >
-  </mat-card>
+    <mat-card fxFlex="1 1 30rem" *ngIf="requestSubmitted$ | async; else stepperBlock">
+      <mat-card-title>Request Submitted</mat-card-title>
+      <mat-card-content>
+        Thank you for submitting your request. You will be notified via email if
+        you request is approved or denied
+        </mat-card-content
+      >
+    </mat-card>
+    <ng-template #stepperBlock>
+        <mat-card *ngIf="requestType === 'stay'" fxFlex="1 1 30rem">
+          <mat-card-title>Stay Request</mat-card-title>
+          <mat-card-content>
+            <reslife-stay-stepper (save)="submitStay($event)"></reslife-stay-stepper>
+          </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="requestType === 'leave'" fxFlex="1 1 30rem">
+          <mat-card-title> Leave Request </mat-card-title>
+          <mat-card-content>
+            <reslife-leave-stepper (save)="submitLeave($event)"></reslife-leave-stepper>
+          </mat-card-content>
+        </mat-card>      
+    </ng-template>
+    
 </section>

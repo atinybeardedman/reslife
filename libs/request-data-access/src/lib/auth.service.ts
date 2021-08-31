@@ -27,4 +27,8 @@ export class AuthService {
   async logout() {
     await this.auth.signOut();
   }
+
+   getCurrentUser(): Promise<firebase.User | null>{
+      return this.auth.currentUser
+  }
 }
