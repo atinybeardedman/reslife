@@ -17,7 +17,8 @@
                 "onlyDependOnLibsWithTags": [
                   "type:feature",
                   "type:ui",
-                  "type:model"
+                  "type:model",
+                  "type:data-access"
                 ]
               },
               {

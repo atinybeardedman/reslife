@@ -1,31 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "admin-feature": {
-      "projectType": "library",
-      "root": "libs/admin/admin-feature",
-      "sourceRoot": "libs/admin/admin-feature/src",
-      "prefix": "reslife",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/admin/admin-feature"],
-          "options": {
-            "jestConfig": "libs/admin/admin-feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/admin/admin-feature/src/**/*.ts",
-              "libs/admin/admin-feature/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "admin-data-access": {
       "projectType": "library",
       "root": "libs/admin/admin-data-access",
@@ -46,6 +21,31 @@
             "lintFilePatterns": [
               "libs/admin/admin-data-access/src/**/*.ts",
               "libs/admin/admin-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "admin-feature": {
+      "projectType": "library",
+      "root": "libs/admin/admin-feature",
+      "sourceRoot": "libs/admin/admin-feature/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/admin-feature"],
+          "options": {
+            "jestConfig": "libs/admin/admin-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/admin-feature/src/**/*.ts",
+              "libs/admin/admin-feature/src/**/*.html"
             ]
           }
         }
@@ -172,6 +172,81 @@
             "lintFilePatterns": [
               "libs/aod/aod-ui/src/**/*.ts",
               "libs/aod/aod-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "auth-data-access": {
+      "projectType": "library",
+      "root": "libs/auth-data-access",
+      "sourceRoot": "libs/auth-data-access/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/auth-data-access"],
+          "options": {
+            "jestConfig": "libs/auth-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/auth-data-access/src/**/*.ts",
+              "libs/auth-data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "authentication": {
+      "projectType": "library",
+      "root": "libs/authentication",
+      "sourceRoot": "libs/authentication/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/authentication"],
+          "options": {
+            "jestConfig": "libs/authentication/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/authentication/src/**/*.ts",
+              "libs/authentication/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "authentication-ui": {
+      "projectType": "library",
+      "root": "libs/authentication-ui",
+      "sourceRoot": "libs/authentication-ui/src",
+      "prefix": "reslife",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/authentication-ui"],
+          "options": {
+            "jestConfig": "libs/authentication-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/authentication-ui/src/**/*.ts",
+              "libs/authentication-ui/src/**/*.html"
             ]
           }
         }

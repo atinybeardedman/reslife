@@ -9,7 +9,8 @@ import { SharedUiModule } from '@reslife/shared/ui';
 import { appRoutes } from './routes';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import { AngularFirestoreModule,  SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/firestore';
+import { AngularFirestoreModule,  SETTINGS as FIRESTORE_SETTINGS, USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/firestore';
+import { AngularFireAuthModule, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { AngularFirestoreModule,  SETTINGS as FIRESTORE_SETTINGS } from '@angula
     SharedUiModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [
@@ -27,6 +29,14 @@ import { AngularFirestoreModule,  SETTINGS as FIRESTORE_SETTINGS } from '@angula
       useValue: !environment.production ? {
         experimentalForceLongPolling: true  
       } : undefined,
+    },
+    {
+      provide: USE_AUTH_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', '9099'] : undefined
+    },
+    {
+      provide: USE_FIRESTORE_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', '8080'] : undefined
     },
   ],
   bootstrap: [AppComponent],

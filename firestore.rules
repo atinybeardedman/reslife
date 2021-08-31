@@ -1,9 +1,110 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if
-          request.time < timestamp.date(2021, 8, 7);
+
+    function isStaff(){
+      let path = /databases/$(database)/documents/staff/$(request.auth.uid);
+      return request.auth != null && exists(path)
+    }
+
+     function isAdmin(){
+      let path = /databases/$(database)/documents/staff/$(request.auth.uid);
+      return isStaff() && 'superadmin' in get(path).data.roles;
+    }
+
+    function isAOD(){
+       let path = /databases/$(database)/documents/staff/$(request.auth.uid);
+      return isStaff() && 'aod' in get(path).data.roles
+    }
+
+
+    match /staff/{staffMember}  {
+     allow read, get: if true;
+     allow write: if isAdmin();
+    }
+
+    match /boarders/{boarder} {
+      allow read, list: if isStaff();
+      allow write: if isAdmin();
+    }
+
+    match /roomInspections/{inspection} {
+      allow read: if isStaff();
+      match /students/{studentDoc} {
+        allow read, write, list: if isStaff();
+      }
+    }
+
+    match /signouts/{signoutRecord} {
+      allow read, list, write: if isStaff();
+    }
+
+    match /campused/{campusedRecord} {
+      allow read, list: if isStaff();
+      allow write: if isAOD() || isAdmin();
+    }
+
+    match /temp-permissions/{tempRecord}{
+      allow read, list: if isStaff();
+      allow write: if isAOD() || isAdmin();
+    }
+
+
+
+    match /maintenanceRequests/{requestDoc} {
+      allow read, list, create: if isStaff();
+    }
+
+    match /dorms/{dorm} {
+      allow read, list: if isStaff();
+      allow write: if isAdmin();
+    }
+
+    match /dorm-notes/{doc} {
+      allow read: if isStaff();
+      match /notes/{noteDoc}{
+        allow read, write: if isStaff();
+      }
+    }
+
+
+
+    match /check-ins/{checkIn} {
+      allow read, list: if isStaff();
+      allow write: if isAdmin();
+
+       match /expected/{student} {
+        allow list, read, write: if isStaff();
+      }
+      match /checked/{student} {
+        allow list, read, write: if isStaff();
+      }
+      match /excused/{student} {
+         allow list, read: if isStaff();
+        allow write: if isAdmin() || isAOD();
+      }
+    }
+
+    match /time-excusals/{excusal} {
+      allow read, write, list: if isAOD() || isAdmin();
+    }
+
+    match /academic-years/{yearDoc} {
+      allow read, write: if isAdmin();
+      match /breaks/{breakRecord} {
+        allow read, write, list: if isAdmin();
+      }
+    }
+
+    match /requests/{leaveStayRequest}{
+      allow read, write, list: if isAdmin();
+    }
+
+    match /regular-schedule/{scheduleItem}{
+      allow read, write, list: if isAdmin();
+    }
+    match /schedule-exceptions/{exceptionItem}{
+      allow read, write, list: if isAdmin();
     }
   }
 }

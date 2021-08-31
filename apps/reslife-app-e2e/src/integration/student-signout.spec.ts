@@ -3,6 +3,7 @@ import { testCurrentSignout } from '@reslife/student-signout-model'
 describe('student-signout', () => {
  const signout = testCurrentSignout;
   beforeEach(() => {
+    cy.login();
     cy.callFirestore('delete', 'boarders')
     cy.callFirestore('set', `boarders/${testBoarder.uid}`, testBoarder);
     cy.visit('/student-signout');

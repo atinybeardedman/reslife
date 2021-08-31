@@ -15,7 +15,6 @@ import {
 import { DormNotesFieldComponent } from './dorm-notes-field.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatExpansionPanelHarness } from '@angular/material/expansion/testing';
 import { TextFieldModule } from '@angular/cdk/text-field';

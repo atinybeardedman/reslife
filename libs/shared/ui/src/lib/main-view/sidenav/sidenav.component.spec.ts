@@ -74,7 +74,7 @@ describe('SidenavComponent', () => {
       fixture.detectChanges();
       links = await linkList.getItems();
       expect(links).toHaveLength(2);
-      component.role = 'aod';
+      component.roles = ['aod'];
       fixture.detectChanges();
       links = await linkList.getItems();
       expect(links).toHaveLength(3);

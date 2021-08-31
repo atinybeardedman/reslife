@@ -1,19 +1,19 @@
 
 
-export const expected = new Array(15).fill(null).map((value, index) => ({
+export const expected = new Array(9).fill(null).map((value, index) => ({
     name: `Test Student ${index + 1}`,
     uid: `${index + 1}`
 }));
  
 export const excused = [
     {
-        name: 'Test Student 16',
-        uid: '16',
+        name: 'Test Student 10',
+        uid: '10',
         note: 'Home'
     },
     {
-        name: 'Test Student 17',
-        uid: '17',
+        name: 'Test Student 11',
+        uid: '11',
         note: 'College Visit'
     }
 ]

@@ -1,9 +1,10 @@
-import { Component,ChangeDetectionStrategy, Input, ViewChild, OnDestroy } from '@angular/core';
+import { Component,ChangeDetectionStrategy, Input, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationItem, Role } from '@reslife/shared-models';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BehaviorSubject, Subject } from 'rxjs';
 import {  takeUntil } from 'rxjs/operators';
+import { StaffMember } from '@reslife/admin-model';
 @Component({
   selector: 'reslife-main-view',
   templateUrl: './main-view.component.html',
@@ -14,7 +15,9 @@ export class MainViewComponent implements OnDestroy{
   @Input() title!: string;
   @Input() pageTitle!: string;
   @Input() links: NavigationItem[] = [];
-  @Input() role: Role = 'any';
+  @Input() roles: Role[] | null = ['any'];
+  @Input() user!: StaffMember | null;
+  @Output() logout = new EventEmitter<void>();
   @ViewChild(MatSidenav, {static: true}) private sidenav!: MatSidenav;
   destroyed = new Subject<void>();
   isMobile$ = new BehaviorSubject<boolean>(false);
@@ -35,7 +38,7 @@ export class MainViewComponent implements OnDestroy{
   }
 
   toggleSidenav(): void {
-    this.sidenav.toggle();
+    this.sidenav?.toggle();
   }
 
   async handleClick(): Promise<void> {

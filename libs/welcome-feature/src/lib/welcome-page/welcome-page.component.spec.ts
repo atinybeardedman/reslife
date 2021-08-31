@@ -23,8 +23,4 @@ describe('WelcomePageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show welcome message', () => {
-    expect(fixture.nativeElement.querySelector('h1')).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('h1').textContent).toContain('Welcome to Reslife Apps. Choose a task to get started.');
-  })
 });

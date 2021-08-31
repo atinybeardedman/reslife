@@ -33,5 +33,8 @@ module.exports = {
     '<rootDir>/libs/aod/aod-ui',
     '<rootDir>/libs/aod/aod-data-access',
     '<rootDir>/libs/admin/admin-feature',
+    '<rootDir>/libs/authentication',
+    '<rootDir>/libs/authentication-ui',
+    '<rootDir>/libs/auth-data-access',
   ],
 };
