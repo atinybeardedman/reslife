@@ -24,3 +24,28 @@ export interface MailgunOptions {
   text: string;
   html?: string;
 }
+
+export interface RepeatedTask {
+  ID: string;
+  repeatFrequency: "daily" | "weekdays" | "weekly" | "monthly";
+  functionName: string;
+  active: boolean;
+  startDate: string;
+  endDate: string;
+  options: any;
+}
+
+export interface OneTimeTask {
+  ID: string;
+  status: "scheduled" | "complete" | "error";
+  functionName: string;
+  triggerTime: string;
+  isRepeat: boolean;
+  repeatID?: string;
+  options: any;
+}
+
+
+export interface PromiseDict {
+  [key: string]: (options?: any) => Promise<void>;
+}

@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import { MailgunOptions, MaintenanceRequestDoc } from './types';
-import { isProduction, sendEmail } from './utils';
+import { sendEmail } from './utils/email';
+import { isProduction } from './utils/general';
 
 export const onNewRequest = functions.firestore
   .document('maintenanceRequests/{requestID}')
