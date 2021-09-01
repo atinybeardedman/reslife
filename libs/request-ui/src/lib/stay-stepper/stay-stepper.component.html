@@ -10,7 +10,7 @@
     <button mat-button matStepperNext>Next</button>
   </mat-step>
   <mat-step [stepControl]="whenStep" label="When">
-    <div fxLayout="row wrap" [formGroup]="startGroup" fxLayoutGap="10px">
+    <div fxLayout="row wrap" [formGroup]="startGroup" fxLayoutGap="10px" fxLayoutGap.lt-md="0">
       <mat-form-field fxFlex fxFlex.lt-md="100">
         <mat-label>Start Date</mat-label>
         <input
@@ -30,7 +30,7 @@
         <input type="time" matInput formControlName="timeCtrl" required />
       </mat-form-field>
     </div>
-    <div fxLayout="row wrap" [formGroup]="endGroup" fxLayoutGap="10px">
+    <div fxLayout="row wrap" [formGroup]="endGroup" fxLayoutGap="10px" fxLayoutGap.lt-md="0">
       <mat-form-field fxFlex fxFlex.lt-md="100">
         <mat-label>End Date</mat-label>
         <input

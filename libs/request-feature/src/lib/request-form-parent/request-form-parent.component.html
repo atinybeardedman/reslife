@@ -5,7 +5,7 @@
 </mat-toolbar>
 <main>
   <section fxLayout="row" fxLayoutAlign="center">
-    <mat-card fxFlex="1 1 30rem" class="my-1">
+    <mat-card fxFlex.lt-md="90" fxFlex="1 1 30rem" class="my-1">
       <mat-card-title>Request</mat-card-title>
       <mat-card-subtitle>
         <p>
@@ -21,7 +21,7 @@
           <mat-radio-button class="mt-1" value="leave"
             >I'm a boarder requesting to leave</mat-radio-button
           >
-          <mat-radio-button class="mt-1" value="stay"
+          <mat-radio-button class="mt-1 wrap" value="stay"
             >I'm a 5 day boarder or a day student requesting to
             stay</mat-radio-button
           >
@@ -33,6 +33,7 @@
   <section fxLayout="row" fxLayoutAlign="center" class="my-1">
     <mat-card
       fxFlex="1 1 30rem"
+      fxFlex.lt-md="90"
       *ngIf="requestSubmitted$ | async; else stepperBlock"
     >
       <mat-card-title>Request Submitted</mat-card-title>
@@ -42,7 +43,7 @@
       </mat-card-content>
     </mat-card>
     <ng-template #stepperBlock>
-      <mat-card *ngIf="requestType === 'stay'" fxFlex="1 1 30rem">
+      <mat-card *ngIf="requestType === 'stay'" fxFlex="1 1 30rem" fxFlex.lt-md="90">
         <mat-card-title>Stay Request</mat-card-title>
         <mat-card-content>
           <reslife-stay-stepper
@@ -50,7 +51,7 @@
           ></reslife-stay-stepper>
         </mat-card-content>
       </mat-card>
-      <mat-card *ngIf="requestType === 'leave'" fxFlex="1 1 30rem">
+      <mat-card *ngIf="requestType === 'leave'" fxFlex="1 1 30rem" fxFlex.lt-md="90">
         <mat-card-title> Leave Request </mat-card-title>
         <mat-card-content>
           <reslife-leave-stepper
