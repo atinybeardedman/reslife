@@ -1,7 +1,8 @@
 import { Component,  ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { AuthService, RequestDataService } from '@reslife/request-data-access';
 import { LeaveRequest, StayRequest } from '@reslife/request-model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 @Component({
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RequestFormParentComponent implements OnInit {
-  user$!: Promise<firebase.User | null>
+  user$!: Observable<firebase.User | null>
   requestType!: 'stay' | 'leave';
   requestSubmitted$ = new Subject<boolean>();
 
@@ -28,12 +29,12 @@ export class RequestFormParentComponent implements OnInit {
   }
 
   async submitStay(request: StayRequest): Promise<void> {
-    const user = await this.user$;
+    const user = await this.user$.pipe(take(1)).toPromise();
     await this.ds.submitStay(user, request);
     this.requestSubmitted$.next(true);
   }
   async submitLeave(request: LeaveRequest): Promise<void> {
-    const user = await this.user$;
+    const user = await this.user$.pipe(take(1)).toPromise();
     await this.ds.submitLeave(user, request);
     this.requestSubmitted$.next(true);
   }

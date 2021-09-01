@@ -1,7 +1,10 @@
 <mat-toolbar color="primary">
   <span> Leave/Stay Request Form </span>
   <span fxFlex></span>
-  <reslife-user-menu (logout)="logout()" [user]="user$ | async"></reslife-user-menu>
+  <reslife-user-menu
+    (logout)="logout()"
+    [user]="user$ | async"
+  ></reslife-user-menu>
 </mat-toolbar>
 <main>
   <section fxLayout="row" fxLayoutAlign="center">
@@ -17,7 +20,10 @@
         <p>- Staying in the dorms if you are a day student</p>
       </mat-card-subtitle>
       <mat-card-content>
-        <mat-radio-group [(ngModel)]="requestType">
+        <mat-radio-group
+          [disabled]="(requestSubmitted$ | async) === true"
+          [(ngModel)]="requestType"
+        >
           <mat-radio-button class="mt-1" value="leave"
             >I'm a boarder requesting to leave</mat-radio-button
           >
@@ -43,7 +49,11 @@
       </mat-card-content>
     </mat-card>
     <ng-template #stepperBlock>
-      <mat-card *ngIf="requestType === 'stay'" fxFlex="1 1 30rem" fxFlex.lt-md="90">
+      <mat-card
+        *ngIf="requestType === 'stay'"
+        fxFlex="1 1 30rem"
+        fxFlex.lt-md="90"
+      >
         <mat-card-title>Stay Request</mat-card-title>
         <mat-card-content>
           <reslife-stay-stepper
@@ -51,7 +61,11 @@
           ></reslife-stay-stepper>
         </mat-card-content>
       </mat-card>
-      <mat-card *ngIf="requestType === 'leave'" fxFlex="1 1 30rem" fxFlex.lt-md="90">
+      <mat-card
+        *ngIf="requestType === 'leave'"
+        fxFlex="1 1 30rem"
+        fxFlex.lt-md="90"
+      >
         <mat-card-title> Leave Request </mat-card-title>
         <mat-card-content>
           <reslife-leave-stepper
