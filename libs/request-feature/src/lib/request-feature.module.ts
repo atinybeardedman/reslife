@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RequestUiModule } from '@reslife/request-ui';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 const routes: Route[] = [
   {
@@ -27,6 +28,7 @@ const routes: Route[] = [
     RouterModule.forRoot(routes),
     AuthenticationUiModule,
     RequestUiModule,
+    MatToolbarModule,
     MatDialogModule,
     MatRadioModule,
     MatCardModule,

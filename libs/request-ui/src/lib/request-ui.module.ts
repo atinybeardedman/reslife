@@ -5,6 +5,6 @@ import { StayStepperModule } from './stay-stepper/stay-stepper.module';
 
 @NgModule({
   imports: [CommonModule, LeaveStepperModule, StayStepperModule],
-  exports: [LeaveStepperModule, StayStepperModule]
+  exports: [LeaveStepperModule, StayStepperModule],
 })
 export class RequestUiModule {}
