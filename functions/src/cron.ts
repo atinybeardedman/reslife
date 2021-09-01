@@ -10,7 +10,7 @@ function getNextOneTime(task: OneTimeTask): Promise<OneTimeTask | null>{
     return fbadmin.firestore().doc(`repeatedTasks/${task.repeatID}`).get().then(
         snap => {
             const repeat = snap.data() as RepeatedTask;
-            let nextDate = moment.tz(currentTrigger, "America/New_York");
+            let nextDate = moment.tz(currentTrigger, 'America/New_York');
             const ID = fbadmin.firestore().collection('tasks').doc().id;
             switch(repeat.repeatFrequency){
                 case 'weekdays':
@@ -44,22 +44,22 @@ function getNextOneTime(task: OneTimeTask): Promise<OneTimeTask | null>{
 }
 
 export const cronTriggerBuilder = (taskDict: PromiseDict) => functions.pubsub
-.schedule("every 15 minutes")
+.schedule('every 15 minutes')
 .onRun((context) => {
   // this will run every 15 minutes
   const date = toIsoTimezoneString();
-  console.log("Cron triggered");
+  console.log('Cron triggered');
   return fbadmin
     .firestore()
-    .collection("tasks")
-    .where("status", "==", "scheduled")
-    .where("triggerTime", "<=", date)
+    .collection('tasks')
+    .where('status', '==', 'scheduled')
+    .where('triggerTime', '<=', date)
     .get()
     .then((snap) => {
       const promises = [];
       for (const doc of snap.docs) {
         const task = doc.data() as OneTimeTask;
-        if(!taskDict.hasOwnProperty(task.functionName)){
+        if(typeof taskDict[task.functionName] === 'undefined'){
           console.log(`Task: ${task.functionName} could not be found`);
           return;
         }
@@ -70,7 +70,7 @@ export const cronTriggerBuilder = (taskDict: PromiseDict) => functions.pubsub
                 if (nextTask) {
                   return fbadmin
                     .firestore()
-                    .collection("tasks")
+                    .collection('tasks')
                     .doc(nextTask.ID)
                     .set(nextTask);
                 }
@@ -79,10 +79,10 @@ export const cronTriggerBuilder = (taskDict: PromiseDict) => functions.pubsub
             }
             return;
           })
-          .then(() => doc.ref.update({ status: "complete" }))
+          .then(() => doc.ref.update({ status: 'complete' }))
           .catch((err) => {
             console.log(err);
-            return doc.ref.update({ status: "error" });
+            return doc.ref.update({ status: 'error' });
           });
         promises.push(promise);
       }

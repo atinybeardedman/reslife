@@ -27,7 +27,7 @@ export interface MailgunOptions {
 
 export interface RepeatedTask {
   ID: string;
-  repeatFrequency: "daily" | "weekdays" | "weekly" | "monthly";
+  repeatFrequency: 'daily' | 'weekdays' | 'weekly' | 'monthly';
   functionName: string;
   active: boolean;
   startDate: string;
@@ -37,7 +37,7 @@ export interface RepeatedTask {
 
 export interface OneTimeTask {
   ID: string;
-  status: "scheduled" | "complete" | "error";
+  status: 'scheduled' | 'complete' | 'error';
   functionName: string;
   triggerTime: string;
   isRepeat: boolean;
@@ -48,4 +48,28 @@ export interface OneTimeTask {
 
 export interface PromiseDict {
   [key: string]: (options?: any) => Promise<void>;
+}
+
+
+export type BoarderType = '5 Day' | '7 Day';
+
+export interface BoarderPermissions {
+  canWalk: boolean;
+  canBike: boolean;
+  canCar: boolean;
+  carRestriction?: string;
+}
+
+export interface Boarder {
+  firstName: string;
+  lastName: string;
+  name: string;
+  dorm: string;
+  email: string;
+  type: BoarderType;
+  uid: string;
+  permissions: BoarderPermissions;
+  startDate: string;
+  endDate: string;
+  isActive: boolean;
 }
