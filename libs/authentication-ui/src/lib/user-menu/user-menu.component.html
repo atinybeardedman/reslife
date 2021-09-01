@@ -3,7 +3,7 @@
 </button>
 <mat-menu #accountMenu="matMenu">
     <button mat-menu-item disabled>
-        {{user.name}}
+        {{name}}
     </button>
     <button mat-menu-item (click)="logout.emit()">
         <mat-icon>logout</mat-icon>
