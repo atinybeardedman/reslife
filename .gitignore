@@ -40,9 +40,7 @@ Thumbs.db
 
 # firebase
 .firebase
-pubsub-debug.log
-firestore-debug.log
-ui-debug.log
+*-debug.log
 service-account.json
 
 **/**/**/cypress.env.json

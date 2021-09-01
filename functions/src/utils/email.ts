@@ -1,9 +1,8 @@
 import * as functions from 'firebase-functions';
-import { MailgunOptions } from './types';
+import { MailgunOptions } from '../types';
 
-export const isProduction = (): boolean =>
-  functions.firebaseConfig()?.projectId !== 'reslife-staging';
 
+// Email Helpers
 const mailgunAPI = functions.config().mailgun.key;
 export const mailgun = require('mailgun-js')({
   apiKey: mailgunAPI,
