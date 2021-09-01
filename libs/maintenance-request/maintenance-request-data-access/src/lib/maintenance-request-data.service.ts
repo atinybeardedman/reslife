@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import {
   MaintenanceRequest,
   MaintenanceRequestDoc,
 } from '@reslife/maintenance-request-model';
 import { DormDocument } from '@reslife/shared-models';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthenticationService } from '@reslife/auth-data-access';
+import { StaffMember } from '@reslife/admin-model';
 @Injectable({
   providedIn: 'root',
 })
 export class MaintenanceRequestDataService {
-  constructor(private af: AngularFirestore) {}
+  constructor(private af: AngularFirestore, private auth: AuthenticationService) {}
 
   getRequests(): Observable<MaintenanceRequestDoc[]> {
     return this.af
@@ -21,19 +23,18 @@ export class MaintenanceRequestDataService {
       .valueChanges();
   }
 
-  addRequest(request: MaintenanceRequest): Promise<void> {
-    // TODO: use real user credentials here
-    const uid = this.af.createId();
+  async addRequest(request: MaintenanceRequest): Promise<void> {
+    const {name, email, uid} = await this.auth.getUser().pipe(take(1)).toPromise() as StaffMember;
     const doc: MaintenanceRequestDoc = {
       ...request,
-      uid,
+      uid: this.af.createId(),
       requestor: {
-        name: 'Test Faculty',
-        email: 't@oakwoodfriends.org',
-        uid: 't',
+       name,
+       email,
+       uid
       },
     };
-    return this.af.doc(`maintenanceRequests/${uid}`).set(doc);
+    return this.af.doc(`maintenanceRequests/${doc.uid}`).set(doc);
   }
 
   getActiveDorms(): Observable<string[]> {
