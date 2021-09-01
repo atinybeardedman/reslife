@@ -18,8 +18,8 @@ export const onNewRequest = functions.firestore
     body.push(`Request Details: \n\n${doc.request}`);
 
     const emailOptions: MailgunOptions = {
-      to: 'maintenance@oakwoodfriends.org',
-      from: '"Maintenance Request"<noreply@oakwoodfriends.org>',
+      to: functions.config().emails['maintenance-receiver'],
+      from: functions.config().emails['maintenance-sender'],
       cc: doc.requestor.email,
       subject: doc.request,
       text: body.join('\n'),
