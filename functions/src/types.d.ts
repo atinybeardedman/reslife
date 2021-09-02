@@ -25,6 +25,10 @@ export interface MailgunOptions {
   html?: string;
 }
 
+export interface TaskOptions {
+  alwaysRun?: boolean; // will run even on break
+}
+
 export interface RepeatedTask {
   ID: string;
   repeatFrequency: 'daily' | 'weekdays' | 'weekly' | 'monthly';
@@ -32,7 +36,7 @@ export interface RepeatedTask {
   active: boolean;
   startDate: string;
   endDate: string;
-  options: any;
+  options: TaskOptions;
 }
 
 export interface OneTimeTask {
@@ -42,7 +46,7 @@ export interface OneTimeTask {
   triggerTime: string;
   isRepeat: boolean;
   repeatID?: string;
-  options: any;
+  options: TaskOptions;
 }
 
 
@@ -71,5 +75,45 @@ export interface Boarder {
   permissions: BoarderPermissions;
   startDate: string;
   endDate: string;
+  isActive: boolean;
+}
+
+export type RoomInspectionResult = 'pending' | 'passed' | 'failed';
+
+
+export interface RoomInspectionStudentDoc {
+  uid: string;
+  name: string;
+  email: string;
+  result: RoomInspectionResult;
+  note?: string;
+}
+
+export interface RoomInspectionMetaDoc {
+  date: string;
+  dorm: string;
+  uid: string;
+  // contains students sub-collection
+}
+
+export interface NamedItem {
+  name: string;
+}
+
+export interface SimpleItem extends NamedItem {
+  uid: string;
+}
+
+export interface NamedTimeSpan extends SimpleItem {
+  start: string;
+  end: string;
+}
+
+// This is the same interface, duplicating for semantics 
+export interface AcademicYear extends NamedTimeSpan {
+  uid: string;
+}
+
+export interface DormDocument extends SimpleItem {
   isActive: boolean;
 }
