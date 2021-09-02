@@ -31,7 +31,7 @@ export interface TaskOptions {
 
 export interface RepeatedTask {
   ID: string;
-  repeatFrequency: 'daily' | 'weekdays' | 'weekly' | 'monthly';
+  repeatFrequency: 'daily' | 'dormdays' | 'weekdays' | 'weekly' | 'monthly';
   functionName: string;
   active: boolean;
   startDate: string;
@@ -46,7 +46,7 @@ export interface OneTimeTask {
   triggerTime: string;
   isRepeat: boolean;
   repeatID?: string;
-  options: TaskOptions;
+  options?: TaskOptions;
 }
 
 
@@ -116,4 +116,25 @@ export interface AcademicYear extends NamedTimeSpan {
 
 export interface DormDocument extends SimpleItem {
   isActive: boolean;
+}
+
+export interface CheckInDocument {
+  date: string;
+  'check-in': string;
+  start: string;
+  end: string;
+}
+
+export interface DormNoteMetaDoc {
+  date: string;
+  dorm: string;
+}
+
+export interface DormNoteField {
+  uid: string;
+  fieldName: string;
+  note: string;
+  order: number;
+  isLocked: boolean;
+  author?: string;
 }

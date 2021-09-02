@@ -4,11 +4,15 @@ import {
   MailgunOptions,
   RoomInspectionStudentDoc,
   RoomInspectionMetaDoc,
+  DormNoteMetaDoc,
+  DormNoteField,
 } from './types';
 import { getDateString } from './utils/date';
 import { sendEmail } from './utils/email';
 import { isProduction } from './utils/general';
 import { getActiveBoarders, getActiveDorms } from './utils/live-data-helpers';
+
+import * as moment from 'moment-timezone';
 
 const emailOnInspectionFail = functions.firestore
   .document('/roomInspections/{metaDoc}/students/{inspectionDoc}')
@@ -80,10 +84,67 @@ const generateRoomInspectionDocs = async () => {
   }
 };
 
+const generateDormNotes = async () => {
+  const dorms = await getActiveDorms();
+  const date = getDateString();
+  const dormFieldsSnap = await fbadmin.firestore().doc('configuration/dorm-notes').get();
+  const dormFields = dormFieldsSnap.get('fields');
+  const batch = fbadmin.firestore().batch();
+  for (const dorm of dorms){
+    const docRef = fbadmin.firestore().doc(`/dorm-notes/${date}+${dorm.name}`);
+    const metaDoc: DormNoteMetaDoc = {
+      dorm: dorm.name,
+      date
+    }
+    batch.set(docRef, metaDoc);
+    for(const [index, field] of dormFields.entries()){
+      const noteRef = docRef.collection('notes').doc();
+      const noteDoc: DormNoteField = {
+        uid: noteRef.id,
+        fieldName: field,
+        order: index,
+        isLocked: false,
+        note: ''
+      };
+      batch.set(noteRef, noteDoc);
+    }
+  }
+  try {
+    await batch.commit();
+  } catch(err){
+    console.log(err);
+  }
+}
+
+const lockOldNotes = async () => {
+  const today = moment.tz(new Date(), 'America/New_York');
+  const oldDate = today.subtract(1, 'days');
+  const date = getDateString(oldDate.toDate());
+  const metaSnap = await fbadmin.firestore().collection('dorm-notes').where('date', '<', date).get();
+  if(metaSnap.empty){
+    return
+  }
+  const batch = fbadmin.firestore().batch();
+  for(const doc of metaSnap.docs){
+    const notesSnap = await doc.ref.collection('notes').where('isLocked','==', false).get();
+    for(const noteDoc of notesSnap.docs){
+      batch.update(noteDoc.ref, {isLocked: true});
+    }
+  }
+  try {
+    await batch.commit();
+  } catch(err){
+    console.log(err);
+  }
+
+}
+
 export const backgroundFns = {
   emailOnInspectionFail,
 };
 
 export const triggerableFns = {
   generateRoomInspectionDocs,
+  generateDormNotes,
+  lockOldNotes
 };

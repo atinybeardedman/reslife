@@ -16,6 +16,13 @@ function getNextOneTime(task: OneTimeTask): Promise<OneTimeTask | null> {
       let nextDate = moment.tz(currentTrigger, 'America/New_York');
       const ID = fbadmin.firestore().collection('tasks').doc().id;
       switch (repeat.repeatFrequency) {
+        case 'dormdays': 
+          if (nextDate.day() === 4){
+            nextDate = nextDate.add(3, 'day');
+          } else {
+            nextDate = nextDate.add(1, 'day');
+          }
+          break;
         case 'weekdays':
           if (nextDate.day() === 5) {
             nextDate = nextDate.add(3, 'day');

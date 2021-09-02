@@ -4,23 +4,26 @@ fbadmin.initializeApp();
 import { PromiseDict } from './types';
 import * as maintenanceFns from './maintenance';
 import {
-  triggerableFns as inspectionTriggers,
-  backgroundFns as inspectionBackgrounds,
-} from './room-inspection';
+  triggerableFns as dormTriggers,
+  backgroundFns as dormBackgrounds,
+} from './dorm';
+
+import * as aodTriggers from './aod-notifications';
 import * as boarderFns from './boarders';
 import { cronTriggerBuilder } from './cron';
 
 const taskDict: PromiseDict = {
   ...boarderFns,
-  ...inspectionTriggers,
+  ...dormTriggers,
+  ...aodTriggers
 };
 
 exports.maintenance = {
   ...maintenanceFns,
 };
 
-exports.roomInspection = {
-  ...inspectionBackgrounds,
+exports.dorm = {
+  ...dormBackgrounds,
 };
 
 exports.cron = {

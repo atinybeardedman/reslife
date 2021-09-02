@@ -31,7 +31,7 @@ export function toIsoTimezoneString(date = new Date()): string {
   return moment.tz(date, 'America/New_York').format();
 }
 
-export function getTimeString(dateString: string): string {
+export function getTimeString(dateString = toIsoTimezoneString()): string {
   return dateString.substr(11, 5);
 }
 
