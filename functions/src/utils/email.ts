@@ -27,6 +27,8 @@ export const sendEmail = (
       'This is a test email sent to you only. Once you uncheck test mode the following message will be sent out with the following information:\n';
 
     emailOptions.text += `Receipients in the "To" Field: ${emailOptions.to}\n`;
+    emailOptions.text += `Email in the "Form" Field: ${emailOptions.from}\n`;
+    
     const cc = getNumReciepients(emailOptions.cc);
     const bcc = getNumReciepients(emailOptions.bcc);
     if (cc > 0) {
