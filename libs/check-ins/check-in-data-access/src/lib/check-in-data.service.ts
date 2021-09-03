@@ -39,12 +39,15 @@ export class CheckInDataService {
     if (choices.length === 0) {
       return '';
     }
+    if(choices.length === 1){
+      return choices[0]['check-in'];
+    }
     const time = getTime();
 
     const choice = choices.find((c) => {
       return time < c.end;
     });
-    return choice
+    return typeof choice !== 'undefined'
       ? choice['check-in']
       : choices[choices.length - 1]['check-in'];
   }
