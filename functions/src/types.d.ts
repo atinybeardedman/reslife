@@ -118,6 +118,20 @@ export interface DormDocument extends SimpleItem {
   isActive: boolean;
 }
 
+export interface CheckInItem extends NamedItem {
+  uid: string;
+}
+
+export type CheckInCode = 'LT';
+
+export interface CheckInRecord extends CheckInItem{
+  code?: string;
+}
+
+export interface ExcusedRecord extends CheckInItem {
+  note: string;
+}
+
 export interface CheckInDocument {
   date: string;
   'check-in': string;
@@ -137,4 +151,36 @@ export interface DormNoteField {
   order: number;
   isLocked: boolean;
   author?: string;
+}
+
+
+export interface ScheduleItem extends SimpleItem {
+  startTime: string;
+  endTime: string;
+  days: number[];
+  academicYear: string;
+}
+
+export interface CheckInException {
+  startTime: string;
+  endTime: string;
+  'check-in': string;
+}
+
+export interface ScheduleDayException {
+  uid: string;
+  date: string;
+  note: string;
+  checkIns: CheckInException[];
+  academicYear: string;
+}
+
+export interface TimeExcusalDoc {
+  boarder: SimpleItem;
+  uid: string;
+  leaveDate: string;
+  returnDate: string;
+  includedDays: string[];
+  reason: string;
+  clear: boolean;
 }

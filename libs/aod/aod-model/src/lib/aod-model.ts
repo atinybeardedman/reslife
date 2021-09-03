@@ -6,6 +6,7 @@ export interface TimeExcusalDoc {
   uid: string;
   leaveDate: string;
   returnDate: string;
+  includedDays: string[];
   reason: string;
   clear: boolean;
 }

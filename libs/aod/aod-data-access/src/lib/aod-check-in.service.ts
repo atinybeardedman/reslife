@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { getDateString } from '@reslife/utils';
+import { getDateString, getIncludedDays } from '@reslife/utils';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CheckInDocument, ExcusedRecord } from '@reslife/check-ins/check-in-model';
@@ -62,6 +62,7 @@ export class AodCheckInService {
     },
     uid,
     ...timing,
+    includedDays: getIncludedDays(timing.leaveDate, timing.returnDate),
     reason,
     clear: shouldClear
   })

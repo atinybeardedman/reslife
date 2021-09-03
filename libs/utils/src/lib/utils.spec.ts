@@ -121,3 +121,22 @@ describe('orderByName', () => {
     expect(items).toEqual(names.sort().map(d => ({name: d})));
   })
 })
+
+describe('getIncludedDays', () => {
+  it('should get days included between 2 dates', () => {
+    const start = new Date(2021,8,1,12,30,0,0);
+    const end = new Date(2021,8,3,15,30,0,0);
+    const startString = utils.getDateString(start);
+    const endString = utils.getDateString(end);
+    const expected = ['2021-09-01', '2021-09-02', '2021-09-03'];
+    expect(utils.getIncludedDays(startString, endString)).toEqual(expected);
+  });
+  it('should give the single date for a range that is the same day', () => {
+    const start = new Date(2021,8,1,12,30,0,0);
+    const end = new Date(2021,8,1,15,30,0,0);
+    const startString = utils.getDateString(start);
+    const endString = utils.getDateString(end);
+    const expected = ['2021-09-01'];
+    expect(utils.getIncludedDays(startString, endString)).toEqual(expected);
+  })
+})

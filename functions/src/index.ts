@@ -7,7 +7,7 @@ import {
   triggerableFns as dormTriggers,
   backgroundFns as dormBackgrounds,
 } from './dorm';
-
+import { backgroundFns as scheduleBackgrounds } from './schedule';
 import * as aodTriggers from './aod-notifications';
 import * as boarderFns from './boarders';
 import { cronTriggerBuilder } from './cron';
@@ -25,6 +25,10 @@ exports.maintenance = {
 exports.dorm = {
   ...dormBackgrounds,
 };
+
+exports.schedule = {
+  ...scheduleBackgrounds
+}
 
 exports.cron = {
   cronTrigger: cronTriggerBuilder(taskDict),

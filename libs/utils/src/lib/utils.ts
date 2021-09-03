@@ -99,3 +99,15 @@ export function orderByName(a: NamedItem, b: NamedItem): number {
   } 
   return 0;
 }
+
+export function getIncludedDays(start: string, end: string): string[] {
+  const result = [];
+  let currentDate = getDateFromDatestring(start);
+  let currentString = getDateString(currentDate);
+  while(currentString <= end){
+    result.push(currentString);
+    currentDate = new Date(currentDate.getTime() + 24 * 3600 * 1000);
+    currentString = getDateString(currentDate)
+  }
+  return result;
+}
