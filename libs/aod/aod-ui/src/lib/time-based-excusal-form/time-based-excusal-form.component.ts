@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { getTime, combineDatetime } from '@reslife/utils'
+import { getTime, combineDatetime, getIsoTimezoneString } from '@reslife/utils'
 import { LeaveReturnTiming } from '@reslife/shared-models';
 import { Subscription } from 'rxjs';
 @Component({
@@ -36,8 +36,8 @@ export class TimeBasedExcusalFormComponent {
       if(this.timeExcusalForm.valid){
         const {departureDateCtrl, departureTimeCtrl} = this.departureGroup.controls;
         const { returnDateCtrl, returnTimeCtrl} = this.returnGroup.controls;
-        const leaveDate =  combineDatetime(new Date(departureDateCtrl.value), departureTimeCtrl.value).toISOString();
-        const returnDate =  combineDatetime(new Date(returnDateCtrl.value), returnTimeCtrl.value).toISOString();
+        const leaveDate = getIsoTimezoneString(combineDatetime(new Date(departureDateCtrl.value), departureTimeCtrl.value));
+        const returnDate = getIsoTimezoneString(combineDatetime(new Date(returnDateCtrl.value), returnTimeCtrl.value));
         this.timing.emit({
           leaveDate,
           returnDate

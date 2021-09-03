@@ -8,5 +8,4 @@ export interface TimeExcusalDoc {
   returnDate: string;
   includedDays: string[];
   reason: string;
-  clear: boolean;
 }

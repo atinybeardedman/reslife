@@ -1,0 +1,39 @@
+
+    <table mat-table class="w-full"  [dataSource]="datasource">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let excusalDoc">{{ excusalDoc.boarder.name }}</td>
+        </ng-container>
+        <!-- Range Column -->
+        <ng-container matColumnDef="range">
+          <th mat-header-cell *matHeaderCellDef>Range</th>
+          <td mat-cell *matCellDef="let excusalDoc">{{ getRange(excusalDoc) }}</td>
+        </ng-container>
+        <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let excusalDoc">
+          <button
+            mat-icon-button
+            (click)="delete.emit({record: excusalDoc, action: 'delete'})"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <h1 class="text-center py-1" *ngIf="!excusals || excusals?.length === 0">
+          No Excusals Defined
+        </h1>
+      <mat-paginator
+        [pageSizeOptions]="[10]"
+        showFirstLastButtons
+        aria-label="Select page of excusals"
+      >
+      </mat-paginator>
+   
+  
