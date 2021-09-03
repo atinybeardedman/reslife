@@ -21,7 +21,7 @@ export const getBoardersByDate = async (date: string) => {
   const boarderSnap = await fbadmin
     .firestore()
     .collection('boarders')
-    .where('startDate', '>=', date)
+    .where('startDate', '<=', date)
     .get();
   return boarderSnap.docs
     .map((b) => b.data() as Boarder)

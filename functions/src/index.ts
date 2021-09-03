@@ -10,16 +10,21 @@ import {
 import { backgroundFns as scheduleBackgrounds } from './schedule';
 import * as aodTriggers from './aod-notifications';
 import * as boarderFns from './boarders';
+import * as staffFns from './staff';
 import { cronTriggerBuilder } from './cron';
 
 const taskDict: PromiseDict = {
   ...boarderFns,
   ...dormTriggers,
-  ...aodTriggers
+  ...aodTriggers,
 };
 
 exports.maintenance = {
   ...maintenanceFns,
+};
+
+exports.staff = {
+  ...staffFns,
 };
 
 exports.dorm = {
@@ -27,8 +32,8 @@ exports.dorm = {
 };
 
 exports.schedule = {
-  ...scheduleBackgrounds
-}
+  ...scheduleBackgrounds,
+};
 
 exports.cron = {
   cronTrigger: cronTriggerBuilder(taskDict),

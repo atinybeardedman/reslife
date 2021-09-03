@@ -1,5 +1,5 @@
 <form [formGroup]="timeExcusalForm">
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" formGroupName="departureGroup">
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutGap.lt-md="0px" fxLayoutAlign="space-evenly end" formGroupName="departureGroup">
     <mat-form-field fxFlex fxFlex.lt-md="100">
       <mat-label>Departure Date</mat-label>
       <input
@@ -28,7 +28,7 @@
       />
     </mat-form-field>
   </div>
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" formGroupName="returnGroup">
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutGap.lt-md="0px" fxLayoutAlign="space-evenly end" formGroupName="returnGroup">
     <mat-form-field fxFlex fxFlex.lt-md="100">
       <mat-label>Return Date</mat-label>
       <input

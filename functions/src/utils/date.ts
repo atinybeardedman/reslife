@@ -64,3 +64,27 @@ export function combineDatetime(date: Date, time: string) {
   return `${startYear}-${(startYear + 1).toString().substr(2)}`;
 }
 
+export function getIncludedDays(start: string, end: string, filter?:(date: string) => boolean ): string[] {
+  const result = [];
+  let currentDate = getDateFromDateString(start);
+  let currentString = getDateString(currentDate);
+  while(currentString <= end){
+    if(filter){
+      if(filter(currentString)){
+        result.push(currentString);  
+      }
+    }else {
+      result.push(currentString);
+    }
+    currentDate = new Date(currentDate.getTime() + 24 * 3600 * 1000);
+    currentString = getDateString(currentDate)
+  }
+  return result;
+}
+
+export function addToDatestring(date: string, amount: number): string {
+  const dateObj = getDateFromDateString(date);
+  const momentObj = moment.tz(dateObj, 'America/New_York');
+  const result = momentObj.add(amount, 'days');
+  return getDateString(result.toDate());
+}

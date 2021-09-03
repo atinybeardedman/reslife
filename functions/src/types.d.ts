@@ -104,6 +104,14 @@ export interface SimpleItem extends NamedItem {
   uid: string;
 }
 
+
+export type Role = 'aod' | 'superadmin' | 'any';
+
+export interface StaffMember extends SimpleItem {
+  email: string;
+  roles: Role[];
+}
+
 export interface NamedTimeSpan extends SimpleItem {
   start: string;
   end: string;
@@ -131,6 +139,16 @@ export interface CheckInRecord extends CheckInItem{
 export interface ExcusedRecord extends CheckInItem {
   note: string;
 }
+
+export interface TimeExcusalDoc {
+  boarder: SimpleItem;
+  uid: string;
+  leaveDate: string;
+  returnDate: string;
+  includedDays: string[];
+  reason: string;
+}
+
 
 export interface CheckInDocument {
   date: string;
