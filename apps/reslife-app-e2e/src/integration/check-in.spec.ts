@@ -5,8 +5,16 @@ import {
     generateCheckInPath,
   } from '../../testing-data/check-in-lists';
 describe('check-in', () => {
+  let checkInPath: string;
     beforeEach(() => {
+      checkInPath = generateCheckInPath();
+      const checkInDoc = generateCheckInDocument();
       cy.login();
+      cy.callFirestore('delete', `check-ins/${checkInPath}/expected`);
+      cy.callFirestore('delete', `check-ins/${checkInPath}/excused`);
+      cy.callFirestore('delete', `check-ins/${checkInPath}/checked`);
+  
+      cy.callFirestore('set', `check-ins/${checkInPath}`, checkInDoc);
       cy.visit('/check-in');
     });
   
@@ -15,15 +23,8 @@ describe('check-in', () => {
     });
   
     describe('when check-in data is available', () => {
-      let checkInPath: string;
       it('should have the current data and check-in selected', () => {
-        checkInPath = generateCheckInPath();
-        const checkInDoc = generateCheckInDocument();
   
-        cy.callFirestore('delete', `check-ins/${checkInPath}/checked`);
-        cy.callFirestore('delete', `check-ins/${checkInPath}/expected`);
-        cy.callFirestore('delete', `check-ins/${checkInPath}/excused`);
-        cy.callFirestore('set', `check-ins/${checkInPath}`, checkInDoc);
         cy.get('[data-testid="check-in-date"]').should(
           'have.value',
           new Date().toLocaleDateString()
