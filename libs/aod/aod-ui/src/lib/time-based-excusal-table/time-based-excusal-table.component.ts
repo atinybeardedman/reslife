@@ -15,8 +15,7 @@ import { getDateFromDatestring } from '@reslife/utils';
 export class TimeBasedExcusalTableComponent implements OnChanges, AfterViewInit {
   @Input() excusals!: TimeExcusalDoc[] | null;
 
-  @Output() edit = new EventEmitter<RecordAction<NamedTimeSpan>>();
-  @Output() delete = new EventEmitter<RecordAction<NamedTimeSpan>>();
+  @Output() delete = new EventEmitter<RecordAction<TimeExcusalDoc>>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns = ['name', 'range', 'actions'];
