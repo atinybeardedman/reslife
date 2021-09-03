@@ -122,7 +122,12 @@ const onCheckInMetaCreate = functions.firestore
   .onCreate(async (snap) => {
     const doc = snap.data() as CheckInDocument;
     const checkInEnd = combineDateTimeStr(doc.date, doc.end);
-    const boarders = await getBoardersByDate(doc.date);
+    const checkInDay = getDateFromDateString(doc.date).getDay();
+    const is7DayOnly = checkInDay >= 5 || (checkInDay === 0  && doc.start < '19:00');
+    let boarders = await getBoardersByDate(doc.date);
+    if(is7DayOnly){
+      boarders = boarders.filter(b => b.type === '7 Day');
+    }
     const excusals = await getExcusalsByDate(doc.date);
     const batch = fbadmin.firestore().batch();
     for (const boarder of boarders) {
