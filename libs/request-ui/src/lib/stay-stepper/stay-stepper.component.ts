@@ -40,6 +40,7 @@ export class StayStepperComponent {
     const reason = this.reasonCtrl.value;
     const request: StayRequest = {
       email: '',
+      name: '',
       uid: '',
       reason,
       startDate,

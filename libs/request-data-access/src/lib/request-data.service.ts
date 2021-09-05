@@ -12,6 +12,7 @@ export class RequestDataService {
     async submitLeave(user: firebase.User | null, request: LeaveRequest): Promise<void> {
         if(user){
             request.email = user.email as string;
+            request.name = user.displayName as string;
             request.uid = user.uid;
             return this.af.doc<LeaveRequest>(`leave-requests/${request.uid}`).set(request);
         }
@@ -20,6 +21,7 @@ export class RequestDataService {
     async submitStay(user: firebase.User | null, request: StayRequest): Promise<void> {
         if(user){
             request.email = user.email as string;
+            request.name = user.displayName as string;
             request.uid = user.uid;
             return this.af.doc<StayRequest>(`stay-requests/${request.uid}`).set(request);
         }

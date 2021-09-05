@@ -200,5 +200,44 @@ export interface TimeExcusalDoc {
   returnDate: string;
   includedDays: string[];
   reason: string;
-  clear: boolean;
+}
+
+
+export type RequestType = 'Leave' | 'Stay';
+
+export type RequestStatus = 'Pending' | 'Approved' | 'Rejected';
+
+export interface LeaveStayRequest {
+    uid: string;
+    student: {
+        name: string;
+        uid: string;
+        email: string;
+    };
+    type: RequestType;
+    explaination: string;
+    startDate: string;
+    endDate: string;
+    status: RequestStatus;
+    rejectionReason?: string;
+    academicYear: string;
+}
+
+export interface LeaveRequest {
+  uid: string;
+  email: string;
+  name:string;
+  startDate: string;
+  endDate: string;
+  transport: string;
+  where: string;
+}
+
+export interface StayRequest {
+  uid: string;
+  email: string;
+  name:string;
+  startDate: string;
+  endDate: string;
+  reason: string;
 }
