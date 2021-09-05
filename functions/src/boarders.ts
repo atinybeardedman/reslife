@@ -65,6 +65,11 @@ const onBoarderCreate = functions.firestore.document('boarders/{boarderID}').onC
     }
     try {
         await batch.commit();
+        await fbadmin.auth().createUser({
+            email: boarder.email,
+            displayName: boarder.name,
+            uid: boarder.uid
+        })
     } catch(err){
         console.log(err);
     }
