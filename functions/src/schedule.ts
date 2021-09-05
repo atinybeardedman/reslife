@@ -276,14 +276,14 @@ const onAcademicYearUpdate = functions.firestore
       );
       const regularSchedule = await getRegularSchedule(context.params.yearId);
       await addCheckIns(
-        beforeDoc.start,
         afterDoc.start,
+        beforeDoc.start,
         regularSchedule,
         scheduleExceptions
       );
     } else if (beforeDoc.start < afterDoc.start) {
       // year starts later, delete check-ins
-      await removeCheckIns(beforeDoc.start, afterDoc.start);
+      await removeCheckIns(beforeDoc.start, addToDatestring(afterDoc.start, 1));
     }
 
     if (beforeDoc.end < afterDoc.end) {
@@ -301,7 +301,7 @@ const onAcademicYearUpdate = functions.firestore
       );
     } else if (beforeDoc.end > afterDoc.end) {
       // year ends earlier, remove check ins
-      await removeCheckIns(afterDoc.end, beforeDoc.end);
+      await removeCheckIns(addToDatestring(afterDoc.end, 1), beforeDoc.end);
     }
   });
 
