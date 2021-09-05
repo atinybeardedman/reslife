@@ -70,9 +70,9 @@
   <mat-card fxFlex="1 1 30rem" fxFlex.lt-md>
     <mat-card-title>Existing Time Excusals</mat-card-title>
     <mat-card-content>
-      <div class="pb-1" fxLayout fxLayoutAlign="end">
+      <div class="py-1" fxLayout fxLayoutAlign="end">
         <mat-form-field fxFlex>
-          <mat-label>Departure Date</mat-label>
+          <mat-label>Included Date</mat-label>
           <input matInput (dateInput)="updateDate($event.value)" [matDatepicker]="excusalPicker" />
           <mat-datepicker-toggle
             matSuffix
