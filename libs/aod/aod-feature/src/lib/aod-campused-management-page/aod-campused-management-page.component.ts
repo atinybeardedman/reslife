@@ -5,7 +5,11 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { Boarder, CampusedStudentRecord, RecordAction  } from '@reslife/shared-models';
+import {
+  Boarder,
+  CampusedStudentRecord,
+  RecordAction,
+} from '@reslife/shared-models';
 import { ConfirmModalComponent } from '@reslife/admin-ui';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, combineLatest } from 'rxjs';
@@ -38,10 +42,17 @@ export class AodCampusedManagementPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.campused$ = this.asds.getCampusedStudents();
-    this.boarders$ = combineLatest([this.sas.getActiveBoarders(), this.campused$]).pipe(
-      map(([boarders, campused]) => boarders.filter(b => typeof campused.find(c => c.student.uid === b.uid) === 'undefined'))
+    this.boarders$ = combineLatest([
+      this.sas.getActiveBoarders(),
+      this.campused$,
+    ]).pipe(
+      map(([boarders, campused]) =>
+        boarders.filter(
+          (b) =>
+            typeof campused.find((c) => c.student.uid === b.uid) === 'undefined'
+        )
+      )
     );
-    
   }
 
   edit(action?: RecordAction<CampusedStudentRecord>): void {

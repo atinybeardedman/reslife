@@ -6,21 +6,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
-
-
 @NgModule({
-  declarations: [
-    StaffManagementPageComponent
-  ],
+  declarations: [StaffManagementPageComponent],
   imports: [
     CommonModule,
     AdminUiModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
   ],
-  exports: [
-    StaffManagementPageComponent
-  ]
+  exports: [StaffManagementPageComponent],
 })
-export class StaffManagementPageModule { }
+export class StaffManagementPageModule {}
