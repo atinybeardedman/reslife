@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DormNoteField, DormNoteMetaDoc } from '@reslife/dorm-notes-model';
 import { DormDatePickerEvent, DormDocument } from '@reslife/shared-models';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DormNotesDataService {
   private selectedDoc!: AngularFirestoreDocument<DormNoteMetaDoc>; 
-  constructor(private af: AngularFirestore) { }
+  constructor(private af: AngularFirestore, private auth: AngularFireAuth) { }
 
   
   getActiveDorms(): Observable<string[]> {
@@ -29,7 +31,11 @@ export class DormNotesDataService {
     return this.selectedDoc.collection<DormNoteField>('notes', ref => ref.orderBy('order')).valueChanges();
   }
 
-  updateField(field: Partial<DormNoteField>): Promise<void>{
+  async updateField(field: Partial<DormNoteField>): Promise<void>{
+    const user = await this.auth.currentUser;
+    if(user){
+      field.author = user.displayName as string;
+    }
     return this.selectedDoc.collection('notes').doc(field.uid).update(field);
   }
 }
