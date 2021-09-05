@@ -3,7 +3,7 @@ import { MailgunOptions, MaintenanceRequestDoc } from './types';
 import { sendEmail } from './utils/email';
 import { isProduction } from './utils/general';
 
-export const onNewRequest = functions.firestore
+export const onNewMaintenanceRequest = functions.firestore
   .document('maintenanceRequests/{requestID}')
   .onCreate((snap, _context) => {
     const doc = snap.data() as MaintenanceRequestDoc;
