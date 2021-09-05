@@ -34,7 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     BreakManagementTableModule,
     EditBreakModalModule,
-    ConfirmModalModule
+    ConfirmModalModule,
   ],
   exports: [
     EditAcademicYearCardComponent

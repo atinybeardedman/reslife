@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AcademicYearService } from '@reslife/admin-data-access'
 import { AcademicYear, AcademicYearSaveEvent, NamedTimeSpan } from '@reslife/admin-model';
 import { Observable, ReplaySubject } from 'rxjs';
@@ -13,7 +14,7 @@ export class SetUpYearPageComponent implements OnInit {
   years$!: Observable<AcademicYear[]>;
   breaks$!: Observable<NamedTimeSpan[]>;
   selectedYear$ = new ReplaySubject<AcademicYear>(1);
-  constructor(private ays: AcademicYearService) { }
+  constructor(private ays: AcademicYearService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.years$ = this.ays.getYears();
@@ -25,6 +26,11 @@ export class SetUpYearPageComponent implements OnInit {
   async saveYear(saveEvent: AcademicYearSaveEvent): Promise<void>{
     await this.ays.setYear(saveEvent.year);
     await this.ays.setBreaks(saveEvent.year.uid, saveEvent.breaks);
+    this.snackbar.open('Year Saved', undefined, {
+      duration: 3000,
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom'
+    })
   }
 
 }

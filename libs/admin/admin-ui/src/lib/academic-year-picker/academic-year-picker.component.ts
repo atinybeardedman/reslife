@@ -1,4 +1,4 @@
-import { Component,  ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component,  ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { AcademicYear } from '@reslife/admin-model';
 import { getAcademicYear, incrementAcademicYear } from '@reslife/utils';
 
@@ -8,11 +8,23 @@ import { getAcademicYear, incrementAcademicYear } from '@reslife/utils';
   styleUrls: ['./academic-year-picker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AcademicYearPickerComponent  {
+export class AcademicYearPickerComponent implements OnChanges {
   @Input() yearDocs!: AcademicYear[] | null;
   @Output() yearSelected = new EventEmitter<AcademicYear>();
   addedYears: string[] = [];
   selectedYear!: string;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.yearDocs && this.yearDocs){
+      const currentYear = getAcademicYear();
+      const currentYearDoc = this.yearDocs.find(y => y.name === currentYear);
+      if(typeof currentYearDoc !== 'undefined'){
+        this.selectYear(currentYear);
+      } else if (this.yearDocs.length !== 0){
+        this.selectYear(this.yearDocs[this.yearDocs.length - 1].name);
+      }
+    }
+  }
 
   get years(): string[] {
     let list:string[] = [];
