@@ -35,7 +35,7 @@ export class TimeBasedExcusalTableComponent implements OnChanges, AfterViewInit 
   getRange(excusal: TimeExcusalDoc): string {
     const start = formatDate(getDateFromDatestring(excusal.leaveDate), 'M/d HH:mm', 'en-US');
     const end = formatDate(getDateFromDatestring(excusal.returnDate), 'M/d HH:mm', 'en-US');
-    return start + '-' + end;
+    return start + ' - ' + end;
     
   }
 
