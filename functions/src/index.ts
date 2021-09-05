@@ -8,6 +8,7 @@ import {
   backgroundFns as dormBackgrounds,
 } from './dorm';
 import { backgroundFns as scheduleBackgrounds } from './schedule';
+import { backgroundFns as requestsBackgrounds } from './leave-stay-requests';
 import * as aodTriggers from './aod-notifications';
 import {
   triggerableFns as boarderTriggers,
@@ -29,6 +30,10 @@ exports.maintenance = {
 exports.staff = {
   ...staffFns,
 };
+
+exports.requests = {
+  ...requestsBackgrounds
+}
 
 exports.dorm = {
   ...dormBackgrounds,
