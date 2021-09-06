@@ -48,12 +48,11 @@ export class AodSignoutDataService {
     return this.ssds.addSignout(signout);
   }
 
-  addOverride(uid: string, tempPermissions: BoarderPermissions): Promise<void> {
-    // TODO: merge this in the signout data service
-    // TODO: cloud function to remove all of these on Sunday evening
-    return this.af.collection('temp-permissions').doc(uid).set({
-      uid,
-      permissions: tempPermissions
+  addOverride(meta: BoarderSignoutMeta, tempPermissions: BoarderPermissions): Promise<void> {
+    return this.af.collection('temp-permissions').doc(meta.uid).set({
+      uid: meta.uid,
+      originalPermissions: meta.permissions,
+      tempPermissions
     });
   }
 

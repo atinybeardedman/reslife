@@ -64,7 +64,7 @@ export class AodSignoutsPageComponent implements OnInit {
       await this.asds.addSignout(this.signout as StudentSignout);
     } else {
       if(this.selectedSignoutMeta && this.tempPermissions){
-        await this.asds.addOverride(this.selectedSignoutMeta.uid, this.tempPermissions )
+        await this.asds.addOverride(this.selectedSignoutMeta, this.tempPermissions )
       }
     }
     this.signoutForm.reset();
