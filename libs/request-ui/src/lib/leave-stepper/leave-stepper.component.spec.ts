@@ -110,6 +110,7 @@ describe('LeaveStepperComponent', () => {
     expect(spy).toHaveBeenCalledWith({    
       uid: '',
       email: '',
+      name: '',
       where: where[0],
       transport: where[1],
       startDate: '2021-09-11T17:00:00.000Z',

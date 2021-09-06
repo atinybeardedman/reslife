@@ -5,6 +5,7 @@ export interface LeaveRequest {
   endDate: string;
   transport: string;
   where: string;
+  name: string;
 }
 
 export interface StayRequest {
@@ -13,4 +14,5 @@ export interface StayRequest {
   startDate: string;
   endDate: string;
   reason: string;
+  name: string;
 }

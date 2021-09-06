@@ -3,13 +3,20 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Boarder, DormDocument } from '@reslife/shared-models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { getDateString } from '@reslife/utils';
+import { getAcademicYear, getDateString } from '@reslife/utils';
+import { AcademicYear } from '@reslife/admin-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BoarderManagementService {
   constructor(private af: AngularFirestore) {}
+
+  getCurrentAcademicYear(): Observable<AcademicYear | null> {
+    return this.af.doc<AcademicYear>(`academic-years/${getAcademicYear()}`).valueChanges().pipe(
+      map(y => typeof y === 'undefined' ? null : y as AcademicYear)
+    );
+  }
 
   getActiveBoarders(): Observable<Boarder[]> {
     return this.af

@@ -8,6 +8,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AcademicYear } from '@reslife/admin-model';
 import { Boarder, BoarderType } from '@reslife/shared-models';
 import { getDateString, getDateFromDatestring, getYearEndDateString } from '@reslife/utils';
 
@@ -22,6 +23,7 @@ export class EditBoarderModalComponent implements OnChanges {
   @Input() dorms!: string[] | null;
   @Input() boarderTypes: BoarderType[] = ['5 Day', '7 Day'];
   @Input() title = 'New Boarder';
+  @Input() academicYear!: AcademicYear | null;
   @Output() save = new EventEmitter<Boarder>();
 
   today = new Date();
@@ -51,6 +53,12 @@ export class EditBoarderModalComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.boarder && this.boarder) {
       this.fillFields(this.boarder);
+    } else if(changes.academicYear && this.academicYear && !this.boarder){
+      // this is getting called 2x for some inputs, so the else isn't providing the exclusion needed
+      if(changes.academicYear.previousValue != changes.academicYear.currentValue){
+        this.bioStepGroup.controls.startDate.setValue(getDateFromDatestring(this.academicYear.start));
+        this.bioStepGroup.controls.endDate.setValue(getDateFromDatestring(this.academicYear.end));
+      }
     }
   }
 

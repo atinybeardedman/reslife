@@ -18,7 +18,7 @@ export class MainViewComponent implements OnDestroy{
   @Input() roles: Role[] | null = ['any'];
   @Input() user!: StaffMember | null;
   @Output() logout = new EventEmitter<void>();
-  @ViewChild(MatSidenav, {static: true}) private sidenav!: MatSidenav;
+  @ViewChild(MatSidenav) private sidenav!: MatSidenav;
   destroyed = new Subject<void>();
   isMobile$ = new BehaviorSubject<boolean>(false);
   constructor(private breakpointObs: BreakpointObserver){

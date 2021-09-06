@@ -16,8 +16,12 @@ import { getTimeDiff, combineDatetime, getTime } from '@reslife/utils';
   providedIn: 'root',
 })
 export class CheckInDataService {
-  private selectedCheckInDocument!: AngularFirestoreDocument<CheckInDocument>;
+  private selectedCheckInDocument!: AngularFirestoreDocument<CheckInDocument> | null;
   constructor(private af: AngularFirestore) {}
+
+  unSetCheckIn(){
+    this.selectedCheckInDocument = null;
+  }
 
   setCheckIn(date: string, checkin: string): void {
     if (date && checkin) {
@@ -39,12 +43,15 @@ export class CheckInDataService {
     if (choices.length === 0) {
       return '';
     }
+    if(choices.length === 1){
+      return choices[0]['check-in'];
+    }
     const time = getTime();
 
     const choice = choices.find((c) => {
       return time < c.end;
     });
-    return choice
+    return typeof choice !== 'undefined'
       ? choice['check-in']
       : choices[choices.length - 1]['check-in'];
   }
@@ -76,10 +83,10 @@ export class CheckInDataService {
       return of([]);
     }
   }
-  async checkIn(item: CheckInItem, overrideLate = false): Promise<void> {
+  async checkIn(item: CheckInItem): Promise<void> {
     const record: CheckInRecord = { ...item };
 
-    if (!overrideLate) {
+    if (this.selectedCheckInDocument) {
       const snap = await this.selectedCheckInDocument.get().toPromise();
       const endTime = snap.get('end') as string;
       const endDate = combineDatetime(new Date(), endTime);
@@ -88,34 +95,37 @@ export class CheckInDataService {
       if (timeDiff > 5) {
         record.code = 'LT';
       }
-    }
-    const batch = this.af.firestore.batch();
-    batch.delete(
-      this.selectedCheckInDocument.collection('expected').doc(item.uid).ref
-    );
-    batch.set(
-      this.selectedCheckInDocument.collection('checked').doc(item.uid).ref,
-      record
-    );
-    return batch.commit();
+      const batch = this.af.firestore.batch();
+      batch.delete(
+        this.selectedCheckInDocument.collection('expected').doc(item.uid).ref
+        );
+        batch.set(
+          this.selectedCheckInDocument.collection('checked').doc(item.uid).ref,
+          record
+          );
+          return batch.commit();
+        }
   }
 
-  unCheckIn(record: CheckInRecord): Promise<void> {
+  async unCheckIn(record: CheckInRecord): Promise<void> {
     const item: CheckInItem = {
       uid: record.uid,
       name: record.name,
     };
 
-    const batch = this.af.firestore.batch();
+    if (this.selectedCheckInDocument) {
 
-    batch.set(
-      this.selectedCheckInDocument.collection('expected').doc(item.uid).ref,
-      item
-    );
-    batch.delete(
-      this.selectedCheckInDocument.collection('checked').doc(item.uid).ref
-    );
-
-    return batch.commit();
+      const batch = this.af.firestore.batch();
+  
+      batch.set(
+        this.selectedCheckInDocument.collection('expected').doc(item.uid).ref,
+        item
+      );
+      batch.delete(
+        this.selectedCheckInDocument.collection('checked').doc(item.uid).ref
+      );
+  
+      return batch.commit();
+    }
   }
 }

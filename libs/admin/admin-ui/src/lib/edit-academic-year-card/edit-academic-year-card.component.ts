@@ -69,9 +69,11 @@ export class EditAcademicYearCardComponent implements OnChanges {
 
   updateList(): void {
     const inputBreaks = this.breaks || [];
-    const filteredInputs = inputBreaks.filter((b) => !(this.removedBreaks.has(b.uid) || this.editedBreaks.has(b.uid)));
+    const filteredInputs = inputBreaks.filter(
+      (b) => !(this.removedBreaks.has(b.uid) || this.editedBreaks.has(b.uid))
+    );
     const newList = [...filteredInputs, ...this.editedBreaks.values()];
-        this.filteredBreaks$.next(newList);
+    this.filteredBreaks$.next(newList);
   }
 
   get editedDoc(): AcademicYearSaveEvent {
@@ -82,6 +84,8 @@ export class EditAcademicYearCardComponent implements OnChanges {
       end: getDateString(this.startEndStepGroup.controls.endDate.value),
     };
     const breaks = [...this.filteredBreaks$.value];
+    this.editedBreaks.clear();
+    this.removedBreaks.clear();
 
     return {
       year,
@@ -110,7 +114,7 @@ export class EditAcademicYearCardComponent implements OnChanges {
     this.dialog.getDialogById('confirm')?.close();
     if (shouldDelete && this.selectedBreak) {
       this.removedBreaks.set(this.selectedBreak.uid, true);
-      if(this.editedBreaks.has(this.selectedBreak.uid)){
+      if (this.editedBreaks.has(this.selectedBreak.uid)) {
         this.editedBreaks.delete(this.selectedBreak.uid);
       }
       this.updateList();
@@ -124,14 +128,14 @@ export class EditAcademicYearCardComponent implements OnChanges {
 
   saveRecord(record: NamedTimeSpan) {
     this.dialog.getDialogById('edit-record')?.close();
-    if(this.selectedBreak){
+    if (this.selectedBreak) {
       this.editedBreaks.set(record.uid, record);
     } else {
-      record.uid = this.getTempUid()
+      record.uid = this.getTempUid();
       this.editedBreaks.set(record.uid, record);
     }
     this.updateList();
-    
+
     this.selectedBreak = null;
   }
 }

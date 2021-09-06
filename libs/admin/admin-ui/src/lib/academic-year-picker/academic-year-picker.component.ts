@@ -1,6 +1,8 @@
-import { Component,  ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component,  ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AcademicYear } from '@reslife/admin-model';
 import { getAcademicYear, incrementAcademicYear } from '@reslife/utils';
+import { NewAcademicYearModalComponent } from '../new-academic-year-modal/new-academic-year-modal.component';
 
 @Component({
   selector: 'reslife-academic-year-picker',
@@ -8,11 +10,25 @@ import { getAcademicYear, incrementAcademicYear } from '@reslife/utils';
   styleUrls: ['./academic-year-picker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AcademicYearPickerComponent  {
+export class AcademicYearPickerComponent implements OnChanges {
   @Input() yearDocs!: AcademicYear[] | null;
   @Output() yearSelected = new EventEmitter<AcademicYear>();
   addedYears: string[] = [];
   selectedYear!: string;
+
+  constructor(public dialog: MatDialog){}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.yearDocs && this.yearDocs){
+      const currentYear = getAcademicYear();
+      const currentYearDoc = this.yearDocs.find(y => y.name === currentYear);
+      if(typeof currentYearDoc !== 'undefined'){
+        this.selectYear(currentYear);
+      } else if (this.yearDocs.length !== 0){
+        this.selectYear(this.yearDocs[this.yearDocs.length - 1].name);
+      }
+    }
+  }
 
   get years(): string[] {
     let list:string[] = [];
@@ -25,7 +41,7 @@ export class AcademicYearPickerComponent  {
     return list
   }
 
-  addYear(): void {
+  async addYear(): Promise<void> {
     let newYear: string;
     if(this.years && this.years.length > 0){
       const year = this.years.pop() as string;
@@ -33,8 +49,11 @@ export class AcademicYearPickerComponent  {
     } else {
       newYear = getAcademicYear();
     }
-    this.addedYears.push(newYear);
-    this.selectYear(newYear);
+    const result = await this.dialog.open(NewAcademicYearModalComponent).afterClosed().toPromise();
+    if(result === true){
+      this.addedYears.push(newYear);
+      this.selectYear(newYear);
+    }
   }
 
   selectYear(year: string): void {

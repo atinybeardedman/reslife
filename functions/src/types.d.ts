@@ -30,8 +30,8 @@ export interface TaskOptions {
 }
 
 export interface RepeatedTask {
-  ID: string;
-  repeatFrequency: 'daily' | 'weekdays' | 'weekly' | 'monthly';
+  uid: string;
+  repeatFrequency: 'daily' | 'dormdays' | 'weekdays' | 'weekly' | 'monthly';
   functionName: string;
   active: boolean;
   startDate: string;
@@ -40,14 +40,16 @@ export interface RepeatedTask {
 }
 
 export interface OneTimeTask {
-  ID: string;
+  uid: string;
   status: 'scheduled' | 'complete' | 'error';
   functionName: string;
   triggerTime: string;
   isRepeat: boolean;
   repeatID?: string;
-  options: TaskOptions;
+  options?: TaskOptions;
 }
+
+export type RepeatedTaskMeta = Pick<RepeatedTask, "functionName" | "startDate" | "endDate" | "repeatFrequency" | "options">;
 
 
 export interface PromiseDict {
@@ -104,6 +106,14 @@ export interface SimpleItem extends NamedItem {
   uid: string;
 }
 
+
+export type Role = 'aod' | 'superadmin' | 'any';
+
+export interface StaffMember extends SimpleItem {
+  email: string;
+  roles: Role[];
+}
+
 export interface NamedTimeSpan extends SimpleItem {
   start: string;
   end: string;
@@ -116,4 +126,126 @@ export interface AcademicYear extends NamedTimeSpan {
 
 export interface DormDocument extends SimpleItem {
   isActive: boolean;
+}
+
+export interface CheckInItem extends NamedItem {
+  uid: string;
+}
+
+export type CheckInCode = 'LT';
+
+export interface CheckInRecord extends CheckInItem{
+  code?: string;
+}
+
+export interface ExcusedRecord extends CheckInItem {
+  note: string;
+}
+
+export interface TimeExcusalDoc {
+  boarder: SimpleItem;
+  uid: string;
+  leaveDate: string;
+  returnDate: string;
+  includedDays: string[];
+  reason: string;
+}
+
+
+export interface CheckInDocument {
+  date: string;
+  'check-in': string;
+  start: string;
+  end: string;
+}
+
+export interface DormNoteMetaDoc {
+  date: string;
+  dorm: string;
+}
+
+export interface DormNoteField {
+  uid: string;
+  fieldName: string;
+  note: string;
+  order: number;
+  isLocked: boolean;
+  author?: string;
+}
+
+
+export interface ScheduleItem extends SimpleItem {
+  startTime: string;
+  endTime: string;
+  days: number[];
+  academicYear: string;
+}
+
+export interface CheckInException {
+  startTime: string;
+  endTime: string;
+  'check-in': string;
+}
+
+export interface ScheduleDayException {
+  uid: string;
+  date: string;
+  note: string;
+  checkIns: CheckInException[];
+  academicYear: string;
+}
+
+export interface TimeExcusalDoc {
+  boarder: SimpleItem;
+  uid: string;
+  leaveDate: string;
+  returnDate: string;
+  includedDays: string[];
+  reason: string;
+}
+
+
+export type RequestType = 'Leave' | 'Stay';
+
+export type RequestStatus = 'Pending' | 'Approved' | 'Rejected';
+
+export interface LeaveStayRequest {
+    uid: string;
+    student: {
+        name: string;
+        uid: string;
+        email: string;
+    };
+    type: RequestType;
+    explaination: string;
+    startDate: string;
+    endDate: string;
+    status: RequestStatus;
+    rejectionReason?: string;
+    academicYear: string;
+}
+
+export interface LeaveRequest {
+  uid: string;
+  email: string;
+  name:string;
+  startDate: string;
+  endDate: string;
+  transport: string;
+  where: string;
+}
+
+export interface StayRequest {
+  uid: string;
+  email: string;
+  name:string;
+  startDate: string;
+  endDate: string;
+  reason: string;
+}
+
+export interface TempPermissionRecord {
+  uid: string;
+  originalPermissions: BoarderPermissions,
+  tempPermissions: BoarderPermissions
 }

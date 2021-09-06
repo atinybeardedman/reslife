@@ -59,6 +59,10 @@ describe('CheckInDataService', () => {
     it('should return a null string if no checkInDocs are given', () => {
       expect(service.getSuggestedCheckIn([])).toBe('');
     })
+
+    it('should give the only check-in if only one check-in is given', () => {
+      expect(service.getSuggestedCheckIn([checkInDocs[0]])).toEqual(checkInDocs[0]['check-in']);
+    })
     
     it('should suggest the first check in if the current time is before all check-ins', () => {
       mockedGetTime.mockReturnValueOnce('10:00');

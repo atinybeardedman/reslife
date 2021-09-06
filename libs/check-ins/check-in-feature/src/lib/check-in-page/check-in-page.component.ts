@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Observable, combineLatest, Subject, BehaviorSubject } from 'rxjs';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import {
@@ -16,7 +16,7 @@ import { InfoDialogService } from '@reslife/shared/ui';
   templateUrl: './check-in-page.component.html',
   styleUrls: ['./check-in-page.component.scss'],
 })
-export class CheckInPageComponent {
+export class CheckInPageComponent implements OnDestroy{
   checkInDocs$!: Observable<CheckInDocument[]>;
   checkInOpts$!: Observable<string[]>;
   suggestedCheckIn$!: Observable<string>;
@@ -25,7 +25,7 @@ export class CheckInPageComponent {
   excused$!: Observable<ExcusedRecord[]>;
   selectedDate$: BehaviorSubject<string>;
   selectedCheckIn$: BehaviorSubject<string>;
-  untilDestroy$ = new Subject<boolean>();
+  untilDestroy$ = new Subject<void>();
 
   constructor(private cs: CheckInDataService, private ids: InfoDialogService) {
     this.selectedDate$ = new BehaviorSubject<string>(getDateString());
@@ -53,6 +53,12 @@ export class CheckInPageComponent {
         this.checked$ = this.cs.getChecked();
         this.excused$ = this.cs.getExcused();
       });
+  }
+
+  ngOnDestroy(){
+    this.untilDestroy$.next();
+    this.untilDestroy$.unsubscribe();
+    this.cs.unSetCheckIn();
   }
 
   selectDate(date: string): void {

@@ -5,8 +5,8 @@ import { RequestFeatureModule } from '@reslife/request-feature';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/auth';
+import { AngularFirestoreModule, USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/firestore';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -22,7 +22,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     RequestFeatureModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: USE_AUTH_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', '9099'] : undefined
+    },
+    {
+      provide: USE_FIRESTORE_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', '8080'] : undefined
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

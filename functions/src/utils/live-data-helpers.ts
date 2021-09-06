@@ -1,7 +1,12 @@
 import * as fbadmin from 'firebase-admin';
 
-import { Boarder, DormDocument } from '../types';
-import { getDateString } from './date';
+import {
+  Boarder,
+  DormDocument,
+  ScheduleDayException,
+  ScheduleItem,
+} from '../types';
+import { getAcademicYear, getDateString } from './date';
 
 export const getActiveBoarders = async () => {
   const boarderSnap = await fbadmin
@@ -12,11 +17,22 @@ export const getActiveBoarders = async () => {
   return boarderSnap.docs.map((b) => b.data() as Boarder);
 };
 
+export const getBoardersByDate = async (date: string) => {
+  const boarderSnap = await fbadmin
+    .firestore()
+    .collection('boarders')
+    .where('startDate', '<=', date)
+    .get();
+  return boarderSnap.docs
+    .map((b) => b.data() as Boarder)
+    .filter((b) => b.endDate >= date);
+};
+
 export const isBreak = async () => {
   const date = getDateString();
   const academicYearSnap = await fbadmin
     .firestore()
-    .collection('academicYears')
+    .collection('academic-years')
     .where('end', '>=', date)
     .get();
   // no year set up that ends after the current date, so it's a break
@@ -34,21 +50,45 @@ export const isBreak = async () => {
   // filter by breaks that end after the current date
   const breakSnap = await fbadmin
     .firestore()
-    .collection(`academicYears/${currentYearSnap.id}/breaks`).where('end', '>=', date)
+    .collection(`academic-years/${currentYearSnap.id}/breaks`)
+    .where('end', '>=', date)
     .get();
 
   // filter results by break that starts before this date
-  const filteredBreaks = breakSnap.docs.filter(b => b.get('start') <= date);
-  
+  const filteredBreaks = breakSnap.docs.filter((b) => b.get('start') <= date);
+
   return filteredBreaks.length !== 0;
-  
 };
 
 export const getActiveDorms = async () => {
   const dormSnap = await fbadmin
-  .firestore()
-  .collection('dorms')
-  .where('isActive', '==', true)
-  .get();
-return dormSnap.docs.map((d) => d.data() as DormDocument);
-}
+    .firestore()
+    .collection('dorms')
+    .where('isActive', '==', true)
+    .get();
+  return dormSnap.docs.map((d) => d.data() as DormDocument);
+};
+
+export const getRegularSchedule = async (
+  academicYear = getAcademicYear()
+): Promise<ScheduleItem[]> => {
+  const scheduleSnap = await fbadmin
+    .firestore()
+    .collection('regular-schedule')
+    .where('academicYear', '==', academicYear)
+    .get();
+  return scheduleSnap.docs.map((d) => d.data() as ScheduleItem);
+};
+
+export const getScheduleExceptions = async (
+  start: string,
+  end: string
+): Promise<ScheduleDayException[]> => {
+  const exceptionsSnap = await fbadmin
+    .firestore()
+    .collection('schedule-exceptions')
+    .where('date', '>=', start)
+    .where('date', '<=', end)
+    .get();
+    return exceptionsSnap.docs.map(d => d.data() as ScheduleDayException);
+};

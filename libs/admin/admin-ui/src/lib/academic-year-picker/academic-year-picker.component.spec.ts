@@ -3,11 +3,12 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSelectHarness } from '@angular/material/select/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AcademicYear, testAcademicYear } from '@reslife/admin-model';
 import { getAcademicYear, incrementAcademicYear } from '@reslife/utils';
-
+import { of } from 'rxjs';
 import { AcademicYearPickerComponent } from './academic-year-picker.component';
 import { AcademicYearPickerModule } from './academic-year-picker.module';
 
@@ -18,21 +19,25 @@ describe('AcademicYearPickerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AcademicYearPickerModule, NoopAnimationsModule],
-      declarations: [ AcademicYearPickerComponent ]
+      declarations: [AcademicYearPickerComponent],
     })
-    .overrideComponent(AcademicYearPickerComponent, {
-      set: {
-        changeDetection: ChangeDetectionStrategy.Default
-      }
-    })
-    .compileComponents();
+      .overrideComponent(AcademicYearPickerComponent, {
+        set: {
+          changeDetection: ChangeDetectionStrategy.Default,
+        },
+      })
+      .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AcademicYearPickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
     loader = TestbedHarnessEnvironment.loader(fixture);
+    jest.spyOn(component.dialog, 'open').mockReturnValue({
+      afterClosed: () => of(true),
+    } as MatDialogRef<typeof component>);
   });
 
   it('should create', () => {
@@ -41,15 +46,13 @@ describe('AcademicYearPickerComponent', () => {
 
   describe('When years exist', () => {
     beforeEach(() => {
-      component.yearDocs = [
-        testAcademicYear
-      ];
+      component.yearDocs = [testAcademicYear];
       fixture.detectChanges();
-    })
+    });
     it('should display the current academic years given', async () => {
       const select = await loader.getHarness(MatSelectHarness);
       await select.open();
-      const options = await select.getOptions(); 
+      const options = await select.getOptions();
       expect(options).toHaveLength(1);
       expect(await options[0].getText()).toBe(testAcademicYear.name);
     });
@@ -57,7 +60,7 @@ describe('AcademicYearPickerComponent', () => {
       const spy = jest.spyOn(component.yearSelected, 'emit');
       const select = await loader.getHarness(MatSelectHarness);
       await select.open();
-      await select.clickOptions({text: testAcademicYear.name});
+      await select.clickOptions({ text: testAcademicYear.name });
       fixture.detectChanges();
       expect(spy).toHaveBeenCalledWith(testAcademicYear);
     });
@@ -67,8 +70,10 @@ describe('AcademicYearPickerComponent', () => {
       fixture.detectChanges();
       const select = await loader.getHarness(MatSelectHarness);
 
-      expect(await select.getValueText()).toBe(incrementAcademicYear(testAcademicYear.name));
-    })
+      expect(await select.getValueText()).toBe(
+        incrementAcademicYear(testAcademicYear.name)
+      );
+    });
   });
 
   describe('when no years exist', () => {
@@ -80,6 +85,7 @@ describe('AcademicYearPickerComponent', () => {
     it('should add the current year when the button is clicked', async () => {
       const button = await loader.getHarness(MatButtonHarness);
       await button.click();
+
       fixture.detectChanges();
       const select = await loader.getHarness(MatSelectHarness);
 
@@ -91,7 +97,7 @@ describe('AcademicYearPickerComponent', () => {
       const button = await loader.getHarness(MatButtonHarness);
       await button.click();
       fixture.detectChanges();
-      
+
       const expectedDoc: AcademicYear = {
         name: getAcademicYear(),
         uid: getAcademicYear(),
@@ -99,8 +105,6 @@ describe('AcademicYearPickerComponent', () => {
         end: '',
       };
       expect(spy).toHaveBeenCalledWith(expectedDoc);
-    })
-  })
-
-
+    });
+  });
 });

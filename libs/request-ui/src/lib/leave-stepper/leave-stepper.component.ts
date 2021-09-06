@@ -60,6 +60,7 @@ export class LeaveStepperComponent implements OnInit, OnDestroy {
     const otherTransport = this.whereStep.controls.otherTransportCtrl.value;
     const request: LeaveRequest = {
       email: '',
+      name: '',
       uid: '',
       where,
       startDate,

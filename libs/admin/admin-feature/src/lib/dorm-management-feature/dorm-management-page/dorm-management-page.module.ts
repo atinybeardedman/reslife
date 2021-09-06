@@ -6,21 +6,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 
-
-
 @NgModule({
-  declarations: [
-    DormManagementPageComponent
-  ],
+  declarations: [DormManagementPageComponent],
   imports: [
     CommonModule,
     AdminUiModule,
     MatButtonModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
-  exports: [
-    DormManagementPageComponent
-  ]
+  exports: [DormManagementPageComponent],
 })
-export class DormManagementPageModule { }
+export class DormManagementPageModule {}

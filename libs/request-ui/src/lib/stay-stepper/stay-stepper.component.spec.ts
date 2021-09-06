@@ -67,6 +67,7 @@ describe('StayStepperComponent', () => {
     fixture.detectChanges();
     expect(spy).toHaveBeenCalledWith({
       reason: values[0],
+      name: '',
       uid: '',
       email: '',
       startDate: '2021-09-11T17:00:00.000Z',
