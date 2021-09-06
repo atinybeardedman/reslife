@@ -1,6 +1,6 @@
 import * as fbadmin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { CheckInDocument, MailgunOptions, OneTimeTask } from './types';
+import { CheckInDocument, MailgunOptions, OneTimeTask, TempPermissionRecord } from './types';
 import {
   addTime,
   combineDateTimeStr,
@@ -25,7 +25,7 @@ export const scheduleCheckInReminders = async () => {
   for (const checkIn of checkIns) {
     const docRef = fbadmin.firestore().collection('tasks').doc();
     const task: OneTimeTask = {
-      ID: docRef.id,
+      uid: docRef.id,
       functionName: 'postCheckInReminder',
       status: 'scheduled',
       isRepeat: false,
@@ -73,4 +73,55 @@ export const postCheckInReminder = async () => {
   }
 };
 
+const removeTempPermissions = async () => {
+  const tempRecordSnap = await fbadmin.firestore().collection('temp-permissions').get();
+  if(!tempRecordSnap.empty){
+    const batch = fbadmin.firestore().batch();
+    for(const record of tempRecordSnap.docs){
+      batch.delete(record.ref);
+    }
+    try {
+      await batch.commit();
+    } catch(err){
+      console.log(err);
+    }
 
+  }
+}
+
+const onTempPermissionCreate = functions.firestore.document('temp-permissions/{studentId}').onCreate(async (snap) => {
+  const tempPermissionRecord = snap.data() as TempPermissionRecord;
+  const boarderSnap = await fbadmin.firestore().doc(`boarders/${tempPermissionRecord.uid}`).get();
+  try {
+    await boarderSnap.ref.update({
+      permissions: tempPermissionRecord.tempPermissions
+    });
+  } catch(err){
+    console.log(err);
+  }
+});
+
+const onTempPermissionDelete = functions.firestore.document('temp-permissions/{studentId}').onDelete(async (snap) => {
+  const tempPermissionRecord = snap.data() as TempPermissionRecord;
+  const boarderSnap = await fbadmin.firestore().doc(`boarders/${tempPermissionRecord.uid}`).get();
+  try {
+    await boarderSnap.ref.update({
+      permissions: tempPermissionRecord.originalPermissions
+    });
+  } catch(err){
+    console.log(err);
+  }
+});
+
+
+export const triggerableFns = {
+  postCheckInReminder,
+  scheduleCheckInReminders,
+  removeTempPermissions
+};
+
+
+export const backgroundFns = {
+  onTempPermissionCreate,
+  onTempPermissionDelete
+}

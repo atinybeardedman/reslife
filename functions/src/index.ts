@@ -9,7 +9,10 @@ import {
 } from './dorm';
 import { backgroundFns as scheduleBackgrounds } from './schedule';
 import { backgroundFns as requestsBackgrounds } from './leave-stay-requests';
-import * as aodTriggers from './aod-notifications';
+import {
+  backgroundFns as accountabilityBackgrounds,
+  triggerableFns as accountabilityTriggers,
+} from './accountability';
 import {
   triggerableFns as boarderTriggers,
   backgroundFns as boarderBackgrounds,
@@ -20,8 +23,12 @@ import { cronTriggerBuilder } from './cron';
 const taskDict: PromiseDict = {
   ...boarderTriggers,
   ...dormTriggers,
-  ...aodTriggers,
+  ...accountabilityTriggers,
 };
+
+exports.accountability = {
+  ...accountabilityBackgrounds
+}
 
 exports.maintenance = {
   ...maintenanceFns,
@@ -32,16 +39,16 @@ exports.staff = {
 };
 
 exports.requests = {
-  ...requestsBackgrounds
-}
+  ...requestsBackgrounds,
+};
 
 exports.dorm = {
   ...dormBackgrounds,
 };
 
 exports.boarders = {
-  ...boarderBackgrounds
-}
+  ...boarderBackgrounds,
+};
 
 exports.schedule = {
   ...scheduleBackgrounds,
