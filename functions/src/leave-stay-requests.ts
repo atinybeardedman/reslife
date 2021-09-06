@@ -47,7 +47,9 @@ const onRequestProcessed = functions.firestore.document('requests/{requestId}').
             const batch = fbadmin.firestore().batch();
             for(const checkIn of checkIns.docs){
                 const expectedDoc = checkIn.ref.collection('expected').doc(after.student.uid);
+                const excusedDoc = checkIn.ref.collection('excused').doc(after.student.uid);
                 batch.set(expectedDoc, checkInItem);
+                batch.delete(excusedDoc);
             }
             try {
                 await batch.commit();
