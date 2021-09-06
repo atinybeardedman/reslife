@@ -7,12 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { AdminUiModule } from '@reslife/admin-ui';
 
-
-
 @NgModule({
-  declarations: [
-    AodCampusedManagementPageComponent
-  ],
+  declarations: [AodCampusedManagementPageComponent],
   imports: [
     CommonModule,
     AodUiModule,
@@ -21,8 +17,6 @@ import { AdminUiModule } from '@reslife/admin-ui';
     MatCardModule,
     FlexLayoutModule,
   ],
-  exports: [
-    AodCampusedManagementPageComponent
-  ]
+  exports: [AodCampusedManagementPageComponent],
 })
-export class AodCampusedManagementPageModule { }
+export class AodCampusedManagementPageModule {}

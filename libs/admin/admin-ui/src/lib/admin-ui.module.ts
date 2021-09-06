@@ -15,6 +15,7 @@ import { AcademicYearPickerModule } from './academic-year-picker/academic-year-p
 import { EditAcademicYearCardModule } from './edit-academic-year-card/edit-academic-year-card.module';
 import { RequestsTableModule } from './requests-table/requests-table.module';
 import { RequestModalModule } from './request-modal/request-modal.module';
+import { NewAcademicYearModalModule} from './new-academic-year-modal/new-academic-year-modal.module';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { RequestModalModule } from './request-modal/request-modal.module';
     EditAcademicYearCardModule,
     RequestsTableModule,
     RequestModalModule,
-    
+    NewAcademicYearModalModule
   ],
   exports: [
     ManageBoardersTableModule,
@@ -52,6 +53,7 @@ import { RequestModalModule } from './request-modal/request-modal.module';
     EditAcademicYearCardModule,
     RequestsTableModule,
     RequestModalModule,
+    NewAcademicYearModalModule
   ],
 })
 export class AdminUiModule {}

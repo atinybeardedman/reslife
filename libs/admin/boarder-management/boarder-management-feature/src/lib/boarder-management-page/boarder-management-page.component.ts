@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { BoarderManagementService } from '@reslife/admin-data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmModalComponent, EditBoarderModalComponent } from '@reslife/admin-ui';
+import { AcademicYear } from '@reslife/admin-model';
 
 @Component({
   selector: 'reslife-boarder-management-page',
@@ -15,6 +16,7 @@ export class BoarderManagementPageComponent implements OnInit {
   boarders$!: Observable<Boarder[]>;
   inactiveBoarders$!: Observable<Boarder[]>;
   dorms$!: Observable<string[]>;
+  academicYear$!: Observable<AcademicYear | null>;
   @ViewChild('editTemplate') editDialogTemplate!: TemplateRef<EditBoarderModalComponent>;
   @ViewChild('confirmTemplate') confirmDialogTemplate!: TemplateRef<ConfirmModalComponent>;
   modalTitle = 'New Boarder';
@@ -25,6 +27,7 @@ export class BoarderManagementPageComponent implements OnInit {
     this.boarders$ = this.bs.getActiveBoarders();
     this.inactiveBoarders$ = this.bs.getInactiveBoarders();
     this.dorms$ = this.bs.getActiveDorms();
+    this.academicYear$ = this.bs.getCurrentAcademicYear();
   }
 
   edit(action?: RecordAction<Boarder>): void {

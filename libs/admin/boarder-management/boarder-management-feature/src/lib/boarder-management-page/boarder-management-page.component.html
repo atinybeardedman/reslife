@@ -44,6 +44,7 @@
 
 <ng-template #editTemplate>
   <reslife-edit-boarder-modal
+    [academicYear]="academicYear$ | async"
     [dorms]="dorms$ | async"
     [boarder]="selectedBoarder"
     [title]="modalTitle"
