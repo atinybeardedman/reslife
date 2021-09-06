@@ -9,12 +9,12 @@ function getNextOneTime(task: OneTimeTask): Promise<OneTimeTask | null> {
   const currentTrigger = task.triggerTime;
   return fbadmin
     .firestore()
-    .doc(`repeatedTasks/${task.repeatID}`)
+    .doc(`repeated-tasks/${task.repeatID}`)
     .get()
     .then((snap) => {
       const repeat = snap.data() as RepeatedTask;
       let nextDate = moment.tz(currentTrigger, 'America/New_York');
-      const ID = fbadmin.firestore().collection('tasks').doc().id;
+      const uid = fbadmin.firestore().collection('tasks').doc().id;
       switch (repeat.repeatFrequency) {
         case 'dormdays': 
           if (nextDate.day() === 4){
@@ -41,7 +41,7 @@ function getNextOneTime(task: OneTimeTask): Promise<OneTimeTask | null> {
       if (moment(repeat.endDate) >= nextDate) {
         return {
           ...task,
-          ID,
+          uid,
           triggerTime: nextDate.format(),
         };
       } else {
@@ -61,6 +61,10 @@ export const cronTriggerBuilder = (taskDict: PromiseDict) =>
       .where('triggerTime', '<=', date)
       .get();
 
+      if(snap.empty){
+        return;
+      }
+    const batch = fbadmin.firestore().batch();
     const isCurrentlyBreak = await isBreak();
     for (const doc of snap.docs) {
       const task = doc.data() as OneTimeTask;
@@ -68,30 +72,33 @@ export const cronTriggerBuilder = (taskDict: PromiseDict) =>
         console.log(`Task: ${task.functionName} could not be found`);
         continue;
       }
-      if (task?.options?.alwaysRun || !isCurrentlyBreak) {
+      if (task.options?.alwaysRun || !isCurrentlyBreak) {
         try {
           await taskDict[task.functionName](task.options);
-          await doc.ref.update({ status: 'complete' });
+          batch.update(doc.ref, {status: 'complete'});
         } catch (err) {
           console.log(`${task.functionName} failed with error`);
           console.log(err);
-          await doc.ref.update({ status: 'error' });
+          batch.update(doc.ref, {status: 'error'})
         }
       } else {
         console.log(`${task.functionName} did not run as it is currently break.`);
-        await doc.ref.update({ status: 'complete' });
+        batch.update(doc.ref,{ status: 'complete' });
       }
 
       if (task.isRepeat) {
         const nextTask = await getNextOneTime(task);
         if (nextTask) {
-          return fbadmin
+          batch.set(fbadmin
             .firestore()
             .collection('tasks')
-            .doc(nextTask.ID)
-            .set(nextTask);
+            .doc(nextTask.uid), nextTask)
         }
       }
     }
-    return;
+    try {
+      await batch.commit(); 
+    } catch(err){
+      console.log(err)
+    }
   });

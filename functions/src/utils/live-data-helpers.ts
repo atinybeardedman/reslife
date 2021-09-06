@@ -32,7 +32,7 @@ export const isBreak = async () => {
   const date = getDateString();
   const academicYearSnap = await fbadmin
     .firestore()
-    .collection('academicYears')
+    .collection('academic-years')
     .where('end', '>=', date)
     .get();
   // no year set up that ends after the current date, so it's a break
@@ -50,7 +50,7 @@ export const isBreak = async () => {
   // filter by breaks that end after the current date
   const breakSnap = await fbadmin
     .firestore()
-    .collection(`academicYears/${currentYearSnap.id}/breaks`)
+    .collection(`academic-years/${currentYearSnap.id}/breaks`)
     .where('end', '>=', date)
     .get();
 

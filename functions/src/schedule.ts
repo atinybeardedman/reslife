@@ -7,10 +7,12 @@ import {
   CheckInItem,
   ExcusedRecord,
   NamedTimeSpan,
+  RepeatedTaskMeta,
   ScheduleDayException,
   ScheduleItem,
   TimeExcusalDoc,
 } from './types';
+import { createRepeatedTask } from './utils/cron';
 import {
   addToDatestring,
   combineDateTimeStr,
@@ -263,6 +265,65 @@ const onBreakDelete = functions.firestore
     );
   });
 
+
+const onAcademicYearCreate = functions.firestore.document('academic-years/{yearId}').onCreate(async (snap) => {
+  const year = snap.data() as AcademicYear;
+  const startDate = getDateFromDateString(year.start);
+  const startDay = startDate.getDay();
+  const firstDormDay = startDay < 5 ? year.start : addToDatestring(year.start, 7 - startDay);
+  const tasks: RepeatedTaskMeta[] = [
+    {
+      functionName: 'toggleBoarderStatus',
+      startDate: combineDateTimeStr(year.start, '00:05'),
+      repeatFrequency: 'daily',
+      endDate: year.end,
+      options: {
+        alwaysRun: true
+      }
+    },
+    {
+      functionName: 'generateDormNotes',
+      startDate: combineDateTimeStr(year.start, '00:10'),
+      repeatFrequency: 'daily',
+      endDate: year.end,
+      options: {}
+    },
+    {
+      functionName: 'lockOldNotes',
+      startDate: combineDateTimeStr(addToDatestring(year.start, 2), '00:15'),
+      repeatFrequency: 'daily',
+      endDate: addToDatestring(year.end, 2),
+      options: {}
+    },
+    {
+      functionName: 'generateRoomInspectionDocs',
+      startDate: combineDateTimeStr(firstDormDay, '00:15'),
+      repeatFrequency: 'dormdays',
+      endDate: year.end,
+      options: {}
+    },
+    {
+      functionName: 'scheduleCheckInReminders',
+      startDate: combineDateTimeStr(year.start, '00:15'),
+      repeatFrequency: 'daily',
+      endDate: year.end,
+      options: {}
+    },
+    {
+      functionName: 'removeTempPermissions',
+      startDate: combineDateTimeStr(firstDormDay, '00:15'),
+      repeatFrequency: 'weekly',
+      endDate: year.end,
+      options: {}
+    },
+  ];
+  try {
+    await Promise.all(tasks.map(t => createRepeatedTask(t)));
+  } catch(err){
+    console.log(err);
+  }
+});
+
 const onAcademicYearUpdate = functions.firestore
   .document('academic-years/{yearId}')
   .onUpdate(async (snap, context) => {
@@ -485,6 +546,7 @@ export const backgroundFns = {
   onBreakCreate,
   onBreakUpdate,
   onBreakDelete,
+  onAcademicYearCreate,
   onAcademicYearUpdate,
   onRegularCheckInCreate,
   onRegularCheckInUpdate,

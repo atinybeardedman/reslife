@@ -30,7 +30,7 @@ export interface TaskOptions {
 }
 
 export interface RepeatedTask {
-  ID: string;
+  uid: string;
   repeatFrequency: 'daily' | 'dormdays' | 'weekdays' | 'weekly' | 'monthly';
   functionName: string;
   active: boolean;
@@ -40,7 +40,7 @@ export interface RepeatedTask {
 }
 
 export interface OneTimeTask {
-  ID: string;
+  uid: string;
   status: 'scheduled' | 'complete' | 'error';
   functionName: string;
   triggerTime: string;
@@ -48,6 +48,8 @@ export interface OneTimeTask {
   repeatID?: string;
   options?: TaskOptions;
 }
+
+export type RepeatedTaskMeta = Pick<RepeatedTask, "functionName" | "startDate" | "endDate" | "repeatFrequency" | "options">;
 
 
 export interface PromiseDict {
@@ -240,4 +242,10 @@ export interface StayRequest {
   startDate: string;
   endDate: string;
   reason: string;
+}
+
+export interface TempPermissionRecord {
+  uid: string;
+  originalPermissions: BoarderPermissions,
+  tempPermissions: BoarderPermissions
 }
