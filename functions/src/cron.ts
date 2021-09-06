@@ -4,6 +4,8 @@ import * as moment from 'moment-timezone';
 import { toIsoTimezoneString } from './utils/date';
 import { OneTimeTask, PromiseDict, RepeatedTask } from './types';
 import { isBreak } from './utils/live-data-helpers';
+import { sendEmail } from './utils/email';
+import { isProduction } from './utils/general';
 
 function getNextOneTime(task: OneTimeTask): Promise<OneTimeTask | null> {
   const currentTrigger = task.triggerTime;
@@ -77,6 +79,12 @@ export const cronTriggerBuilder = (taskDict: PromiseDict) =>
           await taskDict[task.functionName](task.options);
           batch.update(doc.ref, {status: 'complete'});
         } catch (err) {
+          await sendEmail({
+            to: functions.config().emails['error-receiver'],
+            from: 'Error<noreply@oakwoodfriends.org',
+            subject: 'CRON Error',
+            text: `${task.functionName} failed with error: ${err}`
+          }, !isProduction());
           console.log(`${task.functionName} failed with error`);
           console.log(err);
           batch.update(doc.ref, {status: 'error'})
