@@ -66,7 +66,7 @@ const getCheckInRefWithItem = (
 } => {
   let item: CheckInItem | ExcusedRecord;
   let ref: FirebaseFirestore.DocumentReference;
-  const shouldExcuse5Day = !is7DayOnly(checkIn);
+  const shouldExcuse5Day = is7DayOnly(checkIn);
   if (boarder.type === '5 Day' && shouldExcuse5Day) {
     ref = checkIn.ref.collection('excused').doc(boarder.uid);
     item = {
@@ -127,6 +127,7 @@ const onBoarderDelete = functions.firestore
     }
     try {
       await batch.commit();
+      await fbadmin.auth().deleteUser(boarder.uid);
     } catch (err) {
       console.log(err);
     }
