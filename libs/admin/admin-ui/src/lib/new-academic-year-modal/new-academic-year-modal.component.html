@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Creating a New Year</h1>
+<div mat-dialog-content>
+  Creating a New Year? Here are a few things to remember:
+  <ul>
+    <li>
+      All dates in the application are inclusive. Your start and end dates
+      should reflect days when the dorm is open and you expect to check students
+      in. Breaks are also inclusive, so start and end dates of breaks should be
+      days when no check-ins will conducted.
+    </li>
+    <li>
+      After creating the academic year, you should be sure to do the following
+      tasks in order:
+      <ol>
+        <li>Update the dorms (setting active, inactive, or adding more)</li>
+        <li>
+          Create a new regular schedule for the new year (the old does not roll
+          over)
+        </li>
+        <li>
+          Add/Update Boarders. If you want boarders to roll over, edit them and
+          extend their end date to the end of this year. If you do not do this,
+          they will not roll over automatically and you do not have to worry
+          about them.
+        </li>
+        <li>Update your staff list</li>
+      </ol>
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-dialog-close mat-button>Cancel</button>
+  <button [mat-dialog-close]="true" mat-button>Create Year</button>
+</div>

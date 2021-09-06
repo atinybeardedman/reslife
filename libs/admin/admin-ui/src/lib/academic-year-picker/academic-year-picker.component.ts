@@ -1,6 +1,8 @@
 import { Component,  ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AcademicYear } from '@reslife/admin-model';
 import { getAcademicYear, incrementAcademicYear } from '@reslife/utils';
+import { NewAcademicYearModalComponent } from '../new-academic-year-modal/new-academic-year-modal.component';
 
 @Component({
   selector: 'reslife-academic-year-picker',
@@ -13,6 +15,8 @@ export class AcademicYearPickerComponent implements OnChanges {
   @Output() yearSelected = new EventEmitter<AcademicYear>();
   addedYears: string[] = [];
   selectedYear!: string;
+
+  constructor(private dialog: MatDialog){}
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.yearDocs && this.yearDocs){
@@ -37,7 +41,7 @@ export class AcademicYearPickerComponent implements OnChanges {
     return list
   }
 
-  addYear(): void {
+  async addYear(): Promise<void> {
     let newYear: string;
     if(this.years && this.years.length > 0){
       const year = this.years.pop() as string;
@@ -45,8 +49,11 @@ export class AcademicYearPickerComponent implements OnChanges {
     } else {
       newYear = getAcademicYear();
     }
-    this.addedYears.push(newYear);
-    this.selectYear(newYear);
+    const result = await this.dialog.open(NewAcademicYearModalComponent).afterClosed().toPromise();
+    if(result === true){
+      this.addedYears.push(newYear);
+      this.selectYear(newYear);
+    }
   }
 
   selectYear(year: string): void {
