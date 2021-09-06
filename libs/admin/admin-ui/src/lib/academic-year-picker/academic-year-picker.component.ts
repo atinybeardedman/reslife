@@ -16,7 +16,7 @@ export class AcademicYearPickerComponent implements OnChanges {
   addedYears: string[] = [];
   selectedYear!: string;
 
-  constructor(private dialog: MatDialog){}
+  constructor(public dialog: MatDialog){}
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.yearDocs && this.yearDocs){
