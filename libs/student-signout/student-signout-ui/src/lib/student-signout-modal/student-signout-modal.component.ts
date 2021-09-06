@@ -42,13 +42,22 @@ export class StudentSignoutModalComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.signoutMeta && this.signoutMeta && this.signout) {
+    if(changes.signoutMeta && this.signoutMeta && this.signout){
       this.fillFields(this.signout);
     }
+    
+  
   }
 
   selectBoarder(boarderMeta: NamedItem) {
     this.selectedBoarder = boarderMeta as BoarderSignoutMeta;
+    if(this.transportOptions.length === 0){
+      this.signoutFields.controls.destination.disable();
+      this.signoutFields.controls.transport.disable();
+    } else {
+      this.signoutFields.controls.destination.enable();
+      this.signoutFields.controls.transport.enable();
+    }
   }
 
   fillFields(signout: StudentSignout): void {
