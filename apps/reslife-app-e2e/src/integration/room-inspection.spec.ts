@@ -83,15 +83,13 @@ describe('room inspection', () => {
       });
 
       it('should allow a reversing a status of a student already inspected', () => {
-        cy.get('[data-testid="inspected-list"] mat-list-item').contains('Test Student 6').parent().as('last-item');
-        cy.get('@last-item')
-          .should('contain.text', 'thumb_down')
-        cy.get('@last-item').within(() => {
-            cy.get('button')
+        cy.get('[data-testid="inspected-list"] mat-list-item:last-child').should('contain.text', 'thumb_down');
+        
+        cy.get('[data-testid="inspected-list"] mat-list-item:last-child button')
             .contains('swap_horiz')
             .click();
-        })
-        cy.get('[data-testid="inspected-list"] mat-list-item').contains('Test Student 6').parent().should('contain.text', 'thumb_up');
+    
+        cy.get('[data-testid="inspected-list"] mat-list-item:last-child').should('contain.text', 'thumb_up');
       });
     });
   });
