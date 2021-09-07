@@ -2,11 +2,11 @@ export const environment = {
   production: true,
   useEmulators: false,
   firebase: {
-    apiKey: "AIzaSyBDnop9prdY-550K5vaBCQ5IqnMOS8quUQ",
-    authDomain: "reslife-staging.firebaseapp.com",
-    projectId: "reslife-staging",
-    storageBucket: "reslife-staging.appspot.com",
-    messagingSenderId: "600090189906",
-    appId: "1:600090189906:web:0beb87dd4bc6faf714bf8b"
+    apiKey: "AIzaSyB6aAeTDgaq0thZbDr8DfpEUi34PX2i4Vw",
+    authDomain: "ofs-reslife-app.firebaseapp.com",
+    projectId: "ofs-reslife-app",
+    storageBucket: "ofs-reslife-app.appspot.com",
+    messagingSenderId: "1080941407787",
+    appId: "1:1080941407787:web:5915ea3430b0a3c8ee846e"
   }
 };

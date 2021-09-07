@@ -9,6 +9,16 @@
           "reslife-staging"
         ]
       }
+    },
+    "ofs-reslife-app": {
+      "hosting": {
+        "reslife-main-app": [
+          "ofs-reslife-app"
+        ],
+        "reslife-request": [
+          "ofs-reslife-request-app"
+        ]
+      }
     }
   }
 }
