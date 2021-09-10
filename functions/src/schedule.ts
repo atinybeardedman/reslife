@@ -561,6 +561,7 @@ const onTimeExcusalCreate = functions.firestore
         batchList[batchIndex].delete(
           checkIn.ref.collection('expected').doc(excusalDoc.boarder.uid)
         );
+        operationCount+=2;
         if (operationCount >= 498) {
           batchList.push(fbadmin.firestore().batch());
           batchIndex++;

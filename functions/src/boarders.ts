@@ -97,7 +97,8 @@ const onBoarderCreate = functions.firestore
     for (const checkIn of checkIns.docs) {
       const { ref, item } = getCheckInRefWithItem(checkIn, boarder);
       batchList[batchIndex].set(ref, item);
-      if (operationCount === 499) {
+      operationCount++;
+      if (operationCount >= 498) {
         batchList.push(fbadmin.firestore().batch());
         batchIndex++;
         operationCount = 0;
