@@ -52,7 +52,7 @@ $reslife-app-theme: mat.define-light-theme(
 @include mat.menu-theme($reslife-app-theme);
 @include mat.expansion-theme($reslife-app-theme);
 @include mat.paginator-theme($reslife-app-theme);
-@include mat.snackbar-theme($reslife-app-theme);
+@include mat.snack-bar-theme($reslife-app-theme);
 @include mat.tabs-theme($reslife-app-theme);
 
 .active-list-link {
