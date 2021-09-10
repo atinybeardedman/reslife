@@ -1,12 +1,7 @@
 import * as fbadmin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
-import {
-  Boarder,
-  CheckInItem,
-  CheckInRecord,
-  ExcusedRecord,
-} from './types';
+import { Boarder, CheckInItem, CheckInRecord, ExcusedRecord } from './types';
 import {
   addToDatestring,
   getDateFromDateString,
@@ -95,13 +90,21 @@ const onBoarderCreate = functions.firestore
       boarder.startDate,
       boarder.endDate
     );
-    const batch = fbadmin.firestore().batch();
+    let batchIndex = 0;
+    let operationCount = 0;
+    const batchList = [];
+    batchList.push(fbadmin.firestore().batch());
     for (const checkIn of checkIns.docs) {
       const { ref, item } = getCheckInRefWithItem(checkIn, boarder);
-      batch.set(ref, item);
+      batchList[batchIndex].set(ref, item);
+      if (operationCount === 499) {
+        batchList.push(fbadmin.firestore().batch());
+        batchIndex++;
+        operationCount = 0;
+      }
     }
     try {
-      await batch.commit();
+      await Promise.all(batchList.map((b) => b.commit()));
       await fbadmin.auth().createUser({
         email: boarder.email,
         displayName: boarder.name,
@@ -120,13 +123,26 @@ const onBoarderDelete = functions.firestore
       boarder.startDate,
       boarder.endDate
     );
-    const batch = fbadmin.firestore().batch();
+    let batchIndex = 0;
+    let operationCount = 0;
+    const batchList = [];
+    batchList.push(fbadmin.firestore().batch());
     for (const checkIn of checkIns.docs) {
-      batch.delete(checkIn.ref.collection('expected').doc(boarder.uid));
-      batch.delete(checkIn.ref.collection('excused').doc(boarder.uid));
+      batchList[batchIndex].delete(
+        checkIn.ref.collection('expected').doc(boarder.uid)
+      );
+      batchList[batchIndex].delete(
+        checkIn.ref.collection('excused').doc(boarder.uid)
+      );
+      operationCount += 2;
+      if (operationCount >= 498) {
+        batchList.push(fbadmin.firestore().batch());
+        batchIndex++;
+        operationCount = 0;
+      }
     }
     try {
-      await batch.commit();
+      await Promise.all(batchList.map((b) => b.commit()));
       await fbadmin.auth().deleteUser(boarder.uid);
     } catch (err) {
       console.log(err);
@@ -148,13 +164,22 @@ const onBoarderUpdate = functions.firestore
             before.startDate,
             after.startDate
           );
-          const batch = fbadmin.firestore().batch();
+          let batchIndex = 0;
+          let operationCount = 0;
+          const batchList = [];
+          batchList.push(fbadmin.firestore().batch());
           for (const checkIn of checkIns.docs) {
             const { ref, item } = getCheckInRefWithItem(checkIn, after);
-            batch.set(ref, item);
+            batchList[batchIndex].set(ref, item);
+            operationCount++;
+            if (operationCount === 499) {
+              batchList.push(fbadmin.firestore().batch());
+              batchIndex++;
+              operationCount = 0;
+            }
           }
           try {
-            await batch.commit();
+            await Promise.all(batchList.map((b) => b.commit()));
           } catch (err) {
             console.log(err);
           }
@@ -162,13 +187,22 @@ const onBoarderUpdate = functions.firestore
           // starting later than expected, remove check-ins (exclusive ending)
           const end = addToDatestring(after.startDate, -1);
           const checkIns = await getCheckinsByDateRange(before.startDate, end);
-          const batch = fbadmin.firestore().batch();
+          let batchIndex = 0;
+          let operationCount = 0;
+          const batchList = [];
+          batchList.push(fbadmin.firestore().batch());
           for (const checkIn of checkIns.docs) {
             const { ref, item } = getCheckInRefWithItem(checkIn, after);
-            batch.set(ref, item);
+            batchList[batchIndex].set(ref, item);
+            operationCount++;
+            if (operationCount === 499) {
+              batchList.push(fbadmin.firestore().batch());
+              batchIndex++;
+              operationCount = 0;
+            }
           }
           try {
-            await batch.commit();
+            await Promise.all(batchList.map((b) => b.commit()));
           } catch (err) {
             console.log(err);
           }
