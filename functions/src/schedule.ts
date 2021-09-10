@@ -125,16 +125,18 @@ const onCheckInMetaCreate = functions.firestore
     const doc = snap.data() as CheckInDocument;
     const checkInEnd = combineDateTimeStr(doc.date, doc.end);
     const checkInDay = getDateFromDateString(doc.date).getDay();
-    const is7DayOnly = checkInDay >= 5 || (checkInDay === 0  && doc.start < '19:00');
-    let boarders = await getBoardersByDate(doc.date);
-    if(is7DayOnly){
-      boarders = boarders.filter(b => b.type === '7 Day');
-    }
+    const is7DayOnly =
+      checkInDay >= 5 || (checkInDay === 0 && doc.start < '19:00');
+    const boarders = await getBoardersByDate(doc.date);
     const excusals = await getExcusalsByDate(doc.date);
-    const batch = fbadmin.firestore().batch();
+    let batchIndex = 0;
+    let operationCount = 0;
+    const batchList = [];
+    batchList.push(fbadmin.firestore().batch());
     for (const boarder of boarders) {
-      const excusal = excusals.find((e) => (e.boarder.uid === boarder.uid));
+      const excusal = excusals.find((e) => e.boarder.uid === boarder.uid);
       if (typeof excusal !== 'undefined') {
+        // if they have an excusal that fits in this time frame, excuse them
         if (
           excusal.leaveDate < checkInEnd &&
           excusal.returnDate >= checkInEnd
@@ -145,19 +147,50 @@ const onCheckInMetaCreate = functions.firestore
             name: boarder.name,
             note: excusal.reason,
           };
-          batch.set(excusedRef, excusedDoc);
+          batchList[batchIndex].set(excusedRef, excusedDoc);
+          operationCount++;
+          if (operationCount === 499) {
+            batchList.push(fbadmin.firestore().batch());
+            batchIndex++;
+            operationCount = 0;
+          }
           continue;
         }
       }
-      const expectedRef = snap.ref.collection('expected').doc(boarder.uid);
-      const expectedDoc: CheckInItem = {
-        uid: boarder.uid,
-        name: boarder.name,
-      };
-      batch.set(expectedRef, expectedDoc);
+      // if they are a 5 day and this is a 7 day only check in, excuse them
+      if(is7DayOnly && boarder.type === '5 Day'){
+        const excusedRef = snap.ref.collection('excused').doc(boarder.uid);
+        const excusedDoc: ExcusedRecord = {
+          uid: boarder.uid,
+          name: boarder.name,
+          note: '5 Day'
+        };
+        batchList[batchIndex].set(excusedRef, excusedDoc);
+        operationCount++;
+        if (operationCount === 499) {
+          batchList.push(fbadmin.firestore().batch());
+          batchIndex++;
+          operationCount = 0;
+        }
+
+      } else {
+        // if they are 7 day, they are expected
+        const expectedRef = snap.ref.collection('expected').doc(boarder.uid);
+        const expectedDoc: CheckInItem = {
+          uid: boarder.uid,
+          name: boarder.name,
+        };
+        batchList[batchIndex].set(expectedRef, expectedDoc);
+        operationCount++;
+        if (operationCount === 499) {
+          batchList.push(fbadmin.firestore().batch());
+          batchIndex++;
+          operationCount = 0;
+        }
+      }
     }
     try {
-      await batch.commit();
+      await Promise.all(batchList.map((b) => b.commit()));
     } catch (err) {
       console.log(err);
     }
@@ -265,64 +298,66 @@ const onBreakDelete = functions.firestore
     );
   });
 
-
-const onAcademicYearCreate = functions.firestore.document('academic-years/{yearId}').onCreate(async (snap) => {
-  const year = snap.data() as AcademicYear;
-  const startDate = getDateFromDateString(year.start);
-  const startDay = startDate.getDay();
-  const firstDormDay = startDay < 5 ? year.start : addToDatestring(year.start, 7 - startDay);
-  const tasks: RepeatedTaskMeta[] = [
-    {
-      functionName: 'toggleBoarderStatus',
-      startDate: combineDateTimeStr(year.start, '00:05'),
-      repeatFrequency: 'daily',
-      endDate: year.end,
-      options: {
-        alwaysRun: true
-      }
-    },
-    {
-      functionName: 'generateDormNotes',
-      startDate: combineDateTimeStr(year.start, '00:10'),
-      repeatFrequency: 'daily',
-      endDate: year.end,
-      options: {}
-    },
-    {
-      functionName: 'lockOldNotes',
-      startDate: combineDateTimeStr(addToDatestring(year.start, 2), '00:15'),
-      repeatFrequency: 'daily',
-      endDate: addToDatestring(year.end, 2),
-      options: {}
-    },
-    {
-      functionName: 'generateRoomInspectionDocs',
-      startDate: combineDateTimeStr(firstDormDay, '00:15'),
-      repeatFrequency: 'dormdays',
-      endDate: year.end,
-      options: {}
-    },
-    {
-      functionName: 'scheduleCheckInReminders',
-      startDate: combineDateTimeStr(year.start, '00:15'),
-      repeatFrequency: 'daily',
-      endDate: year.end,
-      options: {}
-    },
-    {
-      functionName: 'removeTempPermissions',
-      startDate: combineDateTimeStr(firstDormDay, '00:15'),
-      repeatFrequency: 'weekly',
-      endDate: year.end,
-      options: {}
-    },
-  ];
-  try {
-    await Promise.all(tasks.map(t => createRepeatedTask(t)));
-  } catch(err){
-    console.log(err);
-  }
-});
+const onAcademicYearCreate = functions.firestore
+  .document('academic-years/{yearId}')
+  .onCreate(async (snap) => {
+    const year = snap.data() as AcademicYear;
+    const startDate = getDateFromDateString(year.start);
+    const startDay = startDate.getDay();
+    const firstDormDay =
+      startDay < 5 ? year.start : addToDatestring(year.start, 7 - startDay);
+    const tasks: RepeatedTaskMeta[] = [
+      {
+        functionName: 'toggleBoarderStatus',
+        startDate: combineDateTimeStr(year.start, '00:05'),
+        repeatFrequency: 'daily',
+        endDate: year.end,
+        options: {
+          alwaysRun: true,
+        },
+      },
+      {
+        functionName: 'generateDormNotes',
+        startDate: combineDateTimeStr(year.start, '00:10'),
+        repeatFrequency: 'daily',
+        endDate: year.end,
+        options: {},
+      },
+      {
+        functionName: 'lockOldNotes',
+        startDate: combineDateTimeStr(addToDatestring(year.start, 2), '00:15'),
+        repeatFrequency: 'daily',
+        endDate: addToDatestring(year.end, 2),
+        options: {},
+      },
+      {
+        functionName: 'generateRoomInspectionDocs',
+        startDate: combineDateTimeStr(firstDormDay, '00:15'),
+        repeatFrequency: 'dormdays',
+        endDate: year.end,
+        options: {},
+      },
+      {
+        functionName: 'scheduleCheckInReminders',
+        startDate: combineDateTimeStr(year.start, '00:15'),
+        repeatFrequency: 'daily',
+        endDate: year.end,
+        options: {},
+      },
+      {
+        functionName: 'removeTempPermissions',
+        startDate: combineDateTimeStr(firstDormDay, '00:15'),
+        repeatFrequency: 'weekly',
+        endDate: year.end,
+        options: {},
+      },
+    ];
+    try {
+      await Promise.all(tasks.map((t) => createRepeatedTask(t)));
+    } catch (err) {
+      console.log(err);
+    }
+  });
 
 const onAcademicYearUpdate = functions.firestore
   .document('academic-years/{yearId}')
@@ -484,58 +519,105 @@ const onRegularCheckInDelete = functions.firestore
     }
   });
 
-const onTimeExcusalCreate = functions.firestore.document('time-excusals/{excusalId}').onCreate(async (snap) => {
+const onTimeExcusalCreate = functions.firestore
+  .document('time-excusals/{excusalId}')
+  .onCreate(async (snap) => {
     const excusalDoc = snap.data() as TimeExcusalDoc;
-    const checkIns = await getCheckinsByDateRange(excusalDoc.includedDays[0], excusalDoc.includedDays[excusalDoc.includedDays.length - 1]);
-    if(checkIns.empty){
-        return
+    const checkIns = await getCheckinsByDateRange(
+      excusalDoc.includedDays[0],
+      excusalDoc.includedDays[excusalDoc.includedDays.length - 1]
+    );
+    if (checkIns.empty) {
+      return;
     }
-    const batch = fbadmin.firestore().batch();
-    for(const checkIn of checkIns.docs){
-        const checkInDoc = checkIn.data() as CheckInDocument;
-        const endTime = combineDateTimeStr(checkInDoc.date, checkInDoc.end);
-        if(excusalDoc.leaveDate < endTime && excusalDoc.returnDate >= endTime){
-            batch.delete(checkIn.ref.collection('excused').doc(excusalDoc.boarder.uid));
-            batch.delete(checkIn.ref.collection('checked').doc(excusalDoc.boarder.uid));
-           
-                const excusalRecord: ExcusedRecord = {
-                    ...excusalDoc.boarder,
-                    note: excusalDoc.reason
-                }
-                batch.set(checkIn.ref.collection('excused').doc(excusalDoc.boarder.uid), excusalRecord);
-                batch.delete(checkIn.ref.collection('expected').doc(excusalDoc.boarder.uid));
-            
+    let batchIndex = 0;
+    let operationCount = 0;
+    const batchList = [];
+    batchList.push(fbadmin.firestore().batch());
+    for (const checkIn of checkIns.docs) {
+      const checkInDoc = checkIn.data() as CheckInDocument;
+      const endTime = combineDateTimeStr(checkInDoc.date, checkInDoc.end);
+      if (excusalDoc.leaveDate < endTime && excusalDoc.returnDate >= endTime) {
+        batchList[batchIndex].delete(
+          checkIn.ref.collection('excused').doc(excusalDoc.boarder.uid)
+        );
+        batchList[batchIndex].delete(
+          checkIn.ref.collection('checked').doc(excusalDoc.boarder.uid)
+        );
+        operationCount += 2;
+        if (operationCount >= 498) {
+          batchList.push(fbadmin.firestore().batch());
+          batchIndex++;
+          operationCount = 0;
         }
+        const excusalRecord: ExcusedRecord = {
+          ...excusalDoc.boarder,
+          note: excusalDoc.reason,
+        };
+        batchList[batchIndex].set(
+          checkIn.ref.collection('excused').doc(excusalDoc.boarder.uid),
+          excusalRecord
+        );
+        batchList[batchIndex].delete(
+          checkIn.ref.collection('expected').doc(excusalDoc.boarder.uid)
+        );
+        if (operationCount >= 498) {
+          batchList.push(fbadmin.firestore().batch());
+          batchIndex++;
+          operationCount = 0;
+        }
+      }
     }
     try {
-        await batch.commit();
-    } catch(err){
-        console.log(err);
+      await Promise.all(batchList.map((b) => b.commit()));
+    } catch (err) {
+      console.log(err);
     }
-});
+  });
 
-const onTimeExcusalDelete = functions.firestore.document('time-excusals/{excusalId}').onDelete(async (snap) => {
+const onTimeExcusalDelete = functions.firestore
+  .document('time-excusals/{excusalId}')
+  .onDelete(async (snap) => {
     const excusalDoc = snap.data() as TimeExcusalDoc;
-    const checkIns = await getCheckinsByDateRange(excusalDoc.includedDays[0], excusalDoc.includedDays[excusalDoc.includedDays.length - 1]);
-    if(checkIns.empty){
-        return
+    const checkIns = await getCheckinsByDateRange(
+      excusalDoc.includedDays[0],
+      excusalDoc.includedDays[excusalDoc.includedDays.length - 1]
+    );
+    if (checkIns.empty) {
+      return;
     }
-    const batch = fbadmin.firestore().batch();
-    for(const checkIn of checkIns.docs){
-        const checkInDoc = checkIn.data() as CheckInDocument;
-        const endTime = combineDateTimeStr(checkInDoc.date, checkInDoc.end);
-        if(excusalDoc.leaveDate < endTime && excusalDoc.returnDate >= endTime){
-            batch.delete(checkIn.ref.collection('excused').doc(excusalDoc.boarder.uid));
-            batch.delete(checkIn.ref.collection('checked').doc(excusalDoc.boarder.uid));
-                batch.set(checkIn.ref.collection('expected').doc(excusalDoc.boarder.uid), {...excusalDoc.boarder});
+    let batchIndex = 0;
+    let operationCount = 0;
+    const batchList = [];
+    batchList.push(fbadmin.firestore().batch());
+    for (const checkIn of checkIns.docs) {
+      const checkInDoc = checkIn.data() as CheckInDocument;
+      const endTime = combineDateTimeStr(checkInDoc.date, checkInDoc.end);
+      if (excusalDoc.leaveDate < endTime && excusalDoc.returnDate >= endTime) {
+        batchList[batchIndex].delete(
+          checkIn.ref.collection('excused').doc(excusalDoc.boarder.uid)
+        );
+        batchList[batchIndex].delete(
+          checkIn.ref.collection('checked').doc(excusalDoc.boarder.uid)
+        );
+        batchList[batchIndex].set(
+          checkIn.ref.collection('expected').doc(excusalDoc.boarder.uid),
+          { ...excusalDoc.boarder }
+        );
+        operationCount += 3;
+        if (operationCount >= 497) {
+          batchList.push(fbadmin.firestore().batch());
+          batchIndex++;
+          operationCount = 0;
         }
+      }
     }
     try {
-        await batch.commit();
-    } catch(err){
-        console.log(err);
+      await Promise.all(batchList.map((b) => b.commit()));
+    } catch (err) {
+      console.log(err);
     }
-});
+  });
 
 export const backgroundFns = {
   onCheckInMetaCreate,
@@ -552,5 +634,5 @@ export const backgroundFns = {
   onRegularCheckInUpdate,
   onRegularCheckInDelete,
   onTimeExcusalCreate,
-  onTimeExcusalDelete
+  onTimeExcusalDelete,
 };
