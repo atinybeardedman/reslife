@@ -3,7 +3,7 @@
   <reslife-check-in-choice
     fxFlex="1 1 30rem"
     fxFlex.lt-md
-    [suggested]="suggestedCheckIn$ | async"
+    [suggested]="selectedCheckIn$ | async"
     (dateSelected)="selectDate($event)"
     [checkIns]="checkInOpts$ | async"
     (checkInSelected)="selectCheckIn($event)"

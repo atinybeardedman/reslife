@@ -19,7 +19,6 @@ import { InfoDialogService } from '@reslife/shared/ui';
 export class CheckInPageComponent implements OnDestroy{
   checkInDocs$!: Observable<CheckInDocument[]>;
   checkInOpts$!: Observable<string[]>;
-  suggestedCheckIn$!: Observable<string>;
   toCheck$!: Observable<CheckInItem[]>;
   checked$!: Observable<CheckInRecord[]>;
   excused$!: Observable<ExcusedRecord[]>;
@@ -36,14 +35,14 @@ export class CheckInPageComponent implements OnDestroy{
     this.checkInOpts$ = this.checkInDocs$.pipe(
       map((choices) => choices.map((c) => c['check-in']))
     );
-    this.suggestedCheckIn$ = this.checkInDocs$.pipe(
-      map((choices) => this.cs.getSuggestedCheckIn(choices)),
-      tap(choice => {
-        if(choice){
-          this.selectedCheckIn$.next(choice)
-        }
-      })
-    );
+    this.checkInDocs$.pipe(
+      takeUntil(this.untilDestroy$),
+      map((choices) => this.cs.getSuggestedCheckIn(choices))
+    ).subscribe(choice => {
+      if(choice){
+        this.selectedCheckIn$.next(choice)
+      }
+    });
     this.selectedDate$.next(getDateString());
     combineLatest([this.selectedDate$, this.selectedCheckIn$])
       .pipe(takeUntil(this.untilDestroy$))
