@@ -49,7 +49,7 @@ export interface OneTimeTask {
   options?: TaskOptions;
 }
 
-export type RepeatedTaskMeta = Pick<RepeatedTask, "functionName" | "startDate" | "endDate" | "repeatFrequency" | "options">;
+export type RepeatedTaskMeta = Pick<RepeatedTask, 'functionName' | 'startDate' | 'endDate' | 'repeatFrequency' | 'options'>;
 
 
 export interface PromiseDict {
@@ -193,15 +193,6 @@ export interface ScheduleDayException {
   note: string;
   checkIns: CheckInException[];
   academicYear: string;
-}
-
-export interface TimeExcusalDoc {
-  boarder: SimpleItem;
-  uid: string;
-  leaveDate: string;
-  returnDate: string;
-  includedDays: string[];
-  reason: string;
 }
 
 
