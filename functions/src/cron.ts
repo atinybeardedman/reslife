@@ -81,7 +81,7 @@ export const cronTriggerBuilder = (taskDict: PromiseDict) =>
         } catch (err) {
           await sendEmail({
             to: functions.config().emails['error-receiver'],
-            from: 'Error<noreply@oakwoodfriends.org',
+            from: 'Error Reporter <noreply@oakwoodfriends.org>',
             subject: 'CRON Error',
             text: `${task.functionName} failed with error: ${err}`
           }, !isProduction());
