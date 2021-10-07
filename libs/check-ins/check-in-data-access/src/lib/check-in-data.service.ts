@@ -10,7 +10,8 @@ import {
   ExcusedRecord,
 } from '@reslife/check-ins/check-in-model';
 import { Observable, of } from 'rxjs';
-import { getTimeDiff, combineDatetime, getTime } from '@reslife/utils';
+import { map } from 'rxjs/operators'
+import { getTimeDiff, combineDatetime, getTime, orderByName } from '@reslife/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -60,7 +61,10 @@ export class CheckInDataService {
     if (this.selectedCheckInDocument) {
       return this.selectedCheckInDocument
         .collection<CheckInItem>('expected')
-        .valueChanges();
+        .valueChanges()
+        .pipe(
+          map(items => items.sort(orderByName))
+        );
     } else {
       return of([]);
     }
@@ -69,7 +73,10 @@ export class CheckInDataService {
     if (this.selectedCheckInDocument) {
       return this.selectedCheckInDocument
         .collection<CheckInRecord>('checked')
-        .valueChanges();
+        .valueChanges()
+        .pipe(
+          map(items => items.sort(orderByName))
+        );
     } else {
       return of([]);
     }
@@ -78,7 +85,10 @@ export class CheckInDataService {
     if (this.selectedCheckInDocument) {
       return this.selectedCheckInDocument
         .collection<ExcusedRecord>('excused')
-        .valueChanges();
+        .valueChanges()
+        .pipe(
+          map(items => items.sort(orderByName))
+        );
     } else {
       return of([]);
     }
